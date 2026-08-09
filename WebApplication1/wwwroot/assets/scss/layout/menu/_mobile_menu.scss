@@ -1,0 +1,95 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.2 Mobilemenu css
+/*----------------------------------------*/
+
+.tp-offcanvas-menu {
+    margin-bottom: 40px;
+    & ul{
+        list-style: none;
+        & li {
+            position: relative!important;
+            &.has-dropdown{
+                & span{
+                    @media #{$lg,$md,$sm,$xs}{
+                        display: none;
+                    }
+                }
+            }
+            & > a{
+                padding: 8px 0;
+                display: block;
+                font-size: 18px;
+                font-weight: 500;
+                font-family: var(--tp-ff-inter);
+            }
+            &.active{
+                & > a{
+                    color: var(--tp-common-black);
+                }
+                & > .tp-menu-close{
+                    background-color: var(--tp-common-black);
+                    color: var(--tp-common-white);
+                    border-color: var(--tp-common-black);
+                    & i{
+                        @include transform(rotate(90deg));
+                        color: var(--tp-common-white);
+                    }
+                }
+            }
+            & .tp-submenu  {
+                display: none;
+                &.submenu{
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
+    & .tp-megamenu-wrapper{
+        &.megamenu-white-bg {
+            backdrop-filter: none;
+            background: transparent;
+            box-shadow: none;
+        }
+    }
+    & .mega-menu {
+        width: auto;
+        opacity: 1;
+        visibility: visible;
+        transition: none;
+        position: static;
+        display: none;
+        @include transform(perspective(0) rotateX(0));
+    }
+    & .tp-megamenu-list ul li {
+        padding: 0;
+        & a{
+            padding:8px 20px;
+            font-size: 17px;
+        }
+    }
+    & .tp-submenu li a{
+        padding:8px 20px;
+        border-radius: 10px;
+        font-size: 17px;
+        &:hover{
+            background-color: #f8f8fb;
+            color: var(--tp-common-black);
+        }
+    }
+}
+.tp-menu-close {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    height: 30px;
+    width: 30px;
+    font-size: 12px;
+    line-height: 29px;
+    text-align: center;
+    border: 1px solid rgba(1, 15, 28, 0.12);
+    & i{
+        transition: all .3s;
+    }
+}

@@ -1,0 +1,195 @@
+@use '../../../utils' as *;
+/*----------------------------------------*/
+/*   3.1 Header Style
+/*----------------------------------------*/
+
+.tp-header{
+    &-menu{
+        &.tp-header-cnt-menu{
+            & > nav {
+                & > ul {
+                    margin-left: 270px;
+                    @media #{$x3l} {
+                        margin-left: 100px;
+                    }
+                    @media #{$xxl,$xl,$lg,$md,$sm,$xs} {
+                        margin-left: 0;
+                    }
+                    & > li {
+                        & > a{
+                            color: var(--tp-common-black-7);
+                        }
+                        &.has-dropdown{
+                            &::after{
+                                color: var(--tp-common-black-7);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-right{
+        & .cr-header{
+            &-login{
+                & a{
+                    font-size: 15px;
+                    line-height: 1;
+                    font-weight: 600;
+                    border-radius: 6px;
+                    display: inline-block;
+                    padding: 11px 20px 12px;
+                    letter-spacing: -0.15px;
+                    color: var(--tp-common-white);
+                    border: 1px solid rgba(255, 255, 255, 0.06);
+                    background: rgba(255, 255, 255, 0.06);
+                    backdrop-filter: blur(10px);
+                    font-family: var(--tp-ff-inter);
+                    &:hover{
+                        color: var(--tp-common-black-7);
+                        background-color: var(--tp-common-white);
+                    }
+                }
+            }
+        }
+        &.cr-header{
+            & .tp-btn-white-border{
+                border-radius: 6px;
+            }
+        }
+    }
+    &-cnt{
+        &-left{
+            width: 675px;
+            opacity: 0.97;
+            padding: 28px 30px;
+            display: inline-block;
+            border-radius: 16px;
+            backdrop-filter: blur(5px);
+            background: var(--tp-common-white);
+            box-shadow: 5px 6px 50px 5px rgba(16, 48, 42, 0.06);
+            @media #{$md,$sm,$xs} {
+                width: auto;
+                padding: 0;
+                box-shadow: none;
+                backdrop-filter: inherit;
+                background-color: transparent;
+            }
+        }
+        &-wrap{
+            & .tp-header-logo-wrap{
+                & p{
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: var(--tp-common-black-7);
+                    font-family: var(--tp-ff-inter);
+                    line-height: 1.56;
+                }
+            }
+        }
+        &-bar{
+            &-wrap{
+                & .tp-header-bar{
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding-left: 20px;
+                    margin-right: 20px;
+                    text-transform: uppercase;
+                    color: var(--tp-common-black-7);
+                    border-left: 1px solid rgba(5, 3, 18, 0.20);
+                    font-family: var(--tp-ff-inter);
+                    @media #{$md,$sm,$xs} {
+                        border: none;
+                    }
+                    & span{
+                        margin-left: 8px;
+                        display: inline-block;
+                    }
+                    &:hover{
+                        color: var(--tp-common-red);
+                    }
+                }
+                & .tp-header-8-lang{
+                    padding-left: 20px;
+                    border-left: 1px solid rgba(5, 3, 18, 0.20);
+                    font-family: var(--tp-ff-inter);
+                    & a{
+                        &:hover{
+                            color: var(--tp-common-red);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-itc{
+        & .tp-main-menu-cst > nav > ul > li > a {
+            color: var(--tp-common-white);
+        }
+        & .tp-main-menu nav ul li:hover.has-dropdown > a > span {
+            color: var(--tp-common-white);
+        }
+        & .logo-dark{
+            display: none;
+        }
+        &.header-sticky {
+            & .tp-main-menu-cst > nav > ul > li > a {
+                color: var(--tp-common-black);
+            }
+            & .tp-main-menu nav ul li:hover.has-dropdown > a > span {
+                color: var(--tp-common-black);
+            }
+            & .logo-dark{
+                display: block;
+            }
+            & .logo-light{
+                display: none;
+            }
+            & .upd-btn-white-border.tp-btn-light-bg {
+                color: #0E0F11;
+                background-color: transparent;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                &:hover{
+                    color: var(--tp-common-white);
+                    border-color: var(--tp-common-black);
+                    background-color: var(--tp-common-black);
+                }
+            }
+            & .cr-header-login {
+                & a{
+                    background: rgb(0, 0, 0);
+                    border-color: rgba($color: #000000, $alpha: 0.6);
+                    &:hover{
+                        color: var(--tp-common-black);
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ais-header{
+    &-btn{
+        & a{
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            color: var(--tp-common-black-7);
+            font-family: var(--tp-ff-inter);
+            & span{
+                margin-left: 8px;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                place-content: center;
+                display: inline-grid;
+                background-color: var(--tp-common-blue-2);
+            }
+            &:hover{
+                color: var(--tp-common-blue-2);
+            }
+        }
+    }
+}

@@ -1,0 +1,111 @@
+@{
+    ViewData["Title"] = "Strategies for Trading in Volatile Markets";
+    string ac = "#d97706", al = "#fff7ed";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#1c0f00,#92400e,#0f0700);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Volatile Markets</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Strategies for Trading in Volatile Markets</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 05 Dec 2023</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 9 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Risk Management</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(217,119,6,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#fde68a;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-tornado me-1"></i> Volatility Adaptation</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="ATR expansion during news",V="2–5× normal"},new{L="Recommended size reduction",V="50–75%"},new{L="Most volatile pairs",V="GBP/JPY, XAU/USD"},new{L="Avoid first N mins post-news",V="5–10 minutes"},new{L="Measure volatility with",V="ATR(14)"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#fde68a;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2–5×</div><div class="na-stat-lbl">ATR Expansion on News</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">50%</div><div class="na-stat-lbl">Position Size Reduction</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">ATR14</div><div class="na-stat-lbl">Volatility Measure</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">Always</div><div class="na-stat-lbl">Use a Stop-Loss</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Volatile markets are simultaneously the greatest opportunity and the greatest danger in forex. Spreads widen, price moves in sharp unpredictable spikes, and stop-losses can be triggered in milliseconds. The trader who adapts — adjusting position size, widening stops, and waiting for confirmation — survives and profits. The one who doesn't usually doesn't survive.</p>
+
+            <h2 class="na-h2">What Causes Forex Market Volatility</h2>
+            <div class="row g-3 mb-3">
+                @foreach(var c in new[]{
+                    new{N="High-Impact News",I="fa-solid fa-newspaper",Bg="#fff1f0",C="#e53935",D="NFP, CPI, FOMC decisions, central bank rate announcements. These events can move EUR/USD 50–150 pips in minutes. Check the Economic Calendar before every trading session."},
+                    new{N="Geopolitical Events",I="fa-solid fa-globe",Bg="#fff7ed",C="#d97706",D="Wars, elections, sanctions, and trade disputes. These are less predictable but cause sharp risk-off or risk-on flows that affect all correlated pairs simultaneously."},
+                    new{N="Liquidity Gaps",I="fa-solid fa-chart-bar",Bg="#eff6ff",C="#2563eb",D="Weekend gaps, holiday sessions, and market opens after major news. Thin liquidity means fewer participants to absorb orders, causing price to move disproportionately on small volumes."},
+                    new{N="Black Swan Events",I="fa-solid fa-cloud-bolt",Bg="#f5f3ff",C="#7c3aed",D="Unexpected events — flash crashes, surprise central bank decisions, geopolitical shocks. These cause extreme volatility that can trigger multiple layers of stop-losses rapidly."}
+                })
+                {<div class="col-md-6"><div style="border:1.5px solid #e8edf4;border-radius:12px;padding:14px;"><div style="display:flex;gap:10px;"><div style="width:34px;height:34px;border-radius:9px;background:@c.Bg;color:@c.C;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;"><i class="@c.I"></i></div><div><div style="font-size:13px;font-weight:700;color:#0f1b2d;margin-bottom:4px;">@c.N</div><div style="font-size:12px;color:#64748b;line-height:1.5;">@c.D</div></div></div></div></div>}
+            </div>
+
+            <h2 class="na-h2">How to Adapt Position Size in Volatile Conditions</h2>
+            <p class="na-p">The ATR (Average True Range) indicator on a 14-period setting shows the average daily range of a pair. When current ATR is significantly above its historical average, volatility is elevated and position sizing must be adjusted accordingly:</p>
+            <table class="br-facts-table">
+                <thead><tr><th>ATR vs Historical Average</th><th style="text-align:center;">Volatility Level</th><th style="text-align:center;">Position Size Adjustment</th></tr></thead>
+                <tbody>
+                    <tr><td>ATR = historical average</td><td style="text-align:center;color:#16a34a;font-weight:700;">Normal</td><td style="text-align:center;">Standard 1% risk</td></tr>
+                    <tr><td>ATR = 1.5× historical</td><td style="text-align:center;color:#d97706;font-weight:700;">Elevated</td><td style="text-align:center;">Reduce to 0.75% risk</td></tr>
+                    <tr><td>ATR = 2× historical</td><td style="text-align:center;color:#ea580c;font-weight:700;">High</td><td style="text-align:center;">Reduce to 0.5% risk</td></tr>
+                    <tr><td>ATR = 3× or more</td><td style="text-align:center;color:#e53935;font-weight:700;">Extreme</td><td style="text-align:center;">0.25% or flat (no trade)</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="na-h2">Three Strategies for Volatile Conditions</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">News Fade (Post-Spike Reversal)</div><div class="na-step-text">After a major news release causes a sharp spike, wait 10–15 minutes for the initial volatility to subside. If the spike was exaggerated relative to the actual data (e.g., market moved 80 pips on a minor data surprise), fade the move by trading the reversal. Use the spike high/low as your stop with a reduced position size.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Post-News Continuation</div><div class="na-step-text">If news significantly beats or misses expectations and creates a strong directional move, wait for the first 5-minute candle after the spike to close. Enter in the direction of the move on the retest of that candle's level. This avoids the spike itself (worst fills) while capturing the continuation trend.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Pre-News Consolidation Breakout</div><div class="na-step-text">In the 30–60 minutes before a major news release, price often consolidates in a tight range as traders await the outcome. Mark the consolidation high and low. After the release, enter in the direction of the confirmed breakout — avoiding the initial spike, entering on the candle after the spike settles.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Volatility Protection Rules — Non-Negotiable</h2>
+            <ul class="na-list">
+                <li>Always trade with a <strong>hard stop-loss</strong> in volatile conditions — mental stops get skipped</li>
+                <li>Check the <strong>Economic Calendar</strong> before every session — know which events are scheduled</li>
+                <li>Never add to a <strong>losing position</strong> during volatility — averaging down in fast markets leads to large unrecoverable losses</li>
+                <li>If already in a trade when news hits, consider <strong>closing to protect capital</strong> rather than waiting for the stop</li>
+                <li>Use <strong>limit orders</strong> not market orders where possible — slippage on market orders in volatile conditions can be 5–20 pips beyond your intended entry</li>
+            </ul>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#fde68a;">Adapt to Any Market Condition</div>
+                <div class="na-cta-title">Trade Volatility with Cashback Protection</div>
+                <p class="na-cta-sub">Even in volatile markets where stop-losses are hit, cashback rebates recover a portion of every trade's cost — providing a natural buffer against market turbulence.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Home" asp-action="Economic" class="na-cta-btn-ghost"><i class="fa-solid fa-calendar-days me-2"></i>Check Economic Calendar</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:90px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+            @foreach(var r in new[]{new{A="StrategyDayTrading",I="fa-solid fa-sun",Bg="#fff7ed",C="#ea580c",T="Day Trading Forex Strategies",D="05 Aug 2024"},new{A="StrategyAdvanced",I="fa-solid fa-brain",Bg="#e0e7ff",C="#312e81",T="Advanced Trading Strategies",D="15 Feb 2024"},new{A="StrategyGoldRebounds",I="fa-solid fa-coins",Bg="#fefce8",C="#ca8a04",T="Gold Rebounds During Market Overlaps",D="22 Nov 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

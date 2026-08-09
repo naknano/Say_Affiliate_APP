@@ -1,0 +1,185 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 about css
+/*----------------------------------------*/
+
+.al-about{
+    &-archi{
+        &-shape {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+        }
+        &-para {
+            font-family: var(--tp-ff-inter);
+        }
+        &-link{
+            font-family: var(--tp-ff-inter);
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 500;
+            &:hover{
+                color: var(--tp-theme-secondary);
+            }
+            & .tp-arrow-svg-top-right {
+                margin-left: 3px;
+            }
+        }
+        &-content{
+            &-wrapper{
+                @media #{$x3l,$xxl,$xl,$lg,$md,$xs,$sm} {
+                    margin: 0;
+                }
+                @media #{$lg,$md,$xs,$sm} {
+                    margin-bottom: 40px;
+                }
+            }
+        }
+        &-thumb{
+            &.height-1{
+                width: 100%;
+                height: 537px;
+                @media #{$md,$sm,$xs} {
+                    height: auto;
+                }
+            }
+            &.height-2{
+                width: 100%;
+                height: 786px;
+                @media #{$md,$sm,$xs} {
+                    height: auto;
+                }
+            }
+            &-wrap{
+                @media #{$xl,$lg,$md,$sm,$xs} {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+.al-about-pg{
+    &-shape{
+        filter: invert(100%) sepia(32%) saturate(304%) hue-rotate(200deg) brightness(105%) contrast(100%);
+    }
+    &-area{
+        @media #{$xl,$lg,$md} {
+            padding-bottom: 160px;
+        }
+        @media #{$sm,$xs}{
+            padding-bottom: 120px;
+        }
+    }
+    &-title-box{
+        padding-left: 50px;
+        @media #{$lg,$md,$sm,$xs}{
+            padding-left: 0;
+        }
+        & p{
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 36px;
+            margin-bottom: 0;
+            color: var(--tp-common-black-7);
+            font-family: var(--tp-ff-playfair);
+            @media #{$sm,$xs}{
+                font-size: 22px;
+            }
+        }
+    }
+    &-subtitle-box{
+        @media #{$lg,$md,$sm,$xs}{
+            margin-bottom: 20px;
+        }
+    }
+    &-border{
+        padding-bottom: 70px;
+        margin-bottom: 100px;
+        border-bottom: 1px solid rgba(183, 171, 152, 0.14);
+    }
+    &-funfact{
+        & .border-line{
+            height: 160px;
+            width: 1px;
+            top: 45%;
+            left: 29%;
+            position: absolute;
+            display: inline-block;
+            background-color: #eb5939;
+            transform: translate(-50%, -50%) rotate(-13deg);
+            @media #{$lg} {
+                left: 30%;
+            }
+            @media #{$md} {
+                left: 15%;
+            }
+        }
+        & span{
+            font-weight: 400;
+            color: var(--tp-common-black-7);
+            font-family: var(--tp-ff-playfair);
+            display: inline-block;
+            & i{
+                font-size: 22px;
+                display: block;
+                margin-bottom: 20px;
+                font-style: normal;
+            }
+            & em{
+                line-height: 0;
+                font-size: 70px;
+                font-style: normal;
+                letter-spacing: -3.5px;
+                display: inline-block;
+                & span{
+                    transform: translateY(5px);
+                    display: inline-block;
+                }
+            }
+        }
+        &-item{
+            & .cols{
+                margin-right: 80px;
+                @media #{$xl,$lg,$sm,$xs} {
+                    margin-right: 45px;
+                }
+            }
+        }
+    }
+    &-content{
+        &-wrap{
+            padding-left: 105px;
+            @media #{$xl} {
+                padding-left: 80px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                padding-left: 0;
+            }
+        }
+        & p{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 28px;
+            margin-bottom: 65px;
+            color: var(--tp-common-black-7);
+            font-family: var(--tp-ff-poppins);
+        }
+    }
+    &-thumb{
+        & img{
+            @media #{$sm,$xs}{
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+        &-2{
+            @media #{$md,$sm,$xs} {
+                padding-top: 0;
+            }
+        }
+    }
+}

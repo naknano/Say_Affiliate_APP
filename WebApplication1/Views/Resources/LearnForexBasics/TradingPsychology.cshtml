@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "Trading Psychology: Mastering Your Mindset for Consistent Profits";
+    string ac = "#0891b2", al = "#ecfeff";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#04202b,#083344,#010b0f);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="LearnForexBasics">Learn Forex Basics</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Trading Psychology</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Trading Psychology: Mastering Your Mindset for Consistent Profits</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 14 Mar 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 9 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Mindset</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(8,145,178,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#a5f3fc;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-brain me-1"></i> The Mental Game</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Biggest enemy",V="Emotion"},new{L="Core traits",V="Patience & discipline"},new{L="Worst habit",V="Revenge trading"},new{L="Best tool",V="A journal"},new{L="Edge",V="Consistency"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#a5f3fc;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">90%</div><div class="na-stat-lbl">Success Is Mindset</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2</div><div class="na-stat-lbl">Core Emotions</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">1</div><div class="na-stat-lbl">Trade at a Time</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">100%</div><div class="na-stat-lbl">Rules Followed</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Two traders can follow the exact same strategy and get completely different results. The difference is rarely the system — it's the mind running it. Fear, greed, and impatience destroy more accounts than any bad indicator ever could. Mastering your psychology is what turns a promising strategy into consistent profits.</p>
+
+            <h2 class="na-h2">The Two Emotions That Cost You Money</h2>
+            <p class="na-p"><strong>Fear</strong> makes you close winners too early, skip valid setups, and freeze when you should act. <strong>Greed</strong> makes you over-leverage, hold too long, and chase trades that aren't there. Every damaging trading habit traces back to one of these two. The goal isn't to eliminate emotion — that's impossible — it's to build a process that stops emotion from making your decisions for you.</p>
+
+            <h2 class="na-h2">Habits of Emotionally Disciplined Traders</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Trade a Written Plan</div><div class="na-step-text">When your rules are decided in advance, you execute instead of react. The plan makes the decision, not your mood in the moment.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Risk Only What You Can Ignore</div><div class="na-step-text">If a single trade's risk keeps you up at night, your size is too big. Small, comfortable risk keeps your thinking clear.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Accept Losses as a Cost of Business</div><div class="na-step-text">Losing trades are inevitable — even the best systems lose regularly. A loss inside your plan is a good trade, not a failure.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">04</div><div><div class="na-step-title">Never Revenge Trade</div><div class="na-step-text">Trying to "win it back" after a loss is the single most destructive habit in trading. Step away, reset, and return to your plan.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">05</div><div><div class="na-step-title">Journal Your Emotions</div><div class="na-step-text">Record how you felt on each trade alongside the result. Patterns emerge fast — and awareness is the first step to control.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">06</div><div><div class="na-step-title">Focus on Process, Not P&amp;L</div><div class="na-step-text">Judge yourself on whether you followed your rules, not on whether a single trade won. Good process produces good results over time.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Build a Pre-Trade Routine</h2>
+            <p class="na-p">Consistency of mindset comes from consistency of routine. Before each session, check the economic calendar, review your plan, and confirm you're in a calm state to trade. If you're tired, angry, or distracted, the most profitable decision is often to not trade at all.</p>
+            <ul class="na-list">
+                <li>Never trade to <strong>recover a loss</strong> — trade only valid setups</li>
+                <li>Take a <strong>break after two consecutive losses</strong> to reset your head</li>
+                <li>Size down when <strong>uncertain</strong>, size normally when your setup is clean</li>
+                <li>End each day by <strong>reviewing</strong> your journal, not your account balance</li>
+            </ul>
+
+            <div class="na-pullquote"><div class="na-pullquote-text">"The market can't beat you — only your reaction to it can. Master your mind and the strategy finally gets a chance to work."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#a5f3fc;">Trade Calm, Trade Consistent</div>
+                <div class="na-cta-title">Let Cashback Take the Pressure Off</div>
+                <p class="na-cta-sub">Knowing every trade earns a rebate — win or lose — makes it easier to follow your plan calmly. Register free and start today.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Home" asp-action="Economic" class="na-cta-btn-ghost"><i class="fa-solid fa-calendar-days me-2"></i>Economic Calendar</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:100px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Guides</div>
+            @foreach(var r in new[]{new{A="LearnTradingPlan",I="fa-solid fa-clipboard-list",Bg="#f5f3ff",C="#7c3aed",T="How to Create a Trading Plan",D="28 Feb 2024"},new{A="LearnCommonMistakes",I="fa-solid fa-triangle-exclamation",Bg="#fff1f2",C="#e11d48",T="Common Trading Mistakes",D="22 Mar 2024"},new{A="LearnForexGuide",I="fa-solid fa-earth-americas",Bg="#eff6ff",C="#2563eb",T="Forex Basics Guide",D="12 Feb 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:#7c3aed;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

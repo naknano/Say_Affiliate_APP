@@ -1,0 +1,711 @@
+@{
+    ViewData["Title"] = "Position Size Calculator — Trade Better with Our Free Forex Tools";
+
+    var faqs = new[]
+    {
+        new { Q="What is the best position size for a beginner trader?",
+              A="Beginners should risk no more than 0.5–1% of their account per trade and use micro lots (0.01) to keep losses small while learning. For a $1,000 account, that means risking just $5–$10 per trade — which keeps losses survivable and lets you trade through the learning curve without blowing the account." },
+        new { Q="How often should I recalculate my position size?",
+              A="Recalculate before every trade. Your account balance changes after every win and loss, meaning the same risk % produces a different dollar amount and therefore a different lot size each time. Never reuse a lot size from a previous trade without recalculating." },
+        new { Q="Can I use the same position size for all currency pairs?",
+              A="No. Pip value differs between pairs, so the same lot size carries different risk on EUR/USD vs GBP/JPY vs XAU/USD. Always calculate position size specifically for the pair and stop-loss distance on each individual trade." },
+        new { Q="How do I handle position sizing when I have multiple trades open?",
+              A="Track your total open risk across all positions. If you risk 1% per trade and have 5 trades open simultaneously, your total open risk is 5% of your account — which can be dangerous if markets move against you on correlated pairs. Many professional traders cap total portfolio risk at 5–6%." },
+        new { Q="What risk percentage should I use — 1% or 2%?",
+              A="Start with 1% while developing your strategy. Move to 1.5–2% only when you have at least 3–6 months of positive trading history with that strategy. Higher risk percentages amplify both gains and drawdowns — a 10-trade losing streak at 2% risk costs 18% of your account vs 10% at 1%." },
+        new { Q="Does a tighter stop-loss mean I should use a larger lot size?",
+              A="Yes — mathematically it does. A tighter stop means less risk per pip, so you can afford more lots to reach the same dollar risk. However, tighter stops are hit more often by normal market noise. Never set a stop purely to justify a larger lot size — always place stops at technically valid levels first." },
+        new { Q="How does cashback rebate improve my position sizing math?",
+              A="Cashback rebates reduce your net cost per trade. On a $100 risk trade where you earn $5 in rebates, your true risk is only $95. Over hundreds of trades this adds up significantly — effectively lowering the break-even win rate and improving your edge without changing your strategy at all." },
+    };
+
+    var steps = new[]
+    {
+        new { Num="01", Icon="fa-solid fa-chart-line",         Color="#2563eb", Bg="#eff6ff",
+              Title="Check Your Account Balance",
+              Body="Open your trading platform and note your current account balance. This is your baseline for all position sizing calculations. Never trade from memory — balances change after every trade." },
+        new { Num="02", Icon="fa-solid fa-crosshairs",         Color="#d97706", Bg="#fff7ed",
+              Title="Find Your Trade Setup",
+              Body="Identify your entry point and the technically valid stop-loss level based on market structure — support/resistance, recent swing high/low, or indicator signal. Do not place your stop to fit a desired lot size." },
+        new { Num="03", Icon="fa-solid fa-ruler-horizontal",   Color="#7c3aed", Bg="#f5f3ff",
+              Title="Measure Your Stop-Loss in Pips",
+              Body="Calculate the distance from your entry price to your stop-loss level in pips. On a 5-digit broker, a move from 1.08500 to 1.08300 is 20 pips. For Gold and indices, measure the distance in price points." },
+        new { Num="04", Icon="fa-solid fa-calculator",         Color="#16a34a", Bg="#f0fdf4",
+              Title="Run the Position Size Formula",
+              Body="Apply: Position Size = Account Risk ($) ÷ (Stop Loss pips × Pip Value per lot). For example: $100 ÷ (20 × $10) = 0.50 lots. Round down to the nearest 0.01 lot to avoid slightly over-risking." },
+        new { Num="05", Icon="fa-solid fa-scale-balanced",     Color="#059669", Bg="#ecfdf5",
+              Title="Check Total Portfolio Risk",
+              Body="Before entering, add this trade's risk to all currently open positions. If your total open risk exceeds 5–6% of your account, consider waiting for an existing trade to close before opening a new one." },
+        new { Num="06", Icon="fa-solid fa-circle-play",        Color="#009aee", Bg="#e0f2fe",
+              Title="Execute the Trade",
+              Body="Enter the lot size into your platform's trade ticket and execute. Your risk is now locked in at the predefined amount regardless of how large or small the market moves." },
+    };
+
+    var accounts = new[]
+    {
+        new { Type="Micro Account",  Balance="$100 – $999",   Risk1="$1–$10",    Risk2="$0.50–$5",  Lot1="0.01–0.10", Lot2="0.01–0.05", Color="#16a34a",  Bg="#f0fdf4",  Border="#bbf7d0",
+              Icon="fa-solid fa-seedling", Tag="Best for beginners" },
+        new { Type="Mini Account",   Balance="$1,000 – $4,999", Risk1="$10–$50", Risk2="$5–$25",    Lot1="0.10–0.50", Lot2="0.05–0.25", Color="#2563eb",  Bg="#eff6ff",  Border="#bfdbfe",
+              Icon="fa-solid fa-chart-bar", Tag="Standard learning size" },
+        new { Type="Standard Account",Balance="$5,000 – $24,999",Risk1="$50–$250",Risk2="$25–$125",Lot1="0.50–2.50", Lot2="0.25–1.25", Color="#7c3aed",  Bg="#f5f3ff",  Border="#ddd6fe",
+              Icon="fa-solid fa-chart-line", Tag="Serious retail trader" },
+        new { Type="Pro Account",    Balance="$25,000+",       Risk1="$250+",     Risk2="$125+",     Lot1="2.50+",     Lot2="1.25+",     Color="#d97706",  Bg="#fff7ed",  Border="#fed7aa",
+              Icon="fa-solid fa-rocket", Tag="Experienced / funded" },
+    };
+
+    var styles = new[]
+    {
+        new { Style="Scalper",        Icon="fa-solid fa-bolt",           Color="#ef4444", Bg="#fff5f5", Border="#fecaca",
+              SL="5–15 pips",  Risk="0.5–1%",  Trades="10–50/day", Tip="Use micro/mini lots. High trade count means costs add up fast — cashback rebates are critical for scalpers." },
+        new { Style="Day Trader",     Icon="fa-solid fa-sun",            Color="#d97706", Bg="#fff7ed", Border="#fed7aa",
+              SL="15–50 pips", Risk="1–1.5%",  Trades="1–10/day",  Tip="Recalculate before every trade. Intraday news can widen spreads — factor this into your stop-loss distance." },
+        new { Style="Swing Trader",   Icon="fa-solid fa-chart-area",     Color="#2563eb", Bg="#eff6ff", Border="#bfdbfe",
+              SL="50–150 pips",Risk="1–2%",    Trades="1–5/week",  Tip="Wider stops mean fewer lots. Overnight swap fees become a real cost — include them in your risk calculation." },
+        new { Style="Position Trader",Icon="fa-solid fa-mountain-sun",   Color="#7c3aed", Bg="#f5f3ff", Border="#ddd6fe",
+              SL="150+ pips",  Risk="0.5–1%",  Trades="1–4/month", Tip="Use lower risk % to handle large stop-losses. Fundamental events can cause gaps that exceed your stop-loss distance." },
+    };
+}
+
+<div class="br-page">
+
+    @* ══ HERO ══ *@
+    <section class="br-hero" style="background:linear-gradient(135deg,#1a0a40 0%,#2d1065 55%,#1e0a52 100%);">
+        <div class="container container-1230">
+
+            <nav class="br-hero-breadcrumb">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="ForexTools">Forex Tools</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Trade Better</span>
+            </nav>
+
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+
+                    <div class="br-hero-chips" style="margin-top:0;margin-bottom:18px;">
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(124,58,237,.35);color:#c4b5fd;"><i class="fa-solid fa-sliders"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Tool Type</div>
+                                <div class="br-hero-chip-val">Free Calculator</div>
+                            </div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(124,58,237,.35);color:#c4b5fd;"><i class="fa-solid fa-shield-halved"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Purpose</div>
+                                <div class="br-hero-chip-val">Risk Management</div>
+                            </div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(124,58,237,.35);color:#c4b5fd;"><i class="fa-solid fa-wallet"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Accounts</div>
+                                <div class="br-hero-chip-val">All Sizes</div>
+                            </div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(124,58,237,.35);color:#c4b5fd;"><i class="fa-solid fa-desktop"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Platform</div>
+                                <div class="br-hero-chip-val">MT4 &amp; MT5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="br-hero-title">Position Size Calculator</h1>
+                    <p style="color:#c4b5fd;font-size:16px;font-weight:600;margin:0 0 12px;line-height:1.4;">
+                        Trade Better Using Our Free Forex Tools
+                    </p>
+                    <p style="color:rgba(255,255,255,.6);font-size:14px;margin:0 0 16px;line-height:1.7;max-width:560px;">
+                        Forex trading requires a keen balance of market insight and effective risk management. Learn how to size every trade correctly and protect your capital across all market conditions.
+                    </p>
+                    <div class="br-hero-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Published 23 Jan 2024</span>
+                        <span><i class="fa-regular fa-clock"></i> 10 min read</span>
+                        <span><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="br-score-card" style="border-color:rgba(124,58,237,.35);">
+                        <div style="font-size:11px;font-weight:700;color:#c4b5fd;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;text-align:center;">
+                            <i class="fa-solid fa-star me-1" style="color:#fbbf24;"></i> Trade Better Checklist
+                        </div>
+                        <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;">
+                            <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.8);">
+                                <span style="width:22px;height:22px;background:#7c3aed;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;"><i class="fa-solid fa-check"></i></span>
+                                Risk 1–2% max per trade
+                            </li>
+                            <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.8);">
+                                <span style="width:22px;height:22px;background:#7c3aed;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;"><i class="fa-solid fa-check"></i></span>
+                                Set stop-loss before lot size
+                            </li>
+                            <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.8);">
+                                <span style="width:22px;height:22px;background:#7c3aed;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;"><i class="fa-solid fa-check"></i></span>
+                                Recalculate before every trade
+                            </li>
+                            <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.8);">
+                                <span style="width:22px;height:22px;background:#7c3aed;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;"><i class="fa-solid fa-check"></i></span>
+                                Cap total portfolio risk at 5–6%
+                            </li>
+                            <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.8);">
+                                <span style="width:22px;height:22px;background:#7c3aed;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;"><i class="fa-solid fa-check"></i></span>
+                                Account for spread &amp; commission
+                            </li>
+                            <li style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.8);">
+                                <span style="width:22px;height:22px;background:#7c3aed;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;"><i class="fa-solid fa-check"></i></span>
+                                Earn cashback to reduce net cost
+                            </li>
+                        </ul>
+                        <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="br-score-cta" style="margin-top:18px;background:linear-gradient(135deg,#7c3aed,#6d28d9);">
+                            <i class="fa-solid fa-book-open me-2"></i>View Formulas &amp; Examples
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══ STATS STRIP ══ *@
+    <div class="psc-strip-wrap" style="background:linear-gradient(135deg,#faf5ff,#f3e8fd);">
+        <div class="container container-1230">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#ddd6fe;">
+                        <div class="br-stat-card-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="br-stat-card-val">1–2%</div>
+                        <div class="br-stat-card-lbl">Risk Per Trade</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#ddd6fe;">
+                        <div class="br-stat-card-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="br-stat-card-val">4 Styles</div>
+                        <div class="br-stat-card-lbl">Trading Profiles</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#ddd6fe;">
+                        <div class="br-stat-card-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fa-solid fa-wallet"></i></div>
+                        <div class="br-stat-card-val">All Sizes</div>
+                        <div class="br-stat-card-lbl">Account Types</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#ddd6fe;">
+                        <div class="br-stat-card-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+                        <div class="br-stat-card-val">Cashback</div>
+                        <div class="br-stat-card-lbl">Reduces Net Cost</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ══ MAIN LAYOUT ══ *@
+    <div class="br-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                @* ── ARTICLE ── *@
+                <div class="col-lg-9">
+                    <article class="br-article">
+
+                        @* Article Banner *@
+                        <div class="ba-banner" style="background:linear-gradient(135deg,#1a0a40 0%,#2d1065 55%,#1e0a52 100%);">
+                            <div class="ba-banner-icon" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);box-shadow:0 8px 28px rgba(124,58,237,.4);"><i class="fa-solid fa-sliders"></i></div>
+                            <div class="ba-banner-text">
+                                <div class="ba-banner-label" style="color:#c4b5fd;">FREE FOREX TOOL — PRACTICAL GUIDE</div>
+                                <div class="ba-banner-title">POSITION SIZE CALCULATOR<br><span style="color:#a78bfa;">Trade Better with Free Forex Tools</span></div>
+                                <div class="ba-banner-meta">
+                                    <span><i class="fa-regular fa-calendar"></i>23 Jan 2024</span>
+                                    <span><i class="fa-regular fa-clock"></i>10 min read</span>
+                                    <span><i class="fa-solid fa-pen-nib"></i>Say Affiliates</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Intro *@
+                        <ul class="ba-question-list">
+                            <li><i class="fa-solid fa-chevron-right"></i><span>Why do most retail traders fail even with a profitable strategy?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How do you build position sizing into your daily pre-trade routine?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How should you size positions differently by account size?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How do scalpers, day traders, and swing traders size differently?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How do you manage risk when you have multiple trades open?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How does market volatility change your lot size calculation?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How do you use position sizing to safely recover from a drawdown?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How does cashback from brokers lower your effective trading cost?</span></li>
+                        </ul>
+
+                        <div class="br-callout" style="border-left-color:#7c3aed;background:linear-gradient(135deg,#faf5ff,#f3e8fd);">
+                            <i class="fa-solid fa-circle-info me-2" style="color:#7c3aed;"></i>
+                            <strong>Key Insight:</strong> Forex trading requires a keen balance of market insight and effective risk management. The position size calculator is not just a tool — it is a discipline that separates traders who survive from those who don't. Use it on every trade, without exception.
+                        </div>
+
+                        @* TOC *@
+                        <div class="br-toc">
+                            <div class="br-toc-title"><i class="fa-solid fa-list me-2"></i>Table of Contents</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ol style="margin:0;padding-left:18px;line-height:2.2;font-size:14px;">
+                                        <li><a href="#s1">Why Traders Lose with Good Strategies</a></li>
+                                        <li><a href="#s2">Your 6-Step Pre-Trade Routine</a></li>
+                                        <li><a href="#s3">Sizing by Account Type</a></li>
+                                        <li><a href="#s4">Sizing by Trading Style</a></li>
+                                        <li><a href="#s5">Managing Multiple Open Trades</a></li>
+                                        <li><a href="#s6">Volatility &amp; Market Conditions</a></li>
+                                    </ol>
+                                </div>
+                                <div class="col-md-6">
+                                    <ol start="7" style="margin:0;padding-left:18px;line-height:2.2;font-size:14px;">
+                                        <li><a href="#s7">Spread &amp; Commission in Your Calculation</a></li>
+                                        <li><a href="#s8">Recovering from Drawdown Safely</a></li>
+                                        <li><a href="#s9">Cashback: Lower Your Effective Cost</a></li>
+                                        <li><a href="#s10">Common Questions About Risk %</a></li>
+                                        <li><a href="#s11">FAQs</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Section 1 *@
+                        <div class="br-section" id="s1">
+                            <h2 class="br-h2">1. Why Traders Lose Even with a Good Strategy</h2>
+                            <p class="br-p">Studies consistently show that the majority of retail forex traders lose money — not because their strategies are wrong, but because their position sizing is inconsistent. A strategy with a 55% win rate and a 1:2 risk-reward ratio is mathematically profitable. But if you risk 10% on one trade and 0.5% on the next, the math breaks down entirely.</p>
+                            <p class="br-p">The position size calculator removes emotion from the equation. Instead of guessing how many lots "feels right", you calculate exactly how many lots keep your risk at a fixed, predetermined percentage of your account — every single trade, without exception.</p>
+
+                            <div class="br-pros-cons">
+                                <div class="br-pros">
+                                    <div class="br-pros-title"><i class="fa-solid fa-circle-check me-2"></i>Traders Who Use Position Sizing</div>
+                                    <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;color:#374151;">
+                                        <li>Risk is consistent — strategy edge plays out over time</li>
+                                        <li>Losing streaks are survivable and expected</li>
+                                        <li>Account grows proportionally with the balance</li>
+                                        <li>Psychology improves — no single trade is "make or break"</li>
+                                        <li>Performance is measurable and improvable</li>
+                                    </ul>
+                                </div>
+                                <div class="br-cons">
+                                    <div class="br-cons-title"><i class="fa-solid fa-circle-xmark me-2"></i>Traders Who Guess Lot Sizes</div>
+                                    <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;color:#374151;">
+                                        <li>One large loss can wipe out weeks of gains</li>
+                                        <li>"High confidence" trades lead to over-leveraging</li>
+                                        <li>Impossible to evaluate if the strategy actually works</li>
+                                        <li>Emotional decisions after losses compound the damage</li>
+                                        <li>Even profitable strategies eventually blow the account</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 2 — 6-Step Routine *@
+                        <div class="br-section" id="s2">
+                            <h2 class="br-h2">2. Your 6-Step Pre-Trade Position Sizing Routine</h2>
+                            <p class="br-p">Make this workflow non-negotiable before every trade. It takes less than 60 seconds and ensures your risk is calculated correctly every time — not estimated, not guessed.</p>
+
+                            <div class="ptb-step-flow">
+                                @foreach (var s in steps)
+                                {
+                                    <div class="ptb-step">
+                                        <div class="ptb-step-num" style="background:@s.Bg;color:@s.Color;">@s.Num</div>
+                                        <div class="ptb-step-body">
+                                            <div class="ptb-step-icon" style="background:@s.Bg;color:@s.Color;">
+                                                <i class="@s.Icon"></i>
+                                            </div>
+                                            <div class="ptb-step-content">
+                                                <div class="ptb-step-title">@s.Title</div>
+                                                <div class="ptb-step-text">@s.Body</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 3 — Account Types *@
+                        <div class="br-section" id="s3">
+                            <h2 class="br-h2">3. Position Sizing by Account Size</h2>
+                            <p class="br-p">Your account size determines the range of lot sizes available to you. Smaller accounts must use micro lots to maintain a 1% risk rule without hitting the broker's minimum lot size. Here is a practical guide for each account tier.</p>
+
+                            <div class="row g-3">
+                                @foreach (var a in accounts)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="ptb-account-card" style="border-color:@a.Border;background:@a.Bg;">
+                                            <div class="ptb-account-hd" style="color:@a.Color;">
+                                                <i class="@a.Icon ptb-account-icon"></i>
+                                                <div>
+                                                    <div class="ptb-account-type">@a.Type</div>
+                                                    <div class="ptb-account-balance">@a.Balance</div>
+                                                </div>
+                                            </div>
+                                            <div class="ptb-account-tag" style="background:@a.Color;color:#fff;">@a.Tag</div>
+                                            <div class="ptb-account-rows">
+                                                <div class="ptb-account-row">
+                                                    <span class="ptb-account-row-label">Risk at 1%</span>
+                                                    <span class="ptb-account-row-val" style="color:@a.Color;">@a.Risk2</span>
+                                                </div>
+                                                <div class="ptb-account-row">
+                                                    <span class="ptb-account-row-label">Risk at 2%</span>
+                                                    <span class="ptb-account-row-val" style="color:@a.Color;">@a.Risk1</span>
+                                                </div>
+                                                <div class="ptb-account-row">
+                                                    <span class="ptb-account-row-label">Typical lots (1%)</span>
+                                                    <span class="ptb-account-row-val" style="color:@a.Color;">@a.Lot2</span>
+                                                </div>
+                                                <div class="ptb-account-row">
+                                                    <span class="ptb-account-row-label">Typical lots (2%)</span>
+                                                    <span class="ptb-account-row-val" style="color:@a.Color;">@a.Lot1</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <p class="br-p" style="margin-top:20px;font-size:13px;color:#64748b;">Lot ranges based on EUR/USD with a 20-pip stop-loss. Actual lots vary with stop-loss distance and pip value.</p>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 4 — Trading Styles *@
+                        <div class="br-section" id="s4">
+                            <h2 class="br-h2">4. Position Sizing by Trading Style</h2>
+                            <p class="br-p">Different trading styles have very different stop-loss distances, trade frequencies, and cost structures. Your position size calculation must reflect your style — what works for a swing trader will over-risk a scalper and under-risk a position trader.</p>
+
+                            <div class="row g-3">
+                                @foreach (var t in styles)
+                                {
+                                    <div class="col-md-6">
+                                        <div class="ptb-style-card" style="border-color:@t.Border;background:@t.Bg;">
+                                            <div class="ptb-style-hd" style="color:@t.Color;">
+                                                <span class="ptb-style-icon" style="background:@t.Color;"><i class="@t.Icon"></i></span>
+                                                <span class="ptb-style-name">@t.Style</span>
+                                            </div>
+                                            <div class="ptb-style-rows">
+                                                <div class="ptb-style-row">
+                                                    <span>Typical Stop-Loss</span><strong>@t.SL</strong>
+                                                </div>
+                                                <div class="ptb-style-row">
+                                                    <span>Risk per Trade</span><strong>@t.Risk</strong>
+                                                </div>
+                                                <div class="ptb-style-row">
+                                                    <span>Trade Frequency</span><strong>@t.Trades</strong>
+                                                </div>
+                                            </div>
+                                            <div class="ptb-style-tip">
+                                                <i class="fa-solid fa-lightbulb me-1" style="color:@t.Color;"></i>@t.Tip
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 5 — Multiple Trades *@
+                        <div class="br-section" id="s5">
+                            <h2 class="br-h2">5. Managing Risk Across Multiple Open Trades</h2>
+                            <p class="br-p">Position sizing per trade is only half the equation. When you have multiple trades open simultaneously — especially on correlated pairs — your total portfolio risk can multiply quickly and create dangerous exposure.</p>
+
+                            <div class="br-highlights">
+                                <div class="br-highlights-title"><i class="fa-solid fa-layer-group me-2"></i>Portfolio Risk Rules</div>
+                                <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;">
+                                    <li>Keep total open risk across all trades at <strong>5–6% maximum</strong> of account balance</li>
+                                    <li>EUR/USD long + GBP/USD long = <strong>double USD exposure</strong> — count as one combined position</li>
+                                    <li>If you risk 1% per trade, cap at <strong>5–6 simultaneous open trades</strong> maximum</li>
+                                    <li>Before adding a new position, total up the risk of all existing open stops</li>
+                                    <li>During high-impact news events, consider <strong>reducing size by 50%</strong></li>
+                                    <li>Correlated assets (gold + AUDUSD, EURUSD + GBPUSD) move together — treat them as one</li>
+                                </ul>
+                            </div>
+
+                            <div class="br-callout">
+                                <i class="fa-solid fa-triangle-exclamation me-2" style="color:#d97706;"></i>
+                                <strong>Correlation warning:</strong> EUR/USD and GBP/USD have a historical correlation of 80–90%. Opening both at 1% risk each does not give you 2% diversified risk — it gives you ~1.8% of essentially the same trade. Factor correlation into your portfolio risk calculations.
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 6 — Volatility *@
+                        <div class="br-section" id="s6">
+                            <h2 class="br-h2">6. Adapting Position Size to Market Volatility</h2>
+                            <p class="br-p">Volatility directly affects how wide your stop-loss needs to be, which changes your position size even with the same risk percentage. During high-volatility periods (major news, central bank decisions), stops must be wider to avoid being hit by normal noise — and your lot size must drop accordingly.</p>
+
+                            <div class="br-fact-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#ecfdf5;color:#059669;"><i class="fa-solid fa-water"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Low Volatility</div>
+                                        <div class="br-fact-val">Tighter stops possible. Same risk % = more lots. Best for scalping and day trading strategies.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#fff5f5;color:#ef4444;"><i class="fa-solid fa-tornado"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">High Volatility</div>
+                                        <div class="br-fact-val">Wider stops required. Same risk % = fewer lots. Consider reducing risk % during major news events.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#fff7ed;color:#d97706;"><i class="fa-solid fa-calendar-days"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">News Events</div>
+                                        <div class="br-fact-val">NFP, CPI, FOMC meetings can cause 50–200 pip moves in seconds. Reduce position size by 50% or wait for the event to pass.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-moon"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Asian Session</div>
+                                        <div class="br-fact-val">Lower volatility, tighter ranges. Scalpers can use tighter stops — but pip value and spreads may be wider on exotic pairs.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 7 — Spread & Commission *@
+                        <div class="br-section" id="s7">
+                            <h2 class="br-h2">7. Including Spread &amp; Commission in Your Calculation</h2>
+                            <p class="br-p">Most position size calculators only account for the stop-loss distance in pips. But your true risk also includes the spread you pay on entry and — on ECN accounts — the commission per lot. Ignoring these means you are systematically under-calculating your real risk.</p>
+
+                            <div class="psc-formula" style="margin:20px 0;">
+                                <div class="psc-formula-title">True Risk = Nominal Risk + Spread Cost + Commission</div>
+                                <div class="psc-formula-eq">
+                                    <span class="psc-formula-result">True Risk ($)</span>
+                                    <span class="psc-formula-equals">=</span>
+                                    <span class="psc-formula-fraction">
+                                        <span class="psc-formula-num">SL pips + Spread pips</span>
+                                        <span class="psc-formula-bar"></span>
+                                        <span class="psc-formula-den">pip value per lot</span>
+                                    </span>
+                                    <span class="psc-formula-equals" style="color:#c4b5fd;">+</span>
+                                    <span class="psc-formula-result" style="color:#c4b5fd;">Commission</span>
+                                </div>
+                            </div>
+
+                            <div class="br-callout">
+                                <i class="fa-solid fa-lightbulb me-2" style="color:#d97706;"></i>
+                                <strong>Practical tip:</strong> On a 20-pip stop-loss with a 1.5-pip spread, your effective stop is 21.5 pips. On ECN with $7/lot commission and 0.50 lots, add $3.50 to your dollar risk. Over hundreds of trades, this difference is meaningful.
+                            </div>
+
+                            <p class="br-p">This is also why ECN accounts with cashback rebates can be more cost-effective than standard accounts with "no commission" — the cashback recovered per lot often exceeds the apparent saving from a zero-commission account.</p>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 8 — Drawdown Recovery *@
+                        <div class="br-section" id="s8">
+                            <h2 class="br-h2">8. Recovering from a Drawdown Safely</h2>
+                            <p class="br-p">Every trader — even the best — goes through losing streaks. The position size calculator is your most important tool during drawdown because it automatically reduces your lot size as your balance decreases, protecting you from a death spiral of increasing losses.</p>
+
+                            <table class="br-facts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Account Balance</th>
+                                        <th style="text-align:center;">Risk at 1%</th>
+                                        <th style="text-align:center;">Lot Size (20-pip SL)</th>
+                                        <th style="text-align:center;">Drawdown So Far</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>$10,000</strong> <span style="font-size:11px;color:#16a34a;">(starting)</span></td>
+                                        <td style="text-align:center;">$100</td>
+                                        <td style="text-align:center;font-weight:700;">0.50 lots</td>
+                                        <td style="text-align:center;color:#16a34a;">0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>$9,000</strong></td>
+                                        <td style="text-align:center;">$90</td>
+                                        <td style="text-align:center;font-weight:700;">0.45 lots</td>
+                                        <td style="text-align:center;color:#d97706;">−10%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>$8,000</strong></td>
+                                        <td style="text-align:center;">$80</td>
+                                        <td style="text-align:center;font-weight:700;">0.40 lots</td>
+                                        <td style="text-align:center;color:#d97706;">−20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>$7,000</strong></td>
+                                        <td style="text-align:center;">$70</td>
+                                        <td style="text-align:center;font-weight:700;">0.35 lots</td>
+                                        <td style="text-align:center;color:#ef4444;">−30%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>$5,000</strong></td>
+                                        <td style="text-align:center;">$50</td>
+                                        <td style="text-align:center;font-weight:700;">0.25 lots</td>
+                                        <td style="text-align:center;color:#ef4444;">−50%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="br-p" style="font-size:13px;color:#64748b;margin-top:-20px;">With fixed-risk % sizing, each loss reduces your lot size — slowing the drawdown automatically. With fixed lot sizing, each loss hits equally hard regardless of your reduced balance.</p>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 9 — Cashback *@
+                        <div class="br-section" id="s9">
+                            <h2 class="br-h2">9. Cashback — Lower Your Effective Trading Cost</h2>
+                            <p class="br-p">Every trade has a cost — the spread, commission, and swap. Cashback rebates paid per lot traded directly offset these costs, reducing your effective risk on every position and improving your net P&amp;L without changing your strategy.</p>
+
+                            <div class="br-highlights">
+                                <div class="br-highlights-title"><i class="fa-solid fa-circle-dollar-to-slot me-2"></i>How Cashback Improves Your Position Sizing Math</div>
+                                <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;">
+                                    <li>You risk $100 on a 0.50-lot EUR/USD trade</li>
+                                    <li>Cashback received: <strong>0.50 lots × $7.50 = $3.75</strong></li>
+                                    <li>Net risk after cashback: <strong>$100 − $3.75 = $96.25</strong></li>
+                                    <li>You effectively pay the spread only 96.25% of what you thought</li>
+                                    <li>Over 200 trades per month: <strong>$750/month returned in cashback</strong></li>
+                                    <li>That is equivalent to recovering the spread on every single trade</li>
+                                </ul>
+                            </div>
+
+                            <p class="br-p">For scalpers and high-frequency traders, cashback becomes a major component of overall profitability. Even for swing traders taking a few trades per week, the annual cashback on standard lot sizes is a meaningful reduction in net trading cost.</p>
+
+                            <div class="row g-3 mt-1">
+                                <div class="col-sm-4">
+                                    <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn">
+                                        <i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#7c3aed;"></i>
+                                        <span class="frt-tool-btn-label">Cashback Calculator</span>
+                                        <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a asp-controller="Resources" asp-action="BestCashbackBrokers" class="frt-tool-btn">
+                                        <i class="fa-solid fa-trophy frt-tool-btn-icon" style="color:#d97706;"></i>
+                                        <span class="frt-tool-btn-label">Best Cashback Brokers</span>
+                                        <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a asp-controller="Resources" asp-action="HowToChooseBroker" class="frt-tool-btn">
+                                        <i class="fa-solid fa-compass frt-tool-btn-icon" style="color:#16a34a;"></i>
+                                        <span class="frt-tool-btn-label">How to Choose a Broker</span>
+                                        <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 10 — Risk % Questions *@
+                        <div class="br-section" id="s10">
+                            <h2 class="br-h2">10. Common Questions About Risk Percentage</h2>
+
+                            <div class="br-fact-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:0;">
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-question"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Is 2% too high?</div>
+                                        <div class="br-fact-val">For beginners: yes. Start at 0.5–1%. Only increase to 2% when you have a proven track record over 50+ trades.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-question"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Can I risk more on "A+" setups?</div>
+                                        <div class="br-fact-val">Not recommended. Even the best setups fail. Consistent 1% risk is statistically superior to variable sizing over hundreds of trades.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-question"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Should risk % change during drawdown?</div>
+                                        <div class="br-fact-val">Some traders reduce to 0.5% during a drawdown to slow the decline. Never increase risk percentage to "make back losses faster".</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#faf5ff;color:#7c3aed;"><i class="fa-solid fa-question"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Does funded account sizing differ?</div>
+                                        <div class="br-fact-val">Yes. Prop firm accounts typically cap daily drawdown at 4–5% total. Risk 0.5–1% per trade and stay well within the daily drawdown limit.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* FAQs *@
+                        <div class="br-section" id="s11">
+                            <h2 class="br-h2">11. Frequently Asked Questions</h2>
+                            <div class="br-faq">
+                                @foreach (var faq in faqs)
+                                {
+                                    var uid = Guid.NewGuid().ToString("N")[..6];
+                                    <div class="br-faq-item">
+                                        <button class="br-faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq-@uid"
+                                                aria-expanded="false">
+                                            @faq.Q
+                                            <i class="fa-solid fa-chevron-down ms-auto"></i>
+                                        </button>
+                                        <div id="faq-@uid" class="collapse">
+                                            <div class="br-faq-body">@faq.A</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        @* Bottom CTA *@
+                        <div class="br-bottom-cta">
+                            <div style="font-size:12px;font-weight:700;color:#7c3aed;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Take Control of Your Risk</div>
+                            <h2 style="font-size:clamp(20px,3vw,28px);font-weight:900;color:#0f1b2d;margin:0 0 10px;">Size Every Trade Right. Earn Cashback. Trade Smarter.</h2>
+                            <p style="font-size:14px;color:#64748b;max-width:560px;margin:0 auto 24px;line-height:1.7;">Position sizing is free. Cashback is free. Both improve your trading results immediately — without changing your strategy at all.</p>
+                            <div class="br-cta-btns">
+                                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="br-cta-btn-primary" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);">
+                                    <i class="fa-solid fa-calculator me-2"></i>View Formulas &amp; Examples
+                                </a>
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="br-cta-btn-ghost">
+                                    <i class="fa-solid fa-circle-dollar-to-slot me-2"></i>Cashback Calculator
+                                </a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+                @* ── SIDEBAR ── *@
+                <div class="col-lg-3">
+                    <partial name="_Sidebar" model="@("ForexTools")" />
+
+                    <div class="br-toc" style="margin-top:24px;position:sticky;top:90px;">
+                        <div class="br-toc-title"><i class="fa-solid fa-list me-2"></i>On This Page</div>
+                        <ol style="margin:0;padding-left:18px;font-size:13px;line-height:2.2;">
+                            <li><a href="#s1">Why Good Strategies Fail</a></li>
+                            <li><a href="#s2">6-Step Routine</a></li>
+                            <li><a href="#s3">By Account Size</a></li>
+                            <li><a href="#s4">By Trading Style</a></li>
+                            <li><a href="#s5">Multiple Trades</a></li>
+                            <li><a href="#s6">Volatility Adaptation</a></li>
+                            <li><a href="#s7">Spread &amp; Commission</a></li>
+                            <li><a href="#s8">Drawdown Recovery</a></li>
+                            <li><a href="#s9">Cashback &amp; Costs</a></li>
+                            <li><a href="#s10">Risk % Questions</a></li>
+                            <li><a href="#s11">FAQs</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

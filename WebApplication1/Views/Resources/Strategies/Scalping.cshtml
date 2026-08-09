@@ -1,0 +1,118 @@
+@{
+    ViewData["Title"] = "The Art of Scalping Trading: Maximizing Profits in Short-Term Market Movements";
+    string ac = "#b91c1c", al = "#fff1f0";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#200000,#7f1d1d,#0f0000);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Scalping</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">The Art of Scalping Trading: Maximizing Profits in Short-Term Market Movements</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 10 Jan 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 9 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Scalping</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(185,28,28,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#fca5a5;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-bolt me-1"></i> Scalping Requirements</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Timeframe",V="M1–M5"},new{L="Hold time",V="Seconds to minutes"},new{L="Target per trade",V="2–10 pips"},new{L="Risk per trade",V="0.25–0.5%"},new{L="Broker type",V="ECN, low latency"},new{L="VPS",V="Highly recommended"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#fca5a5;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">M1–M5</div><div class="na-stat-lbl">Primary Charts</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2–10</div><div class="na-stat-lbl">Pips Per Trade</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">ECN</div><div class="na-stat-lbl">Broker Type Required</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">VPS</div><div class="na-stat-lbl">For EA Scalping</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Scalping is the highest-frequency, shortest-duration trading style in forex. Scalpers enter and exit dozens of trades per day, each targeting 2–10 pips of profit with tight stop-losses. The edge comes from consistency across many trades — small wins that accumulate substantially over hundreds of monthly transactions.</p>
+
+            <h2 class="na-h2">What Scalping Actually Requires</h2>
+            <div class="br-pros-cons">
+                <div class="br-pros">
+                    <div class="br-pros-title"><i class="fa-solid fa-check me-2"></i>Scalping Prerequisites</div>
+                    <ul style="margin:0;padding:0 0 0 18px;line-height:2.4;font-size:14px;color:#374151;">
+                        <li>ECN/STP broker — no dealing desk intervention</li>
+                        <li>Spread of 0.0–0.5 pips on EUR/USD</li>
+                        <li>Fast execution — latency under 50ms ideally</li>
+                        <li>VPS for EA-based scalping (1–10ms latency)</li>
+                        <li>Strict discipline — no emotional overrides</li>
+                        <li>Pre-defined daily loss limit (e.g., stop at −2%)</li>
+                    </ul>
+                </div>
+                <div class="br-cons">
+                    <div class="br-cons-title"><i class="fa-solid fa-xmark me-2"></i>Not Suitable For</div>
+                    <ul style="margin:0;padding:0 0 0 18px;line-height:2.4;font-size:14px;color:#374151;">
+                        <li>Market maker brokers (often restrict scalping)</li>
+                        <li>High-spread accounts (standard accounts)</li>
+                        <li>Traders who cannot monitor charts in real time</li>
+                        <li>Emotional traders prone to revenge trading</li>
+                        <li>Small accounts (&lt;$1,000) — commissions significant</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 class="na-h2">Three Scalping Setups That Work</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">M5 Session Open Momentum Scalp</div><div class="na-step-text">At the London open (07:00 UTC), mark the first 5-minute candle's high and low. Enter long on break above the high or short on break below the low with a 3-pip stop and 6-pip target (2:1 R:R). The initial directional move at session open is often the dominant direction for the next 30–60 minutes.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">M1 Support/Resistance Bounce</div><div class="na-step-text">Identify a clear support or resistance level on M5. On M1, wait for price to touch the level and print a rejection candle (pin bar). Enter immediately on close of the rejection candle. Stop just beyond the level (2–3 pips). Target 5 pips. Execute only 2–3 of these per session to maintain quality over quantity.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">EMA Scalp (20/50 EMA Cross)</div><div class="na-step-text">On M5, when the 20 EMA crosses above/below the 50 EMA with momentum, enter in the direction of the cross on the next candle's open. Stop below/above the 50 EMA. Target 5–8 pips. Best applied during high-volume sessions (London and NY overlap) — avoid Asian session where ranges are too narrow.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Scalping + Cashback: The Most Powerful Combination</h2>
+            <p class="na-p">Scalping generates the highest trading volumes of any manual strategy, making it the most powerful use case for cashback programmes. The numbers speak for themselves:</p>
+            <table class="br-facts-table">
+                <thead><tr><th>Monthly Volume</th><th style="text-align:center;">Cashback Rate</th><th style="text-align:center;">Monthly Cashback</th><th style="text-align:center;">Annual Cashback</th></tr></thead>
+                <tbody>
+                    <tr><td>50 lots (light scalping)</td><td style="text-align:center;">$7.50/lot</td><td style="text-align:center;color:@ac;font-weight:700;">$375</td><td style="text-align:center;font-weight:700;">$4,500</td></tr>
+                    <tr><td>100 lots (active scalping)</td><td style="text-align:center;">$7.50/lot</td><td style="text-align:center;color:@ac;font-weight:700;">$750</td><td style="text-align:center;font-weight:700;">$9,000</td></tr>
+                    <tr><td>200 lots (EA scalping)</td><td style="text-align:center;">$7.50/lot</td><td style="text-align:center;color:@ac;font-weight:700;">$1,500</td><td style="text-align:center;font-weight:700;">$18,000</td></tr>
+                </tbody>
+            </table>
+            <p class="na-p">At 100 lots per month, the $750 in monthly cashback is equivalent to recovering <strong>7.5 pips per lot</strong> — meaning a scalper on a 0.7-pip spread broker effectively pays a −0.0 pip spread after cashback. This is the structural advantage that makes cashback-eligible ECN scalping potentially superior to any standard account arrangement.</p>
+
+            <div class="na-callout"><div class="na-callout-title"><i class="fa-solid fa-server me-1"></i> Scalping + VPS</div>For EA-based scalping, a VPS is mandatory — not optional. Home internet connections add 50–200ms of latency. A VPS co-located near your broker's server adds 1–10ms. At 5–8 pip targets, the difference in fill quality at those latency levels is measurable and directly impacts profitability.</div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#fca5a5;">Scale Your Scalping Returns</div>
+                <div class="na-cta-title">Maximum Volume = Maximum Cashback</div>
+                <p class="na-cta-sub">Scalpers earn more cashback than any other trading style. Register free, choose an ECN broker, and start turning volume into a structural edge.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Resources" asp-action="WhyUseVPS" class="na-cta-btn-ghost"><i class="fa-solid fa-server me-2"></i>VPS Guide for Scalpers</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:90px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+            @foreach(var r in new[]{new{A="StrategyDayTrading",I="fa-solid fa-sun",Bg="#fff7ed",C="#ea580c",T="Day Trading Forex Strategies",D="05 Aug 2024"},new{A="StrategyAlgo",I="fa-solid fa-robot",Bg="#f1f5f9",C="#475569",T="Algorithmic Trading Guide",D="18 Nov 2023"},new{A="StrategyCashback500",I="fa-solid fa-sack-dollar",Bg="#f0fdf4",C="#16a34a",T="How $500 in Cashback Adds Up",D="15 Jan 2025"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="LiveBrokerSpreads" class="frt-tool-btn"><i class="fa-solid fa-arrow-trend-up frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Live Broker Spreads</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

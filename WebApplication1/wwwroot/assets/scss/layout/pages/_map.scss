@@ -1,0 +1,169 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.20 map
+/*----------------------------------------*/
+.#{$theme-prifix}-map {
+    &-pb{
+        &-spacing{
+            @media #{$lg,$md,$sm,$xs}{
+                overflow-x: auto;
+                margin-bottom: 100px;
+            }
+        }
+        &-wrap{
+            height: 690px;
+            @media #{$lg,$md,$sm,$xs}{
+                height: 550px;
+                width: 1000px;
+            }
+        }
+    }
+    &-popup {
+        position: absolute;
+        z-index: 1;
+        top: -310px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 268px;
+        background: var(--tp-common-white);
+        border-radius: 20px;
+        padding: 20px 20px 24px 20px;
+        box-shadow: 0 7px 16px 2px rgba(0, 0, 0, 0.06);
+        opacity: 0;
+        transition: all .4s ease;
+        text-align: left;
+        visibility: hidden;
+        &-thumb{
+            width: 100%;
+            border-radius: 8px;
+        }
+        &-contact{
+            display: flex;
+            align-items: center;
+            font-family: var(--tp-ff-sora);
+            font-weight: 400;
+            font-size: 12px;
+            color: var(--tp-common-black);
+            opacity: 0.8;
+            & span{
+                width: 24px;
+                height: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #E7E7E7;
+                border-radius: 50px;
+                margin-right: 8px;
+            }
+        }
+    }
+    &-pin{
+        &.active{
+            & .tp-map-pin-icon{
+                color: var(--tp-theme-secondary);
+            }
+            & .tp-map-popup{
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        &-icon{
+            color: var(--tp-common-black-5);
+            transition: all .4s ease;
+            cursor: pointer;
+            & svg{
+                animation: popups 3s linear infinite
+            }
+        }
+        &-wrap{
+            display: inline-block;
+            position: absolute;
+        }
+        &-1{
+            top: 216px;
+            left: 50%;
+        }
+        &-2{
+            top: 252px;
+            left: 52.50%;
+        }
+        &-3{
+            top: 216px;
+            left: 55%; 
+        }
+        &-4{
+            top: 35px;
+            left: 33%;
+            & .tp-map-popup {
+                top: inherit;
+                bottom: -305px;
+                @media #{$lg,$md,$sm,$xs}{
+                    top: inherit;
+                    bottom: -290px;
+                }
+            }
+            & .tp-map-pin:hover .tp-map-popup {
+                top: inherit;
+                bottom: -305px;
+            } 
+        }
+        &-5{
+            top: 97px;
+            right: 33%;
+            & .tp-map-popup {
+                top: inherit;
+                bottom: -305px;
+                @media #{$lg,$md,$sm,$xs}{
+                    top: inherit;
+                    bottom: -290px;
+                }
+            }
+            & .tp-map-pin:hover .tp-map-popup {
+                top: inherit;
+                bottom: -305px;
+            }  
+        }
+        &-6{
+            top: 290px;
+            left: 13%; 
+        }
+        &-7{
+            top: 270px;
+            left: 17%;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                left: 7%;
+            } 
+        }
+        &-8{
+            top: 200px;
+            left: 15%; 
+        }
+        &-9{
+            top: 390px;
+            left: 30%;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                left: 13%;
+            } 
+        }
+        &-10{
+            top: 420px;
+            left: 32%;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                left: 22%;
+            }  
+        }
+        &-11{
+            top: 192px;
+            right: 24%;
+        }
+        &-12{
+            top: 220px;
+            right: 19%;
+        }
+        &-13{
+            top: 274px;
+            right: 21%;
+        }
+    }
+}

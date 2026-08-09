@@ -1,0 +1,106 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- profile dashboard area start -->
+<div class="profile__area profile-modern pm-dash pre-header pt-200 pb-120">
+   <div class="pm-bg" aria-hidden="true">
+      <span class="pm-blob pm-blob-1"></span>
+      <span class="pm-blob pm-blob-2"></span>
+      <span class="pm-blob pm-blob-3"></span>
+      <span class="pm-grid"></span>
+      <div class="pm-icons">
+         <i class="pm-ic pm-ic-1 fa-solid fa-dollar-sign"></i>
+         <i class="pm-ic pm-ic-2 fa-solid fa-euro-sign"></i>
+         <i class="pm-ic pm-ic-3 fa-solid fa-sterling-sign"></i>
+         <i class="pm-ic pm-ic-4 fa-solid fa-yen-sign"></i>
+         <i class="pm-ic pm-ic-5 fa-solid fa-chart-line"></i>
+         <i class="pm-ic pm-ic-6 fa-solid fa-coins"></i>
+         <i class="pm-ic pm-ic-7 fa-solid fa-arrow-trend-up"></i>
+         <i class="pm-ic pm-ic-8 fa-solid fa-circle-dollar-to-slot"></i>
+         <i class="pm-ic pm-ic-9 fa-solid fa-bitcoin-sign"></i>
+         <i class="pm-ic pm-ic-10 fa-solid fa-sack-dollar"></i>
+         <i class="pm-ic pm-ic-11 fa-solid fa-chart-pie"></i>
+         <i class="pm-ic pm-ic-12 fa-solid fa-money-bill-trend-up"></i>
+         <i class="pm-ic pm-ic-13 fa-solid fa-piggy-bank"></i>
+         <i class="pm-ic pm-ic-14 fa-solid fa-hand-holding-dollar"></i>
+         <i class="pm-ic pm-ic-15 fa-solid fa-wallet"></i>
+         <i class="pm-ic pm-ic-16 fa-solid fa-money-bill-wave"></i>
+         <i class="pm-ic pm-ic-17 fa-solid fa-scale-balanced"></i>
+         <i class="pm-ic pm-ic-18 fa-solid fa-gem"></i>
+         <i class="pm-ic pm-ic-19 fa-solid fa-percent"></i>
+         <i class="pm-ic pm-ic-20 fa-solid fa-chart-column"></i>
+         <i class="pm-ic pm-ic-21 fa-solid fa-money-bill-transfer"></i>
+         <i class="pm-ic pm-ic-22 fa-solid fa-vault"></i>
+      </div>
+   </div>
+   <div class="profile__inner p-relative p-20">
+      <div class="row gy-4">
+
+         <div class="col-xxl-3 col-lg-4">
+            @await Html.PartialAsync("_ProfileSidebar")
+         </div>
+
+         <div class="col-xxl-9 col-lg-8">
+            <div class="profile__tab-content" style="border-radius: 5px;">
+               @RenderBody()
+            </div>
+         </div>
+
+      </div>
+   </div>
+</div>
+<!-- profile dashboard area end -->
+
+@section Scripts {
+   <script>
+      $(document).ready(function () {
+         // ---- Load the signed-in user into the sidebar + any form fields on the page ----
+         (function loadDataUser() {
+            $.ajax({
+               url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_LOAD_USER,
+               type: 'GET',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               success: function (res) {
+                  if (res.responseCode === 200 && res.data) {
+                     $('.full-name').val(res.data.fullName);
+                     $('.address').val(res.data.address);
+                     $('.gender').val(res.data.gender).trigger('change');
+                     $('.email').val(res.data.email);
+                     $('.phone').val(res.data.phone);
+                     $('.telegram').val(res.data.telegram);
+                     $('.whatapp').val(res.data.whatapp);
+
+                     if (res.data.fullName) { $('#pm-name').text(res.data.fullName); }
+                     if (res.data.email) { $('#pm-email').text(res.data.email); }
+                  }
+               },
+               error: function (error) { console.log(error); }
+            });
+         })();
+
+         // ---- Logout (shared across all profile pages) ----
+         $('.btn-logout').on('click', function () {
+            $.ajax({
+               url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_LOGOUT,
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               success: function (res) {
+                  if (res.responseCode === 200) {
+                     window.location.href = '/Home/Login';
+                  } else {
+                     Swal.fire({ title: 'Warning!', text: res.message, icon: 'warning', confirmButtonText: 'Close' });
+                  }
+               },
+               error: function (error) {
+                  Swal.fire({ title: 'Error!', text: error.message, icon: 'error', confirmButtonText: 'Close' });
+               }
+            });
+         });
+      });
+   </script>
+
+   @await RenderSectionAsync("Scripts", required: false)
+}

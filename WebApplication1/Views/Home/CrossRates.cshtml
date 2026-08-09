@@ -1,0 +1,176 @@
+@{
+    ViewData["Title"] = "Forex Cross Rates";
+}
+
+<div class="lbs hm pre-header pt-140 pb-120">
+   <span class="lbs-bg-glow lbs-bg-glow-1"></span>
+   <span class="lbs-bg-glow lbs-bg-glow-2"></span>
+
+   <!-- floating forex decorations -->
+   <div class="hm-decor" aria-hidden="true">
+      <span class="hm-coin hm-coin-1"><i class="fa-solid fa-euro-sign"></i></span>
+      <span class="hm-coin hm-coin-2"><i class="fa-solid fa-yen-sign"></i></span>
+      <span class="hm-coin hm-coin-3"><i class="fa-solid fa-sterling-sign"></i></span>
+      <span class="hm-coin hm-coin-4"><i class="fa-solid fa-dollar-sign"></i></span>
+      <span class="hm-coin hm-coin-5"><i class="fa-solid fa-franc-sign"></i></span>
+      <span class="hm-coin hm-coin-6"><i class="fa-solid fa-won-sign"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-1"><i class="fa-solid fa-right-left"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-2"><i class="fa-solid fa-arrow-down-up-across-line"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-3"><i class="fa-solid fa-right-left"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-4"><i class="fa-solid fa-arrow-down-up-across-line"></i></span>
+   </div>
+
+   <div class="container container-1230">
+
+      <!-- hero -->
+      <div class="lbs-hero">
+         <span class="lbs-hero-badge"><i class="fa-solid fa-arrow-down-up-across-line"></i> Trading Tools</span>
+         <h1 class="lbs-hero-title">Forex <span>Cross Rates</span></h1>
+         <p class="lbs-hero-sub">
+            Compare live exchange rates between non-USD currency pairs in real time. A must-have for traders who need
+            to monitor relative currency performance without going through the US dollar as an intermediary.
+         </p>
+         <div class="lbs-hero-stats">
+            <div class="lbs-hero-stat"><b>9</b><span>Currencies</span></div>
+            <div class="lbs-hero-stat"><b>72</b><span>Cross Pairs</span></div>
+            <div class="lbs-hero-stat"><b><i class="fa-solid fa-circle lbs-live-dot"></i> Live</b><span>Real-time feed</span></div>
+         </div>
+      </div>
+
+      <!-- cross rates widget card -->
+      <div class="lbs-card">
+         <div class="lbs-card-head">
+            <div>
+               <h3>Live Forex Cross Rates</h3>
+               <p>Real-time exchange rates for every major currency pair, side by side.</p>
+            </div>
+            <div class="lbs-powered">Powered by <b>TradingView</b></div>
+         </div>
+
+         <div class="eco-widget">
+            <!-- TradingView Forex Cross Rates Widget -->
+            <div class="tradingview-widget-container">
+               <div class="tradingview-widget-container__widget"></div>
+               <script type="text/javascript"
+                       src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+               {
+               "colorTheme": "light",
+               "isTransparent": true,
+               "locale": "en",
+               "currencies": ["EUR","USD","JPY","GBP","CHF","AUD","CAD","NZD","CNY"],
+               "backgroundColor": "#ffffff",
+               "width": "100%",
+               "height": 500
+               }
+               </script>
+            </div>
+            <!-- TradingView Forex Cross Rates Widget END -->
+         </div>
+      </div>
+
+      <!-- quick reading guide -->
+      <div class="hm-guide">
+         <div class="hm-guide-card hm-guide-up">
+            <span class="hm-guide-cell"><i class="fa-solid fa-arrow-right-long"></i> Row</span>
+            <h5>Base Currency</h5>
+            <p>Each row is the currency you're converting <b>from</b> &mdash; read across to compare it.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-int">
+            <span class="hm-guide-cell hm-guide-cell-blue"><i class="fa-solid fa-arrow-down-long"></i> Column</span>
+            <h5>Quote Currency</h5>
+            <p>Each column is the currency you're converting <b>to</b> &mdash; the value is the live rate.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-down">
+            <span class="hm-guide-cell"><i class="fa-solid fa-bolt"></i> No USD</span>
+            <h5>Direct Cross Rate</h5>
+            <p>See two non-USD currencies compared directly, with no dollar in between.</p>
+         </div>
+      </div>
+
+      <!-- how to use accordion -->
+      <details class="lbs-acc" open>
+         <summary>How do I use the Forex Cross Rates?<span class="lbs-acc-ico"><i class="fa-solid fa-chevron-down"></i></span></summary>
+         <div class="lbs-acc-content">
+            <ol class="lbs-steps">
+               <li>Find your base currency down the left column and the quote currency across the top row.</li>
+               <li>Read the value where the row and column meet &mdash; that's the live cross rate.</li>
+               <li>Compare a currency across the whole row to see where it's strong or weak.</li>
+               <li>Use those relationships to spot opportunities and confirm your trade ideas.</li>
+            </ol>
+         </div>
+      </details>
+
+      <!-- educational content -->
+      <div class="lbs-content">
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-circle-question"></i></span>
+               <h3 class="lbs-info-title">What Are Forex Cross Rates?</h3>
+            </div>
+            <p>Forex cross rates represent the exchange rate between two currencies that are <b>not</b> the US dollar.
+               They give you insight into direct currency relationships and let you spot opportunities or trends across
+               global markets without converting through USD first.</p>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-bolt"></i></span>
+               <h3 class="lbs-info-title">Why Use Our Forex Cross Rates Tool?</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Real-time data</b> &mdash; get up-to-date exchange rates between currency pairs instantly.</li>
+               <li><b>Direct comparisons</b> &mdash; compare currencies directly to identify favorable trading conditions.</li>
+               <li><b>User-friendly interface</b> &mdash; a simple design that works well on both desktop and mobile.</li>
+               <li><b>Enhanced market insight</b> &mdash; make informed decisions by understanding direct currency relationships.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-rocket"></i></span>
+               <h3 class="lbs-info-title">Benefits for Forex Traders</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Improved decision-making</b> &mdash; quickly assess market conditions between various currency pairs.</li>
+               <li><b>Enhanced strategy</b> &mdash; identify and capitalize on discrepancies in currency relationships.</li>
+               <li><b>Streamlined analysis</b> &mdash; a single view of multiple cross rates saves time and simplifies comparisons.</li>
+               <li><b>Anywhere access</b> &mdash; the tool works seamlessly on desktop and mobile.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-comments"></i></span>
+               <h3 class="lbs-info-title">Frequently Asked Questions</h3>
+            </div>
+
+            <details class="lbs-faq-item">
+               <summary>What are forex cross rates?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>They are exchange rates between two non-USD currencies, giving you a direct view of their value
+                  relationship without converting through the US dollar.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>How often is the data updated?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>The rates update in real time so you always see current market values.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>Can I use this on my mobile device?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>Yes &mdash; the tool is fully responsive and works seamlessly on desktop and mobile platforms.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>How does this help my trading?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>Seeing direct currency relationships helps you gauge relative strength, confirm trade ideas and spot
+                  opportunities you might miss when only looking at USD pairs.</p>
+            </details>
+         </div>
+      </div>
+
+      <!-- join cta -->
+      <div class="lbs-join">
+         <a asp-controller="Home" asp-action="Register">
+            <i class="fa-solid fa-lightbulb"></i> Join Now &amp; Start Earning Cashback <i class="fa-solid fa-lightbulb"></i>
+         </a>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,187 @@
+@model WebApplication1.Data.DTO.Broker.BrokerListPageDto
+@{
+    // Server-side paged broker list — only the current page (10 items) is fetched & rendered.
+    var vm = Model ?? new WebApplication1.Data.DTO.Broker.BrokerListPageDto();
+    var items = vm.Items;
+}
+
+<style>
+   .broker-pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 30px; }
+   .broker-page-btn {
+      min-width: 42px; height: 42px; padding: 0 12px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1.5px solid #e2e8f0; background: #fff; color: #16202e;
+      font-size: 14px; font-weight: 700; border-radius: 10px; cursor: pointer;
+      text-decoration: none; transition: all .18s ease;
+   }
+   .broker-page-btn:hover:not(.disabled) { border-color: #009AEE; color: #009AEE; background: #f0f9ff; }
+   .broker-page-btn.active { background: linear-gradient(120deg,#009AEE,#1ba8f5); border-color: transparent; color: #fff; box-shadow: 0 8px 18px -8px rgba(0,154,238,.8); }
+   .broker-page-btn.disabled { opacity: .45; pointer-events: none; }
+</style>
+
+<!-- tp-portfolio-area-start -->
+<div class="tp-portfolio-colum-spacing pre-header tp-portfolio-area broker-modern">
+   <div class="container containers">
+      <div class="row">
+         <div class="col-lg-7">
+            <div class="tp-service-hero-left p-relative mb-40">
+               <h2 class="fs-70 fs-lg-60 fs-xs-40">Forex Rebate Brokers List</h2>
+               <span class="tp-service-hero-shape tpswing d-none d-sm-inline-block">
+                  <svg width="52" height="94" viewBox="0 0 52 94" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M1 16.1098C5.58433 24.0984 22.6118 44.5692 38.3295 38.0785C46.3521 34.5835 58.2264 23.6551 45.206 5.12554C40.2943 -1.86444 30.6673 -0.666183 25.559 14.1127C22.6118 22.6393 15.2441 43.0714 22.612 61.0456C26.5006 70.5321 38.1332 85.2111 49.1356 90.0043M49.1356 90.0043C44.0601 87.3414 32.8285 84.2126 28.5061 93M49.1356 90.0043C45.8611 88.1736 40.0979 80.8174 43.2414 66.0385M10.2322 38.0785C9.38015 41.6962 8.2675 54.4237 15.144 64.4094" stroke="#030303" stroke-width="1.5" />
+                  </svg>
+               </span>
+            </div>
+         </div>
+         <div class="col-lg-5">
+            <div class="tp-service-hero-right mt-130">
+               <p class="fs-30 lh-140-per">Partner with top forex brokers for better trading. Find your ideal broker with our guide on compliance, pricing, and platforms like MT4/MT5. Need a broker? <a class="main-color" asp-controller="Home" asp-action="Register">Let us know </a>&mdash; we're always expanding.</p>
+            </div>
+         </div>
+         <div class="col-12">
+            <div class="broker-tab-wrap mt-40">
+               <nav>
+                  <div class="nav broker-tabs" id="nav-tab" role="tablist">
+                     <a class="nav-link @(vm.Tab == "all" ? "active" : "")" asp-controller="Home" asp-action="Broker" asp-route-tab="all" asp-route-page="1"><i class="fa-solid fa-list"></i> All Brokers <span class="broker-tab-count">@vm.AllCount</span></a>
+                     <a class="nav-link @(vm.Tab == "top" ? "active" : "")" asp-controller="Home" asp-action="Broker" asp-route-tab="top" asp-route-page="1"><i class="fa-solid fa-crown"></i> Top Brokers <span class="broker-tab-count">@vm.TopCount</span></a>
+                  </div>
+               </nav>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- tp-portfolio-area-end -->
+
+<!-- broker list start -->
+<div class="tp-portfolio-inner-ptb pre-header pb-100 broker-modern">
+   <div class="container container-1800 containers">
+      <div class="tp-portfolio-tab-content-wrap">
+         @if (items.Count == 0)
+         {
+            <div class="text-center" style="padding:70px 16px;color:#7a8699;">
+               <i class="fa-solid fa-building-columns" style="font-size:40px;opacity:.3;"></i>
+               <p style="margin:14px 0 0;font-weight:600;">No brokers to show</p>
+               <span style="font-size:14px;">Please check back soon.</span>
+            </div>
+         }
+         else
+         {
+            <div class="row">
+               @foreach (var b in items)
+               {
+                  <div class="col-xxl-3 col-xl-4 col-md-6 mb-30">
+                     <partial name="_BrokerCard" model="b" />
+                  </div>
+               }
+            </div>
+
+            @if (vm.TotalPages > 1)
+            {
+               <div class="broker-pagination">
+                  <a class="broker-page-btn @(vm.Page <= 1 ? "disabled" : "")"
+                     asp-controller="Home" asp-action="Broker" asp-route-tab="@vm.Tab" asp-route-page="@(vm.Page - 1)"
+                     aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></a>
+
+                  @for (var p = 1; p <= vm.TotalPages; p++)
+                  {
+                     <a class="broker-page-btn @(p == vm.Page ? "active" : "")"
+                        asp-controller="Home" asp-action="Broker" asp-route-tab="@vm.Tab" asp-route-page="@p">@p</a>
+                  }
+
+                  <a class="broker-page-btn @(vm.Page >= vm.TotalPages ? "disabled" : "")"
+                     asp-controller="Home" asp-action="Broker" asp-route-tab="@vm.Tab" asp-route-page="@(vm.Page + 1)"
+                     aria-label="Next"><i class="fa-solid fa-chevron-right"></i></a>
+               </div>
+
+               <p class="text-center" style="margin-top:14px;color:#9aa6b8;font-size:13px;">
+                  Showing @((vm.Page - 1) * vm.PageSize + 1)–@(Math.Min(vm.Page * vm.PageSize, vm.TotalItems)) of @vm.TotalItems brokers
+               </p>
+            }
+         }
+      </div>
+   </div>
+</div>
+<!-- broker list end -->
+
+
+<!-- tp-text-slider-area-start -->
+<div class="tp-text-slider-area pt-25 pb-25 main-background-color">
+   <div class="swiper-container tp-text-slider-active">
+      <div class="swiper-wrapper slide-transtion">
+         <div class="swiper-slide">
+            <div class="tp-text-slider-item">
+               <span class="color-white">Design</span>
+               <span class="icons">
+                  <svg width="68" height="12" viewBox="0 0 68 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M59.416 11.8926L67.62 6.76034C67.7367 6.67779 67.8325 6.56504 67.8989 6.43228C67.9652 6.29953 67.9999 6.15095 67.9999 6C67.9999 5.84905 67.9652 5.70048 67.8989 5.56772C67.8325 5.43496 67.7367 5.32221 67.62 5.23966L59.416 0.107354C59.2561 0.0134291 59.0719 -0.0202036 58.8925 0.0117582C58.713 0.04372 58.5485 0.139459 58.4248 0.28388C58.3011 0.428302 58.2254 0.613192 58.2094 0.809402C58.1935 1.00561 58.2383 1.20198 58.3369 1.36755L60.7161 5.11998L0.812592 5.11998C0.597076 5.11998 0.390396 5.21269 0.238007 5.37773C0.0856171 5.54277 0 5.7666 0 6C0 6.2334 0.0856171 6.45724 0.238007 6.62227C0.390396 6.78731 0.597076 6.88003 0.812592 6.88003C0.812592 6.88003 49.0381 6.88003 60.7161 6.88003L58.3369 10.6325C58.2383 10.798 58.1935 10.9944 58.2094 11.1906C58.2254 11.3868 58.3011 11.5717 58.4248 11.7161C58.5485 11.8605 58.713 11.9563 58.8925 11.9882C59.0719 12.0202 59.2561 11.9866 59.416 11.8926Z" fill="#030303" />
+                  </svg>
+               </span>
+               <span class="color-white">Say affiliates Global</span>
+               <span class="borders"></span>
+            </div>
+         </div>
+         <div class="swiper-slide">
+            <div class="tp-text-slider-item">
+               <span class="color-white">Say affiliates</span>
+               <span class="icons">
+                  <svg width="68" height="12" viewBox="0 0 68 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M59.416 11.8926L67.62 6.76034C67.7367 6.67779 67.8325 6.56504 67.8989 6.43228C67.9652 6.29953 67.9999 6.15095 67.9999 6C67.9999 5.84905 67.9652 5.70048 67.8989 5.56772C67.8325 5.43496 67.7367 5.32221 67.62 5.23966L59.416 0.107354C59.2561 0.0134291 59.0719 -0.0202036 58.8925 0.0117582C58.713 0.04372 58.5485 0.139459 58.4248 0.28388C58.3011 0.428302 58.2254 0.613192 58.2094 0.809402C58.1935 1.00561 58.2383 1.20198 58.3369 1.36755L60.7161 5.11998L0.812592 5.11998C0.597076 5.11998 0.390396 5.21269 0.238007 5.37773C0.0856171 5.54277 0 5.7666 0 6C0 6.2334 0.0856171 6.45724 0.238007 6.62227C0.390396 6.78731 0.597076 6.88003 0.812592 6.88003C0.812592 6.88003 49.0381 6.88003 60.7161 6.88003L58.3369 10.6325C58.2383 10.798 58.1935 10.9944 58.2094 11.1906C58.2254 11.3868 58.3011 11.5717 58.4248 11.7161C58.5485 11.8605 58.713 11.9563 58.8925 11.9882C59.0719 12.0202 59.2561 11.9866 59.416 11.8926Z" fill="#030303" />
+                  </svg>
+               </span>
+               <span class="color-white">Global</span>
+               <span class="borders"></span>
+            </div>
+         </div>
+         <div class="swiper-slide">
+            <div class="tp-text-slider-item">
+               <span class="color-white">Forex</span>
+               <span class="icons">
+                  <svg width="68" height="12" viewBox="0 0 68 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M59.416 11.8926L67.62 6.76034C67.7367 6.67779 67.8325 6.56504 67.8989 6.43228C67.9652 6.29953 67.9999 6.15095 67.9999 6C67.9999 5.84905 67.9652 5.70048 67.8989 5.56772C67.8325 5.43496 67.7367 5.32221 67.62 5.23966L59.416 0.107354C59.2561 0.0134291 59.0719 -0.0202036 58.8925 0.0117582C58.713 0.04372 58.5485 0.139459 58.4248 0.28388C58.3011 0.428302 58.2254 0.613192 58.2094 0.809402C58.1935 1.00561 58.2383 1.20198 58.3369 1.36755L60.7161 5.11998L0.812592 5.11998C0.597076 5.11998 0.390396 5.21269 0.238007 5.37773C0.0856171 5.54277 0 5.7666 0 6C0 6.2334 0.0856171 6.45724 0.238007 6.62227C0.390396 6.78731 0.597076 6.88003 0.812592 6.88003C0.812592 6.88003 49.0381 6.88003 60.7161 6.88003L58.3369 10.6325C58.2383 10.798 58.1935 10.9944 58.2094 11.1906C58.2254 11.3868 58.3011 11.5717 58.4248 11.7161C58.5485 11.8605 58.713 11.9563 58.8925 11.9882C59.0719 12.0202 59.2561 11.9866 59.416 11.8926Z" fill="#030303" />
+                  </svg>
+               </span>
+               <span class="color-white">Boot</span>
+               <span class="borders"></span>
+            </div>
+         </div>
+         <div class="swiper-slide color-white">
+            <div class="tp-text-slider-item">
+               <span class="color-white">Design</span>
+               <span class="icons">
+                  <svg width="68" height="12" viewBox="0 0 68 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M59.416 11.8926L67.62 6.76034C67.7367 6.67779 67.8325 6.56504 67.8989 6.43228C67.9652 6.29953 67.9999 6.15095 67.9999 6C67.9999 5.84905 67.9652 5.70048 67.8989 5.56772C67.8325 5.43496 67.7367 5.32221 67.62 5.23966L59.416 0.107354C59.2561 0.0134291 59.0719 -0.0202036 58.8925 0.0117582C58.713 0.04372 58.5485 0.139459 58.4248 0.28388C58.3011 0.428302 58.2254 0.613192 58.2094 0.809402C58.1935 1.00561 58.2383 1.20198 58.3369 1.36755L60.7161 5.11998L0.812592 5.11998C0.597076 5.11998 0.390396 5.21269 0.238007 5.37773C0.0856171 5.54277 0 5.7666 0 6C0 6.2334 0.0856171 6.45724 0.238007 6.62227C0.390396 6.78731 0.597076 6.88003 0.812592 6.88003C0.812592 6.88003 49.0381 6.88003 60.7161 6.88003L58.3369 10.6325C58.2383 10.798 58.1935 10.9944 58.2094 11.1906C58.2254 11.3868 58.3011 11.5717 58.4248 11.7161C58.5485 11.8605 58.713 11.9563 58.8925 11.9882C59.0719 12.0202 59.2561 11.9866 59.416 11.8926Z" fill="#030303" />
+                  </svg>
+               </span>
+               <span class="color-white">Wireframe</span>
+               <span class="borders"></span>
+            </div>
+         </div>
+         <div class="swiper-slide">
+            <div class="tp-text-slider-item">
+               <span class="color-white">High Fidelity</span>
+               <span class="icons">
+                  <svg width="68" height="12" viewBox="0 0 68 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M59.416 11.8926L67.62 6.76034C67.7367 6.67779 67.8325 6.56504 67.8989 6.43228C67.9652 6.29953 67.9999 6.15095 67.9999 6C67.9999 5.84905 67.9652 5.70048 67.8989 5.56772C67.8325 5.43496 67.7367 5.32221 67.62 5.23966L59.416 0.107354C59.2561 0.0134291 59.0719 -0.0202036 58.8925 0.0117582C58.713 0.04372 58.5485 0.139459 58.4248 0.28388C58.3011 0.428302 58.2254 0.613192 58.2094 0.809402C58.1935 1.00561 58.2383 1.20198 58.3369 1.36755L60.7161 5.11998L0.812592 5.11998C0.597076 5.11998 0.390396 5.21269 0.238007 5.37773C0.0856171 5.54277 0 5.7666 0 6C0 6.2334 0.0856171 6.45724 0.238007 6.62227C0.390396 6.78731 0.597076 6.88003 0.812592 6.88003C0.812592 6.88003 49.0381 6.88003 60.7161 6.88003L58.3369 10.6325C58.2383 10.798 58.1935 10.9944 58.2094 11.1906C58.2254 11.3868 58.3011 11.5717 58.4248 11.7161C58.5485 11.8605 58.713 11.9563 58.8925 11.9882C59.0719 12.0202 59.2561 11.9866 59.416 11.8926Z" fill="#030303" />
+                  </svg>
+               </span>
+               <span class="color-white">Design</span>
+               <span class="borders"></span>
+            </div>
+         </div>
+         <div class="swiper-slide">
+            <div class="tp-text-slider-item">
+               <span class="color-white">Design</span>
+               <span class="icons">
+                  <svg width="68" height="12" viewBox="0 0 68 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M59.416 11.8926L67.62 6.76034C67.7367 6.67779 67.8325 6.56504 67.8989 6.43228C67.9652 6.29953 67.9999 6.15095 67.9999 6C67.9999 5.84905 67.9652 5.70048 67.8989 5.56772C67.8325 5.43496 67.7367 5.32221 67.62 5.23966L59.416 0.107354C59.2561 0.0134291 59.0719 -0.0202036 58.8925 0.0117582C58.713 0.04372 58.5485 0.139459 58.4248 0.28388C58.3011 0.428302 58.2254 0.613192 58.2094 0.809402C58.1935 1.00561 58.2383 1.20198 58.3369 1.36755L60.7161 5.11998L0.812592 5.11998C0.597076 5.11998 0.390396 5.21269 0.238007 5.37773C0.0856171 5.54277 0 5.7666 0 6C0 6.2334 0.0856171 6.45724 0.238007 6.62227C0.390396 6.78731 0.597076 6.88003 0.812592 6.88003C0.812592 6.88003 49.0381 6.88003 60.7161 6.88003L58.3369 10.6325C58.2383 10.798 58.1935 10.9944 58.2094 11.1906C58.2254 11.3868 58.3011 11.5717 58.4248 11.7161C58.5485 11.8605 58.713 11.9563 58.8925 11.9882C59.0719 12.0202 59.2561 11.9866 59.416 11.8926Z" fill="#030303" />
+                  </svg>
+               </span>
+               <span class="color-white">development</span>
+               <span class="borders"></span>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- tp-text-slider-area-end -->

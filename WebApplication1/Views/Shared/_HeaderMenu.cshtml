@@ -1,0 +1,174 @@
+@* _HeaderMenu.cshtml — uses hdr-modern CSS from customize.css + tp-* template classes *@
+<div class="hdr-modern tp-header-2-spacing hdr-sticky-wrap" id="header-sticky">
+    <div class="container-fluid container-1800">
+        <div class="row align-items-center">
+
+            <!-- Logo -->
+            <div class="col-xl-2 col-6">
+                <div class="tp-header-logo">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/assets/img/logo/sag-logo.png" alt="Say Affiliate Global" style="height:46px;width:auto;" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Desktop nav -->
+            <div class="col-xl-8 d-none d-xl-block">
+                <div class="tp-main-menu tp-header-dropdown dropdown-white-bg hdr-nav text-center">
+                    <nav>
+                        <ul>
+
+                            <li>
+                                <a asp-controller="Home" asp-action="Broker">Brokers</a>
+                            </li>
+
+                            <!-- Trading Tools — mega menu -->
+                            <li class="has-dropdown">
+                                <a href="#">Trading Tools <span><i class="fa-solid fa-angle-down"></i></span></a>
+                                <div class="tp-megamenu-wrapper megamenu-white-bg" style="padding-top:0;left:-200px;right:auto;min-width:860px;">
+                                    <div class="row g-0">
+                                        <div class="col-8">
+                                            <div class="p-4">
+                                                <div class="row g-0">
+                                                    <!-- Calculators column -->
+                                                    <div class="col-6">
+                                                        <div class="hdr-mega-col">
+                                                            <div class="hdr-mega-col-label">Calculators</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a asp-controller="Home" asp-action="ForexCaculator" class="hdr-mega-item">
+                                                                        <span class="hdr-mega-icon"><i class="fa-solid fa-piggy-bank"></i></span>
+                                                                        <span class="hdr-mega-text"><span class="hdr-mega-name">Cashback Calculator</span><span class="hdr-mega-desc">Estimate your monthly rebates</span></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a asp-controller="Home" asp-action="ComingSoon" class="hdr-mega-item">
+                                                                        <span class="hdr-mega-icon"><i class="fa-solid fa-coins"></i></span>
+                                                                        <span class="hdr-mega-text"><span class="hdr-mega-name">Lot Size Calculator <span class="hdr-soon">Soon</span></span><span class="hdr-mega-desc">Optimal risk per trade</span></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a asp-controller="Home" asp-action="ComingSoon" class="hdr-mega-item">
+                                                                        <span class="hdr-mega-icon"><i class="fa-solid fa-percent"></i></span>
+                                                                        <span class="hdr-mega-text"><span class="hdr-mega-name">Pip Value Calculator <span class="hdr-soon">Soon</span></span><span class="hdr-mega-desc">Know what each pip is worth</span></span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Live Tools column -->
+                                                    <div class="col-6">
+                                                        <div class="hdr-mega-col">
+                                                            <div class="hdr-mega-col-label">Live Tools</div>
+                                                            <ul>
+                                                                <li>
+                                                                    <a asp-controller="Home" asp-action="LiveBrokerSpreads" class="hdr-mega-item">
+                                                                        <span class="hdr-mega-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                                                                        <span class="hdr-mega-text"><span class="hdr-mega-name">Live Broker Spreads</span><span class="hdr-mega-desc">Real-time spreads comparison</span></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a asp-controller="Home" asp-action="Economic" class="hdr-mega-item">
+                                                                        <span class="hdr-mega-icon"><i class="fa-regular fa-calendar-days"></i></span>
+                                                                        <span class="hdr-mega-text"><span class="hdr-mega-name">Economic Calendar</span><span class="hdr-mega-desc">Track global market events</span></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a asp-controller="Home" asp-action="CrossRates" class="hdr-mega-item">
+                                                                        <span class="hdr-mega-icon"><i class="fa-solid fa-arrow-down-up-across-line"></i></span>
+                                                                        <span class="hdr-mega-text"><span class="hdr-mega-name">Forex Cross Rates</span><span class="hdr-mega-desc">Live rates for every pair</span></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a asp-controller="Home" asp-action="HeatMap" class="hdr-mega-item">
+                                                                        <span class="hdr-mega-icon"><i class="fa-solid fa-fire"></i></span>
+                                                                        <span class="hdr-mega-text"><span class="hdr-mega-name">Forex Heat Map</span><span class="hdr-mega-desc">Visualise market intensity</span></span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Promo panel -->
+                                        <div class="col-4">
+                                            <div class="hdr-mega-promo h-100">
+                                                <div class="hdr-mega-promo-badge">
+                                                    <span style="width:7px;height:7px;border-radius:50%;background:#fff;display:inline-block;"></span>
+                                                    Live Cashback
+                                                </div>
+                                                <h5>Earn on every lot you trade</h5>
+                                                <p>Up to $8.50/lot rebate. Free to join. Works alongside any ECN broker.</p>
+                                                <a asp-controller="Home" asp-action="Broker" class="hdr-mega-promo-btn">
+                                                    View Brokers <i class="fa-solid fa-arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a asp-controller="Resources" asp-action="Index">Resources</a>
+                            </li>
+
+                            <!-- Support dropdown -->
+                            <li class="has-dropdown">
+                                <a href="#">Support <span><i class="fa-solid fa-angle-down"></i></span></a>
+                                <ul class="submenu hdr-submenu">
+                                    <li><a asp-controller="Home" asp-action="ContactUs"><i class="fa-solid fa-headset"></i> Contact Us</a></li>
+                                    <li><a asp-controller="Home" asp-action="FAQs"><i class="fa-solid fa-circle-question"></i> FAQs</a></li>
+                                    <li><a asp-controller="Home" asp-action="ComingSoon"><i class="fa-solid fa-comments-dollar"></i> Get Advice</a></li>
+                                    <li><a asp-controller="Home" asp-action="ComingSoon"><i class="fa-solid fa-book-open"></i> Knowledgebase</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a asp-controller="Home" asp-action="ComingSoon" style="opacity:.55;">
+                                    Copy Trade <span class="hdr-soon">Soon</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a asp-controller="Home" asp-action="ComingSoon" style="opacity:.55;">
+                                    Fund Mgmt <span class="hdr-soon">Soon</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Right buttons -->
+            <div class="col-xl-2 col-6">
+                <div class="tp-header-2-right tp-header-btn-box d-flex align-items-center justify-content-end" style="gap:10px;">
+
+                    <div class="d-none d-xl-flex align-items-center" style="gap:8px;">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Profile" asp-action="Dashboard" class="hdr-btn hdr-btn-solid" style="text-decoration:none;">
+                                <span class="hdr-btn-avatar"><i class="fa-solid fa-user"></i></span>
+                                My Profile
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Home" asp-action="Register" class="hdr-btn hdr-btn-ghost" style="text-decoration:none;">Sign Up</a>
+                            <a asp-controller="Home" asp-action="Login" class="hdr-btn hdr-btn-solid" style="text-decoration:none;">
+                                Login <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        }
+                    </div>
+
+                    <button class="tp-header-sidebar-btn tp-header-2-menu-btn d-xl-none" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

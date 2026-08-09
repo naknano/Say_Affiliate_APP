@@ -1,0 +1,69 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 header css
+/*----------------------------------------*/
+.al-header{
+    &-dvdr {
+        position: relative;
+        padding-left: 23px;
+        line-height: 1;
+        &::before{
+            position: absolute;
+            content: "";
+            height: 23px;
+            width: 1px;
+            background-color: var(--tp-grey-1);
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            @media #{$lg,$md,$sm,$xs} {
+                display: none;
+            }
+        }
+    }
+    &-archi{
+        @media #{$x3l,$xxl,$xl,$lg,$md,$sm,$xs} {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        & .tp-main-menu nav > ul > li > a > span {
+            color: var(--tp-common-black);
+        }
+        & .tp-main-menu nav > ul > li > a {
+            &:hover{
+                color: var(--tp-theme-secondary);
+                & span{
+                    color: var(--tp-theme-secondary);
+                }
+            }
+        }
+        & .tp-main-menu nav ul li:hover.has-dropdown > a{
+            color: var(--tp-theme-secondary);
+            & span{
+                color: var(--tp-theme-secondary);
+            }
+        }
+        & .tp-header-btn{
+            & a{
+                font-family: var(--tp-ff-p);
+                font-weight: 500;
+                font-size: 16px;
+                color: var(--tp-common-black);
+                &:hover{
+                    color: var(--tp-theme-secondary);
+                }
+            }
+        }
+    }
+    &-seo{
+        & .tp-header-it-btn:hover {
+            background-color: var(--tp-common-blue);
+            color: var(--tp-common-white);
+            box-shadow: none;
+        }
+    }
+}
+.tp-megamenu-list ul li a span.update {
+    color: var(--tp-common-white);
+    background-color: #f70510;
+}

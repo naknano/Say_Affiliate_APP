@@ -1,0 +1,166 @@
+@use '../../../utils' as *;
+/*----------------------------------------*/
+/*   3.4 Faq Style
+/*----------------------------------------*/
+
+.ai-faq{
+    &-accordion-wrap{
+        & .accordion-items{
+            padding-left: 40px;
+            padding-bottom: 15px;
+            position: relative;
+            &:not(:last-child){
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+        & .accordion-header{
+            margin-bottom: 0;
+            font-size: 0;
+            & .accordion-buttons{
+                padding-top: 25px;
+                padding-bottom: 13px;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 1;
+                width: 100%;
+                text-align: left;
+                letter-spacing: -0.02em;
+                color: var(--tp-common-black);
+                font-family: var(--tp-ff-inter);
+                @media #{$xs}{
+                    font-size: 15px;
+                }
+                &:not(.collapsed) .accordion-icon::before {
+                    transform: translate(-50%, -50%) rotate(90deg);
+                }
+                & .accordion-icon{
+                    position: absolute;
+                    top: 35px;
+                    left: 7px;
+                    &::before {
+                        position: absolute;
+                        content: "";
+                        width: 2px;
+                        height: 14px;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: var(--tp-common-black);
+                        border-radius: 2px;
+                        transition: 0.4s;
+                    }
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        width: 14px;
+                        height: 2px;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: var(--tp-common-black);
+                        border-radius: 2px;
+                    }
+                }
+            }
+            & span{
+                margin-right: 20px;
+            }
+        }
+        & .accordion-body{
+            padding: 0;
+            padding-right: 85px;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                padding-right: 0;
+            }
+            & p{
+                font-weight: 500;
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 15px;
+                letter-spacing: -0.02em;
+                color: rgba(0, 0, 0, 0.6);
+                margin-bottom: 0;
+                padding-bottom: 15px;
+                font-family: var(--tp-ff-inter);
+                @media #{$xs}{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.cst-faq{
+    &-ptb{
+        @media #{$md,$sm,$xs} {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+    }
+    &-heading{
+        & .cst-section-title{
+            @media #{$md,$sm,$xs} {
+                margin-bottom: 25px;
+            }
+        }
+    }
+    &-wrap{
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            padding-left: 0;
+        }
+        & .ai-faq-accordion-wrap{
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            & .accordion-items{
+                padding-left: 0;
+            }
+            & .accordion-header {
+                & .accordion-buttons {
+                    & .accordion-icon{
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+            & .accordion-body{
+                padding-right: 30px;
+            }
+        }
+    }
+}
+
+
+.cnt-faq{
+    &-ptb{
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+    }
+    &-wrap{
+        & .ar-award-year{
+            @media #{$lg} {
+                min-width: 85px;
+            }
+            @media #{$sm,$xs} {
+                margin-bottom: 10px;
+            }
+        }
+    }
+    &-heading{
+        & .tp-section-title{
+            &-clash-600{
+                &.fs-60{
+                    font-size: 56px;
+                    @media #{$lg,$md,$sm,$xs} {
+                        font-size: 40px;
+                        padding-bottom: 20px;
+                        & br{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

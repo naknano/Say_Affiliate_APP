@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "_ProfileLayout";
+}
+
+@await Html.PartialAsync("~/Views/Home/Profile/PersonalDetail.cshtml")
+
+@section Scripts {
+   <script>
+      $(document).ready(function () {
+         // ---- Update profile ----
+         $('.btn-update-profile').on('click', function (event) {
+            event.preventDefault();
+            $.ajax({
+               url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_UPDATE_USER,
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               data: JSON.stringify({
+                  FullName: $('.full-name').val(),
+                  Email: $('.email').val(),
+                  Address: $('.address').val(),
+                  Phone: $('.phone').val(),
+                  Telegram: $('.telegram').val(),
+                  Whatapp: $('.whatapp').val()
+               }),
+               success: function (res) {
+                  if (res.responseCode === 200 && res.data) {
+                     Swal.fire({ title: 'Success!', text: 'Profile updated successfully!', icon: 'success', confirmButtonText: 'Close' });
+                     $('.full-name').val(res.data.fullName);
+                     $('.address').val(res.data.address);
+                     $('.gender').val(res.data.gender).trigger('change');
+                     $('.email').val(res.data.email);
+                     $('.phone').val(res.data.phone);
+                     $('.telegram').val(res.data.telegram);
+                     $('.whatapp').val(res.data.whatapp);
+                     if (res.data.fullName) { $('#pm-name').text(res.data.fullName); }
+                     if (res.data.email) { $('#pm-email').text(res.data.email); }
+                  } else {
+                     Swal.fire({ title: 'Warning!', text: res.responseMessage, icon: 'warning', confirmButtonText: 'Close' });
+                  }
+               },
+               error: function (error) {
+                  Swal.fire({ title: 'Error!', text: error.message, icon: 'error', confirmButtonText: 'Close' });
+               }
+            });
+         });
+
+         // ---- Update password ----
+         $('.btn-update-password').on('click', function (event) {
+            event.preventDefault();
+            var current_password = $('.current_password').val();
+            var password = $('.password').val();
+            var repassword = $('.repassword').val();
+
+            if (password !== repassword) {
+               Swal.fire({ title: 'Warning!', text: 'Password and Repassword must be the same', icon: 'warning', confirmButtonText: 'Close' });
+               return;
+            }
+
+            $.ajax({
+               url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_CHANGE_PASSWORD,
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               data: JSON.stringify({ currentPassword: current_password, newPassword: password }),
+               success: function (res) {
+                  if (res.responseCode === 200) {
+                     Swal.fire({ title: 'Success!', text: 'Password changed successfully!', icon: 'success', confirmButtonText: 'Close' });
+                     window.location.href = '/Home/Login';
+                  } else {
+                     Swal.fire({ title: 'Warning!', text: res.responseMessage, icon: 'warning', confirmButtonText: 'Close' });
+                     $('.current_password').val('');
+                     $('.password').val('');
+                     $('.repassword').val('');
+                  }
+               },
+               error: function (error) {
+                  Swal.fire({ title: 'Error!', text: error.message, icon: 'error', confirmButtonText: 'Close' });
+               }
+            });
+         });
+      });
+   </script>
+}

@@ -1,0 +1,209 @@
+@{
+    ViewData["Title"] = "How Say Affiliates Is Redefining The Industry Of Forex Trading";
+    var accentColor = "#0891b2";
+    var accentLight = "#ecfeff";
+
+    var relatedArticles = new[]
+    {
+        new { Ctrl="Resources", Act="ForexNewsFreePlatform",    Icon="fa-solid fa-gift",       Bg="#f5f3ff", Clr="#7c3aed", Title="Here's a Free Platform That Reinvents Forex Cashback",              Date="16 Mar 2023" },
+        new { Ctrl="Resources", Act="ForexNewsRevolutionising", Icon="fa-solid fa-rotate",     Bg="#f0fdf4", Clr="#166534", Title="How Say Affiliates Is Revolutionising Forex Cashback",               Date="29 Jul 2022" },
+        new { Ctrl="Resources", Act="ForexNewsUniqueTools",     Icon="fa-solid fa-toolbox",    Bg="#fff7ed", Clr="#d97706", Title="Trading Assistance Platform Introduces Unique Free Tools",           Date="16 Mar 2023" },
+    };
+
+    var pillars = new[]
+    {
+        new { Icon="fa-solid fa-hand-holding-dollar", Bg="#f0fdf4", Clr="#16a34a", Title="Cost Reduction",      Desc="Cashback rebates reduce the effective cost of every trade, narrowing the gap between retail and institutional trading economics." },
+        new { Icon="fa-solid fa-eye",                 Bg="#eff6ff", Clr="#2563eb", Title="Transparency",        Desc="Published rates, real-time tracking, and verifiable payouts eliminate the opacity that has characterised the rebate industry for two decades." },
+        new { Icon="fa-solid fa-toolbox",             Bg="#fff7ed", Clr="#d97706", Title="Professional Tools",  Desc="Free access to live broker spreads, position calculators, and economic calendars — tools previously available only at significant cost." },
+        new { Icon="fa-solid fa-globe",               Bg="#f5f3ff", Clr="#7c3aed", Title="Global Access",       Desc="A 50+ country network of regulated broker partnerships gives traders worldwide access to cashback regardless of their geographic location." },
+    };
+}
+
+<div class="br-page">
+
+    <section class="na-hero" style="background:linear-gradient(135deg,#083344 0%,#0c4a6e 55%,#041a22 100%);">
+        <div class="container container-1230">
+            <nav class="br-hero-breadcrumb">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="ForexNews">Forex News</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Redefining Forex</span>
+            </nav>
+
+            <div class="row align-items-center g-4 mt-1">
+                <div class="col-lg-8">
+                    <div class="na-pub-badge">
+                        <div class="na-pub-icon" style="background:#fff;color:#0891b2;font-size:9px;font-weight:900;line-height:1.1;text-align:center;">NNL<br>News</div>
+                        <div>
+                            <div class="na-pub-label">Featured In</div>
+                            <div class="na-pub-name">NNL News</div>
+                        </div>
+                    </div>
+                    <h1 class="na-headline">How Say Affiliates Is Redefining The Industry Of Forex Trading</h1>
+                    <div class="na-byline">
+                        <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Bogdan Ulmu</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 29 Jul 2022</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 10 min read</span>
+                        <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Press Coverage</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="br-score-card" style="border-color:rgba(8,145,178,.35);">
+                        <div style="font-size:11px;font-weight:700;color:#67e8f9;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-star me-1"></i> Industry Position</div>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            @foreach (var item in new[] {
+                                new { L="Global daily forex volume",   V="$6.6 Trillion" },
+                                new { L="Retail trader share",         V="~5.5%" },
+                                new { L="Avg. spread cost per trader", V="$800–$2,400/yr" },
+                                new { L="Cashback recovered by users", V="50–80%" },
+                                new { L="Platform launch",             V="2022" },
+                            })
+                            {
+                                <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:8px;">
+                                    <span style="color:rgba(255,255,255,.6);">@item.L</span>
+                                    <span style="color:#67e8f9;font-weight:700;">@item.V</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="na-stat-strip">
+        <div class="container container-1230">
+            <div class="row g-0">
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">$6.6T</div><div class="na-stat-lbl">Daily Forex Volume</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">9M+</div><div class="na-stat-lbl">Independent Traders</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">80%</div><div class="na-stat-lbl">Spread Cost Recovered</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">50+</div><div class="na-stat-lbl">Countries Supported</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="na-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-8">
+                    <article class="na-article">
+
+                        <p class="na-lead">The forex trading industry is undergoing a quiet but significant transformation. At its centre is a shift in how trading costs are distributed — away from the exclusive benefit of brokers and institutional affiliates, toward the individual traders who generate the volume that makes those revenues possible. Say Affiliates is one of the platforms accelerating this shift, and it is doing so by redefining what a cashback company looks like in the modern trading landscape.</p>
+
+                        <p class="na-p">Say Affiliates was founded with a specific thesis: the retail forex industry had a structural problem. Spread revenue was being distributed to everyone except the person who paid it — the trader. Brokers kept a margin. IBs kept a commission. Technology providers took a fee. The only participant in the transaction who received nothing back was the trader who executed the trade.</p>
+
+                        <h2 class="na-h2">The Industry Before and After</h2>
+                        <div class="row g-3 my-2">
+                            <div class="col-md-6">
+                                <div style="border:2px solid #fee2e2;border-radius:14px;padding:20px;background:#fff5f5;">
+                                    <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;"><i class="fa-solid fa-circle-xmark me-2"></i>Before Say Affiliates</div>
+                                    <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:#374151;line-height:1.6;">
+                                        <li><i class="fa-solid fa-xmark text-danger me-2"></i>Cashback only for institutional IBs</li>
+                                        <li><i class="fa-solid fa-xmark text-danger me-2"></i>Opaque rates and hidden conditions</li>
+                                        <li><i class="fa-solid fa-xmark text-danger me-2"></i>No real-time tracking of rebates</li>
+                                        <li><i class="fa-solid fa-xmark text-danger me-2"></i>Fragmented — one programme per broker</li>
+                                        <li><i class="fa-solid fa-xmark text-danger me-2"></i>Retail traders paid full spreads always</li>
+                                        <li><i class="fa-solid fa-xmark text-danger me-2"></i>Professional tools behind paywalls</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="border:2px solid #bbf7d0;border-radius:14px;padding:20px;background:#f0fdf4;">
+                                    <div style="font-size:13px;font-weight:800;color:#166534;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;"><i class="fa-solid fa-circle-check me-2"></i>After Say Affiliates</div>
+                                    <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:13px;color:#374151;line-height:1.6;">
+                                        <li><i class="fa-solid fa-check text-success me-2"></i>Cashback available to all retail traders</li>
+                                        <li><i class="fa-solid fa-check text-success me-2"></i>Published, transparent cashback rates</li>
+                                        <li><i class="fa-solid fa-check text-success me-2"></i>Real-time dashboard — every trade tracked</li>
+                                        <li><i class="fa-solid fa-check text-success me-2"></i>One account for 100+ broker partners</li>
+                                        <li><i class="fa-solid fa-check text-success me-2"></i>50–80% of spread cost returned monthly</li>
+                                        <li><i class="fa-solid fa-check text-success me-2"></i>5 professional tools free for all users</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="na-h2">The Four Pillars of Redefinition</h2>
+                        <div class="row g-3 my-2">
+                            @foreach (var p in pillars)
+                            {
+                                <div class="col-md-6">
+                                    <div style="border:1.5px solid #e8edf4;border-radius:14px;padding:18px;background:#fff;height:100%;">
+                                        <div style="width:40px;height:40px;border-radius:10px;background:@p.Bg;color:@p.Clr;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:12px;"><i class="@p.Icon"></i></div>
+                                        <div style="font-size:14px;font-weight:800;color:#0f1b2d;margin-bottom:6px;">@p.Title</div>
+                                        <div style="font-size:13px;color:#64748b;line-height:1.6;">@p.Desc</div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="na-pullquote">
+                            <div class="na-pullquote-text">"We are not a broker. We are not a signal service. We are not asking traders to change how they trade. We are simply ensuring that when a trader generates revenue for a broker, they get a portion of it back — automatically, transparently, and consistently."</div>
+                            <div class="na-pullquote-src">— Say Affiliates, Company Vision</div>
+                        </div>
+
+                        <h2 class="na-h2">The Vision: Cashback as Standard</h2>
+                        <p class="na-p">Say Affiliates' long-term vision is for forex cashback to become a standard expectation in retail trading — not an optional add-on available only to those who know to look for it. In the same way that credit card cashback has become a standard feature that consumers actively seek when choosing a card, the platform envisions a future where no trader opens a broker account without first confirming their cashback arrangement.</p>
+                        <p class="na-p">This shift in expectation would fundamentally alter broker competition. Rather than competing primarily on brand and marketing, brokers would face pressure to offer more competitive IB arrangements — which in turn would flow through to higher cashback rates for traders. Say Affiliates' model directly accelerates this dynamic by giving traders the tools to compare broker cashback rates before committing capital.</p>
+
+                        <h2 class="na-h2">Multi-Asset Expansion</h2>
+                        <p class="na-p">Originally focused on forex pairs, Say Affiliates has expanded its cashback network to cover stocks, indices, commodities, and cryptocurrency CFDs. This expansion reflects both the diversification of retail trader portfolios and the platform's broader mission to reduce trading costs across asset classes.</p>
+                        <ul class="na-list">
+                            <li><strong>Forex:</strong> 100+ currency pairs including majors, minors, and exotics</li>
+                            <li><strong>Commodities:</strong> Gold, silver, oil, natural gas</li>
+                            <li><strong>Indices:</strong> US30, SPX500, NAS100, FTSE100, GER40, and more</li>
+                            <li><strong>Crypto CFDs:</strong> Bitcoin, Ethereum, and major altcoins via regulated brokers</li>
+                            <li><strong>Stocks:</strong> US and EU equities through CFD broker partners</li>
+                        </ul>
+
+                        <div class="na-callout">
+                            <div class="na-callout-title"><i class="fa-solid fa-circle-info me-1"></i> Industry Perspective</div>
+                            The global forex cashback market is estimated to be worth several billion dollars annually in IB commissions. The majority of this flows to large institutional affiliates. Say Affiliates represents a structural shift in how this revenue is allocated — toward the millions of retail traders who generate it trade by trade.
+                        </div>
+
+                        <div class="na-cta">
+                            <div class="na-cta-label" style="color:#67e8f9;">Be Part of the Redefinition</div>
+                            <div class="na-cta-title">Join Say Affiliates and Trade Smarter</div>
+                            <p class="na-cta-sub">Register free today and become part of the growing community of traders who earn cashback on every trade, use professional tools for free, and pay less to access the markets.</p>
+                            <div class="na-cta-btns">
+                                <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="na-cta-btn-ghost"><i class="fa-solid fa-calculator me-2"></i>Calculate Your Cashback</a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+                <div class="col-lg-4">
+                    <div style="position:sticky;top:90px;">
+                        <div class="na-sidebar-card mb-3">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-newspaper me-2"></i>Related Articles</div>
+                            @foreach (var r in relatedArticles)
+                            {
+                                <a asp-controller="@r.Ctrl" asp-action="@r.Act" class="na-related-item">
+                                    <div class="na-related-icon" style="background:@r.Bg;color:@r.Clr;"><i class="@r.Icon"></i></div>
+                                    <div>
+                                        <div class="na-related-title">@r.Title</div>
+                                        <div class="na-related-date"><i class="fa-regular fa-calendar me-1"></i>@r.Date</div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                        <div class="na-sidebar-card">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+                            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@accentColor;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                                <a asp-controller="Home" asp-action="LiveBrokerSpreads" class="frt-tool-btn"><i class="fa-solid fa-arrow-trend-up frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Live Broker Spreads</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                                <a asp-controller="Resources" asp-action="ForexBrokers" class="frt-tool-btn"><i class="fa-solid fa-building-columns frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Browse Brokers</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,75 @@
+@use '../../../utils' as *;
+/*----------------------------------------*/
+/*   3.2 Video Style
+/*----------------------------------------*/
+
+.cst-video{
+    &-ptb{
+        @media #{$xl,$lg} {
+            padding-bottom: 100px;
+        }
+        @media #{$md,$sm,$xs} {
+            padding-bottom: 80px;
+        }
+    }
+    &-thumb{
+        & img{
+            @media #{$lg,$md,$sm,$xs} {
+                border-radius: 400px;
+            }
+        }
+    }
+}
+
+.ais-list{
+    &-ptb{
+        @media #{$md,$sm,$xs} {
+            padding-top: 100px;
+            padding-bottom: 60px;
+        }
+    }
+    &-thumb{
+        position: relative;
+        overflow: hidden;
+        & img{
+            width: 100%;
+            display: block;
+            overflow: hidden;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+        & canvas{
+            border-radius: 16px;
+        }
+        &-shape{
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+        }
+        &-wrapper{
+            margin-right: 80px;
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-right: 0;
+            }
+        }
+    }
+    &-wrap{
+        & ul{
+            display: block;
+            & li{
+                font-size: 18px;
+                font-weight: 500;
+                list-style: none;
+                float: left;
+                width: 50%;
+                margin-bottom: 26px;
+                color: var(--tp-common-black-7);
+                font-family: var(--tp-ff-inter);
+                @media #{$sm,$xs} {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,91 @@
+@use '../utils' as *;
+/*---------------------------------
+  1.2 init style
+---------------------------------*/
+
+// custom-container-here
+$container:(1800,1524,1646,1824,1750,1380,1230,1320,1510,1430);
+
+@each $number in $container{
+  @media (min-width:1400px) {
+    .container-#{$number}{
+      max-width: #{$number}px;
+    }
+  }
+}
+
+/* Font weight */
+$font-weight: 100;
+@while $font-weight < 1000 {
+  .fw-#{$font-weight} {
+    font-weight: (#{$font-weight});
+  }
+  $font-weight: $font-weight + 100;
+}
+
+/* Font size */
+$font-size:10;
+@for $font-size from 12 through 100 {
+  .fs-#{$font-size} {
+    font-size: (#{$font-size}px);
+  }
+}
+/* Font size media query */
+@media (max-width: 1399.98px) {
+  @for $font-size from 12 through 100 {
+    .fs-xl-#{$font-size} {
+      font-size: (#{$font-size}px);
+    }
+  }
+}
+/* Font size media query */
+@media (max-width: 1199.98px) {
+  @for $font-size from 12 through 100 {
+    .fs-lg-#{$font-size} {
+      font-size: (#{$font-size}px);
+    }
+  }
+}
+@media (max-width: 991.98px) {
+  @for $font-size from 12 through 100 {
+    .fs-md-#{$font-size} {
+      font-size: (#{$font-size}px);
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  @for $font-size from 12 through 100 {
+    .fs-sm-#{$font-size} {
+      font-size: (#{$font-size}px);
+    }
+  }
+}
+@media (max-width: 575.98px) {
+  @for $font-size from 12 through 100 {
+    .fs-xs-#{$font-size} {
+      font-size: (#{$font-size}px);
+    }
+  }
+}
+
+// color-variables
+@each $name, $color in $colors {
+  @each $key, $value in $color{
+    .tp-text-#{$name}-#{$key} {
+      color: var(--tp-#{$name}-#{$key});
+    }
+
+    .tp-bg-#{$name}-#{$key} {
+      background-color: var(--tp-#{$name}-#{$key});
+    }
+  }
+}
+
+// tp-font-famely-variables
+@each $font, $famely in $font-family {
+  @each $key, $value in $famely{
+      .tp-#{$font}-#{$key} {
+        font-family: var(--tp-#{$font}-#{$key});
+      }
+  }
+}

@@ -1,0 +1,57 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.11 Error Css
+/*----------------------------------------*/
+
+.tp-error{
+    &-title{
+        font-weight: 700;
+        font-size: 64px;
+        margin-bottom: 50px;
+        color: var(--tp-common-black);
+    }
+    &-title-sm{
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--tp-common-black);
+    }
+    &-content{
+        & p{
+            font-weight: 400;
+            font-size: 18px;
+            color: #57575a;
+            margin-bottom: 30px;
+        }
+        & .tp-btn{
+            height: 60px;
+            line-height: 55px;
+            border-radius: 40px;
+            padding: 0 18px 0 24px;
+            font-weight: 500;
+            font-size: 18px;
+            letter-spacing: 0.03em;
+            z-index: 9;
+            overflow: hidden;
+            display: inline-block;
+            text-transform: capitalize;
+            position: relative;
+            transition: all 0.3s;
+            background-color: var(--tp-common-black);
+            color: var(--tp-common-white);
+            border: 2px solid transparent;
+            &:hover{
+                background-color: transparent;
+                color: var(--tp-common-black);
+                border-color: var(--tp-common-black);
+            }
+        }
+    }
+    &-wrapper{
+        & img{
+            margin-bottom: 55px;
+        }
+    }
+}

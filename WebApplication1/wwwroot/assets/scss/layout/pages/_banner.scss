@@ -1,0 +1,196 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.3 banner css start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-banner{
+    &-thumb{
+        height: 680px;
+        width: 100%;
+        overflow: hidden;
+        @media #{$lg,$md,$sm,$xs}{
+            height: 400px;
+        }
+    }
+    &-2{
+        &-spacing{
+            padding-top: 283px;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                padding-top: 200px;
+            }
+        }
+        &-content{
+            padding: 70px 40px 55px 60px;
+        }
+        &-thumb{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        &-bg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    }
+    &-bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    &-wd{
+        &-border{
+            & svg{
+                width: 100%;
+            }
+        }
+        &-spacing{
+            padding-top: 515px;
+            @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+                padding-top: 250px;
+            }
+        }
+        &-bg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        &-item{
+            padding: 27px 40px 30px 40px;
+        }
+        &-thumb{
+            &-2{
+                height: 730px;
+                width: 100%;
+                @media #{$xxl,$xl,$lg}{
+                    height: 500px;
+                }
+                @media #{$md,$sm,$xs}{
+                    height: 300px;
+                }
+            }
+        }
+    }
+    &-cst{
+        &-content{
+            & .tp-testimonial-cst-network{
+                width: 100px;
+                height: 100px;
+                @media #{$xs}{
+                    width: 50px;
+                    height: 50px;
+                    & svg{
+                        width: 20px;
+                    }
+                }
+            }
+        }
+        &-spacing{
+            padding-top: 100px;
+            @media #{$xs}{
+                padding-top: 50px;
+            }
+        }
+        &-logo{
+            border-bottom: 1px solid #3A553E;
+            margin-bottom: 14px;
+            padding-bottom: 15px;
+            display: inline-block;
+            &-wrap{
+                clip-path: polygon( 50% 0%, 93% 25%,  93% 75%, 50% 100%, 7% 75%, 7% 25%);
+                background: #243d3a99;
+                width: 220px;
+                height: 240px;
+                padding-top: 57px;
+                border-radius: 10px;
+            }
+            &-btn{
+                width: 42px;
+                height: 42px;
+                text-align: center;
+                line-height: 38px;
+                background: var(--tp-common-green-2);
+                display: inline-block;
+                border-radius: 50%;
+            }
+        }
+        &-widget{
+            width: 355px;
+            height: 414px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &-shape{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        &-bottom{
+            border-top: 1px solid #919E9D;
+            margin-top: 194px;
+            padding: 45px 0px 25px 0px;
+            position: relative;
+            z-index: 1;
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                margin-top: 100px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                padding: 25px 0px 5px 0px;
+            }
+        }
+    }
+    &-it{
+        &-thumb{
+            height: 800px;
+            width: 100%;
+            overflow: hidden;
+            @media #{$xxl,$xl}{
+                height: 600px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                height: 400px;
+            }
+        }
+    }
+    &-pb{
+        &-thumb{
+            height: 950px;
+            width: 100%;
+            overflow: hidden;
+            @media #{$xxl,$xl}{
+                height: 750px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                height: 650px;
+            }
+        }
+    }
+    &-ai{
+        &-thumb{
+            height: 820px;
+            width: 100%;
+            overflow: hidden;
+            @media #{$xxl,$xl}{
+                height: 600px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                height: 400px;
+            }
+        }
+    }
+}

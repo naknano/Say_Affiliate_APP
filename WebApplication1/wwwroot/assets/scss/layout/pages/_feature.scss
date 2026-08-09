@@ -1,0 +1,59 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.13 feature css start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-feature{
+    &-md{
+        &-btn{
+            border: 1px solid rgba(17, 17, 18, 0.1);
+            padding: 18px 33px;
+            transition: all .4s ease;
+            overflow: hidden;
+            display: flex;
+            &:hover{
+                background: var(--tp-theme-1);
+                color: var(--tp-grey-5);
+                width: auto;
+                & span{
+                    opacity: 1;
+                    visibility: visible;
+                    margin-left: -0;
+                }
+            }
+            & span{
+                opacity: 0;
+                visibility: hidden;
+                transition: all .4s ease;
+                margin-left: -92px;
+            }
+        }
+        &-item{
+            border-radius: 16px;
+            padding: 40px 42px 40px 42px;
+            @media #{$xxl,$lg,$md,$sm,$xs}{
+                padding: 40px 30px 40px 30px;
+            }
+            @media #{$xxl,$xs}{
+                flex-direction: column;
+            }
+        }
+        &-icon{
+            flex: 0 0 auto;
+            margin-top: 10px;
+            @media #{$x4l,$x3l,$xxl,$lg,$md,$sm,$xs}{
+                margin-right: 15px;
+            }
+            @media #{$xxl,$xs}{
+                margin-bottom: 20px;
+            }
+            & img{
+                flex: 0 0 auto;
+                @media #{$xxl,$lg,$md,$sm,$xs}{
+                    width: 40px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,206 @@
+@model WebApplication1.Data.DTO.Broker.BrokerCardDto
+@{
+    var b = Model ?? new WebApplication1.Data.DTO.Broker.BrokerCardDto();
+    ViewData["Title"] = $"Set up rebates with {b.Name}";
+
+    string Img(string? url) => string.IsNullOrWhiteSpace(url)
+        ? ""
+        : (url.StartsWith("http", StringComparison.OrdinalIgnoreCase) ? url : Url.Content("~/assets/img/Broker/" + url));
+
+    var heroImg = Img(b.ImageUrl);
+    var initials = string.IsNullOrWhiteSpace(b.Name) ? "?" : b.Name.Trim()[..1].ToUpperInvariant();
+    var rebate = string.IsNullOrWhiteSpace(b.CashbackOffer) ? "—" : b.CashbackOffer;
+    var payout = string.IsNullOrWhiteSpace(b.PaymentSchedule) ? "Weekly" : b.PaymentSchedule;
+    var isAuthed = User.Identity != null && User.Identity.IsAuthenticated;
+}
+
+<div class="bkd-page bkd-modern broker-modern">
+   <span class="bkd-page-bg" aria-hidden="true">
+      <span class="bkd-blob bkd-blob-1"></span>
+      <span class="bkd-blob bkd-blob-2"></span>
+      <span class="bkd-blob bkd-blob-3"></span>
+   </span>
+
+   <div class="tp-product-details-area pre-header pt-120 pb-140">
+      <div class="container container-1230">
+
+         <!-- breadcrumb -->
+         <nav class="sr-crumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Home" asp-action="Broker">Brokers</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Home" asp-action="BrokerDetail" asp-route-id="@b.Id">@b.Name</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span>Setup Rebates</span>
+         </nav>
+
+         <!-- hero -->
+         <div class="sr-hero mb-40">
+            <div class="sr-hero-logo">
+               @if (!string.IsNullOrEmpty(heroImg))
+               {
+                  <img src="@heroImg" alt="@b.Name">
+               }
+               else
+               {
+                  <span class="sr-hero-initial">@initials</span>
+               }
+            </div>
+            <div class="sr-hero-text">
+               <span class="sr-hero-eyebrow"><i class="fa-solid fa-money-bill-transfer"></i> Cashback Setup</span>
+               <h1 class="sr-hero-title">Set up rebates with @b.Name</h1>
+               <p class="sr-hero-sub">Follow the steps below to start earning automatic cashback on every trade you place with @b.Name — win or lose.</p>
+            </div>
+         </div>
+
+         <div class="row g-4 align-items-start">
+
+            <!-- ===== Left: steps + form ===== -->
+            <div class="col-lg-8">
+               <div class="sr-steps">
+                  <div class="sr-step">
+                     <span class="sr-step-num">1</span>
+                     <div class="sr-step-body">
+                        <h4>Open a live account with @b.Name</h4>
+                        <p>Register a new trading account using our partner link so your trades qualify for cashback. Already have an account? You may be able to link it — contact our support team.</p>
+                        @if (!string.IsNullOrWhiteSpace(b.SignupUrl))
+                        {
+                           <a href="@b.SignupUrl" target="_blank" rel="noopener" class="broker-btn broker-btn-solid sr-step-btn">Open @b.Name account <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        }
+                     </div>
+                  </div>
+                  <div class="sr-step">
+                     <span class="sr-step-num">2</span>
+                     <div class="sr-step-body">
+                        <h4>Submit your trading account number</h4>
+                        <p>Enter the account number @b.Name gave you in the form below so we can link it to your Say Affiliates wallet.</p>
+                     </div>
+                  </div>
+                  <div class="sr-step">
+                     <span class="sr-step-num">3</span>
+                     <div class="sr-step-body">
+                        <h4>We verify your account</h4>
+                        <p>Our team confirms your account with @b.Name — usually within 24–48 hours.</p>
+                     </div>
+                  </div>
+                  <div class="sr-step sr-step-last">
+                     <span class="sr-step-num"><i class="fa-solid fa-check"></i></span>
+                     <div class="sr-step-body">
+                        <h4>Start earning cashback</h4>
+                        <p>Trade as usual — rebates are credited automatically to your wallet and paid out on a @payout.ToLower() basis.</p>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- link account form -->
+               <div class="sr-form-card" id="linkAccount">
+                  <h3 class="sr-form-title"><i class="fa-solid fa-link"></i> Link your @b.Name account</h3>
+                  @if (isAuthed)
+                  {
+                     <form id="rebateSetupForm" onsubmit="return false;">
+                        <input type="hidden" id="sr-broker-id" value="@b.Id" />
+                        <div class="sr-field">
+                           <label for="sr-trading-acc">Trading account number</label>
+                           <input type="text" id="sr-trading-acc" class="sr-input" placeholder="e.g. 5012345" autocomplete="off" />
+                        </div>
+                        <button type="button" id="sr-submit" class="broker-btn broker-btn-solid w-100">
+                           <i class="fa-solid fa-paper-plane"></i> Submit &amp; link account
+                        </button>
+                        <p class="sr-form-note"><i class="fa-solid fa-shield-halved"></i> Your account number is only used to match your rebates. We never ask for your password.</p>
+                     </form>
+                  }
+                  else
+                  {
+                     <p class="sr-form-note-lg">You need a free Say Affiliates account to link your broker and receive cashback.</p>
+                     <div class="d-flex flex-wrap" style="gap:10px;">
+                        <a asp-controller="Home" asp-action="Login" class="broker-btn broker-btn-solid">Sign in to continue</a>
+                        <a asp-controller="Home" asp-action="Register" class="broker-btn broker-btn-ghost">Create free account</a>
+                     </div>
+                  }
+               </div>
+            </div>
+
+            <!-- ===== Right: summary ===== -->
+            <div class="col-lg-4">
+               <div class="sr-summary">
+                  <div class="sr-summary-logo">
+                     @if (!string.IsNullOrEmpty(heroImg))
+                     {
+                        <img src="@heroImg" alt="@b.Name">
+                     }
+                     else
+                     {
+                        <span class="sr-hero-initial">@initials</span>
+                     }
+                  </div>
+                  <h4 class="sr-summary-name">@b.Name</h4>
+                  <div class="sr-summary-rebate">
+                     <span class="sr-summary-rebate-label">Rebate up to</span>
+                     <span class="sr-summary-rebate-value">@rebate</span>
+                  </div>
+                  <ul class="sr-summary-meta">
+                     <li><span><i class="fa-solid fa-calendar-check"></i> Payout</span><b>@payout</b></li>
+                     <li><span><i class="fa-solid fa-circle-check"></i> Eligible trades</span><b>All · win or lose</b></li>
+                     <li><span><i class="fa-solid fa-hand-holding-dollar"></i> Cost to join</span><b>Free</b></li>
+                  </ul>
+                  @if (!string.IsNullOrWhiteSpace(b.SignupUrl))
+                  {
+                     <a href="@b.SignupUrl" target="_blank" rel="noopener" class="broker-btn broker-btn-solid w-100 mb-10">Open account <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                  }
+                  <a asp-controller="Home" asp-action="BrokerDetail" asp-route-id="@b.Id" class="broker-btn broker-btn-ghost w-100">Back to broker details</a>
+               </div>
+            </div>
+
+         </div>
+      </div>
+   </div>
+</div>
+
+@section Scripts {
+   <script>
+      $(function () {
+         var $btn = $('#sr-submit');
+         if (!$btn.length) return;
+
+         $btn.on('click', function () {
+            var brokerId = $('#sr-broker-id').val();
+            var tradingAcc = ($('#sr-trading-acc').val() || '').trim();
+
+            if (!tradingAcc) {
+               Swal.fire({ title: 'Almost there', text: 'Please enter your trading account number.', icon: 'info', confirmButtonText: 'OK' });
+               return;
+            }
+
+            $btn.prop('disabled', true);
+            $.ajax({
+               url: '/Broker/AddTradingAccount',
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               data: JSON.stringify({ BrokerId: brokerId, TradingAcc: tradingAcc }),
+               success: function (res) {
+                  if (res.responseCode === 200) {
+                     Swal.fire({
+                        title: 'Account linked!',
+                        text: 'We\'ll verify it shortly. You can track your rebates in your dashboard.',
+                        icon: 'success',
+                        confirmButtonText: 'Go to dashboard'
+                     }).then(function () { window.location.href = '/Profile/Brokers'; });
+                  } else {
+                     Swal.fire({ title: 'Warning', text: res.responseMessage || 'Could not link the account.', icon: 'warning', confirmButtonText: 'Close' });
+                  }
+               },
+               error: function (xhr) {
+                  if (xhr.status === 401 || xhr.status === 302) {
+                     window.location.href = '/Home/Login';
+                     return;
+                  }
+                  Swal.fire({ title: 'Error', text: 'Something went wrong. Please try again.', icon: 'error', confirmButtonText: 'Close' });
+               },
+               complete: function () { $btn.prop('disabled', false); }
+            });
+         });
+      });
+   </script>
+}

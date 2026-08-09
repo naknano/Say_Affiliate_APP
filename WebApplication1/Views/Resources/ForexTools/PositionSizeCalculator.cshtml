@@ -1,0 +1,767 @@
+@{
+    ViewData["Title"] = "Forex Position Size Calculator: Formulas and Examples";
+
+    var faqs = new[]
+    {
+        new { Q="What is a Forex position size calculator?",
+              A="A position size calculator tells you how many lots (or units) to trade on a given position so you risk exactly the amount you set — typically 1–2% of your account. It takes your account balance, risk %, currency pair, and stop-loss distance as inputs and outputs the correct lot size." },
+        new { Q="What is the position size formula in Forex?",
+              A="Position Size (lots) = Account Risk ($) ÷ (Stop Loss in pips × Pip Value per lot). For a $10,000 account risking 1% ($100) with a 20-pip stop on EUR/USD (pip value $10/lot), position size = $100 ÷ (20 × $10) = 0.5 lots." },
+        new { Q="How do I calculate position size on MT4?",
+              A="In MT4, right-click the trade ticket and use the built-in calculator, or install a position size EA/indicator. Many traders use the free Forex Position Size Calculator indicator from the MQL4 market — simply input your account risk % and stop-loss pips, and it overlays the lot size directly on the chart." },
+        new { Q="What is the pip value for EUR/USD?",
+              A="For EUR/USD with a USD-denominated account, the pip value is $10 per standard lot (1.00), $1 per mini lot (0.10), and $0.10 per micro lot (0.01). For cross pairs and accounts in other currencies, the pip value varies and must be converted to your account currency." },
+        new { Q="How do I calculate position size for XAU/USD (Gold)?",
+              A="Gold has a contract size of 100 oz per standard lot, and prices move in dollars per ounce. One pip on XAU/USD (0.01 price movement) = $1 per standard lot. Use: Position Size = Account Risk ($) ÷ (Stop Loss in USD-per-oz × Contract Size). Most calculators handle Gold automatically when you select XAU/USD." },
+        new { Q="Should I use fixed lot or fixed risk percentage?",
+              A="Fixed risk percentage (e.g. 1% per trade) is strongly recommended. It scales position size automatically as your account grows or shrinks, preserving your risk consistency. Fixed lot sizing risks proportionally more when your account is smaller and less when it is larger, leading to inconsistent risk exposure over time." },
+        new { Q="How does cashback affect my effective risk per trade?",
+              A="Cashback rebates reduce your net cost per trade. If you risk $100 and receive $7.50 in cashback per lot, your effective risk drops below $100. On a 0.5-lot EUR/USD trade with a $3.75 rebate, your real risk is $96.25 instead of $100 — improving your risk-reward ratio and reducing the break-even requirement on every trade." },
+    };
+}
+
+<div class="br-page">
+
+    @* ══ HERO ══ *@
+    <section class="br-hero">
+        <div class="container container-1230">
+
+            <nav class="br-hero-breadcrumb">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="ForexTools">Forex Tools</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Position Size Calculator</span>
+            </nav>
+
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+
+                    <div class="br-hero-chips" style="margin-top:0;margin-bottom:18px;">
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon"><i class="fa-solid fa-calculator"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Tool Type</div>
+                                <div class="br-hero-chip-val">Free Calculator</div>
+                            </div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon"><i class="fa-solid fa-desktop"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Platform</div>
+                                <div class="br-hero-chip-val">MT4 &amp; MT5</div>
+                            </div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Purpose</div>
+                                <div class="br-hero-chip-val">Risk Management</div>
+                            </div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon"><i class="fa-solid fa-building-columns"></i></span>
+                            <div>
+                                <div class="br-hero-chip-label">Works With</div>
+                                <div class="br-hero-chip-val">Any Broker</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="br-hero-title">Forex Position Size Calculator</h1>
+                    <p style="color:#94a3b8;font-size:15px;margin:0 0 12px;line-height:1.5;">
+                        Formulas, Examples &amp; How to Use It on MT4 and MT5
+                    </p>
+                    <div class="br-hero-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Published 23 Jan 2024</span>
+                        <span><i class="fa-regular fa-clock"></i> 12 min read</span>
+                        <span><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="br-score-card">
+                        <div style="font-size:11px;font-weight:700;color:#64748b;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;">Quick Formula</div>
+                        <div class="psc-formula-mini">
+                            <div class="psc-formula-mini-label">Position Size (lots) =</div>
+                            <div class="psc-formula-mini-eq">
+                                <span class="psc-formula-mini-top">Account Risk ($)</span>
+                                <span class="psc-formula-mini-bar"></span>
+                                <span class="psc-formula-mini-bot">Stop Loss (pips) &times; Pip Value</span>
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;">
+                            <div style="text-align:center;background:#0d1f3c;border-radius:10px;padding:12px 8px;">
+                                <div style="font-size:20px;font-weight:900;color:#16a34a;">1–2%</div>
+                                <div style="font-size:11px;color:#64748b;margin-top:3px;">Risk per Trade</div>
+                            </div>
+                            <div style="text-align:center;background:#0d1f3c;border-radius:10px;padding:12px 8px;">
+                                <div style="font-size:20px;font-weight:900;color:#009aee;">$10</div>
+                                <div style="font-size:11px;color:#64748b;margin-top:3px;">EUR/USD pip/lot</div>
+                            </div>
+                        </div>
+                        <a asp-controller="Home" asp-action="ForexCaculator" class="br-score-cta" style="margin-top:14px;background:linear-gradient(135deg,#16a34a,#15803d);">
+                            <i class="fa-solid fa-calculator me-2"></i>Try Cashback Calculator
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    @* ══ STATS STRIP ══ *@
+    <div class="psc-strip-wrap">
+        <div class="container container-1230">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card">
+                        <div class="br-stat-card-icon" style="background:#e8f5e9;color:#16a34a;"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="br-stat-card-val">Instant</div>
+                        <div class="br-stat-card-lbl">Calculation</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card">
+                        <div class="br-stat-card-icon" style="background:#e8f0fe;color:#2563eb;"><i class="fa-solid fa-percent"></i></div>
+                        <div class="br-stat-card-val">1–2%</div>
+                        <div class="br-stat-card-lbl">Risk Rule</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card">
+                        <div class="br-stat-card-icon" style="background:#fff8e1;color:#d97706;"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="br-stat-card-val">All Pairs</div>
+                        <div class="br-stat-card-lbl">Supported</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card">
+                        <div class="br-stat-card-icon" style="background:#f3e8fd;color:#7c3aed;"><i class="fa-solid fa-desktop"></i></div>
+                        <div class="br-stat-card-val">MT4 &amp; MT5</div>
+                        <div class="br-stat-card-lbl">Compatible</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ══ MAIN LAYOUT ══ *@
+    <div class="br-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                @* ── ARTICLE ── *@
+                <div class="col-lg-9">
+                    <article class="br-article">
+
+                        @* Article Banner *@
+                        <div class="ba-banner">
+                            <div class="ba-banner-icon"><i class="fa-solid fa-calculator"></i></div>
+                            <div class="ba-banner-text">
+                                <div class="ba-banner-label">FREE FOREX TOOL</div>
+                                <div class="ba-banner-title">FOREX POSITION SIZE CALCULATOR<br><span>Formulas and Examples</span></div>
+                                <div class="ba-banner-meta">
+                                    <span><i class="fa-regular fa-calendar"></i>23 Jan 2024</span>
+                                    <span><i class="fa-regular fa-clock"></i>12 min read</span>
+                                    <span><i class="fa-solid fa-pen-nib"></i>Say Affiliates</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Intro Question List *@
+                        <ul class="ba-question-list">
+                            <li><i class="fa-solid fa-chevron-right"></i><span>What is a Forex position size calculator and why do you need one?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>What is the position size formula and how do you apply it?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How do you calculate lot size for EUR/USD, GBP/JPY, and XAU/USD?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How do you use a position size calculator on MT4 and MT5?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>What is pip value and how does it differ between currency pairs?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>What are the most common position sizing mistakes traders make?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>What is the difference between fixed-lot and fixed-risk sizing?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>How does forex cashback change your effective risk per trade?</span></li>
+                        </ul>
+
+                        <div class="br-callout">
+                            <i class="fa-solid fa-circle-info me-2"></i>
+                            <strong>Key Takeaway:</strong> Position sizing is the most important risk management decision you make on every trade. Getting it right means you can survive losing streaks, protect your capital, and scale consistently — regardless of your strategy or broker.
+                        </div>
+
+                        @* TOC *@
+                        <div class="br-toc">
+                            <div class="br-toc-title"><i class="fa-solid fa-list me-2"></i>Table of Contents</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ol style="margin:0;padding-left:18px;line-height:2.2;font-size:14px;">
+                                        <li><a href="#s1">What is a Position Size Calculator?</a></li>
+                                        <li><a href="#s2">Why Position Sizing Matters</a></li>
+                                        <li><a href="#s3">The Position Size Formula</a></li>
+                                        <li><a href="#s4">Step-by-Step Examples</a></li>
+                                        <li><a href="#s5">MT4 Position Size Calculator</a></li>
+                                        <li><a href="#s6">MT5 Position Size Calculator</a></li>
+                                    </ol>
+                                </div>
+                                <div class="col-md-6">
+                                    <ol start="7" style="margin:0;padding-left:18px;line-height:2.2;font-size:14px;">
+                                        <li><a href="#s7">Pip Value by Currency Pair</a></li>
+                                        <li><a href="#s8">Position Sizing for Gold (XAU/USD)</a></li>
+                                        <li><a href="#s9">Common Position Sizing Mistakes</a></li>
+                                        <li><a href="#s10">Fixed Risk vs Fixed Lot Sizing</a></li>
+                                        <li><a href="#s11">Cashback &amp; Effective Risk</a></li>
+                                        <li><a href="#s12">FAQs</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Section 1 *@
+                        <div class="br-section" id="s1">
+                            <h2 class="br-h2">1. What is a Forex Position Size Calculator?</h2>
+                            <p class="br-p">A <strong>Forex position size calculator</strong> is a tool that tells you exactly how many lots (or units) to trade on a given setup so you risk only a predetermined amount of your account — typically 1% or 2% per trade. Instead of guessing lot sizes or over-trading, you input four values and the calculator outputs the correct position size in seconds.</p>
+                            <p class="br-p">The four inputs are: your <strong>account balance</strong>, your <strong>risk percentage</strong> (or fixed dollar amount), the <strong>currency pair</strong> you're trading, and your <strong>stop-loss distance in pips</strong>. The calculator does the rest — including pip value conversion if your account is in a different currency to the pair's quote currency.</p>
+                            <div class="row g-3 mt-1">
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#f0fdf4;border-color:#bbf7d0;">
+                                        <div class="br-stat-card-icon" style="background:#dcfce7;color:#16a34a;"><i class="fa-solid fa-bolt"></i></div>
+                                        <div class="br-stat-card-val" style="color:#15803d;">Seconds</div>
+                                        <div class="br-stat-card-lbl">Calculate in</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#eff6ff;border-color:#bfdbfe;">
+                                        <div class="br-stat-card-icon" style="background:#dbeafe;color:#2563eb;"><i class="fa-solid fa-percent"></i></div>
+                                        <div class="br-stat-card-val" style="color:#1d4ed8;">1–2%</div>
+                                        <div class="br-stat-card-lbl">Risk Rule</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#fff7ed;border-color:#fed7aa;">
+                                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-layer-group"></i></div>
+                                        <div class="br-stat-card-val" style="color:#c2410c;">Any Pair</div>
+                                        <div class="br-stat-card-lbl">Currency Pairs</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#f5f3ff;border-color:#ddd6fe;">
+                                        <div class="br-stat-card-icon" style="background:#ede9fe;color:#7c3aed;"><i class="fa-solid fa-desktop"></i></div>
+                                        <div class="br-stat-card-val" style="color:#6d28d9;">MT4 &amp; MT5</div>
+                                        <div class="br-stat-card-lbl">Compatible</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 2 *@
+                        <div class="br-section" id="s2">
+                            <h2 class="br-h2">2. Why Position Sizing Matters in Forex</h2>
+                            <p class="br-p">Most traders focus on finding good entry signals, but position sizing is what separates consistently profitable traders from those who blow accounts. A great entry with the wrong lot size can wipe out weeks of gains in a single trade. Conversely, disciplined position sizing lets you weather a string of losses and still trade the next day.</p>
+                            <div class="br-pros-cons">
+                                <div class="br-pros">
+                                    <div class="br-pros-title"><i class="fa-solid fa-circle-check me-2"></i>With Proper Position Sizing</div>
+                                    <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;color:#374151;">
+                                        <li>Risk is capped at 1–2% per trade regardless of stop-loss distance</li>
+                                        <li>Account grows proportionally — larger balance = larger lots automatically</li>
+                                        <li>A 10-trade losing streak costs only 10–20% drawdown</li>
+                                        <li>Psychological pressure is reduced — you know your maximum loss</li>
+                                        <li>Strategy performance is measured accurately over time</li>
+                                        <li>Drawdowns are manageable and recoverable</li>
+                                    </ul>
+                                </div>
+                                <div class="br-cons">
+                                    <div class="br-cons-title"><i class="fa-solid fa-circle-xmark me-2"></i>Without Proper Position Sizing</div>
+                                    <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;color:#374151;">
+                                        <li>One large loss can erase weeks of small gains</li>
+                                        <li>Fixed lot sizing ignores account balance changes</li>
+                                        <li>Overleveraging on "high-confidence" setups leads to account blowups</li>
+                                        <li>Risk per trade is inconsistent — impossible to evaluate strategy edge</li>
+                                        <li>Revenge trading after a big loss compounds the problem</li>
+                                        <li>Even a winning strategy can fail with bad position sizing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 3 — Formula *@
+                        <div class="br-section" id="s3">
+                            <h2 class="br-h2">3. The Position Size Formula Explained</h2>
+                            <p class="br-p">The core Forex position size formula is straightforward. Once you understand each variable, you can apply it to any currency pair on any platform.</p>
+
+                            <div class="psc-formula">
+                                <div class="psc-formula-title">Position Size Formula</div>
+                                <div class="psc-formula-eq">
+                                    <span class="psc-formula-result">Position Size (lots)</span>
+                                    <span class="psc-formula-equals">=</span>
+                                    <span class="psc-formula-fraction">
+                                        <span class="psc-formula-num">Account Risk ($)</span>
+                                        <span class="psc-formula-bar"></span>
+                                        <span class="psc-formula-den">Stop Loss (pips) &times; Pip Value per lot ($)</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h3 class="br-h3">Variable Definitions</h3>
+                            <div class="br-fact-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-wallet"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Account Risk ($)</div>
+                                        <div class="br-fact-val">Your account balance × risk %. On a $10,000 account risking 1%, Account Risk = $100.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-ruler"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Stop Loss (pips)</div>
+                                        <div class="br-fact-val">Distance from entry to stop-loss in pips. A 20-pip stop on EUR/USD = 0.0020 price movement.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#fff7ed;color:#ea580c;"><i class="fa-solid fa-coins"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Pip Value per Lot</div>
+                                        <div class="br-fact-val">The monetary value of one pip for one standard lot. For EUR/USD with a USD account, this is $10 per standard lot.</div>
+                                    </div>
+                                </div>
+                                <div class="br-fact-item">
+                                    <div class="br-fact-icon" style="background:#f5f3ff;color:#7c3aed;"><i class="fa-solid fa-layer-group"></i></div>
+                                    <div>
+                                        <div class="br-fact-key">Position Size (lots)</div>
+                                        <div class="br-fact-val">The output — how many standard lots to trade. Multiply by 10 for mini lots or 100 for micro lots.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="br-callout">
+                                <i class="fa-solid fa-lightbulb me-2" style="color:#d97706;"></i>
+                                <strong>Account Risk calculation:</strong> Account Risk ($) = Account Balance × (Risk % ÷ 100). For $10,000 at 1% risk: $10,000 × 0.01 = <strong>$100</strong>.
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 4 — Examples *@
+                        <div class="br-section" id="s4">
+                            <h2 class="br-h2">4. Step-by-Step Position Size Examples</h2>
+                            <p class="br-p">Below are three worked examples across different currency pairs. All examples use a $10,000 account risking 1% ($100) per trade.</p>
+
+                            <div class="psc-example-card" style="--ex-accent:#2563eb;">
+                                <div class="psc-example-hd">
+                                    <span class="psc-example-pair">EUR/USD</span>
+                                    <span class="psc-example-tag">Most Popular Pair</span>
+                                </div>
+                                <div class="psc-example-inputs">
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Account Balance</span>
+                                        <span class="psc-example-input-val">$10,000</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Risk %</span>
+                                        <span class="psc-example-input-val">1%</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Account Risk</span>
+                                        <span class="psc-example-input-val">$100</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Stop Loss</span>
+                                        <span class="psc-example-input-val">20 pips</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Pip Value/lot</span>
+                                        <span class="psc-example-input-val">$10.00</span>
+                                    </div>
+                                </div>
+                                <div class="psc-example-calc">
+                                    <span class="psc-calc-label">Position Size</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-step">$100 ÷ (20 × $10)</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-step">$100 ÷ $200</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-result" style="color:var(--ex-accent);">0.50 lots</span>
+                                </div>
+                            </div>
+
+                            <div class="psc-example-card" style="--ex-accent:#d97706;">
+                                <div class="psc-example-hd">
+                                    <span class="psc-example-pair">GBP/JPY</span>
+                                    <span class="psc-example-tag">Cross Pair — Variable Pip Value</span>
+                                </div>
+                                <div class="psc-example-inputs">
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Account Balance</span>
+                                        <span class="psc-example-input-val">$10,000</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Risk %</span>
+                                        <span class="psc-example-input-val">1%</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Account Risk</span>
+                                        <span class="psc-example-input-val">$100</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Stop Loss</span>
+                                        <span class="psc-example-input-val">30 pips</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Pip Value/lot*</span>
+                                        <span class="psc-example-input-val">~$6.50</span>
+                                    </div>
+                                </div>
+                                <div class="psc-example-calc">
+                                    <span class="psc-calc-label">Position Size</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-step">$100 ÷ (30 × $6.50)</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-step">$100 ÷ $195</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-result" style="color:var(--ex-accent);">0.51 lots</span>
+                                </div>
+                                <div style="font-size:12px;color:#64748b;padding:8px 20px 14px;background:#f8fafc;">*Pip value for GBP/JPY varies with the USD/JPY rate. Always verify with your broker's calculator.</div>
+                            </div>
+
+                            <div class="psc-example-card" style="--ex-accent:#059669;">
+                                <div class="psc-example-hd">
+                                    <span class="psc-example-pair">XAU/USD</span>
+                                    <span class="psc-example-tag">Gold — Dollar per Ounce</span>
+                                </div>
+                                <div class="psc-example-inputs">
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Account Balance</span>
+                                        <span class="psc-example-input-val">$10,000</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Risk %</span>
+                                        <span class="psc-example-input-val">1%</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Account Risk</span>
+                                        <span class="psc-example-input-val">$100</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Stop Loss</span>
+                                        <span class="psc-example-input-val">$5 / oz</span>
+                                    </div>
+                                    <div class="psc-example-input">
+                                        <span class="psc-example-input-label">Contract Size</span>
+                                        <span class="psc-example-input-val">100 oz/lot</span>
+                                    </div>
+                                </div>
+                                <div class="psc-example-calc">
+                                    <span class="psc-calc-label">Position Size</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-step">$100 ÷ ($5 × 100)</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-step">$100 ÷ $500</span>
+                                    <span class="psc-calc-sep">=</span>
+                                    <span class="psc-calc-result" style="color:var(--ex-accent);">0.20 lots</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 5 — MT4 *@
+                        <div class="br-section" id="s5">
+                            <h2 class="br-h2">5. Position Size Calculator for MT4</h2>
+                            <p class="br-p">MetaTrader 4 does not include a built-in position size calculator in the trade ticket, but there are several straightforward ways to calculate lot sizes directly on the platform.</p>
+                            <div class="br-platform-grid" style="grid-template-columns:1fr;">
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="color:#2563eb;background:#eff6ff;"><i class="fa-solid fa-plug"></i></div>
+                                    <div>
+                                        <div class="br-platform-name">MT4 Position Size Indicator / EA</div>
+                                        <div class="br-platform-desc">Download a free position size calculator indicator from the MQL4 Market. Once installed, it appears on your chart — input your risk % and drag the SL line and it displays the correct lot size in real time. Popular option: "Position Size Calculator" by EarnForex.</div>
+                                        <div class="br-platform-tags">
+                                            <span class="br-platform-tag">Free</span>
+                                            <span class="br-platform-tag">Chart Overlay</span>
+                                            <span class="br-platform-tag">Real-Time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="color:#16a34a;background:#f0fdf4;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                    <div>
+                                        <div class="br-platform-name">MT4 Trade Ticket — Manual Entry</div>
+                                        <div class="br-platform-desc">Calculate position size using the formula externally, then type the lot size into the "Volume" field on the MT4 New Order ticket. Most common approach for discretionary traders who calculate once before entering.</div>
+                                        <div class="br-platform-tags">
+                                            <span class="br-platform-tag">Manual</span>
+                                            <span class="br-platform-tag">No Install</span>
+                                            <span class="br-platform-tag">Full Control</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="color:#7c3aed;background:#f5f3ff;"><i class="fa-solid fa-robot"></i></div>
+                                    <div>
+                                        <div class="br-platform-name">MT4 Expert Advisor (EA) with Auto Sizing</div>
+                                        <div class="br-platform-desc">Use an EA with position sizing logic built in. The EA reads your account balance, applies your risk % setting, and calculates the lot size automatically before each trade — the gold standard for systematic traders.</div>
+                                        <div class="br-platform-tags">
+                                            <span class="br-platform-tag">Automated</span>
+                                            <span class="br-platform-tag">System Trading</span>
+                                            <span class="br-platform-tag">MQL4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 6 — MT5 *@
+                        <div class="br-section" id="s6">
+                            <h2 class="br-h2">6. Position Size Calculator for MT5</h2>
+                            <p class="br-p">MetaTrader 5 improves on MT4 with a built-in <strong>Trade Calculator</strong> accessible from the toolbar (View → Toolbars → Trade levels). MT5 also supports more complex order types and a more powerful MQL5 scripting language for custom position size indicators.</p>
+                            <p class="br-p">The same three approaches from MT4 apply on MT5 — indicator overlay, manual ticket entry, or EA automation — but the MQL5 Market has significantly more advanced tools including multi-symbol calculators, risk dashboards, and risk:reward line tools that auto-calculate lot size when you drag stop-loss and take-profit lines.</p>
+                            <div class="br-callout">
+                                <i class="fa-solid fa-star me-2" style="color:#d97706;"></i>
+                                <strong>MT5 advantage:</strong> MT5's built-in <em>Strategy Tester</em> lets you backtest your position sizing logic with real historical data — something MT4 cannot do as accurately. If you use automated sizing, MT5 is the better platform for validation.
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 7 — Pip Value Table *@
+                        <div class="br-section" id="s7">
+                            <h2 class="br-h2">7. Pip Value by Currency Pair (USD Account)</h2>
+                            <p class="br-p">Pip value varies by pair and changes when USD is not the quote currency. Below are standard pip values for a USD-denominated account.</p>
+                            <table class="br-facts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Currency Pair</th>
+                                        <th style="text-align:center;">Micro Lot (0.01)</th>
+                                        <th style="text-align:center;">Mini Lot (0.10)</th>
+                                        <th style="text-align:center;">Standard Lot (1.00)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>EUR/USD</strong></td><td style="text-align:center;">$0.10</td><td style="text-align:center;">$1.00</td><td style="text-align:center;font-weight:700;color:#16a34a;">$10.00</td></tr>
+                                    <tr><td><strong>GBP/USD</strong></td><td style="text-align:center;">$0.10</td><td style="text-align:center;">$1.00</td><td style="text-align:center;font-weight:700;color:#16a34a;">$10.00</td></tr>
+                                    <tr><td><strong>USD/JPY</strong></td><td style="text-align:center;">~$0.07</td><td style="text-align:center;">~$0.70</td><td style="text-align:center;font-weight:700;color:#2563eb;">~$7.00</td></tr>
+                                    <tr><td><strong>AUD/USD</strong></td><td style="text-align:center;">$0.10</td><td style="text-align:center;">$1.00</td><td style="text-align:center;font-weight:700;color:#16a34a;">$10.00</td></tr>
+                                    <tr><td><strong>USD/CAD</strong></td><td style="text-align:center;">~$0.07</td><td style="text-align:center;">~$0.73</td><td style="text-align:center;font-weight:700;color:#2563eb;">~$7.30</td></tr>
+                                    <tr><td><strong>GBP/JPY</strong></td><td style="text-align:center;">~$0.065</td><td style="text-align:center;">~$0.65</td><td style="text-align:center;font-weight:700;color:#d97706;">~$6.50</td></tr>
+                                    <tr><td><strong>EUR/JPY</strong></td><td style="text-align:center;">~$0.065</td><td style="text-align:center;">~$0.65</td><td style="text-align:center;font-weight:700;color:#d97706;">~$6.50</td></tr>
+                                    <tr><td><strong>EUR/GBP</strong></td><td style="text-align:center;">~$0.126</td><td style="text-align:center;">~$1.26</td><td style="text-align:center;font-weight:700;color:#059669;">~$12.60</td></tr>
+                                    <tr><td><strong>XAU/USD (Gold)</strong></td><td style="text-align:center;">$0.01</td><td style="text-align:center;">$0.10</td><td style="text-align:center;font-weight:700;color:#d97706;">$1.00 / pip</td></tr>
+                                    <tr><td><strong>US30 (Dow Jones)</strong></td><td style="text-align:center;">$0.01</td><td style="text-align:center;">$0.10</td><td style="text-align:center;font-weight:700;color:#7c3aed;">$1.00 / point</td></tr>
+                                </tbody>
+                            </table>
+                            <p class="br-p" style="font-size:13px;color:#64748b;margin-top:-20px;">Values for JPY, CAD, and cross pairs fluctuate with exchange rates. Always verify with your broker's trade calculator before entering large positions.</p>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 8 — Gold *@
+                        <div class="br-section" id="s8">
+                            <h2 class="br-h2">8. Position Sizing for Gold (XAU/USD)</h2>
+                            <p class="br-p">Gold is one of the most popular instruments for retail traders, but position sizing differs from standard Forex pairs because Gold moves in <strong>dollars per ounce</strong> rather than in pips. One standard lot of XAU/USD = 100 oz.</p>
+
+                            <div class="psc-formula" style="margin-bottom:20px;">
+                                <div class="psc-formula-title" style="color:#d97706;">Gold Position Size Formula</div>
+                                <div class="psc-formula-eq">
+                                    <span class="psc-formula-result">Position Size (lots)</span>
+                                    <span class="psc-formula-equals">=</span>
+                                    <span class="psc-formula-fraction">
+                                        <span class="psc-formula-num">Account Risk ($)</span>
+                                        <span class="psc-formula-bar"></span>
+                                        <span class="psc-formula-den">Stop Loss ($/oz) &times; 100 oz</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p class="br-p">Example: Risk $200 with a $10/oz stop-loss → Position Size = $200 ÷ ($10 × 100) = $200 ÷ $1,000 = <strong>0.20 lots</strong>. Because Gold is highly volatile, most brokers offer Gold in micro lots (0.01).</p>
+                            <div class="br-callout">
+                                <i class="fa-solid fa-triangle-exclamation me-2" style="color:#d97706;"></i>
+                                <strong>Gold warning:</strong> Gold moves 10–30× faster than EUR/USD in dollar terms during news events. Use wider stops ($8–$15/oz) and smaller lot sizes. Never apply the same pip-distance formula you use for Forex pairs.
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 9 — Common Mistakes *@
+                        <div class="br-section" id="s9">
+                            <h2 class="br-h2">9. Common Position Sizing Mistakes</h2>
+                            <p class="br-p">Even traders who understand the formula regularly fall into these traps. Recognising them is the first step to avoiding them.</p>
+                            <div class="psc-mistake-grid">
+                                <div class="psc-mistake-card">
+                                    <div class="psc-mistake-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                                    <div class="psc-mistake-title">Risking More on "High-Confidence" Trades</div>
+                                    <div class="psc-mistake-body">No setup has 100% probability. Doubling your risk on a "sure thing" is how accounts get blown. Keep risk consistent at 1–2% regardless of conviction.</div>
+                                </div>
+                                <div class="psc-mistake-card">
+                                    <div class="psc-mistake-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                                    <div class="psc-mistake-title">Using a Fixed Lot Size Always</div>
+                                    <div class="psc-mistake-body">Trading 0.10 lots always means your risk varies with stop-loss distance. A 10-pip stop risks $10; a 50-pip stop risks $50. Standardise risk, not lot size.</div>
+                                </div>
+                                <div class="psc-mistake-card">
+                                    <div class="psc-mistake-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                                    <div class="psc-mistake-title">Setting Stop-Loss After Calculating Lot Size</div>
+                                    <div class="psc-mistake-body">Always decide your stop-loss first based on market structure, then calculate lot size. Moving the stop to fit a desired lot size is backwards and dangerous.</div>
+                                </div>
+                                <div class="psc-mistake-card">
+                                    <div class="psc-mistake-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                                    <div class="psc-mistake-title">Ignoring Pip Value on Cross Pairs</div>
+                                    <div class="psc-mistake-body">EUR/USD pip value is exactly $10/lot, but GBP/JPY pip value changes daily. Using $10 for all pairs will systematically over- or under-size your positions.</div>
+                                </div>
+                                <div class="psc-mistake-card">
+                                    <div class="psc-mistake-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                                    <div class="psc-mistake-title">Forgetting to Include Spread in Risk</div>
+                                    <div class="psc-mistake-body">If your broker charges a 1.5-pip spread, your real stop-loss is wider. Factor in spread and commission on ECN accounts for accurate risk calculation.</div>
+                                </div>
+                                <div class="psc-mistake-card">
+                                    <div class="psc-mistake-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                                    <div class="psc-mistake-title">Opening Multiple Correlated Positions</div>
+                                    <div class="psc-mistake-body">Holding EUR/USD long and GBP/USD long simultaneously doubles your USD exposure. Treat correlated pairs as a combined position when calculating total portfolio risk.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 10 — Fixed Risk vs Fixed Lot *@
+                        <div class="br-section" id="s10">
+                            <h2 class="br-h2">10. Fixed Risk % vs Fixed Lot Sizing</h2>
+                            <p class="br-p">There are two main approaches to position sizing in Forex. Understanding the difference explains why professional traders almost universally choose fixed-risk percentage sizing.</p>
+                            <table class="br-facts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Criteria</th>
+                                        <th style="text-align:center;">Fixed Lot Sizing</th>
+                                        <th style="text-align:center;">Fixed Risk % Sizing</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Risk per trade</strong></td>
+                                        <td style="text-align:center;">Varies with stop-loss</td>
+                                        <td style="text-align:center;color:#16a34a;font-weight:700;">Constant % of account</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Lot size</strong></td>
+                                        <td style="text-align:center;">Always the same</td>
+                                        <td style="text-align:center;color:#16a34a;font-weight:700;">Adjusts with balance &amp; SL</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Account growth</strong></td>
+                                        <td style="text-align:center;color:#ef4444;">Does not scale</td>
+                                        <td style="text-align:center;color:#16a34a;font-weight:700;">Scales automatically</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Drawdown impact</strong></td>
+                                        <td style="text-align:center;color:#ef4444;">Proportionally larger after losses</td>
+                                        <td style="text-align:center;color:#16a34a;font-weight:700;">Smaller as balance decreases</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Strategy evaluation</strong></td>
+                                        <td style="text-align:center;color:#ef4444;">Difficult — risk varies</td>
+                                        <td style="text-align:center;color:#16a34a;font-weight:700;">Accurate R-multiples</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Best suited for</strong></td>
+                                        <td style="text-align:center;">Very short scalping only</td>
+                                        <td style="text-align:center;color:#16a34a;font-weight:700;">All styles &amp; timeframes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 11 — Cashback *@
+                        <div class="br-section" id="s11">
+                            <h2 class="br-h2">11. How Cashback Reduces Your Effective Risk</h2>
+                            <p class="br-p">Forex cashback rebates — paid per lot traded — directly reduce the net cost of every trade. This means your effective risk per trade is lower than the nominal amount, improving your mathematical edge over time.</p>
+                            <div class="br-highlights">
+                                <div class="br-highlights-title"><i class="fa-solid fa-circle-dollar-to-slot me-2"></i>Cashback Reduces Effective Risk — Example</div>
+                                <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;">
+                                    <li>Trading <strong>0.50 lots EUR/USD</strong> with a $100 nominal risk</li>
+                                    <li>Cashback rebate received: <strong>$3.75 (0.50 lots × $7.50/lot)</strong></li>
+                                    <li>Effective risk after cashback: <strong>$100 − $3.75 = $96.25</strong></li>
+                                    <li>Effective risk percentage: <strong>0.9625%</strong> instead of 1.00%</li>
+                                    <li>Over 100 trades: <strong>$375 returned</strong> — meaningful P&amp;L improvement</li>
+                                    <li>Cashback also lowers the break-even win rate on each trade</li>
+                                </ul>
+                            </div>
+                            <p class="br-p">The impact compounds with volume. Scalpers trading 10–30 lots per day see cashback become a major P&amp;L factor — often equivalent to recovering the full spread on every trade.</p>
+                            <a asp-controller="Resources" asp-action="BestCashbackBrokers" class="br-cta-btn-primary" style="display:inline-flex;align-items:center;gap:8px;margin-top:8px;">
+                                <i class="fa-solid fa-trophy"></i> View Best Cashback Brokers 2025
+                            </a>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* FAQs *@
+                        <div class="br-section" id="s12">
+                            <h2 class="br-h2">12. Frequently Asked Questions</h2>
+                            <div class="br-faq">
+                                @foreach (var faq in faqs)
+                                {
+                                    var uid = Guid.NewGuid().ToString("N")[..6];
+                                    <div class="br-faq-item">
+                                        <button class="br-faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq-@uid"
+                                                aria-expanded="false">
+                                            @faq.Q
+                                            <i class="fa-solid fa-chevron-down ms-auto"></i>
+                                        </button>
+                                        <div id="faq-@uid" class="collapse">
+                                            <div class="br-faq-body">@faq.A</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        @* Bottom CTA *@
+                        <div class="br-bottom-cta">
+                            <div style="font-size:12px;font-weight:700;color:#009aee;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Get More From Every Trade</div>
+                            <h2 style="font-size:clamp(20px,3vw,28px);font-weight:900;color:#0f1b2d;margin:0 0 10px;">Reduce Cost. Keep Risk Consistent. Earn Cashback.</h2>
+                            <p style="font-size:14px;color:#64748b;max-width:560px;margin:0 auto 24px;line-height:1.7;">Position sizing controls your risk. Cashback controls your costs. Together they give you an edge before your strategy even enters the market.</p>
+                            <div class="br-cta-btns">
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="br-cta-btn-primary">
+                                    <i class="fa-solid fa-calculator me-2"></i>Try Cashback Calculator
+                                </a>
+                                <a asp-controller="Resources" asp-action="ForexBrokers" class="br-cta-btn-ghost">
+                                    <i class="fa-solid fa-building-columns me-2"></i>Compare Brokers
+                                </a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+                @* ── SIDEBAR ── *@
+                <div class="col-lg-3">
+                    <partial name="_Sidebar" model="@("ForexTools")" />
+
+                    <div class="br-toc" style="margin-top:24px;position:sticky;top:90px;">
+                        <div class="br-toc-title"><i class="fa-solid fa-list me-2"></i>On This Page</div>
+                        <ol style="margin:0;padding-left:18px;font-size:13px;line-height:2.2;">
+                            <li><a href="#s1">What is a PSC?</a></li>
+                            <li><a href="#s2">Why It Matters</a></li>
+                            <li><a href="#s3">The Formula</a></li>
+                            <li><a href="#s4">Step-by-Step Examples</a></li>
+                            <li><a href="#s5">MT4 Calculator</a></li>
+                            <li><a href="#s6">MT5 Calculator</a></li>
+                            <li><a href="#s7">Pip Value Table</a></li>
+                            <li><a href="#s8">Gold Sizing</a></li>
+                            <li><a href="#s9">Common Mistakes</a></li>
+                            <li><a href="#s10">Fixed Risk vs Fixed Lot</a></li>
+                            <li><a href="#s11">Cashback &amp; Risk</a></li>
+                            <li><a href="#s12">FAQs</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

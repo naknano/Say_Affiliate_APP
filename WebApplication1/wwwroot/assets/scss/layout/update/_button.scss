@@ -1,0 +1,109 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 button css
+/*----------------------------------------*/
+
+.al-btn-blue {
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border-radius: 30px;
+    display: inline-block;
+    padding: 10px 30px;
+    letter-spacing: -0.02em;
+    color: var(--tp-common-white);
+    background-color: var(--tp-common-blue);
+    font-family: var(--tp-ff-inter);
+    &:hover{
+        background: var(--tp-common-black-1);
+        color: var(--tp-common-white);
+    }
+    &.sky-bg{
+		background-color: #a1ecea;
+		color: var(--tp-common-black-3);
+		&:hover{
+			color: var(--tp-common-white);
+			background-color: var(--tp-common-blue);
+		}
+	}
+}
+
+.tp-btn-seo-border{
+    &:hover{
+        background: var(--tp-common-blue);
+        border-color: var(--tp-common-blue);
+        color: var(--tp-common-white);
+    }
+}
+
+.al-btn-pg-price {
+    height: 50px;
+    line-height: 48px;
+    border-radius: 100px;
+    padding: 0 60px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: capitalize;
+    display: inline-block;
+    overflow: hidden;
+    color: var(--tp-common-black-7);
+    font-family: var(--tp-ff-poppins);
+    border: 1px solid rgba(183, 171, 152, 0.14);
+    transition: 0.3s;
+    &:hover{
+		color: var(--tp-common-white);
+		border-color: var(--tp-common-black-7);
+		background-color: var(--tp-common-black-7);
+	}
+}
+
+.al-btn-pg-subscribe {
+    height: 48px;
+    line-height: 48px;
+    border-radius: 30px;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    color: var(--tp-common-cream);
+    font-family: var(--tp-ff-poppins);
+    background: var(--tp-common-black-7);
+    border: 1px solid rgba(183, 171, 152, 0.14);
+}
+.al-shop-btn{
+    display: inline-block;
+    font-family: var(--tp-ff-dm);
+    font-weight: 400;
+    font-size: 16px;
+    background-color: var(--tp-common-black);
+    padding: 9px 26px;
+    color: var(--tp-common-white);
+    border: 1px solid var(--tp-common-black);
+    &:hover{
+        background: var(--tp-theme-secondary);
+        border-color: var(--tp-theme-secondary);
+        color: var(--tp-common-white);
+    }
+    &-border{
+        background-color: transparent;
+        border: 1.5px solid var(--tp-common-black);
+        color: var(--tp-common-black);
+        padding: 8px 29px;
+        &-sm{
+            padding: 5px 25px;
+        }
+        &-white{
+            &-sm{
+                border-color: rgba(255, 255, 255, 0.3);
+                color: var(--tp-common-white);
+                &:hover{
+                    background: var(--tp-common-black);
+                    color: var(--tp-common-white);
+                    border-color: var(--tp-common-black);
+                }
+            }
+        }
+    }
+}

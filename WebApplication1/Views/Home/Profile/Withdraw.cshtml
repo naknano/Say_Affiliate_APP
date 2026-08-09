@@ -1,0 +1,156 @@
+@model WebApplication1.Data.DTO.TradingAccount.WithdrawPageDto
+@{
+    var banks = Model?.Banks ?? new List<WebApplication1.Data.DTO.TradingAccount.WithdrawBankOptionDto>();
+    var hasBank = banks.Count > 0;
+
+    // only offer wallets that actually have an address saved
+    var wallets = new List<(string Net, string Label, string Address)>();
+    if (!string.IsNullOrWhiteSpace(Model?.UsdcWallet)) { wallets.Add(("USDC", "USDC (ERC-20)", Model.UsdcWallet)); }
+    if (!string.IsNullOrWhiteSpace(Model?.EthWallet)) { wallets.Add(("ETH", "Ethereum (ETH)", Model.EthWallet)); }
+    if (!string.IsNullOrWhiteSpace(Model?.BtcWallet)) { wallets.Add(("BTC", "Bitcoin (BTC)", Model.BtcWallet)); }
+    var hasCrypto = wallets.Count > 0;
+}
+
+<div class="wd">
+   <div class="pb-head">
+      <h3 class="profile__info-title">Withdraw Cashback</h3>
+      <p class="wd-sub">Request a withdrawal of your available cashback to your bank or crypto wallet.</p>
+   </div>
+
+   @if (!hasBank && !hasCrypto)
+   {
+      <div class="wd-empty">
+         <i class="fa-solid fa-circle-info"></i>
+         You haven't added a payout method yet.
+         <a asp-controller="Profile" asp-action="PaymentMethods">Add a bank or crypto</a> to withdraw.
+      </div>
+   }
+   else
+   {
+      <div class="wd-card">
+         <form id="withdrawForm">
+            <!-- shared: amount + currency -->
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="pb-field">
+                     <label for="wd-amount">Amount</label>
+                     <input id="wd-amount" class="pb-input" type="number" min="1" step="0.01" placeholder="0.00" required>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="pb-field">
+                     <label for="wd-currency">Currency</label>
+                     <select id="wd-currency" class="pb-input">
+                        <option value="USD">USD &mdash; US Dollar</option>
+                        <option value="EUR">EUR &mdash; Euro</option>
+                        <option value="GBP">GBP &mdash; British Pound</option>
+                        <option value="AUD">AUD &mdash; Australian Dollar</option>
+                        <option value="KHR">KHR &mdash; Cambodian Riel</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+
+            <!-- destination tabs -->
+            <label class="wd-dest-label">Withdraw to</label>
+            <div class="wd-tabs" id="wd-tabs">
+               <button type="button" class="wd-tab is-active" data-method="bank">
+                  <i class="fa-solid fa-building-columns"></i> Bank
+               </button>
+               <button type="button" class="wd-tab" data-method="crypto">
+                  <i class="fa-brands fa-bitcoin"></i> Crypto
+               </button>
+            </div>
+
+            <!-- Bank pane -->
+            <div class="wd-pane" id="wd-pane-bank">
+               @if (hasBank)
+               {
+                  <div class="row">
+                     <div class="col-12">
+                        <div class="pb-field">
+                           <label for="wd-bank">Bank</label>
+                           <select id="wd-bank" class="pb-input">
+                              <option value="" selected disabled>Select a bank</option>
+                              @foreach (var b in banks)
+                              {
+                                 <option value="@b.Id" data-name="@b.AccountName" data-num="@b.BankAccountNum">
+                                    @(string.IsNullOrEmpty(b.BankName) ? "Bank" : b.BankName)
+                                 </option>
+                              }
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="pb-field">
+                           <label for="wd-account-name">Bank Account Name</label>
+                           <input id="wd-account-name" class="pb-input" type="text" placeholder="Select a bank first" readonly>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="pb-field">
+                           <label for="wd-account-num">Bank Account Number</label>
+                           <input id="wd-account-num" class="pb-input" type="text" placeholder="Select a bank first" readonly>
+                        </div>
+                     </div>
+                  </div>
+               }
+               else
+               {
+                  <div class="wd-empty">
+                     <i class="fa-solid fa-circle-info"></i>
+                     No bank account saved.
+                     <a asp-controller="Profile" asp-action="PaymentMethods">Add a bank</a> in Payment Methods.
+                  </div>
+               }
+            </div>
+
+            <!-- Crypto pane -->
+            <div class="wd-pane d-none" id="wd-pane-crypto">
+               @if (hasCrypto)
+               {
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="pb-field">
+                           <label for="wd-network">Wallet</label>
+                           <select id="wd-network" class="pb-input">
+                              <option value="" selected disabled>Select a wallet</option>
+                              @foreach (var w in wallets)
+                              {
+                                 <option value="@w.Net" data-wallet="@w.Address">@w.Label</option>
+                              }
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="pb-field">
+                           <label for="wd-wallet">Wallet Address</label>
+                           <input id="wd-wallet" class="pb-input" type="text" placeholder="Select a wallet first" readonly>
+                        </div>
+                     </div>
+                  </div>
+               }
+               else
+               {
+                  <div class="wd-empty">
+                     <i class="fa-solid fa-circle-info"></i>
+                     No crypto wallet saved.
+                     <a asp-controller="Profile" asp-action="PaymentMethods">Add crypto</a> in Payment Methods.
+                  </div>
+               }
+            </div>
+
+            <div class="wd-note">
+               <i class="fa-solid fa-circle-info"></i>
+               Withdrawals are reviewed and processed within 24 hours. Make sure your payout details are correct.
+            </div>
+
+            <div class="wd-actions">
+               <button type="button" class="broker-btn broker-btn-solid" id="withdrawSubmit">
+                  Request Withdrawal <i class="fa-solid fa-arrow-right-long"></i>
+               </button>
+            </div>
+         </form>
+      </div>
+   }
+</div>

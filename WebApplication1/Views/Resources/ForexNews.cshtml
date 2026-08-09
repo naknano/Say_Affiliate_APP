@@ -1,0 +1,119 @@
+@{
+    ViewData["Title"] = "Forex News";
+
+    var articles = new[]
+    {
+        new {
+            Ctrl="Resources", Act="ForexNewsFreePlatform",
+            ThumbBg  = "linear-gradient(135deg,#d8e8f8 0%,#bdd2ee 100%)",
+            ThumbText= "Here's a <strong>Free Platform</strong> That Reinvents Forex Cashback",
+            BadgeBg  = "#7c3aed", BadgeClr="#fff", BadgeTxt="Entre\npre\nneur",
+            AuthorClr= "#7c3aed", Author="MiriNich Tech",
+            Title    = "Here's a Free Platform That Reinvents Forex Cashback",
+            Date     = "16 Mar 2023",
+            Excerpt  = "Say Affiliates provides a free platform for traders to earn cashback on every trade placed with forex, stock and crypto exchange."
+        },
+        new {
+            Ctrl="Resources", Act="ForexNewsChangingGame",
+            ThumbBg  = "linear-gradient(135deg,#f5ede0 0%,#eddbc8 100%)",
+            ThumbText= "How Cashback Giant Say Affiliates Is <strong>Changing The Game</strong> For Independent Traders In 2025",
+            BadgeBg  = "#7c3aed", BadgeClr="#fff", BadgeTxt="yahoo!\nfinance",
+            AuthorClr= "#7c3aed", Author="Bogdan Ulmu",
+            Title    = "How Cashback Giant Say Affiliates Is Changing The Game For Independent Traders",
+            Date     = "16 Mar 2023",
+            Excerpt  = "Trading can be a tricky game to get your head around and one that can involve big risks."
+        },
+        new {
+            Ctrl="Resources", Act="ForexNewsUniqueTools",
+            ThumbBg  = "linear-gradient(135deg,#f5f0dc 0%,#ece3bf 100%)",
+            ThumbText= "Trading Assistance Platform Say Affiliates Introduces <strong>Unique Free Tools</strong>",
+            BadgeBg  = "#7c3aed", BadgeClr="#fff", BadgeTxt="yahoo!\nfinance",
+            AuthorClr= "#7c3aed", Author="Bogdan Ulmu",
+            Title    = "Trading Assistance Platform Say Affiliates Introduces Unique Free Tools",
+            Date     = "16 Mar 2023",
+            Excerpt  = "See in Real-Time the Pricing and Spreads of 100s of Brokerage Houses."
+        },
+        new {
+            Ctrl="Resources", Act="ForexNewsRevolutionising",
+            ThumbBg  = "linear-gradient(135deg,#c2e4dd 0%,#9ecfc5 100%)",
+            ThumbText= "How Say Affiliates Is <strong>Revolutionising</strong> Forex Cashback On Their Free Platform",
+            BadgeBg  = "#166534", BadgeClr="#fff", BadgeTxt="NNL\nNews",
+            AuthorClr= "#166534", Author="Bogdan Ulmu",
+            Title    = "How Say Affiliates Is Revolutionising Forex Cashback On Their Free Platform",
+            Date     = "29 Jul 2022",
+            Excerpt  = "Say Affiliates has solid partnerships with over 100 reliable brokerages in the industry."
+        },
+        new {
+            Ctrl="Resources", Act="ForexNewsRedefining",
+            ThumbBg  = "linear-gradient(135deg,#b8ddd5 0%,#8ec5ba 100%)",
+            ThumbText= "How Say Affiliates Is <strong>Redefining</strong> The Industry Of Forex Trading",
+            BadgeBg  = "#166534", BadgeClr="#fff", BadgeTxt="NNL\nNews",
+            AuthorClr= "#166534", Author="Bogdan Ulmu",
+            Title    = "How Say Affiliates Is Redefining The Industry Of Forex Trading",
+            Date     = "29 Jul 2022",
+            Excerpt  = "The creator of Say Affiliates, a Cashback Forex company that enables traders to earn cashback..."
+        },
+    };
+}
+
+<div class="res-page">
+
+    <section class="lfb-hero">
+        <div class="container container-1230">
+            <nav class="res-breadcrumb" aria-label="breadcrumb">
+                <a asp-controller="Home"      asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Forex News</span>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <h1 style="font-size:clamp(30px,4.5vw,46px);font-weight:800;color:#0f1b2d;line-height:1.15;margin:0 0 16px;">Forex News</h1>
+                </div>
+                <div class="col-lg-7">
+                    <p class="lfb-hero-desc">Stay informed on the latest market updates, regulatory changes, and industry insights that can shape your forex trading decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="res-sub-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-3 col-md-4">
+                    <partial name="_Sidebar" model="@("ForexNews")" />
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+                    <div class="row g-4">
+                        @foreach (var a in articles)
+                        {
+                            <div class="col-lg-4 col-sm-6">
+                                <a asp-controller="@a.Ctrl" asp-action="@a.Act" class="fn-card">
+                                    <div class="fn-thumb" style="background:@a.ThumbBg;">
+                                        <div class="fn-thumb-text">@Html.Raw(a.ThumbText)</div>
+                                        <div class="fn-thumb-badge" style="background:@a.BadgeBg;color:@a.BadgeClr;">@Html.Raw(a.BadgeTxt.Replace("\n","<br/>"))</div>
+                                        <div class="fn-thumb-brand">
+                                            <div class="fn-thumb-brand-icon"><i class="fa-solid fa-chart-line" style="font-size:8px;"></i></div>
+                                            <span>SAY AFFILIATES</span>
+                                        </div>
+                                    </div>
+                                    <div class="fn-card-body">
+                                        <span class="fn-card-author" style="color:@a.AuthorClr;">@a.Author</span>
+                                        <h3 class="fn-card-title">@a.Title</h3>
+                                        <div class="fn-card-date"><i class="fa-regular fa-calendar me-1"></i>Published @a.Date</div>
+                                        <p class="fn-card-excerpt">@a.Excerpt</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Swing Trading Strategy Ideas for Successful Trades";
+    string ac = "#0891b2", al = "#ecfeff";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#0c2a35,#155e75,#061419);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Swing Trading</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Swing Trading Strategy Ideas for Successful Trades</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 28 Jun 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 8 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Swing Trading</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(8,145,178,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#a5f3fc;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-wave-square me-1"></i> Swing Trading Profile</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Timeframes",V="H4, Daily"},new{L="Hold period",V="2–7 days"},new{L="Risk per trade",V="1–2%"},new{L="Avg target",V="50–150 pips"},new{L="Best pairs",V="EUR/USD, GBP/JPY, AUD/USD"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#a5f3fc;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2–7</div><div class="na-stat-lbl">Day Hold Period</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">150</div><div class="na-stat-lbl">Pip Target Potential</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">H4/D1</div><div class="na-stat-lbl">Primary Timeframes</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2:1</div><div class="na-stat-lbl">Min Reward:Risk</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Swing trading captures medium-term price movements over days to weeks — offering a balance between the precision of day trading and the patience of position trading. It suits traders who can analyse charts once or twice daily without needing to monitor positions in real time, making it the most popular style among working professionals.</p>
+
+            <h2 class="na-h2">Core Swing Trading Concepts</h2>
+            <p class="na-p">Successful swing trading is built on understanding market structure. Price does not move in straight lines — it moves in waves of impulse and correction. Swing traders identify where a correction is ending and position for the next impulse wave in the dominant trend direction.</p>
+            <div class="br-fact-grid" style="grid-template-columns:repeat(2,1fr);margin:20px 0;">
+                @foreach(var f in new[]{new{K="Impulse moves",V="Strong directional candles with expanding volume — the trend engine",Bg="#ecfeff",C="#0891b2"},new{K="Corrective moves",V="Shallow pullbacks against the trend — the entry opportunity",Bg="#f0fdf4",C="#16a34a"},new{K="Higher highs / higher lows",V="Bullish market structure — only take long swings",Bg="#eff6ff",C="#2563eb"},new{K="Lower highs / lower lows",V="Bearish market structure — only take short swings",Bg="#fff7ed",C="#ea580c"}})
+                {<div class="br-fact-item"><div class="br-fact-icon" style="background:@f.Bg;color:@f.C;"><i class="fa-solid fa-wave-square"></i></div><div><div class="br-fact-key">@f.K</div><div class="br-fact-val" style="font-size:12px;">@f.V</div></div></div>}
+            </div>
+
+            <h2 class="na-h2">Three High-Probability Swing Setups</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Pullback to Trend Support (Most Reliable)</div><div class="na-step-text">In a confirmed uptrend (higher highs/lows on D1), wait for price to pull back to a key support level — a previous swing high, the 21 EMA, or a Fibonacci 38.2–61.8% retracement. Enter on the first H4 bullish rejection candle (pin bar or engulfing). Stop below the swing low. Target the previous swing high for 2–3R.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Breakout and Retest</div><div class="na-step-text">Price consolidates below resistance, then breaks above it on strong momentum. Wait for the retest of the broken resistance (now support) before entering. This avoids chasing breakouts and provides a precise stop placement just below the retest level. Target measured by the height of the prior consolidation projected upward.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Key Level Reversal (Counter-Trend)</div><div class="na-step-text">Higher risk — only for experienced traders. Price reaches a major D1 support or resistance level with a strong reversal candlestick pattern (pin bar, evening/morning star). Confirm with RSI divergence on H4. Tight stop just beyond the level. Target the nearest opposite swing. Maximum 0.5% risk on counter-trend trades.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Best Pairs for Swing Trading</h2>
+            <table class="br-facts-table">
+                <thead><tr><th>Pair</th><th>Why It Works</th><th style="text-align:center;">Avg Weekly Range</th><th style="text-align:center;">Cashback/Lot</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>EUR/USD</strong></td><td>Clean technical structure, lowest spread, most predictable S/R</td><td style="text-align:center;">100–150 pips</td><td style="text-align:center;color:@ac;font-weight:700;">$7–10</td></tr>
+                    <tr><td><strong>GBP/JPY</strong></td><td>Wide ranges ideal for swing targets, strong trending behaviour</td><td style="text-align:center;">200–350 pips</td><td style="text-align:center;color:@ac;font-weight:700;">$8–12</td></tr>
+                    <tr><td><strong>AUD/USD</strong></td><td>Clean correlation with gold and risk sentiment, good technical levels</td><td style="text-align:center;">80–120 pips</td><td style="text-align:center;color:@ac;font-weight:700;">$6–9</td></tr>
+                    <tr><td><strong>USD/CAD</strong></td><td>Oil correlation creates macro-driven swing opportunities</td><td style="text-align:center;">100–180 pips</td><td style="text-align:center;color:@ac;font-weight:700;">$6–9</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="na-h2">Managing Open Swing Trades</h2>
+            <ul class="na-list">
+                <li>Set initial stop-loss at entry — <strong>never move it wider</strong> after entering</li>
+                <li>Move stop to <strong>breakeven</strong> once trade moves 1R (one risk unit) in your favour</li>
+                <li>Take <strong>partial profit (50%)</strong> at 2R — protect gains, let remainder run</li>
+                <li>Trail the stop on the remaining position using the last H4 swing low (long) or high (short)</li>
+                <li>Do not check the position every hour — swing trading requires trusting your analysis; review once at the London open and once at the NY open</li>
+            </ul>
+
+            <div class="na-pullquote"><div class="na-pullquote-text">"A 2-lot swing trade on GBP/JPY that runs for 5 days earns $16–$24 in cashback — the equivalent of recovering 1.5–2 pips of the spread cost purely from the rebate programme."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#a5f3fc;">Trade Bigger Moves</div>
+                <div class="na-cta-title">Swing Trade with Cashback on Every Position</div>
+                <p class="na-cta-sub">Register free and earn cashback on every swing trade through the Say Affiliates network of 100+ regulated broker partners.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="na-cta-btn-ghost"><i class="fa-solid fa-chart-line me-2"></i>Position Size Calculator</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:90px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+            @foreach(var r in new[]{new{A="StrategyDayTrading",I="fa-solid fa-sun",Bg="#fff7ed",C="#ea580c",T="Day Trading Forex Strategies",D="05 Aug 2024"},new{A="StrategyTechAnalysis",I="fa-solid fa-chart-bar",Bg="#e0e7ff",C="#4f46e5",T="How to Use Technical Analysis",D="12 May 2024"},new{A="StrategyAdvanced",I="fa-solid fa-brain",Bg="#e0e7ff",C="#312e81",T="Advanced Trading Strategies",D="15 Feb 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

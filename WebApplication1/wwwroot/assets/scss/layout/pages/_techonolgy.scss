@@ -1,0 +1,154 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.29 techonolgy css start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-techonolgy{
+    &-para{
+        & p {
+            margin-left: 200px;
+            @media #{$md,$sm,$xs}{
+                margin-left: 0;
+            }
+            @media #{$xs}{
+                & br{
+                    display: none;
+                }
+            }
+            &::before{
+                background: rgba(3, 3, 3, 0.1);
+                height: 145px;
+                top: -35px;
+            }
+        }
+    }
+    &-ratings{
+        display: flex;
+        &-wrap{
+            display: flex;
+            max-width: 210px;
+            background: var(--tp-common-white);
+            padding: 18px 16px 12px 19px;
+            border-radius: 10px;
+        }
+        & i{
+            color: var(--tp-common-meteor);
+            font-size: 14px;
+        }
+        &-inner{
+            float: right;
+            @media #{$sm,$xs}{
+                float: left;
+            }
+        }
+    }
+    &-shape{
+        position: inherit;
+        top: inherit;
+        left: 0;
+        transform: inherit;
+        margin-top: 85px;
+        @media #{$md,$sm,$xs}{
+            display: none;
+        }
+    }
+    &-capsule{
+        &-wrapper{
+            height: 780px;
+            position: relative;
+            overflow: hidden;
+            @media #{$sm,$xs}{
+                height: 1000px;
+            }
+            & .tp-techonolgy-capsule-item-wrapper{
+                & > p{
+                    position: absolute;
+                    display: inline-block;
+                    margin-bottom: 0;
+                    left: 0;
+                    top: 0;
+                    user-select: none;
+                    pointer-events: auto;
+                    transition: none;
+                }
+            }
+        }
+        &-item{
+            width: 200px;
+            height: 200px;
+            background: var(--tp-common-white);
+            font-family: var(--tp-ff-heading);
+            font-weight: 500;
+            font-size: 18px;
+            color: var(--tp-common-black);
+            border-radius: 300px;
+            padding: 10px 26px;
+            @include transform(translate(-50%, -50%) rotate(0.01rad));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            @media #{$lg,$md,$md,$sm,$xs}{
+                width: 150px;
+                height: 150px;
+                text-align: center;
+                & svg{
+                    margin-bottom: 5px;
+                }
+            }
+            @media #{$xs}{
+                width: 100px;
+                height: 100px;
+                font-size: 16px;
+                margin-bottom: 0;
+                line-height: 1;
+                & svg{
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+            & svg{
+                display: block;
+            }
+            &.vue{
+                width: 250px;
+                height: 250px;
+                @media #{$lg,$md,$md,$sm,$xs}{
+                    width: 150px;
+                    height: 150px;
+                }
+                @media #{$xs}{
+                    width: 120px;
+                    height: 120px;
+                }
+            }
+            &.dc{
+                width: 180px;
+                height: 180px;
+                @media #{$lg,$md,$md,$sm,$xs}{
+                    width: 130px;
+                    height: 130px;
+                }
+                @media #{$xs}{
+                    width: 100px;
+                    height: 100px;
+                    font-size: 16px;
+                }
+            }
+            &.sketch{
+                width: 170px;
+                height: 170px;
+                @media #{$lg,$md,$md,$sm,$xs}{
+                    width: 120px;
+                    height: 120px;
+                }
+                @media #{$xs}{
+                    width: 100px;
+                    height: 100px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

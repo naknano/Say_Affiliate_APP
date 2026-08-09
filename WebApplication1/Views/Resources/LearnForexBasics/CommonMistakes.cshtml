@@ -1,0 +1,95 @@
+@{
+    ViewData["Title"] = "Common Trading Mistakes and How to Avoid Them";
+    string ac = "#e11d48", al = "#fff1f2";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#2a0710,#7f1d1d,#12040a);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="LearnForexBasics">Learn Forex Basics</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Common Mistakes</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Common Trading Mistakes and How to Avoid Them</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 22 Mar 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 7 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Pitfalls</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(225,29,72,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#fecdd3;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-triangle-exclamation me-1"></i> Avoid These Traps</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="#1 killer",V="Over-leverage"},new{L="#2 killer",V="No stop-loss"},new{L="#3 killer",V="Revenge trading"},new{L="#4 killer",V="Overtrading"},new{L="Fix",V="A written plan"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#fecdd3;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">10</div><div class="na-stat-lbl">Mistakes to Avoid</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2%</div><div class="na-stat-lbl">Max Risk / Trade</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">1</div><div class="na-stat-lbl">Stop on Every Trade</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">0</div><div class="na-stat-lbl">Revenge Trades</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Most traders don't fail because the market is impossible — they fail because they repeat the same avoidable mistakes. The good news: these errors are well known, and once you recognise them, they're easy to sidestep. Here are the most common trading mistakes and exactly how to avoid each one.</p>
+
+            <h2 class="na-h2">The Four Account-Killers</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Over-Leveraging</div><div class="na-step-text">Using too much leverage turns a small adverse move into a blown account. <strong>Fix:</strong> use only the leverage your risk plan allows and size positions to a fixed 1–2% risk.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Trading Without a Stop-Loss</div><div class="na-step-text">Hoping a losing trade "comes back" is how small losses become catastrophic. <strong>Fix:</strong> set a stop-loss on every single trade, before you enter, and never widen it.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Revenge Trading</div><div class="na-step-text">Trying to instantly win back a loss leads to bigger, sloppier bets. <strong>Fix:</strong> step away after a loss, and only return to valid setups that meet your rules.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">04</div><div><div class="na-step-title">Overtrading</div><div class="na-step-text">More trades don't mean more profit — they usually mean more costs and more mistakes. <strong>Fix:</strong> trade only your best setups and be comfortable doing nothing.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Six More Mistakes to Watch For</h2>
+            <ul class="na-list">
+                <li><strong>No trading plan</strong> — trading on impulse instead of predefined rules. Write a plan and follow it.</li>
+                <li><strong>Ignoring the news</strong> — getting caught by high-impact releases. Check the economic calendar before every session.</li>
+                <li><strong>Moving stop-losses</strong> — turning a planned small loss into a large one. Once set, leave it.</li>
+                <li><strong>Chasing the market</strong> — entering late after a move has already happened. Wait for your setup to come to you.</li>
+                <li><strong>Risking too much per trade</strong> — one bad trade shouldn't dent your account. Cap risk at 1–2%.</li>
+                <li><strong>Not keeping a journal</strong> — repeating errors you never diagnosed. Log every trade and review weekly.</li>
+            </ul>
+
+            <h2 class="na-h2">The One Habit That Prevents Most of Them</h2>
+            <p class="na-p">Nearly every mistake on this list disappears when you trade a written plan with fixed risk rules. The plan removes impulse; the risk rules remove catastrophe. Add cashback on top, and even your losing trades return something — softening the cost of the inevitable learning curve.</p>
+            <div class="na-pullquote"><div class="na-pullquote-text">"You don't have to be brilliant to succeed in trading. You just have to stop making the mistakes that wipe out everyone else."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#fecdd3;">Trade Smarter, Not Harder</div>
+                <div class="na-cta-title">Avoid the Mistakes — Keep the Cashback</div>
+                <p class="na-cta-sub">Register free, trade with discipline on a low-spread broker, and earn a rebate on every trade, even the ones that don't go your way.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="na-cta-btn-ghost"><i class="fa-solid fa-chart-line me-2"></i>Position Size Calculator</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:100px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Guides</div>
+            @foreach(var r in new[]{new{A="LearnTradingPsychology",I="fa-solid fa-brain",Bg="#ecfeff",C="#0891b2",T="Trading Psychology",D="14 Mar 2024"},new{A="LearnTradingPlan",I="fa-solid fa-clipboard-list",Bg="#f5f3ff",C="#7c3aed",T="How to Create a Trading Plan",D="28 Feb 2024"},new{A="LearnRebates",I="fa-solid fa-circle-dollar-to-slot",Bg="#f0fdf4",C="#16a34a",T="What Are Forex Rebates?",D="20 Feb 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

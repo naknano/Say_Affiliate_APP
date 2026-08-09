@@ -1,0 +1,229 @@
+@{
+    ViewData["Title"] = "Cashback Calculator";
+
+    // Rebate per standard lot (USD). Keep in sync with the Broker list page.
+    var calcBrokers = new[]
+    {
+        new { Name = "OANDA",            Rebate = 8.00 },
+        new { Name = "ACY Securities",   Rebate = 7.50 },
+        new { Name = "BlackBull Markets",Rebate = 7.00 },
+        new { Name = "FP Markets",       Rebate = 8.50 },
+        new { Name = "Blueberry Markets",Rebate = 7.80 },
+        new { Name = "IC Markets",       Rebate = 8.20 },
+        new { Name = "FxPro",            Rebate = 6.80 },
+        new { Name = "Vantage FX",       Rebate = 7.30 },
+        new { Name = "Tickmill",         Rebate = 6.50 }
+    };
+
+    // Instrument affects the effective rebate.
+    var calcInstruments = new[]
+    {
+        new { Name = "Forex Majors",  Factor = 1.00 },
+        new { Name = "Forex Minors",  Factor = 0.90 },
+        new { Name = "Gold & Metals", Factor = 0.80 },
+        new { Name = "Indices",       Factor = 0.60 },
+        new { Name = "Crypto CFDs",   Factor = 0.70 }
+    };
+}
+
+<!-- calculator hero start -->
+<div class="tp-product-hero fx-calc-hero pre-header" data-background="@Url.Content("~/assets/img/update-2/hero/hero-3/hero-thumb-1.png")">
+   <div class="container containers">
+      <div class="row">
+         <div class="col-12">
+            <div class="tp-product-hero-content text-center">
+               <span class="fx-calc-badge"><i class="fa-solid fa-calculator"></i> Cashback Calculator</span>
+               <h2 class="mb-15 tp-ff-dm">Forex Cashback Calculator</h2>
+               <div class="tp-breadcrumb-list tp-breadcrumb-2-list">
+                  <ul class="justify-content-center">
+                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                     <li><span></span></li>
+                     <li>Cashback Calculator</li>
+                  </ul>
+               </div>
+               <p class="fx-calc-intro">
+                  Estimate how much you can earn back on every trade. Pick your broker, choose what you trade,
+                  and drag the slider to see your rebates add up &mdash; instantly.
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- calculator hero end -->
+
+<!-- calculator body start -->
+<div class="fx-calc pre-header pt-80 pb-120">
+   <div class="container container-1230">
+      <div class="fx-calc-card">
+         <div class="row g-0">
+
+            <!-- inputs -->
+            <div class="col-lg-6">
+               <div class="fx-calc-form">
+                  <h3 class="fx-calc-form-title">Your trading details</h3>
+
+                  <div class="fx-calc-field">
+                     <label for="fxBroker">Select Broker</label>
+                     <div class="fx-calc-select">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <select id="fxBroker">
+                           @foreach (var b in calcBrokers)
+                           {
+                              <option value="@b.Rebate.ToString(System.Globalization.CultureInfo.InvariantCulture)">@b.Name &mdash; $@b.Rebate.ToString("0.00")/lot</option>
+                           }
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="fx-calc-field">
+                     <label for="fxInstrument">Instrument</label>
+                     <div class="fx-calc-select">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <select id="fxInstrument">
+                           @foreach (var ins in calcInstruments)
+                           {
+                              <option value="@ins.Factor.ToString(System.Globalization.CultureInfo.InvariantCulture)">@ins.Name</option>
+                           }
+                        </select>
+                     </div>
+                  </div>
+
+                  <div class="fx-calc-field">
+                     <label>Account Type</label>
+                     <div class="fx-calc-toggle" id="fxAccount">
+                        <button type="button" class="is-active" data-factor="1">Standard</button>
+                        <button type="button" data-factor="0.8">ECN / Raw</button>
+                     </div>
+                  </div>
+
+                  <div class="fx-calc-field">
+                     <label for="fxLots">Lots traded per month <span class="fx-calc-lotval" id="fxLotsLabel">50</span></label>
+                     <input type="range" id="fxLots" class="fx-calc-range" min="1" max="500" step="1" value="50">
+                     <div class="fx-calc-range-scale">
+                        <span>1</span><span>250</span><span>500</span>
+                     </div>
+                  </div>
+
+                  <div class="fx-calc-note">
+                     <i class="fa-solid fa-circle-info"></i>
+                     One standard lot = 100,000 units. Rates shown are estimates &mdash; your actual rebate depends on your broker and account.
+                  </div>
+               </div>
+            </div>
+
+            <!-- results -->
+            <div class="col-lg-6">
+               <div class="fx-calc-result">
+                  <span class="fx-calc-result-shape"></span>
+                  <div class="fx-calc-result-top">
+                     <span class="fx-calc-result-label">Your estimated cashback</span>
+                     <span class="fx-calc-result-period">per month</span>
+                  </div>
+                  <div class="fx-calc-result-hero" id="fxMonthly">$0.00</div>
+
+                  <div class="fx-calc-result-grid">
+                     <div class="fx-calc-result-item">
+                        <span class="fx-calc-result-k">Per day</span>
+                        <span class="fx-calc-result-v" id="fxDaily">$0.00</span>
+                     </div>
+                     <div class="fx-calc-result-item">
+                        <span class="fx-calc-result-k">Per week</span>
+                        <span class="fx-calc-result-v" id="fxWeekly">$0.00</span>
+                     </div>
+                     <div class="fx-calc-result-item">
+                        <span class="fx-calc-result-k">Per year</span>
+                        <span class="fx-calc-result-v" id="fxYearly">$0.00</span>
+                     </div>
+                     <div class="fx-calc-result-item">
+                        <span class="fx-calc-result-k">Per lot</span>
+                        <span class="fx-calc-result-v" id="fxPerLot">$0.00</span>
+                     </div>
+                  </div>
+
+                  <a asp-controller="Home" asp-action="Register" class="fx-calc-cta">Start earning this cashback <i class="fa-solid fa-arrow-right-long"></i></a>
+                  <p class="fx-calc-result-foot">Free to join &middot; paid weekly &middot; no hidden fees</p>
+               </div>
+            </div>
+
+         </div>
+      </div>
+
+      <!-- info cards -->
+      <div class="row mt-50">
+         <div class="col-md-4 mb-20">
+            <div class="fx-calc-info">
+               <span class="fx-calc-info-icon"><i class="fa-solid fa-sliders"></i></span>
+               <h5>1. Enter your details</h5>
+               <p>Choose your broker, instrument and how many lots you trade each month.</p>
+            </div>
+         </div>
+         <div class="col-md-4 mb-20">
+            <div class="fx-calc-info">
+               <span class="fx-calc-info-icon"><i class="fa-solid fa-bolt"></i></span>
+               <h5>2. See your rebate</h5>
+               <p>Your estimated cashback updates instantly across day, week, month and year.</p>
+            </div>
+         </div>
+         <div class="col-md-4 mb-20">
+            <div class="fx-calc-info">
+               <span class="fx-calc-info-icon"><i class="fa-solid fa-wallet"></i></span>
+               <h5>3. Get paid</h5>
+               <p>Register, link your account, and receive your cashback automatically every week.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- calculator body end -->
+
+@section Scripts {
+<script>
+   (function () {
+      var brokerEl = document.getElementById('fxBroker');
+      var instEl   = document.getElementById('fxInstrument');
+      var lotsEl   = document.getElementById('fxLots');
+      var lotsLbl  = document.getElementById('fxLotsLabel');
+      var accWrap  = document.getElementById('fxAccount');
+      if (!brokerEl) return;
+
+      var accountFactor = 1;
+
+      var fmt = function (n) {
+         return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      };
+
+      function calc() {
+         var rebate = parseFloat(brokerEl.value) || 0;
+         var instF  = parseFloat(instEl.value) || 1;
+         var lots   = parseInt(lotsEl.value, 10) || 0;
+
+         var perLot  = rebate * instF * accountFactor;
+         var monthly = perLot * lots;
+
+         document.getElementById('fxPerLot').textContent  = fmt(perLot);
+         document.getElementById('fxMonthly').textContent = fmt(monthly);
+         document.getElementById('fxDaily').textContent   = fmt(monthly / 22);   // ~22 trading days
+         document.getElementById('fxWeekly').textContent  = fmt(monthly / 4.33); // weeks per month
+         document.getElementById('fxYearly').textContent  = fmt(monthly * 12);
+         lotsLbl.textContent = lots + (lots === 1 ? ' lot' : ' lots');
+      }
+
+      brokerEl.addEventListener('change', calc);
+      instEl.addEventListener('change', calc);
+      lotsEl.addEventListener('input', calc);
+
+      accWrap.addEventListener('click', function (e) {
+         var btn = e.target.closest('button');
+         if (!btn) return;
+         accWrap.querySelectorAll('button').forEach(function (b) { b.classList.remove('is-active'); });
+         btn.classList.add('is-active');
+         accountFactor = parseFloat(btn.getAttribute('data-factor')) || 1;
+         calc();
+      });
+
+      calc();
+   })();
+</script>
+}
+<!-- calculator body end -->

@@ -1,0 +1,85 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.22 pricing css start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-pricing{
+    &-ai{
+        &-item{
+            border: 2px solid rgba(17, 17, 18, 0.05);
+            backdrop-filter: blur(500px);
+            padding: 85px 25px 83px 48px;
+            margin-left: -34px;
+            @media #{$xl}{
+                margin-left: -73px;
+            }
+            @media #{$lg,$md,$sm,$xs}{
+                margin-left: 0;
+            }
+            @media #{$xs}{
+                padding: 45px 5px 43px 18px;
+            }
+        }
+        &-list{
+            @media #{$xxl,$xl,$lg}{
+                margin-left: -40px;
+            }
+            @media #{$md,$sm,$xs}{
+                margin-left: 0;
+            }
+            @media #{$sm,$xs}{
+                margin-bottom: 20px;
+            }
+            & ul{
+                & li{
+                    font-family: var(--tp-ff-dm);
+                    font-weight: 400;
+                    font-size: 16px;
+                    letter-spacing: -0.02em;
+                    color: var(--tp-common-black-5);
+                    list-style: none;
+                    position: relative;
+                    padding-left: 12px;
+                    &:not(:last-child){
+                        margin-bottom: 14px;
+                    }
+                    &::before{
+                        position: absolute;
+                        content: "";
+                        width: 5px;
+                        height: 5px;
+                        background: var(--tp-common-black-5);
+                        border-radius: 50%;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        left: 0;
+                    }
+                }
+            }
+        }
+        &-price{
+            & span{
+                font-size: 16px;
+            }
+        }
+        &-title{
+            &-wrap{
+                @media #{$xl}{
+                    margin-right: 80px;
+                }
+                @media #{$lg,$md,$sm,$xs}{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    &-2{
+        &-spacing{
+            padding-top: 236px;
+            @media #{$lg,$md,$sm,$xs}{
+                padding-top: 170px;
+            }
+        }
+    }
+}

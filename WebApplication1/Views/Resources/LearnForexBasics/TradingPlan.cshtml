@@ -1,0 +1,97 @@
+@{
+    ViewData["Title"] = "How to Create a Forex Trading Plan";
+    string ac = "#7c3aed", al = "#f5f3ff";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#1a0b33,#3b0764,#0c0518);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="LearnForexBasics">Learn Forex Basics</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Trading Plan</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">How to Create a Forex Trading Plan</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 28 Feb 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 7 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Planning</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(124,58,237,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#ddd6fe;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-clipboard-list me-1"></i> A Good Plan Covers</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Goals",V="Clear & measurable"},new{L="Risk per trade",V="0.5–2%"},new{L="Strategy",V="Defined rules"},new{L="Routine",V="Daily & weekly"},new{L="Journal",V="Every trade"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#ddd6fe;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2%</div><div class="na-stat-lbl">Max Risk / Trade</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">1:2</div><div class="na-stat-lbl">Min Reward:Risk</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">6</div><div class="na-stat-lbl">Plan Components</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">100%</div><div class="na-stat-lbl">Trades Journalled</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">A trading plan is a written set of rules that tells you exactly what to trade, when to enter and exit, and how much to risk. It's the single biggest thing separating disciplined traders from gamblers. Without one, every decision is driven by emotion; with one, you simply follow the process. Here's how to build a plan you'll actually stick to.</p>
+
+            <h2 class="na-h2">Why You Need a Plan in Writing</h2>
+            <p class="na-p">The market is designed to trigger fear and greed. In the heat of a live trade, those emotions override logic — you cut winners early, let losers run, and abandon your strategy at the worst possible moment. A written plan removes that guesswork. When the rules are decided in advance, calmly, you execute instead of react. Professionals treat trading like a business, and no serious business runs without a plan.</p>
+
+            <h2 class="na-h2">The Six Building Blocks of Your Plan</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Define Your Goals</div><div class="na-step-text">Be specific and realistic. "Grow my account 5% per month while never risking more than 2% per trade" beats "get rich". Measurable goals let you judge progress honestly.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Set Your Risk Rules</div><div class="na-step-text">Decide the maximum you'll risk per trade (0.5–2% of your account) and per day. Always use a stop-loss, and never move it wider once you're in a trade.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Choose Your Markets &amp; Sessions</div><div class="na-step-text">Focus on two or three pairs you understand, and trade them during the sessions when they move — like EUR/USD during the London–NY overlap.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">04</div><div><div class="na-step-title">Write Your Entry &amp; Exit Criteria</div><div class="na-step-text">Spell out the exact conditions that trigger a trade and the conditions that close it. If a setup doesn't meet every rule, you don't take it.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">05</div><div><div class="na-step-title">Build a Routine</div><div class="na-step-text">Have a pre-market checklist and a post-market review. Consistency of process — not intensity — is what produces consistent results.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">06</div><div><div class="na-step-title">Keep a Trading Journal</div><div class="na-step-text">Log every trade: the setup, your reasoning, the outcome, and how you felt. Your journal is where real improvement comes from.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Position Sizing: The Rule That Protects You</h2>
+            <p class="na-p">Risk management is the heart of any plan. Before every trade, calculate your position size so a stop-loss hit costs no more than your chosen risk percentage. A Position Size Calculator does this instantly — you enter your account balance, risk percentage, and stop distance, and it tells you the exact lot size.</p>
+            <ul class="na-list">
+                <li>Never risk more than <strong>1–2%</strong> of your account on any single trade</li>
+                <li>Target a minimum <strong>1:2 reward-to-risk</strong> ratio on every setup</li>
+                <li>Cap your <strong>daily loss</strong> (e.g. 4%) and stop trading if you hit it</li>
+                <li>Size every position <strong>before</strong> you enter — never after</li>
+            </ul>
+
+            <div class="na-pullquote"><div class="na-pullquote-text">"Plan the trade, then trade the plan. The market rewards discipline far more reliably than it rewards prediction."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#ddd6fe;">Trade With a Process</div>
+                <div class="na-cta-title">Put Your Plan Into Action — and Earn Cashback</div>
+                <p class="na-cta-sub">Register free, pick a low-spread broker that suits your plan, and collect a rebate on every disciplined trade you place.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="na-cta-btn-ghost"><i class="fa-solid fa-chart-line me-2"></i>Position Size Calculator</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:100px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Guides</div>
+            @foreach(var r in new[]{new{A="LearnForexGuide",I="fa-solid fa-earth-americas",Bg="#eff6ff",C="#2563eb",T="Forex Basics Guide",D="12 Feb 2024"},new{A="LearnTradingPsychology",I="fa-solid fa-brain",Bg="#ecfeff",C="#0891b2",T="Trading Psychology",D="14 Mar 2024"},new{A="LearnCommonMistakes",I="fa-solid fa-triangle-exclamation",Bg="#fff1f2",C="#e11d48",T="Common Trading Mistakes",D="22 Mar 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

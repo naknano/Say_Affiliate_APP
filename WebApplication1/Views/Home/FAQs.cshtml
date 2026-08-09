@@ -1,0 +1,136 @@
+@{
+    ViewData["Title"] = "FAQs";
+}
+
+<div class="faq2 pre-header pt-155 pb-120">
+    <span class="faq-glow faq-glow-1"></span>
+    <span class="faq-glow faq-glow-2"></span>
+    <div class="container container-1230">
+        <div class="row">
+
+            <!-- left: sticky intro + help -->
+            <div class="col-lg-4">
+                <div class="faq2-side">
+                    <span class="faq-badge"><i class="fa-solid fa-circle-question"></i> Help Center</span>
+                    <h2 class="faq2-title">Frequently Asked <span>Questions</span></h2>
+                    <p class="faq2-lead">Everything you need to know about earning forex cashback with Say Affiliates &mdash;
+                        from getting started to getting paid.</p>
+
+                    <div class="faq2-help">
+                        <span class="faq2-help-icon"><i class="fa-solid fa-headset"></i></span>
+                        <h4>Still have questions?</h4>
+                        <p>Our support team is happy to help with anything cashback-related.</p>
+                        <a asp-controller="Home" asp-action="ContactUs" class="faq2-help-btn">Contact Support <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right: grouped questions -->
+            <div class="col-lg-8">
+
+                <div class="faq2-group">
+                    <h3 class="faq2-group-title"><span class="faq2-gi"><i class="fa-solid fa-rocket"></i></span> Getting Started</h3>
+                    <div class="faq2-list" id="faqStart">
+                        <div class="faq2-item">
+                            <button class="faq2-q" type="button" data-bs-toggle="collapse" data-bs-target="#q_s1" aria-expanded="true" aria-controls="q_s1">
+                                <span>What is Say Affiliates and how does forex cashback work?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_s1" class="collapse show" data-bs-parent="#faqStart">
+                                <div class="faq2-a"><p>Say Affiliates is a forex cashback (rebate) service. When you trade through one of our partner brokers, we share part of the commission the broker pays us back with you as cashback &mdash; so you earn on every trade you place, win or lose.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_s2" aria-expanded="false" aria-controls="q_s2">
+                                <span>How do I start earning cashback?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_s2" class="collapse" data-bs-parent="#faqStart">
+                                <div class="faq2-a"><p>Register a free account, pick a broker from our list and open (or link) your trading account through us, then add your account number in your profile. Once it's approved, you start earning rebates automatically on every trade.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_s3" aria-expanded="false" aria-controls="q_s3">
+                                <span>Which brokers can I earn cashback with?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_s3" class="collapse" data-bs-parent="#faqStart">
+                                <div class="faq2-a"><p>We partner with a wide range of fully regulated, top-tier brokers. You can see the full list and each broker's rebate rate on our Brokers page &mdash; and we're always adding more.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_s4" aria-expanded="false" aria-controls="q_s4">
+                                <span>Does cashback change my trading conditions?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_s4" class="collapse" data-bs-parent="#faqStart">
+                                <div class="faq2-a"><p>No. Your spreads, execution and trading conditions stay exactly the same as trading directly with the broker. The cashback is simply an extra rebate on top &mdash; it never costs you anything.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_s5" aria-expanded="false" aria-controls="q_s5">
+                                <span>Is it really free to join?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_s5" class="collapse" data-bs-parent="#faqStart">
+                                <div class="faq2-a"><p>Yes &mdash; joining Say Affiliates is completely free, with no hidden fees or subscriptions. You only ever gain from the rebates you earn.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq2-group">
+                    <h3 class="faq2-group-title"><span class="faq2-gi"><i class="fa-solid fa-wallet"></i></span> Cashback &amp; Payouts</h3>
+                    <div class="faq2-list" id="faqPay">
+                        <div class="faq2-item">
+                            <button class="faq2-q" type="button" data-bs-toggle="collapse" data-bs-target="#q_p1" aria-expanded="true" aria-controls="q_p1">
+                                <span>How much cashback can I earn?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_p1" class="collapse show" data-bs-parent="#faqPay">
+                                <div class="faq2-a"><p>It depends on your broker, the instruments you trade and your volume. Rebates are paid per lot, and you can estimate your earnings anytime with our Cashback Calculator.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_p2" aria-expanded="false" aria-controls="q_p2">
+                                <span>When and how do I get paid?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_p2" class="collapse" data-bs-parent="#faqPay">
+                                <div class="faq2-a"><p>Your rebates are calculated automatically and credited to your Say Affiliates wallet, with payouts made on a regular weekly schedule via your chosen payment method.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_p3" aria-expanded="false" aria-controls="q_p3">
+                                <span>Do I still earn on losing trades?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_p3" class="collapse" data-bs-parent="#faqPay">
+                                <div class="faq2-a"><p>Yes. Cashback is based on your trading volume, not your profit or loss &mdash; so you earn a rebate on every trade you close, even the losing ones.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_p4" aria-expanded="false" aria-controls="q_p4">
+                                <span>How do I track my rebates?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_p4" class="collapse" data-bs-parent="#faqPay">
+                                <div class="faq2-a"><p>Everything is in your profile dashboard &mdash; you can see your linked trading accounts, transaction history and the status of every rebate and withdrawal in one place.</p></div>
+                            </div>
+                        </div>
+                        <div class="faq2-item">
+                            <button class="faq2-q collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q_p5" aria-expanded="false" aria-controls="q_p5">
+                                <span>Is my data safe and secure?</span>
+                                <i class="faq2-ico"></i>
+                            </button>
+                            <div id="q_p5" class="collapse" data-bs-parent="#faqPay">
+                                <div class="faq2-a"><p>Absolutely. We only ever need your trading account number to track rebates &mdash; never your broker login or funds &mdash; and your personal data is kept private and secure.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

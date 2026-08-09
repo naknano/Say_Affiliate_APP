@@ -1,0 +1,338 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 price css
+/*----------------------------------------*/
+
+.al-price{
+    &-head{
+        & h5{
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            color: var(--tp-common-black-1);
+            font-family: var(--tp-ff-inter);
+        }
+        & span{
+            font-weight: 700;
+            font-size: 50px;
+            display: inline-block;
+            color: var(--tp-common-black-1);
+            font-family: var(--tp-ff-inter);
+            & i{
+                font-size: 20px;
+                font-style: normal;
+                margin-right: 5px;
+                display: inline-block;
+                transform: translateY(-20px);
+            }
+            & em{
+                font-size: 18px;
+                font-style: normal;
+            }
+        }
+    }
+    &-list{
+        margin-bottom: 65px;
+        & ul{
+            & li{
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1;
+                padding-left: 20px;
+                position: relative;
+                list-style-type: none;
+                color: var(--tp-common-black-1);
+                font-family: var(--tp-ff-inter);
+                @media #{$lg}{
+                    font-size: 16px;
+                }
+                &:not(:last-child){
+                    margin-bottom: 17px;
+                }
+                &::after{
+                    position: absolute;
+                    content: '';
+                    top: 7px;
+                    left: 0;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background-color: var(--tp-common-black-3);
+                }
+            }
+        }
+    }
+    &-item{
+        border-radius: 10px;
+        padding: 35px 40px;
+        background-color: var(--tp-common-white);
+        &.active{
+            background-color: var(--tp-common-blue);
+            & .al-price-head{
+                & h5{
+                    color: var(--tp-common-white);
+                }
+                & span{
+                    color: var(--tp-common-white);
+                }
+            }
+            & .al-price-list ul li {
+                color: var(--tp-common-white);
+                &::after{
+                    background-color: var(--tp-common-white);
+                }
+            }
+            & .al-btn-blue.sky-bg {
+                color: var(--tp-common-black-1);
+                background-color: var(--tp-common-white);
+                &:hover{
+                    color: var(--tp-common-white);
+                    background-color: var(--tp-common-black-1);
+                }
+            }
+        }
+    }
+    &-offer{
+        position: absolute;
+        top: -50px;
+        right: -62px;
+    }
+    &-style{
+        &-2{
+            & .al-price-item.active {
+                background-color: var(--tp-common-white);
+            }
+            & .al-price-item.active .al-price-head h5 {
+                color: var(--tp-common-black-1);
+            }
+            & .al-price-item.active .al-price-head span {
+                color: var(--tp-common-black-1);
+            }
+            & .al-price-item.active .al-price-list ul li {
+                color: var(--tp-common-black-1);
+            }
+            & .al-price-item.active .al-price-list ul li::after {
+                background-color: var(--tp-common-black-1);
+            }
+            & .al-price-item.active .al-btn-border-radius-6.lg {
+                color: var(--tp-common-white);
+                border-color: var(--tp-common-black-1);
+                background-color: var(--tp-common-black-1);
+            }
+        }
+    }
+}
+
+
+
+// tab-style-here
+.al-toggler-pre,
+.al-toggler-post {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    color: #848788;
+    transition: all .3s ease;
+    font-family: var(--tp-ff-inter);
+    &.is-active{
+        color: var(--tp-common-black-1);
+    }
+    &:hover{
+        color: var(--tp-common-black-1);
+    }
+}
+.al-toggler-pre{
+    margin-right: 15px;
+}
+.al-toggler-post {
+    margin-left: 15px;
+}
+.al-toggle-input-wrap{
+    position: relative;
+    width: 76px;
+    height: 36px;
+    overflow: hidden;
+    border-radius: 100px;
+    background-color: var(--tp-common-blue);
+}
+.al-price-nav {
+    &-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .al-input-check {
+            position: absolute;
+            display: block;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            z-index: 6;
+            width: 100%;
+            height: 100%;
+        }
+        & .al-input-check:checked~.al-switch-toggle {
+            left: 4px;
+            right: 57.3%;
+        }
+    }
+}
+.al-switch-toggle {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    left: 57.3%;
+    bottom: 4px;
+    z-index: 1;
+    border-radius: 100%;
+    box-shadow: 0 4px 6px 0 rgba(1, 17, 22, 0.24);
+    transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    background: linear-gradient(180deg, #fff 0%, #e1e4e8 100%);
+}
+.al-tab-hide {
+    display: none;
+}
+
+.al-price-pg{
+    &-item{
+        padding: 50px 40px;
+        border: 1px solid rgba(183, 171, 152, 0.14);
+        @media #{$md}{
+            padding: 50px 25px;
+        }
+        @media #{$xs}{
+            padding: 40px 30px;
+        }
+        &.active{
+            & .al-btn-pg-price{
+                background-color: var(--tp-common-pink);
+                color: var(--tp-common-white);
+                border-color: var(--tp-common-pink);
+            }
+        }
+    }
+    &-bdr{
+        &-1,
+        &-2,
+        &-3,
+        &-4{
+            &::after{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 10px;
+                height: 1px;
+                background-color: var(--tp-common-black-7);
+                content: '';
+            }
+            &::before{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1px;
+                height: 10px;
+                background-color: var(--tp-common-black-7);
+                content: '';
+            }
+            &.bdr-topright{
+                &::after{
+                    left: auto;
+                    right: 0;
+                }
+                &::before{
+                    left: auto;
+                    right: 0;
+                }
+            }
+            &.bdr-bottomleft{
+                &::after{
+                    top: auto;
+                    bottom: 0;
+                }
+                &::before{
+                    top: auto;
+                    bottom: 0;  
+                }
+            }
+            &.bdr-bottomright{
+                &::after{
+                    top: auto;
+                    bottom: 0;
+                    left: auto;
+                    right: 0;
+                }
+                &::before{
+                    top: auto;
+                    bottom: 0;
+                    left: auto;
+                    right: 0;  
+                }
+            }
+        }
+
+    }
+    &-title{
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 36px;
+        color: var(--tp-common-black-7);
+        font-family: var(--tp-ff-playfair);
+        margin-bottom: 0;
+    }
+    &-price{
+        font-size: 70px;
+        font-weight: 500;
+        line-height: 100px;
+        letter-spacing: -2.8px;
+        text-transform: uppercase;
+        color: var(--tp-common-black-7);
+        font-family: var(--tp-ff-poppins);
+        margin-bottom: 10px;
+    }
+    &-head{
+        margin-bottom: 35px;
+        & p{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            font-family: var(--tp-ff-poppins);
+            color: var(--tp-common-black-7);
+            margin-bottom: 0;
+        }
+    }
+    &-btn{
+        margin-bottom: 40px;
+    }
+    &-list{
+        & ul{
+            & li{
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.5;
+                font-family: var(--tp-ff-poppins);
+                color: var(--tp-common-black-7);
+                list-style-type: none;
+                margin-bottom: 20px;
+                position: relative;
+                padding-left: 15px;
+                &::after{
+                    position: absolute;
+                    top: 10px;
+                    left: 0;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background-color: var(--tp-common-black-7);
+                    content: '';
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+@use '../../../utils' as *;
+/*----------------------------------------*/
+/*   3.4 text slider
+/*----------------------------------------*/
+
+.crp-text{
+    &-slider{
+        &-style{
+            &.ar-brand-style .tp-brand-title {
+                font-weight: 500;
+                font-size: 40px;
+                line-height: 1;
+                color: #2A4C3A;
+                letter-spacing: -0.01em;
+                text-transform: capitalize;
+                font-family: var(--tp-ff-teko);
+            }
+            &.ar-brand-style .tp-brand-title::after {
+                background-color: #2A4C3A;
+            }
+        }
+        &-item{
+            & span{
+                font-weight: 600;
+                font-size: 240px;
+                line-height: .46;
+                letter-spacing: -0.02em;
+                text-transform: uppercase;
+                font-family: var(--tp-ff-teko);
+                color: rgba(255, 253, 225, 0.1);
+            }
+            &.stroke-text{
+                & span{
+                    color: transparent;
+                    -webkit-text-stroke: 2px rgba(255, 253, 225, 0.1);
+                }
+            }
+        }
+        &-active{
+            padding-top: 160px;
+            padding-bottom: 150px;
+            @media #{$md}{
+                padding-top: 70px;
+            }
+            @media #{$xs}{
+                padding-top: 55px;
+                padding-bottom: 60px
+            }
+            & .swiper-slide{
+                width: auto;
+            }
+            & .slide-transtion {
+                -webkit-transition-timing-function: linear;
+                transition-timing-function: linear;
+            }
+            &.app-text-slider-color{
+                padding-top: 90px;
+                & .swiper-wrapper{
+                    & .crp-text-slider-item{
+                        &.stroke-text{
+                            & span{
+                                color: transparent;
+                                -webkit-text-stroke: 2px rgba($color: #191919, $alpha: 0.9);
+                            }
+                        }
+                        & span{
+                            font-size: 160px;
+                            opacity: 0.1;
+                            color: #191919;
+                            letter-spacing: -3.2px;
+                            font-family: var(--tp-ff-clash-semibold);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-shape{
+        &-wrap{
+            position: absolute;
+            top: 8%;
+            right: 18%;
+            z-index: 55;
+            @media #{$md}{
+                top: 0;
+            }
+            &.app{
+                top: -16%;
+            }
+        }
+        &-2{
+            position: absolute;
+            top: 16px;
+            left: 16px;
+        }
+    }
+}

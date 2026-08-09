@@ -1,0 +1,156 @@
+@{
+    ViewData["Title"] = "Learn Forex Basics";
+
+    var articles = new[]
+    {
+        new { Act="LearnForexGuide",
+              Icon="fa-solid fa-earth-americas",
+              Grad="linear-gradient(135deg,#1e3a8a 0%,#2563eb 55%,#60a5fa 100%)",
+              Clr="#2563eb", Tag="Start Here", Read="8 min read", Date="12 Feb 2024",
+              Title="Forex Basics: A Short Guide to Understanding the Foreign Exchange Market",
+              Excerpt="Currency pairs, pips, leverage, spreads and sessions explained in plain English — the essential foundation every new trader needs before their first trade." },
+        new { Act="LearnRebates",
+              Icon="fa-solid fa-circle-dollar-to-slot",
+              Grad="linear-gradient(135deg,#14532d 0%,#16a34a 55%,#4ade80 100%)",
+              Clr="#16a34a", Tag="Cashback", Read="6 min read", Date="20 Feb 2024",
+              Title="What Are Forex Rebates and How Do They Work?",
+              Excerpt="Rebates return part of the spread or commission on every trade — win or lose. Here's exactly how cashback works and how to turn your volume into passive income." },
+        new { Act="LearnTradingPlan",
+              Icon="fa-solid fa-clipboard-list",
+              Grad="linear-gradient(135deg,#3b0764 0%,#7c3aed 55%,#a78bfa 100%)",
+              Clr="#7c3aed", Tag="Planning", Read="7 min read", Date="28 Feb 2024",
+              Title="How to Create a Forex Trading Plan",
+              Excerpt="A written plan is what separates disciplined traders from gamblers. Build yours step by step — goals, risk rules, strategy, and a routine you can actually follow." },
+        new { Act="LearnTradeOnBudget",
+              Icon="fa-solid fa-piggy-bank",
+              Grad="linear-gradient(135deg,#78350f 0%,#d97706 55%,#fbbf24 100%)",
+              Clr="#d97706", Tag="On a Budget", Read="6 min read", Date="06 Mar 2024",
+              Title="How to Trade Forex on a Budget: Tips and Tricks",
+              Excerpt="You don't need thousands to start. Learn how micro lots, low-spread brokers, and cashback let you trade responsibly with a small account and still grow it." },
+        new { Act="LearnTradingPsychology",
+              Icon="fa-solid fa-brain",
+              Grad="linear-gradient(135deg,#083344 0%,#0891b2 55%,#22d3ee 100%)",
+              Clr="#0891b2", Tag="Mindset", Read="9 min read", Date="14 Mar 2024",
+              Title="Trading Psychology: Mastering Your Mindset for Consistent Profits",
+              Excerpt="Fear, greed and revenge trading destroy more accounts than bad strategies. Master the mental game with practical routines that keep your emotions in check." },
+        new { Act="LearnCommonMistakes",
+              Icon="fa-solid fa-triangle-exclamation",
+              Grad="linear-gradient(135deg,#7f1d1d 0%,#e11d48 55%,#fb7185 100%)",
+              Clr="#e11d48", Tag="Pitfalls", Read="7 min read", Date="22 Mar 2024",
+              Title="Common Trading Mistakes and How to Avoid Them",
+              Excerpt="Over-leveraging, no stop-loss, chasing losses — the same errors sink most beginners. Spot the ten most common mistakes early and sidestep them for good." },
+    };
+}
+
+<style>
+/* ── Learn Forex Basics — article cards ── */
+.lba-card{display:flex;flex-direction:column;height:100%;background:#fff;border:1.5px solid #e8edf4;border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .22s,box-shadow .22s,border-color .22s;}
+.lba-card:hover{transform:translateY(-6px);border-color:transparent;box-shadow:0 22px 48px -16px rgba(15,27,45,.28);color:inherit;text-decoration:none;}
+.lba-banner{height:132px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.lba-banner::before{content:'';position:absolute;right:-24px;top:-24px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.08);}
+.lba-banner::after{content:'';position:absolute;left:-30px;bottom:-30px;width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.06);}
+.lba-icon{width:62px;height:62px;border-radius:16px;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:25px;color:#fff;position:relative;z-index:1;box-shadow:0 8px 22px rgba(0,0,0,.2);}
+.lba-tag{position:absolute;top:12px;left:14px;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:3px 10px;border-radius:999px;z-index:2;}
+.lba-num{position:absolute;top:12px;right:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.85);z-index:2;}
+.lba-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1;}
+.lba-title{font-size:16px;font-weight:800;color:#0f1b2d;line-height:1.35;margin:0 0 8px;}
+.lba-card:hover .lba-title{color:var(--lba-clr,#2563eb);}
+.lba-excerpt{font-size:13px;color:#64748b;line-height:1.65;margin:0 0 16px;flex:1;}
+.lba-meta{display:flex;align-items:center;justify-content:space-between;padding-top:13px;border-top:1px solid #eef2f7;}
+.lba-meta-left{font-size:11.5px;color:#94a3b8;font-weight:600;display:flex;align-items:center;gap:12px;}
+.lba-cta{font-size:12.5px;font-weight:800;display:inline-flex;align-items:center;gap:6px;transition:gap .18s;}
+.lba-card:hover .lba-cta{gap:10px;}
+.lba-intro{margin-bottom:26px;}
+.lba-intro-eyebrow{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#009AEE;margin-bottom:8px;}
+</style>
+
+<div class="res-page">
+
+    <section class="lfb-hero">
+        <div class="container container-1230">
+            <nav class="res-breadcrumb" aria-label="breadcrumb">
+                <a asp-controller="Home"      asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Learn Forex Basics</span>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <h1 style="font-size:clamp(30px,4.5vw,46px);font-weight:800;color:#0f1b2d;line-height:1.15;margin:0 0 16px;">Learn Forex Basics</h1>
+                </div>
+                <div class="col-lg-7">
+                    <p class="lfb-hero-desc">Master the foundational concepts of the foreign exchange market — from currency pairs and pips to trading plans, psychology, and cashback. Start your trading journey with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lfb-stats">
+        <div class="container container-1230">
+            <div class="row align-items-center text-center g-3">
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">$7.5T</span><span class="lfb-stat-lbl">Daily Trading Volume</span></div></div>
+                <div class="col-auto d-none d-md-block"><div class="lfb-stat-sep" style="height:52px;"></div></div>
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">24/5</span><span class="lfb-stat-lbl">Market Hours</span></div></div>
+                <div class="col-auto d-none d-md-block"><div class="lfb-stat-sep" style="height:52px;"></div></div>
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">180+</span><span class="lfb-stat-lbl">Currencies Traded</span></div></div>
+                <div class="col-auto d-none d-md-block"><div class="lfb-stat-sep" style="height:52px;"></div></div>
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">6</span><span class="lfb-stat-lbl">Beginner Guides</span></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="res-sub-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-3 col-md-4">
+                    <partial name="_Sidebar" model="@("LearnForexBasics")" />
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+                    <div class="lba-intro">
+                        <span class="lba-intro-eyebrow"><i class="fa-solid fa-graduation-cap me-1"></i> Beginner's Path</span>
+                        <h2 class="lfb-section-title" style="margin-bottom:6px;">Start With the Fundamentals</h2>
+                        <p class="lfb-section-sub" style="margin:0;">Six essential guides that take you from complete beginner to confident, disciplined trader — read them in order or jump to what you need.</p>
+                    </div>
+
+                    <div class="row g-4">
+                        @{ int n = 1; }
+                        @foreach (var a in articles)
+                        {
+                            <div class="col-lg-4 col-sm-6">
+                                <a asp-controller="Resources" asp-action="@a.Act" class="lba-card" style="--lba-clr:@a.Clr;">
+                                    <div class="lba-banner" style="background:@a.Grad;">
+                                        <span class="lba-tag">@a.Tag</span>
+                                        <span class="lba-num">0@(n)</span>
+                                        <div class="lba-icon"><i class="@a.Icon"></i></div>
+                                    </div>
+                                    <div class="lba-body">
+                                        <h3 class="lba-title">@a.Title</h3>
+                                        <p class="lba-excerpt">@a.Excerpt</p>
+                                        <div class="lba-meta">
+                                            <span class="lba-meta-left"><i class="fa-regular fa-clock"></i> @a.Read</span>
+                                            <span class="lba-cta" style="color:@a.Clr;">Read <i class="fa-solid fa-arrow-right"></i></span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            n++;
+                        }
+                    </div>
+
+                    <div class="lfb-cta mt-5">
+                        <h3>Ready to Start Earning While You Trade?</h3>
+                        <p>Join Say Affiliates and get automatic cashback rebates on every trade — with our top partner brokers.</p>
+                        <a asp-controller="Home" asp-action="Register" class="lfb-cta-btn">
+                            Get Started Free <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

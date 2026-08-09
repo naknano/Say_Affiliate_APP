@@ -1,0 +1,102 @@
+@model WebApplication1.Data.DTO.TradingAccount.WithdrawPageDto
+@{
+    ViewData["Title"] = "Withdraw";
+    Layout = "_ProfileLayout";
+}
+
+@await Html.PartialAsync("~/Views/Home/Profile/Withdraw.cshtml", Model)
+
+@section Scripts {
+   <script>
+      $(function () {
+         if (!$('#withdrawForm').length) { return; }
+
+         var method = 'bank';
+
+         // ---- destination tabs (Bank / Crypto) ----
+         $('#wd-tabs').on('click', '.wd-tab', function () {
+            method = $(this).data('method');
+            $('.wd-tab').removeClass('is-active');
+            $(this).addClass('is-active');
+            $('#wd-pane-bank').toggleClass('d-none', method !== 'bank');
+            $('#wd-pane-crypto').toggleClass('d-none', method !== 'crypto');
+         });
+
+         // ---- fill bank account name + number ----
+         $('#wd-bank').on('change', function () {
+            var $opt = $(this).find('option:selected');
+            $('#wd-account-name').val($opt.data('name') || '');
+            $('#wd-account-num').val($opt.data('num') || '');
+         });
+
+         // ---- fill wallet address ----
+         $('#wd-network').on('change', function () {
+            var $opt = $(this).find('option:selected');
+            $('#wd-wallet').val($opt.data('wallet') || '');
+         });
+
+         // ---- submit ----
+         $('#withdrawSubmit').on('click', function () {
+            var amt = parseFloat($('#wd-amount').val());
+            if (!amt || amt <= 0) {
+               Swal.fire({ title: 'Warning!', text: 'Please enter a valid amount.', icon: 'warning', confirmButtonText: 'Close' });
+               return;
+            }
+
+            var payload = { amount: amt, currency: $('#wd-currency').val(), method: method };
+            var destination;
+
+            if (method === 'crypto') {
+               if (!$('#wd-network').val()) {
+                  Swal.fire({ title: 'Warning!', text: 'Please select a crypto network.', icon: 'warning', confirmButtonText: 'Close' });
+                  return;
+               }
+               if (!$('#wd-wallet').val()) {
+                  Swal.fire({ title: 'Warning!', text: 'The selected network has no wallet address saved.', icon: 'warning', confirmButtonText: 'Close' });
+                  return;
+               }
+               payload.cryptoNetwork = $('#wd-network').val();
+               destination = $('#wd-wallet').val();
+            } else {
+               if (!$('#wd-bank').val()) {
+                  Swal.fire({ title: 'Warning!', text: 'Please select a bank.', icon: 'warning', confirmButtonText: 'Close' });
+                  return;
+               }
+               payload.userBankId = $('#wd-bank').val();
+               destination = $('#wd-account-num').val();
+            }
+
+            var $btn = $(this).prop('disabled', true);
+            var currency = payload.currency;
+
+            $.ajax({
+               url: '/Withdraw/PostWithdrawTransaction',
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               data: JSON.stringify(payload)
+            })
+            .done(function (res) {
+               if (res && res.responseCode === 200) {
+                  Swal.fire({
+                     title: 'Withdrawal requested',
+                     html: 'Amount: <b>' + amt.toFixed(2) + ' ' + currency + '</b><br>To: <b>' + destination + '</b>',
+                     icon: 'success',
+                     confirmButtonText: 'OK'
+                  });
+                  $('#withdrawForm')[0].reset();
+                  $('#wd-account-name, #wd-account-num, #wd-wallet').val('');
+               } else {
+                  Swal.fire({ title: 'Failed!', text: res ? res.responseMessage : 'Request failed.', icon: 'error', confirmButtonText: 'Close' });
+               }
+            })
+            .fail(function () {
+               Swal.fire({ title: 'Error!', text: 'Something went wrong. Please try again.', icon: 'error', confirmButtonText: 'Close' });
+            })
+            .always(function () {
+               $btn.prop('disabled', false);
+            });
+         });
+      });
+   </script>
+}

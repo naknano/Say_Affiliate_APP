@@ -1,0 +1,68 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 text-slider css
+/*----------------------------------------*/
+
+
+.al-text{
+    &-slider-seo{
+        &-title{
+            font-weight: 600;
+            font-size: 60px;
+            line-height: 1;
+            margin-right: 55px;
+            color: var(--tp-common-black-1);
+            font-family: var(--tp-ff-inter);
+        }
+        &-active{
+            & .swiper-slide{
+                width: auto;
+            }
+        }
+        &-wave-shape{
+            &-1{
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+            &-2{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.al-text-pg-slider{
+    &-item{
+        & span{
+            font-size: 40px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--tp-common-white);
+            font-family: var(--tp-ff-playfair);
+            margin-right: 30px;
+            padding: 5px 0;
+        }
+        & img{
+            margin-right: 30px;
+            display: inline-block;
+            filter: invert(1);
+        }
+    }
+    &-wrap{
+        background-color: var(--tp-common-pink);
+        padding: 25px 0;
+    }
+    &-active{
+        .swiper-slide{
+            width: auto!important;
+        }
+    }
+}

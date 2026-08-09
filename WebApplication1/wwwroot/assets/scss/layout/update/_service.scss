@@ -1,0 +1,93 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 service css
+/*----------------------------------------*/
+
+.al-service-seo{
+    &-title{
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 14px;
+        letter-spacing: -0.02em;
+        color: var(--tp-common-black-1);
+        font-family: var(--tp-ff-inter);
+        &-box{
+            @media #{$xs}{
+                margin-bottom: 40px;
+            }
+        }
+    }
+    &-item{
+        &:hover{
+            & .al-service-seo-icon{
+                & span{
+                    animation: icon-bounce 0.8s 1;
+                }
+            }
+        }
+    }
+    &-icon{
+        margin-bottom: 25px;
+        & span{
+            height: 50px;
+            width: 50px;
+            line-height: 47px;
+            text-align: center;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #fbcea0;
+            color: var(--tp-common-black-1);
+        }
+    }
+    &-content{
+        & p{
+            font-size: 14px;
+            line-height: 1.57;
+            color: #4d5051;
+            margin-bottom: 0;
+            padding-right: 30px;
+            font-family: var(--tp-ff-inter);
+            @media #{$md}{
+                font-size: 13px;
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+.al-service-archi{
+    &-wrapper{
+        &:hover{
+            & .al-service-archi-icon{
+                color: var(--tp-theme-secondary);
+            }
+            & .al-service-archi-link{
+                color: var(--tp-theme-secondary);
+            }
+        }
+    }
+    &-title{
+        font-size: 34px;
+        line-height: 1;
+        margin-bottom: 15px;
+        & a{
+            &:hover{
+                color: var(--tp-theme-secondary);
+            }
+        }
+    }
+    &-link{
+        color: #BCBCBC;
+    }
+    &-icon{
+        color: var(--tp-common-black);
+        @include transition();
+    }
+    &-content{
+        & p{
+            font-family: var(--tp-ff-inter);
+            font-size: 17px;
+        }
+    }
+}

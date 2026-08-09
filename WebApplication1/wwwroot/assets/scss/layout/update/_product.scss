@@ -1,0 +1,187 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 product css
+/*----------------------------------------*/
+
+
+.al-product{
+    &-tab{
+        & .nav-tabs{
+            border: none;
+            & .nav-link{
+                font-size: 20px;
+                color: #A0A2A4;
+                position: relative;
+                font-family: var(--tp-ff-dm);
+                padding: 0;
+                margin: 0;
+                border: 0;
+                @media #{$xs}{
+                    font-size: 15px;
+                }
+                &:not(:first-child){
+                    margin-left: 28px;
+                    &::after{
+                        position: absolute;
+                        left: -17px;
+                        top: 50%;
+                        content: '';
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 50%;
+                        background-color: #CED2D6;
+                    }
+                }
+                &.active{
+                    color: var(--tp-theme-secondary);
+                    .al-product-tab-tooltip{
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+    
+                & .al-product-tab-tooltip{
+                    position: absolute;
+                    top: -24px;
+                    right: 0;
+                    background-color: var(--tp-theme-secondary);
+                    color: var(--tp-common-white);
+                    font-size: 12px;
+                    line-height: 1;
+                    display: inline-block;
+                    padding: 4px 9px;
+                    border-radius: 4px;
+                    visibility: hidden;
+                    opacity: 0;
+                    @include transition();
+                    font-weight: 700;
+                    font-family: var(--tp-ff-dm);
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        bottom: 0;
+                        bottom: -5px;
+                        left: 7px;
+                        width: 13px;
+                        height: 6px;
+                        background-color: var(--tp-theme-secondary);
+                        clip-path: polygon(100% 0, 0 0, 28% 100%);
+                    }
+                }
+            }
+        }
+    }
+    &-tag{
+        margin-bottom: 3px;
+        & a{
+            font-size: 14px;
+            position: relative;
+            display: inline-block;
+            line-height: 1;
+            font-family: var(--tp-ff-dm);
+            color: var(--tp-grey-1);
+            &::after{
+                position: absolute;
+                content: '';
+                left: auto;
+                right: 0;
+                bottom: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--tp-theme-secondary);
+                @include transition();
+            }
+            &:hover{
+                color: var(--tp-theme-secondary);
+                &::after{
+                    left: 0;
+                    right: auto;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.tp-product-price {
+    color: var(--tp-grey-1);
+}
+
+
+.al-trending-shop{
+    &-slider{
+        &-dot{
+            & .swiper-pagination-bullet{                
+                &.swiper-pagination-bullet-active{
+                    background-color: var(--tp-theme-secondary);
+                }
+            }
+        }
+    }
+    &-banner{
+        position: relative;
+        height: 630px;
+        @media #{$md}{
+            height: 430px;
+            margin-left: 0;
+            margin-top: 50px;
+        }
+        @media #{$sm}{
+            height: 430px;
+            margin-left: 0;
+            margin-top: 50px;
+        }
+        @media #{$xs}{
+            height: 430px;
+            margin-left: 0;
+            margin-top: 50px;
+        }
+        &::after{
+            position: absolute;
+            content: '';
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            @include gradient((180deg, rgba(1, 15, 28, 0) 44.84%, rgba(1, 15, 28, 0.6) 100%));
+        }
+        &-content{
+            position: absolute;
+            bottom: 40px;
+            left: 35px;
+            z-index: 1;
+            @media #{$xs}{
+                bottom: 25px;
+                left: 20px;
+            }
+        }
+        &-title{
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 1.13;
+            color: var(--tp-common-white);
+            margin-bottom: 18px;
+            & a{
+                background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+                background-size: 0% 1px, 0 1px;
+                background-position: 100% 100%, 0 81%;
+                background-repeat: no-repeat;
+                transition: background-size 0.4s linear;
+                &:hover{
+                    background-size: 0 1px, 100% 1px;
+                }
+            }
+        }
+        &-thumb{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            @media #{$md, $sm, $xs}{
+                background-position: top center;
+            }
+        }
+    }
+}

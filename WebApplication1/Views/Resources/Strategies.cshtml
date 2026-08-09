@@ -1,0 +1,305 @@
+@{
+    ViewData["Title"] = "Strategies & Technical Analysis";
+
+    var articles = new[]
+    {
+        new { Ctrl="Resources", Act="StrategyCashback500", Cat="cashback",
+              ThumbBg="linear-gradient(135deg,#d1fae5 0%,#a7f3d0 100%)",
+              ThumbText="How <strong>$500</strong> in Forex Cashback Adds Up Over <strong>Three Months</strong>",
+              BadgeBg="#16a34a", BadgeClr="#fff", BadgeTxt="CASH\nBACK",
+              AuthorClr="#16a34a",
+              Title="How $500 in Forex Cashback Adds Up Over Three Months",
+              Date="15 Jan 2025", Diff="Beginner",
+              Excerpt="Discover how consistent cashback earnings compound over 90 days of active forex trading — and why the first $500 is just the beginning." },
+        new { Ctrl="Resources", Act="StrategyGoldRebounds", Cat="market",
+              ThumbBg="linear-gradient(135deg,#fef9c3 0%,#fde68a 100%)",
+              ThumbText="How to Prepare for <strong>Gold Rebounds</strong> and Breakouts During Market Overlaps",
+              BadgeBg="#ca8a04", BadgeClr="#fff", BadgeTxt="GOLD\nXAU",
+              AuthorClr="#ca8a04",
+              Title="How to Prepare for Gold Rebounds and Breakouts During Market Overlaps",
+              Date="22 Nov 2024", Diff="Intermediate",
+              Excerpt="Timed to the London–New York overlap, gold's most predictable intraday moves offer high-probability rebound and breakout setups for prepared traders." },
+        new { Ctrl="Resources", Act="StrategyEurUsdRebounds", Cat="market",
+              ThumbBg="linear-gradient(135deg,#dbeafe 0%,#bfdbfe 100%)",
+              ThumbText="How to Prepare for <strong>EUR/USD</strong> Rebounds and Breakouts During Market Overlaps",
+              BadgeBg="#2563eb", BadgeClr="#fff", BadgeTxt="EUR\nUSD",
+              AuthorClr="#2563eb",
+              Title="How to Prepare for EUR/USD Rebounds and Breakouts During Market Overlaps",
+              Date="08 Oct 2024", Diff="Intermediate",
+              Excerpt="EUR/USD generates its sharpest intraday swings during the London open. Learn how to identify and trade the rebound and breakout setups with precision." },
+        new { Ctrl="Resources", Act="StrategyTechCashback", Cat="technical",
+              ThumbBg="linear-gradient(135deg,#ede9fe 0%,#ddd6fe 100%)",
+              ThumbText="<strong>Elevate Your Forex Game</strong>: Unlocking Gains with Technical Analysis and Cashback",
+              BadgeBg="#7c3aed", BadgeClr="#fff", BadgeTxt="TECH\n+CB",
+              AuthorClr="#7c3aed",
+              Title="Elevate Your Forex Game: Unlocking Gains with Technical Analysis and Cashback",
+              Date="19 Sep 2024", Diff="Intermediate",
+              Excerpt="Combining technical precision with cashback rebates creates a dual-edge advantage — better trade selection and lower effective costs on every position." },
+        new { Ctrl="Resources", Act="StrategyDayTrading", Cat="style",
+              ThumbBg="linear-gradient(135deg,#ffedd5 0%,#fed7aa 100%)",
+              ThumbText="<strong>Day Trading Forex</strong>: Strategies for Success and Maximizing Profits",
+              BadgeBg="#ea580c", BadgeClr="#fff", BadgeTxt="DAY\nTRADE",
+              AuthorClr="#ea580c",
+              Title="Day Trading Forex: Strategies for Success and Maximizing Profits",
+              Date="05 Aug 2024", Diff="Intermediate",
+              Excerpt="Intraday forex trading demands discipline, session awareness, and a tight risk framework. Master the key techniques that separate profitable day traders from the rest." },
+        new { Ctrl="Resources", Act="StrategySwingTrading", Cat="style",
+              ThumbBg="linear-gradient(135deg,#cffafe 0%,#a5f3fc 100%)",
+              ThumbText="<strong>Swing Trading</strong> Strategy Ideas for Successful Trades",
+              BadgeBg="#0891b2", BadgeClr="#fff", BadgeTxt="SWING\nTRADE",
+              AuthorClr="#0891b2",
+              Title="Swing Trading Strategy Ideas for Successful Trades",
+              Date="28 Jun 2024", Diff="Beginner",
+              Excerpt="Swing trading captures medium-term price waves over days to weeks — offering a balance between analysis depth and trading frequency that suits most working traders." },
+        new { Ctrl="Resources", Act="StrategyTechAnalysis", Cat="technical",
+              ThumbBg="linear-gradient(135deg,#e0e7ff 0%,#c7d2fe 100%)",
+              ThumbText="How to Use <strong>Technical Analysis</strong> for Forex Trading",
+              BadgeBg="#4f46e5", BadgeClr="#fff", BadgeTxt="TECH\nANAL",
+              AuthorClr="#4f46e5",
+              Title="How to Use Technical Analysis for Forex Trading",
+              Date="12 May 2024", Diff="Beginner",
+              Excerpt="Technical analysis is the foundation of chart-based forex trading. Learn to read price action, identify key levels, and use indicators to time entries with confidence." },
+        new { Ctrl="Resources", Act="StrategyForexSignals", Cat="style",
+              ThumbBg="linear-gradient(135deg,#fee2e2 0%,#fecaca 100%)",
+              ThumbText="How to Use <strong>Forex Signals</strong> to Boost Your Trading Performance",
+              BadgeBg="#e53935", BadgeClr="#fff", BadgeTxt="FOREX\nSIGNAL",
+              AuthorClr="#e53935",
+              Title="How to Use Forex Signals to Boost Your Trading Performance",
+              Date="20 Mar 2024", Diff="Beginner",
+              Excerpt="Forex signals can accelerate your development as a trader — but only if you know how to evaluate, filter, and manage them properly within your risk framework." },
+        new { Ctrl="Resources", Act="StrategyAdvanced", Cat="advanced",
+              ThumbBg="linear-gradient(135deg,#e0e7ff 0%,#c7d2fe 100%)",
+              ThumbText="<strong>Advanced Trading Strategies</strong>: Fundamental and Technical Analysis Combined",
+              BadgeBg="#312e81", BadgeClr="#fff", BadgeTxt="ADV\nSTRAT",
+              AuthorClr="#312e81",
+              Title="Advanced Trading Strategies: Using Fundamental and Technical Analysis to Enhance Your Returns",
+              Date="15 Feb 2024", Diff="Advanced",
+              Excerpt="Elite traders align macro fundamental themes with technical chart precision. This top-down framework gives your trades context, conviction, and a higher probability edge." },
+        new { Ctrl="Resources", Act="StrategyScalping", Cat="style",
+              ThumbBg="linear-gradient(135deg,#fee2e2 0%,#fecaca 100%)",
+              ThumbText="The Art of <strong>Scalping Trading</strong>: Maximizing Profits in Short-Term Movements",
+              BadgeBg="#b91c1c", BadgeClr="#fff", BadgeTxt="SCALP\nING",
+              AuthorClr="#b91c1c",
+              Title="The Art of Scalping Trading: Maximizing Profits in Short-Term Market Movements",
+              Date="10 Jan 2024", Diff="Advanced",
+              Excerpt="Scalping extracts small gains from dozens of high-frequency trades. Master the broker requirements, chart setups, and discipline framework that make scalping viable." },
+        new { Ctrl="Resources", Act="StrategyVolatile", Cat="market",
+              ThumbBg="linear-gradient(135deg,#fef3c7 0%,#fde68a 100%)",
+              ThumbText="<strong>Strategies</strong> for Trading in <strong>Volatile Markets</strong>",
+              BadgeBg="#d97706", BadgeClr="#fff", BadgeTxt="VOLAT\nILE",
+              AuthorClr="#d97706",
+              Title="Strategies for Trading in Volatile Markets",
+              Date="05 Dec 2023", Diff="Advanced",
+              Excerpt="Market volatility creates both opportunity and danger. Discover how to adapt your position sizing, entry timing, and risk rules when conditions become unpredictable." },
+        new { Ctrl="Resources", Act="StrategyAlgo", Cat="advanced",
+              ThumbBg="linear-gradient(135deg,#e2e8f0 0%,#cbd5e1 100%)",
+              ThumbText="<strong>Algorithmic Trading</strong>: Using Automation to Enhance Your Trading Strategy",
+              BadgeBg="#475569", BadgeClr="#fff", BadgeTxt="ALGO\nTRADE",
+              AuthorClr="#475569",
+              Title="Algorithmic Trading: Using Automation to Enhance Your Trading Strategy",
+              Date="18 Nov 2023", Diff="Advanced",
+              Excerpt="Expert Advisors and automated trading bots let your strategy run 24/5 without emotion. Learn how to build, backtest, and deploy algos on MT4 and MT5 with a VPS." },
+    };
+}
+
+<style>
+.str-hero{background:linear-gradient(135deg,#0a0f1e 0%,#0f2040 50%,#05080f 100%);padding:112px 0 48px;position:relative;overflow:hidden;}
+.str-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.str-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:5px 14px;font-size:11px;font-weight:700;color:#93c5fd;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;}
+.str-hero-title{font-size:clamp(26px,4vw,44px);font-weight:900;color:#fff;line-height:1.15;margin:0 0 14px;}
+.str-hero-title span{background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.str-hero-sub{font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;max-width:520px;}
+.str-stats-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.str-stat-chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 16px;}
+.str-stat-chip-num{font-size:20px;font-weight:900;color:#fff;line-height:1;}
+.str-stat-chip-lbl{font-size:11px;color:rgba(255,255,255,.55);font-weight:600;text-transform:uppercase;letter-spacing:.06em;line-height:1.3;}
+.str-hero-img{width:100%;max-width:400px;opacity:.9;}
+
+.str-filter-bar{background:#fff;border-bottom:1px solid #e8edf4;padding:0 0 0;position:sticky;top:64px;z-index:80;}
+.str-filter-inner{display:flex;align-items:center;gap:6px;padding:14px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.str-filter-inner::-webkit-scrollbar{display:none;}
+.str-filter-btn{flex-shrink:0;padding:7px 18px;border-radius:999px;border:1.5px solid #e2e8f0;background:#fff;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.str-filter-btn:hover{border-color:#009AEE;color:#009AEE;}
+.str-filter-btn.active{background:#009AEE;border-color:#009AEE;color:#fff;}
+
+.str-cards-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px;}
+.str-cards-count{font-size:14px;color:#64748b;font-weight:500;}
+.str-cards-count strong{color:#0f1b2d;font-weight:700;}
+
+.str-pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:36px;padding-top:28px;border-top:1px solid #f1f5f9;}
+.str-page-btn{width:40px;height:40px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-size:14px;font-weight:600;color:#64748b;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.str-page-btn:hover{border-color:#009AEE;color:#009AEE;}
+.str-page-btn.active{background:#009AEE;border-color:#009AEE;color:#fff;}
+.str-page-btn:disabled{opacity:.4;cursor:not-allowed;}
+.str-page-info{font-size:13px;color:#64748b;padding:0 8px;}
+.str-no-results{text-align:center;padding:48px 24px;color:#94a3b8;font-size:15px;display:none;}
+</style>
+
+<div class="res-page">
+
+    <!-- Hero -->
+    <section class="str-hero">
+        <div class="container container-1230">
+            <nav class="res-breadcrumb" style="margin-bottom:20px;">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Strategies &amp; Technical Analysis</span>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7">
+                    <div class="str-hero-eyebrow"><i class="fa-solid fa-book-open-reader"></i> Strategy Library</div>
+                    <h1 class="str-hero-title">Strategies &amp; <span>Technical Analysis</span></h1>
+                    <p class="str-hero-sub">Proven forex trading strategies from beginner to advanced — day trading, swing trading, scalping, algo systems, and everything in between.</p>
+                    <div class="str-stats-row">
+                        <div class="str-stat-chip"><div class="str-stat-chip-num">12</div><div class="str-stat-chip-lbl">Strategy<br>Guides</div></div>
+                        <div class="str-stat-chip"><div class="str-stat-chip-num">3</div><div class="str-stat-chip-lbl">Skill<br>Levels</div></div>
+                        <div class="str-stat-chip"><div class="str-stat-chip-num">5</div><div class="str-stat-chip-lbl">Strategy<br>Categories</div></div>
+                        <div class="str-stat-chip"><div class="str-stat-chip-num">Free</div><div class="str-stat-chip-lbl">All Content<br>Access</div></div>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center d-none d-lg-block">
+                    <div style="position:relative;display:inline-block;">
+                        <div style="width:280px;height:200px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:10px;">
+                            @foreach(var chip in new[]{new{C="#16a34a",L="Cashback Strategy"},new{C="#ca8a04",L="Market Analysis"},new{C="#ea580c",L="Day Trading"},new{C="#4f46e5",L="Technical Analysis"},new{C="#312e81",L="Advanced Strategies"}})
+                            {<div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border-radius:8px;padding:7px 12px;"><div style="width:8px;height:8px;border-radius:50%;background:@chip.C;flex-shrink:0;"></div><span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.8);">@chip.L</span></div>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="str-filter-bar">
+        <div class="container container-1230">
+            <div class="str-filter-inner">
+                <button class="str-filter-btn active" data-filter="all"><i class="fa-solid fa-border-all me-1"></i> All Guides</button>
+                <button class="str-filter-btn" data-filter="cashback"><i class="fa-solid fa-sack-dollar me-1"></i> Cashback</button>
+                <button class="str-filter-btn" data-filter="market"><i class="fa-solid fa-chart-area me-1"></i> Market Analysis</button>
+                <button class="str-filter-btn" data-filter="style"><i class="fa-solid fa-layer-group me-1"></i> Trading Styles</button>
+                <button class="str-filter-btn" data-filter="technical"><i class="fa-solid fa-chart-bar me-1"></i> Technical</button>
+                <button class="str-filter-btn" data-filter="advanced"><i class="fa-solid fa-brain me-1"></i> Advanced</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="res-sub-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-3 col-md-4">
+                    <partial name="_Sidebar" model="@("Strategies")" />
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+
+                    <div class="str-cards-header">
+                        <div class="str-cards-count">Showing <strong id="str-showing">12</strong> of 12 strategy guides</div>
+                        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:#64748b;"><i class="fa-solid fa-circle-info"></i> Click any guide to read the full article</div>
+                    </div>
+
+                    <div id="str-grid" class="row g-4">
+                        @foreach (var a in articles)
+                        {
+                            <div class="col-lg-4 col-sm-6 str-card-col" data-cat="@a.Cat">
+                                <a asp-controller="@a.Ctrl" asp-action="@a.Act" class="fn-card" style="position:relative;">
+                                    <div class="fn-thumb" style="background:@a.ThumbBg;">
+                                        <div class="fn-thumb-text">@Html.Raw(a.ThumbText)</div>
+                                        <div class="fn-thumb-badge" style="background:@a.BadgeBg;color:@a.BadgeClr;font-size:9px;">@Html.Raw(a.BadgeTxt.Replace("\n","<br/>"))</div>
+                                        <div class="fn-thumb-brand">
+                                            <div class="fn-thumb-brand-icon"><i class="fa-solid fa-chart-line" style="font-size:8px;"></i></div>
+                                            <span>SAY AFFILIATES</span>
+                                        </div>
+                                        <div class="str-diff-badge str-diff-@a.Diff.ToLower()">@a.Diff</div>
+                                    </div>
+                                    <div class="fn-card-body">
+                                        <span class="fn-card-author" style="color:@a.AuthorClr;">Say Affiliates</span>
+                                        <h3 class="fn-card-title">@a.Title</h3>
+                                        <div class="fn-card-date"><i class="fa-regular fa-calendar me-1"></i>@a.Date</div>
+                                        <p class="fn-card-excerpt">@a.Excerpt</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="str-no-results" id="str-no-results"><i class="fa-solid fa-magnifying-glass fa-2x mb-3 d-block"></i>No guides in this category yet. Check back soon.</div>
+
+                    <div class="str-pagination" id="str-pagination">
+                        <button class="str-page-btn" id="str-prev" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                        <span class="str-page-info" id="str-page-info">Page 1 of 2</span>
+                        <button class="str-page-btn" id="str-next"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.str-diff-badge{position:absolute;bottom:12px;right:14px;font-size:9px;font-weight:800;padding:2px 8px;border-radius:5px;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid rgba(0,0,0,.1);}
+.str-diff-beginner{background:#d1fae5;color:#065f46;}
+.str-diff-intermediate{background:#fff7ed;color:#92400e;}
+.str-diff-advanced{background:#fee2e2;color:#7f1d1d;}
+</style>
+
+@section Scripts {
+<script>
+$(function(){
+    var perPage = 6;
+    var currentPage = 1;
+    var currentFilter = 'all';
+
+    function getVisible(){
+        if(currentFilter==='all') return $('.str-card-col');
+        return $('.str-card-col[data-cat="'+currentFilter+'"]');
+    }
+
+    function renderPage(){
+        var $visible = getVisible();
+        var total = $visible.length;
+        var pages = Math.ceil(total/perPage) || 1;
+        if(currentPage > pages) currentPage = 1;
+
+        $('.str-card-col').hide();
+
+        $visible.each(function(i){
+            var start = (currentPage-1)*perPage;
+            if(i >= start && i < start+perPage) $(this).show();
+        });
+
+        $('#str-showing').text(total);
+
+        if(total===0){ $('#str-no-results').show(); } else { $('#str-no-results').hide(); }
+
+        if(pages<=1){ $('#str-pagination').hide(); } else { $('#str-pagination').show(); }
+        $('#str-page-info').text('Page '+currentPage+' of '+pages);
+        $('#str-prev').prop('disabled', currentPage<=1);
+        $('#str-next').prop('disabled', currentPage>=pages);
+    }
+
+    $('.str-filter-btn').on('click', function(){
+        $('.str-filter-btn').removeClass('active');
+        $(this).addClass('active');
+        currentFilter = $(this).data('filter');
+        currentPage = 1;
+        renderPage();
+    });
+
+    $('#str-prev').on('click', function(){
+        if(currentPage>1){ currentPage--; renderPage(); $('html,body').animate({scrollTop:$('#str-grid').offset().top-140},240); }
+    });
+    $('#str-next').on('click', function(){
+        var $visible = getVisible();
+        var pages = Math.ceil($visible.length/perPage)||1;
+        if(currentPage<pages){ currentPage++; renderPage(); $('html,body').animate({scrollTop:$('#str-grid').offset().top-140},240); }
+    });
+
+    renderPage();
+});
+</script>
+}

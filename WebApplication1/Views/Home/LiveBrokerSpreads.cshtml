@@ -1,0 +1,399 @@
+@{
+    ViewData["Title"] = "Live Broker Spreads";
+}
+
+<div class="lbs hm pre-header pt-140 pb-120">
+   <span class="lbs-bg-glow lbs-bg-glow-1"></span>
+   <span class="lbs-bg-glow lbs-bg-glow-2"></span>
+
+   <!-- floating decorations -->
+   <div class="hm-decor" aria-hidden="true">
+      <span class="hm-coin hm-coin-1"><i class="fa-solid fa-chart-line"></i></span>
+      <span class="hm-coin hm-coin-2"><i class="fa-solid fa-dollar-sign"></i></span>
+      <span class="hm-coin hm-coin-3"><i class="fa-solid fa-euro-sign"></i></span>
+      <span class="hm-coin hm-coin-4"><i class="fa-solid fa-gauge-high"></i></span>
+      <span class="hm-coin hm-coin-5"><i class="fa-solid fa-yen-sign"></i></span>
+      <span class="hm-coin hm-coin-6"><i class="fa-solid fa-bolt"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-1"><i class="fa-solid fa-arrow-trend-down"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-2"><i class="fa-solid fa-arrow-trend-up"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-3"><i class="fa-solid fa-money-bill-transfer"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-4"><i class="fa-solid fa-percent"></i></span>
+   </div>
+
+   <div class="container container-1230">
+
+      <!-- hero -->
+      <div class="lbs-hero">
+         <span class="lbs-hero-badge"><i class="fa-solid fa-chart-line"></i> Trading Tools</span>
+         <h1 class="lbs-hero-title">Live Broker <span>Spreads</span></h1>
+         <p class="lbs-hero-sub">
+            Real-time data on the prices and spreads offered by our partner brokers. Compare several brokers side by
+            side and see how their pricing shifts in real time &mdash; built for scalpers and high-frequency traders
+            who depend on tight costs and fast execution.
+         </p>
+         <div class="lbs-hero-stats">
+            <div class="lbs-hero-stat"><b>3</b><span>Instruments</span></div>
+            <div class="lbs-hero-stat"><b>9</b><span>Partner Brokers</span></div>
+            <div class="lbs-hero-stat"><b><i class="fa-solid fa-circle lbs-live-dot"></i> Live</b><span>Real-time feed</span></div>
+         </div>
+      </div>
+
+      <!-- tool card -->
+      <div class="lbs-card">
+         <div class="lbs-card-head">
+            <div>
+               <h3>Live Broker Spreads</h3>
+               <p>Pick a broker for each instrument and watch their spreads move in real time.</p>
+            </div>
+            <div class="lbs-powered">Powered by <b>Say Affiliates</b></div>
+         </div>
+
+         <!-- instrument columns -->
+         <div class="lbs-cols">
+            <div class="lbs-col">
+               <h4 class="lbs-col-title" data-col-title="EURUSD">EUR/USD</h4>
+               <div class="lbs-select">
+                  <select class="lbs-broker-select" data-col="EURUSD" aria-label="Broker for EUR/USD"></select>
+               </div>
+            </div>
+            <div class="lbs-col">
+               <h4 class="lbs-col-title" data-col-title="XAUUSD">XAU/USD</h4>
+               <div class="lbs-select">
+                  <select class="lbs-broker-select" data-col="XAUUSD" aria-label="Broker for XAU/USD"></select>
+               </div>
+            </div>
+            <div class="lbs-col">
+               <h4 class="lbs-col-title" data-col-title="US30">US30</h4>
+               <div class="lbs-select">
+                  <select class="lbs-broker-select" data-col="US30" aria-label="Broker for US30"></select>
+               </div>
+            </div>
+         </div>
+
+         <!-- live chart -->
+         <div class="lbs-chart-wrap">
+            <span class="lbs-live"><i></i> LIVE</span>
+            <canvas id="lbsChart"></canvas>
+            <div class="lbs-empty" id="lbsEmpty">Select a broker above to start streaming spreads.</div>
+         </div>
+
+         <!-- spread indicators -->
+         <div class="lbs-indicators" id="lbsIndicators"></div>
+
+         <div class="lbs-foot">
+            <span class="lbs-updated"><i class="fa-solid fa-clock-rotate-left"></i> Last update: <b id="lbsUpdated">—</b></span>
+            <button class="lbs-embed" type="button" id="lbsEmbed"><i class="fa-solid fa-code"></i> Embed</button>
+         </div>
+      </div>
+
+      <!-- disclaimer -->
+      <p class="lbs-note">
+         <i class="fa-solid fa-circle-info"></i>
+         Spreads shown are simulated for demonstration and update every few seconds. Live production data can be
+         wired to a real broker feed. Actual spreads vary with market conditions, account type and time of day.
+      </p>
+
+      <!-- quick reading guide -->
+      <div class="hm-guide">
+         <div class="hm-guide-card hm-guide-up">
+            <span class="hm-guide-cell"><i class="fa-solid fa-arrow-down-wide-short"></i> Lower</span>
+            <h5>Tighter is Cheaper</h5>
+            <p>A lower spread means a smaller cost per trade &mdash; ideal for scalpers.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-int">
+            <span class="hm-guide-cell hm-guide-cell-blue"><i class="fa-solid fa-layer-group"></i> Compare</span>
+            <h5>Side by Side</h5>
+            <p>Stream several brokers at once to see who offers the best live pricing.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-down">
+            <span class="hm-guide-cell"><i class="fa-solid fa-money-bill-transfer"></i> Cashback</span>
+            <h5>Lower Net Cost</h5>
+            <p>Stack Say Affiliates rebates on top to cut your effective spread even further.</p>
+         </div>
+      </div>
+
+      <!-- how to use accordion -->
+      <details class="lbs-acc" open>
+         <summary>How do I use the Live Broker Spreads<span class="lbs-acc-ico"><i class="fa-solid fa-chevron-down"></i></span></summary>
+         <div class="lbs-acc-content">
+            <ol class="lbs-steps">
+               <li>Choose an instrument column &mdash; <b>EUR/USD</b>, <b>XAU/USD</b> or <b>US30</b>.</li>
+               <li>Pick a broker from that column's dropdown to start streaming its live spread on the chart.</li>
+               <li>Select a broker in the other columns to compare two or three brokers side by side.</li>
+               <li>Watch the chart and the spread indicators update in real time &mdash; the lower the spread, the cheaper the trade.</li>
+            </ol>
+         </div>
+      </details>
+
+      <!-- educational content -->
+      <div class="lbs-content">
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-circle-question"></i></span>
+               <h3 class="lbs-info-title">What Are Broker Spreads?</h3>
+            </div>
+            <p>In forex and CFD trading, the <b>spread</b> is the difference between the bid (sell) and ask (buy) price
+               of a currency pair or asset. It's a key indicator of trading cost &mdash; the tighter the spread, the less
+               you pay per trade. Our tool streams live spreads so you can monitor:</p>
+            <ul class="lbs-check-list">
+               <li>Current bid / ask pricing</li>
+               <li>Real-time spread fluctuations</li>
+               <li>Comparative data across multiple brokers</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-bolt"></i></span>
+               <h3 class="lbs-info-title">Why Use Our Live Broker Spreads Tool?</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Real-time data</b> &mdash; up-to-the-second spreads to make informed trading decisions.</li>
+               <li><b>Cost efficiency</b> &mdash; spot the brokers with the tightest spreads to reduce your costs.</li>
+               <li><b>Easy comparison</b> &mdash; view several brokers in one clear, concise panel.</li>
+               <li><b>Cashback on top</b> &mdash; pair tight spreads with Say Affiliates rebates for an even lower net cost.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-rocket"></i></span>
+               <h3 class="lbs-info-title">Benefits for Traders</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Better decisions</b> &mdash; choosing lower-cost brokers directly improves your profitability.</li>
+               <li><b>Risk &amp; cost control</b> &mdash; tighter spreads mean lower transaction costs on every trade.</li>
+               <li><b>Trading efficiency</b> &mdash; compare live data fast and act with better information.</li>
+               <li><b>Anywhere access</b> &mdash; the tool works seamlessly on desktop and mobile.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-comments"></i></span>
+               <h3 class="lbs-info-title">Frequently Asked Questions</h3>
+            </div>
+
+            <details class="lbs-faq-item">
+               <summary>What is a broker spread?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>It's the difference between the bid and ask price of a trading instrument &mdash; effectively the broker's
+                  fee for executing your trade. A tighter spread means a lower cost.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>How often is the data updated?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>In this demo the spreads refresh every couple of seconds. Connected to a live feed, the tool reflects
+                  current market conditions in real time.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>Can I use this tool on my mobile device?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>Yes &mdash; the tool is fully responsive and works seamlessly on both desktop and mobile platforms.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>How does the tool help reduce trading costs?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>By comparing live spreads you can identify brokers with tighter pricing &mdash; and stacking Say Affiliates
+                  cashback on top lowers your net trading cost even further.</p>
+            </details>
+         </div>
+      </div>
+
+      <!-- join cta -->
+      <div class="lbs-join">
+         <a asp-controller="Home" asp-action="Register">
+            <i class="fa-solid fa-lightbulb"></i> Join Now &amp; Start Earning Cashback <i class="fa-solid fa-lightbulb"></i>
+         </a>
+      </div>
+   </div>
+</div>
+
+@section Scripts {
+<script>
+(function () {
+   // ---- data ------------------------------------------------------------
+   var BROKERS = {
+      'Titan FX':          { platform: 'MT5', EURUSD: 0.2, XAUUSD: 12, US30: 1.8 },
+      'IC Markets':        { platform: 'MT5', EURUSD: 0.1, XAUUSD: 11, US30: 2.0 },
+      'FP Markets':        { platform: 'MT4', EURUSD: 0.3, XAUUSD: 13, US30: 2.2 },
+      'Vantage FX':        { platform: 'MT5', EURUSD: 0.4, XAUUSD: 14, US30: 2.4 },
+      'OANDA':             { platform: 'MT4', EURUSD: 0.6, XAUUSD: 18, US30: 3.0 },
+      'BlackBull Markets': { platform: 'MT5', EURUSD: 0.3, XAUUSD: 13, US30: 2.1 },
+      'Blueberry Markets': { platform: 'MT4', EURUSD: 0.5, XAUUSD: 16, US30: 2.6 },
+      'FxPro':             { platform: 'MT5', EURUSD: 0.7, XAUUSD: 20, US30: 3.2 },
+      'Tickmill':          { platform: 'MT4', EURUSD: 0.2, XAUUSD: 12, US30: 1.9 }
+   };
+
+   var COLS = {
+      EURUSD: { label: 'EUR/USD', color: '#0b5cd6', unit: 'pips', dp: 1, range: [0, 1.2], def: 'Titan FX' },
+      XAUUSD: { label: 'XAU/USD', color: '#8592a6', unit: 'pts',  dp: 1, range: [4, 26],  def: '' },
+      US30:   { label: 'US30',    color: '#f5871f', unit: 'pts',  dp: 1, range: [0.5, 5], def: '' }
+   };
+
+   var N = 50;          // history points
+   var state = {};      // colId -> { broker, history:[] }
+
+   // ---- setup selects ---------------------------------------------------
+   var selects = document.querySelectorAll('.lbs-broker-select');
+   selects.forEach(function (sel) {
+      var colId = sel.getAttribute('data-col');
+      var opt0 = document.createElement('option');
+      opt0.value = '';
+      opt0.textContent = 'Select a Broker / Exchange to compare';
+      sel.appendChild(opt0);
+      Object.keys(BROKERS).forEach(function (name) {
+         var o = document.createElement('option');
+         o.value = name; o.textContent = name;
+         sel.appendChild(o);
+      });
+      var def = COLS[colId].def;
+      sel.value = def;
+      setBroker(colId, def);
+      sel.addEventListener('change', function () { setBroker(colId, sel.value); });
+   });
+
+   function seedHistory(colId, broker) {
+      var base = BROKERS[broker][colId];
+      var h = [];
+      for (var i = 0; i < N; i++) { h.push(base); }
+      return h;
+   }
+
+   function setBroker(colId, broker) {
+      if (broker && BROKERS[broker]) {
+         state[colId] = { broker: broker, history: seedHistory(colId, broker) };
+      } else {
+         delete state[colId];
+      }
+      renderIndicators();
+      draw();
+      toggleEmpty();
+   }
+
+   function toggleEmpty() {
+      document.getElementById('lbsEmpty').style.display =
+         Object.keys(state).length ? 'none' : 'block';
+   }
+
+   // ---- live tick -------------------------------------------------------
+   function tick() {
+      Object.keys(state).forEach(function (colId) {
+         var s = state[colId];
+         var base = BROKERS[s.broker][colId];
+         var noise = (Math.random() - 0.5) * base * 0.6;     // +/- up to 30%
+         var val = Math.max(0, base + noise);
+         s.history.push(val);
+         if (s.history.length > N) { s.history.shift(); }
+      });
+      if (Object.keys(state).length) {
+         document.getElementById('lbsUpdated').textContent = new Date().toLocaleTimeString();
+      }
+      draw();
+      renderIndicators();
+   }
+
+   // ---- chart -----------------------------------------------------------
+   var cvs = document.getElementById('lbsChart');
+   var ctx = cvs.getContext('2d');
+   var dpr = window.devicePixelRatio || 1;
+   var W = 0, H = 300;
+   var pad = { t: 22, r: 14, b: 22, l: 14 };
+
+   function resize() {
+      W = cvs.parentElement.clientWidth;
+      cvs.width = W * dpr; cvs.height = H * dpr;
+      cvs.style.width = W + 'px'; cvs.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
+   }
+
+   function ny(colId, v) {
+      var r = COLS[colId].range, plotH = H - pad.t - pad.b;
+      var t = (v - r[0]) / (r[1] - r[0]);
+      t = Math.max(0, Math.min(1, t));
+      return pad.t + plotH * (1 - t);
+   }
+   function nx(i) {
+      var plotW = W - pad.l - pad.r;
+      return pad.l + plotW * (i / (N - 1));
+   }
+
+   function hexA(hex, a) {
+      var n = parseInt(hex.slice(1), 16);
+      return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+   }
+
+   function draw() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(16,44,84,0.07)';
+      ctx.lineWidth = 1;
+      for (var g = 0; g <= 4; g++) {
+         var y = pad.t + (H - pad.t - pad.b) * (g / 4);
+         ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(W - pad.r, y); ctx.stroke();
+      }
+      Object.keys(state).forEach(function (colId) {
+         var s = state[colId], color = COLS[colId].color, h = s.history;
+         var grad = ctx.createLinearGradient(0, pad.t, 0, H - pad.b);
+         grad.addColorStop(0, hexA(color, 0.20));
+         grad.addColorStop(1, hexA(color, 0));
+         ctx.beginPath();
+         ctx.moveTo(nx(0), ny(colId, h[0]));
+         for (var i = 1; i < h.length; i++) { ctx.lineTo(nx(i), ny(colId, h[i])); }
+         ctx.lineTo(nx(h.length - 1), H - pad.b);
+         ctx.lineTo(nx(0), H - pad.b);
+         ctx.closePath();
+         ctx.fillStyle = grad; ctx.fill();
+
+         ctx.beginPath();
+         ctx.moveTo(nx(0), ny(colId, h[0]));
+         for (var j = 1; j < h.length; j++) { ctx.lineTo(nx(j), ny(colId, h[j])); }
+         ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.lineJoin = 'round';
+         ctx.stroke();
+
+         var lx = nx(h.length - 1), ly = ny(colId, h[h.length - 1]);
+         ctx.beginPath(); ctx.arc(lx, ly, 8, 0, Math.PI * 2); ctx.fillStyle = hexA(color, 0.18); ctx.fill();
+         ctx.beginPath(); ctx.arc(lx, ly, 4.5, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill();
+      });
+   }
+
+   // ---- indicators ------------------------------------------------------
+   function renderIndicators() {
+      var wrap = document.getElementById('lbsIndicators');
+      var html = '';
+      Object.keys(state).forEach(function (colId) {
+         var s = state[colId], c = COLS[colId];
+         var v = s.history[s.history.length - 1];
+         var pct = Math.max(0, Math.min(100, (v - c.range[0]) / (c.range[1] - c.range[0]) * 100));
+         var plat = BROKERS[s.broker].platform;
+         html +=
+            '<div class="lbs-ind">' +
+               '<span class="lbs-ind-label"><i style="background:' + c.color + '"></i>' +
+                  s.broker + ' ' + plat + ' Spread</span>' +
+               '<div class="lbs-ind-track"><span class="lbs-ind-dot" style="left:' + pct + '%;background:' + c.color + '"></span></div>' +
+               '<span class="lbs-ind-val" style="color:' + c.color + '">' + v.toFixed(c.dp) + ' ' + c.unit + '</span>' +
+            '</div>';
+      });
+      wrap.innerHTML = html;
+   }
+
+   // ---- embed button ----------------------------------------------------
+   document.getElementById('lbsEmbed').addEventListener('click', function () {
+      var btn = this;
+      var code = '<iframe src="' + window.location.href + '" width="100%" height="720" frameborder="0"></iframe>';
+      var done = function () {
+         var old = btn.innerHTML;
+         btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+         setTimeout(function () { btn.innerHTML = old; }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+         navigator.clipboard.writeText(code).then(done, done);
+      } else { done(); }
+   });
+
+   // ---- go --------------------------------------------------------------
+   window.addEventListener('resize', resize);
+   resize();
+   renderIndicators();
+   toggleEmpty();
+   setInterval(tick, 1500);
+})();
+</script>
+}

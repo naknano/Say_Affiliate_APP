@@ -1,0 +1,51 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.15 gallery css start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-gallery{
+    &-it{
+        &-thumb{
+            &-main{
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        }
+        &-item{
+            &-wrap{
+                padding-top: 160px;
+                text-align: center;
+                @media #{$x3l}{
+                    padding-top: 120px;
+                }
+                @media #{$xxl,$xl,$md}{
+                    padding-top: 70px;
+                }
+                @media #{$lg}{
+                    padding-top: 20px;
+                }
+            }
+        }
+        &-btn{
+            &-box{
+                display: flex;
+                padding: 110px 50px 0;
+                justify-content: space-between;
+                @media #{$x3l,$xxl}{
+                    padding: 80px 50px 0;
+                }
+                @media #{$xl}{
+                    padding: 30px 50px 0;
+                }
+                @media #{$lg}{
+                    padding: 40px 30px 0;
+                }
+                @media #{$sm,$xs}{
+                    padding-bottom: 40px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,104 @@
+@{
+    ViewData["Title"] = "Day Trading Forex: Strategies for Success and Maximizing Profits";
+    string ac = "#ea580c", al = "#fff7ed";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#1c0700,#7c2d12,#0f0300);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Day Trading</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Day Trading Forex: Strategies for Success and Maximizing Profits</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 05 Aug 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 9 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Day Trading</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(234,88,12,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#fed7aa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-sun me-1"></i> Day Trading At a Glance</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Best pairs",V="EUR/USD, GBP/USD, USD/JPY"},new{L="Best sessions",V="London & NY Overlap"},new{L="Hold time",V="Minutes to hours"},new{L="Risk per trade",V="0.5–1% max"},new{L="Daily target",V="10–20 pips"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#fed7aa;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">3</div><div class="na-stat-lbl">Key Trading Sessions</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">1%</div><div class="na-stat-lbl">Max Risk Per Trade</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">2:1</div><div class="na-stat-lbl">Min Reward:Risk</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">0</div><div class="na-stat-lbl">Overnight Positions</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Day trading forex means entering and exiting all positions within a single trading session — no overnight exposure, no gap risk at the open, and a clear daily P&L you can measure and improve. Done with discipline, it is one of the most structured and systematic approaches to the currency market.</p>
+
+            <h2 class="na-h2">The Three Best Sessions for Day Trading</h2>
+            <div class="row g-3 mb-3">
+                @foreach(var s in new[]{
+                    new{N="London Session",T="07:00–16:00 UTC",D="Highest volatility globally. EUR/USD, GBP/USD, and EUR/GBP move sharply as European institutional desks open. Best for breakout and momentum strategies.",Bg="#eff6ff",Clr="#2563eb"},
+                    new{N="New York Session",T="13:00–22:00 UTC",D="USD-driven moves dominate. NFP, CPI, and Fed announcements land here. Best for news-driven directional trades on USD pairs.",Bg="#fff7ed",Clr="#ea580c"},
+                    new{N="London–NY Overlap",T="13:00–17:00 UTC",D="Peak liquidity window. Both institutional desks active simultaneously. Highest volume, tightest spreads, cleanest price action. Prime day trading window.",Bg="#f0fdf4",Clr="#16a34a"}
+                })
+                {<div class="col-md-4"><div style="border:1.5px solid #e8edf4;border-radius:14px;padding:16px;background:@s.Bg;height:100%;"><div style="font-size:13px;font-weight:800;color:@s.Clr;margin-bottom:4px;">@s.N</div><div style="font-size:11px;font-weight:700;color:@s.Clr;opacity:.7;margin-bottom:8px;">@s.T</div><div style="font-size:12px;color:#374151;line-height:1.6;">@s.D</div></div></div>}
+            </div>
+
+            <h2 class="na-h2">Three Core Day Trading Entry Strategies</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Session Open Range Breakout</div><div class="na-step-text">Mark the high and low of the first 15–30 minutes of the London session. Enter long on a close above the high or short on a close below the low. Target the range size projected from the breakout level. This setup captures the dominant directional move of the day.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Momentum Continuation</div><div class="na-step-text">After a strong impulsive move, wait for a shallow pullback to the 20 EMA or nearest support/resistance. Enter in the direction of the trend on the first rejection candle. Place stop below the swing low. Target 2× the risk for a minimum 2:1 R:R.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">News-Driven Directional Trade</div><div class="na-step-text">Wait 2–3 minutes after a high-impact news release for the initial spike to settle. Enter in the direction of the dominant move once the first correction candle prints. Avoid trading the spike directly — enter the continuation. Set wide stop to account for residual volatility.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Position Sizing and Risk Rules</h2>
+            <p class="na-p">Risk management separates profitable day traders from everyone else. Follow these non-negotiable rules:</p>
+            <ul class="na-list">
+                <li>Never risk more than <strong>1% of account</strong> on a single trade — use the Position Size Calculator to size every lot exactly</li>
+                <li>Maximum <strong>3 simultaneous open positions</strong> — beyond this, correlated losses can compound quickly</li>
+                <li>If you lose <strong>2% of account in one day</strong>, stop trading and review — do not chase losses</li>
+                <li>Always define your stop-loss <strong>before entering</strong> — never move it wider after opening a trade</li>
+                <li>Minimum <strong>2:1 reward-to-risk</strong> ratio on every trade — do not take setups with less</li>
+            </ul>
+
+            <h2 class="na-h2">Day Trading + Cashback: A Natural Fit</h2>
+            <p class="na-p">Day traders trade frequently — often 3–10 trades per day — which means cashback accumulates rapidly. A day trader averaging 5 trades/day at 0.5 lots per trade generates approximately 50 lots per month. At $7.50/lot cashback rate on EUR/USD, that is <strong>$375/month</strong> — purely from the cashback programme, independent of trading profits.</p>
+            <div class="na-pullquote"><div class="na-pullquote-text">"Day trading already demands low-spread brokers for cost efficiency. By choosing a cashback-eligible low-spread broker through Say Affiliates, you solve the cost equation on both sides simultaneously."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#fed7aa;">Start Day Trading Smarter</div>
+                <div class="na-cta-title">Combine Day Trading with Cashback</div>
+                <p class="na-cta-sub">Register free, choose a low-spread ECN broker from the Say Affiliates network, and earn cashback on every intraday trade.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Home" asp-action="Economic" class="na-cta-btn-ghost"><i class="fa-solid fa-calendar-days me-2"></i>Economic Calendar</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:90px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+            @foreach(var r in new[]{new{A="StrategySwingTrading",I="fa-solid fa-wave-square",Bg="#ecfeff",C="#0891b2",T="Swing Trading Strategy Ideas",D="28 Jun 2024"},new{A="StrategyScalping",I="fa-solid fa-bolt",Bg="#fff1f0",C="#b91c1c",T="The Art of Scalping Trading",D="10 Jan 2024"},new{A="StrategyVolatile",I="fa-solid fa-tornado",Bg="#fff7ed",C="#d97706",T="Trading in Volatile Markets",D="05 Dec 2023"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#059669;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

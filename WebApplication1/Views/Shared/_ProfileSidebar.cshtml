@@ -1,0 +1,56 @@
+@{
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString() ?? "Dashboard";
+    string Active(string action) =>
+        string.Equals(action, currentAction, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+}
+
+@* User summary card *@
+<div class="pm-user-card">
+   <div class="pm-user-cover"></div>
+   <div class="pm-user-avatar">
+      <img src="~/assets/img/profile/user-10.jpg" alt="avatar">
+      <span class="pm-user-status" title="Online"></span>
+   </div>
+   <h4 class="pm-user-name" id="pm-name">@User.Identity?.Name</h4>
+   <p class="pm-user-email" id="pm-email">@User.Identity?.Name</p>
+   <span class="pm-user-badge"><i class="fa-solid fa-circle-check"></i> Verified Member</span>
+   <div class="pm-user-mini">
+      <div>
+         <span class="pm-user-mini-val" id="pm-mini-balance">$0.00</span>
+         <span class="pm-user-mini-lbl">Balance</span>
+      </div>
+      <div>
+         <span class="pm-user-mini-val" id="pm-mini-accounts">0</span>
+         <span class="pm-user-mini-lbl">Accounts</span>
+      </div>
+   </div>
+</div>
+
+@* Navigation (page links) *@
+<div class="profile__tab mr-40 radius-style-2" style="border-radius: 5px;">
+   <nav>
+      <div class="nav nav-tabs tp-tab-menu flex-column" style="border: none;">
+         <a class="nav-link @Active("Dashboard")" asp-controller="Profile" asp-action="Dashboard">
+            <span><i class="fa-solid fa-gauge-high"></i></span>Dashboard
+         </a>
+         <a class="nav-link @Active("Details")" asp-controller="Profile" asp-action="Details">
+            <span><i class="fa-solid fa-user"></i></span>Profile
+         </a>
+         <a class="nav-link @Active("Brokers")" asp-controller="Profile" asp-action="Brokers">
+            <span><i class="fa-solid fa-building-columns"></i></span>Broker
+         </a>
+         <a class="nav-link @Active("Rebates")" asp-controller="Profile" asp-action="Rebates">
+            <span><i class="fa-solid fa-hand-holding-dollar"></i></span>Rebates
+         </a>
+         <a class="nav-link @Active("Withdraw")" asp-controller="Profile" asp-action="Withdraw">
+            <span><i class="fa-solid fa-wallet"></i></span>Withdraw
+         </a>
+         <a class="nav-link @Active("PaymentMethods")" asp-controller="Profile" asp-action="PaymentMethods">
+            <span><i class="fa-solid fa-credit-card"></i></span>Payment Methods
+         </a>
+         <button type="button" class="nav-link btn-logout pm-nav-logout">
+            <span><i class="fa-solid fa-right-from-bracket"></i></span>Logout
+         </button>
+      </div>
+   </nav>
+</div>

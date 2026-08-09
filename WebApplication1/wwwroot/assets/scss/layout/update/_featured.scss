@@ -1,0 +1,222 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 featured css
+/*----------------------------------------*/
+
+.al-featured-shop{
+    &-slider{
+        margin-right: -660px;
+        @media #{$sm, $xs}{
+            margin-right: 0;
+        }
+        &-arrow{
+            & button{
+                font-size: 30px;
+                color: #B3BAC0;
+                position: relative;
+                &:not(:last-child){
+                    padding-right: 14px;
+                    margin-right: 10px;
+                    &::after{
+                        position: absolute;
+                        content: '';
+                        right: 0;
+                        top: 0;
+                        height: 30px;
+                        width: 1px;
+                        background-color: #D6D9E0;
+                    }
+                }
+                &:hover{
+                    color: var(--tp-common-black);
+                }
+            }
+        }
+    }
+    &-item{
+        min-height: 380px;
+        padding: 87px 50px;
+        @media #{$sm}{
+            padding: 87px 35px;
+        }
+        @media #{$xs}{
+            min-height: 280px;
+            padding: 35px 35px;
+        }
+    }
+    &-thumb{
+        z-index: -1;
+        width: 290px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        @media #{$xs}{
+            height: 230px;
+            position: inherit;
+            margin-bottom: 20px;
+        }
+    }
+    &-title{
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 1.17;
+        margin-bottom: 7px;
+        font-family: var(--tp-ff-dm);
+        @media #{$xs}{
+            font-size: 25px;
+        }
+        & a{
+            &:hover{
+                color: var(--tp-theme-secondary);
+            }
+        }
+    }
+    &-price{
+        font-weight: 500;
+        font-size: 20px;
+        color: var(--tp-common-black);
+        line-height: 1;
+        font-family: var(--tp-ff-dm);
+        &-wrapper{
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        &.new-price{
+            color: var(--tp-common-black);
+        }
+        &.old-price{
+            font-weight: 400;
+            font-size: 14px;
+            text-decoration-line: line-through;
+            color: var(--tp-grey-1);
+        }
+    }
+    &-rating{
+        &-icon{
+            margin-right: 6px;
+            display: flex;
+            align-items: center;
+            & span{
+                color: #ffb21d;
+                font-size: 12px;
+                &:not(:last-child){
+                    margin-right: 2px;
+                }
+            }
+        }
+    }
+}
+
+.al-feature-shop{
+    $self2 : &;
+    &-border-2{
+        & .row{
+            & [class*="col-"]{
+                & #{$self2}{
+                    &-item-2{
+                        position: relative;
+                        @media #{$xs}{
+                            padding-bottom: 20px;
+                            margin-bottom: 20px;
+                        }
+                        &::after{
+                            position: absolute;
+                            content: '';
+                            right: 14px;
+                            top: 42%;
+                            width: 1px;
+                            height: 50px;
+                            background-color: #D9DBDE;
+                            transform: translateY(-50%);
+                            @media #{$md, $sm}{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                &:last-child{
+                    & #{$self2}{
+                        &-item-2{
+                            @media #{$xs}{
+                                padding-bottom: 0;
+                                margin-bottom: 0;
+                            }
+                            &::after{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                &:nth-child(1),
+                &:nth-child(2),
+                &:nth-child(3){
+                    
+                    & #{$self2}{
+                        &-item-2{
+                            @media #{$md, $sm, $xs}{
+                                padding-bottom: 20px;
+                                margin-bottom: 20px;
+                                &::after{
+                                    right: auto;
+                                    left: 0;
+                                    top: auto;
+                                    bottom: 0;
+                                    width: 85%;
+                                    height: 1px;
+                                    display: block;
+                                }
+
+                            }
+                        }
+                    }
+                }
+                &:nth-child(3){
+                    & #{$self2}{
+                        &-item-2{
+                            @media #{$md, $sm}{
+                                padding-bottom: 0;
+                                margin-bottom: 0;
+                            }
+                            &::after{
+                                @media #{$md, $sm}{
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-inner-2{
+        background: var(--tp-common-white);
+        border: 1px solid #E9EAEC;
+        padding: 30px 40px 23px;
+    }
+    
+    &-title-2{
+        font-weight: 500;
+        font-size: 16px;
+        font-family: var(--tp-ff-dm);
+        color: var(--tp-common-black);
+        margin-bottom: 2px;
+        line-height: 1;
+    }
+    &-icon-2{
+        & span{
+            font-size: 35px;
+            color: var(--tp-common-black);
+        }
+    }
+    &-content-2{
+       & p{
+            font-size: 14px;
+            margin-bottom: 0;
+            line-height: 1.3;
+            font-family: var(--tp-ff-dm);
+       }
+    }
+}

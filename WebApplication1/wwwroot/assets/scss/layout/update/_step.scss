@@ -1,0 +1,137 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 step css
+/*----------------------------------------*/
+
+.al-step{
+    &-title-box{
+        margin: 0px 60px;
+        margin-bottom: 40px;
+        @media #{$sm,$xs}{
+            margin: 0;
+            margin-bottom: 40px;
+        }
+    }
+    &-title-sm {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.33;
+        margin-bottom: 0;
+        text-align: center;
+        letter-spacing: -0.02em;
+        color: var(--tp-common-black-1);
+        font-family: var(--tp-ff-inter);
+    }
+    &-icon{
+        display: inline-block;
+        margin-bottom: 25px;
+        & > span{
+            height: 100px;
+            width: 100px;
+            text-align: center;
+            line-height: 95px;
+            border-radius: 50%;
+            display: inline-block;
+            color: var(--tp-common-blue);
+            border: 2px solid var(--tp-common-blue);
+            transition: .3s;
+            position: relative;
+            &::after{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                content: '';
+                visibility: hidden;
+                border-radius: 50%;
+                transition: .3s;
+                transform: scale(1.2);
+                border: 1px dashed var(--tp-common-blue);
+            }
+        }
+    }
+    &-item{
+        display: inline-block;
+        &.active{
+            & .al-step-icon > span {
+                color: var(--tp-common-white);
+                border-color: var(--tp-common-blue);
+                background-color: var(--tp-common-blue);
+            }
+            & .al-step-icon > span::after {
+                opacity: 1;
+                visibility: visible;
+            } 
+        }
+        &:hover{
+            & .al-step-icon > span {
+                color: var(--tp-common-white);
+                border-color: var(--tp-common-blue);
+                background-color: var(--tp-common-blue);
+            }
+            & .al-step-icon > span::after {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+    &-number{
+        position: absolute;
+        top: 3px;
+        right: 1px;
+        z-index: 3;
+        height: 30px;
+        width: 30px;
+        line-height: 29px;
+        border-radius: 50%;
+        font-style: normal;
+        display: inline-block;
+        color: var(--tp-common-white);
+        background-color: var(--tp-common-blue);
+        font-family: var(--tp-ff-inter);
+        &::after{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            content: '';
+            border-radius: 50%;
+            border: 4px solid var(--tp-common-white);
+            transform: scale(1.2);
+        }
+    }
+    &-shape{
+        &-1{
+            position: absolute;
+            top: 26%;
+            left: 0;
+            & img{
+                animation: anim-top-bottom 1s linear infinite alternate;
+            }
+        }
+        &-2{
+            position: absolute;
+            top: 42%;
+            right: 0;
+            animation: anim-left-right 4s linear infinite alternate;
+        }
+    }
+    &-arrow{
+        &-shape{
+            &-1{
+                position: absolute;
+                top: 21%;
+                right: 0;
+            }
+            &-2{
+                position: absolute;
+                top: 21%;
+                left: 0;
+            }
+        }
+    }
+}

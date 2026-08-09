@@ -1,0 +1,319 @@
+<!-- profile area start -->
+<div class="profile__area profile-modern pm-dash pre-header pt-200 pb-120">
+   <div class="pm-bg" aria-hidden="true">
+      <span class="pm-blob pm-blob-1"></span>
+      <span class="pm-blob pm-blob-2"></span>
+      <span class="pm-blob pm-blob-3"></span>
+      <span class="pm-grid"></span>
+      <div class="pm-icons">
+         <i class="pm-ic pm-ic-1 fa-solid fa-dollar-sign"></i>
+         <i class="pm-ic pm-ic-2 fa-solid fa-euro-sign"></i>
+         <i class="pm-ic pm-ic-3 fa-solid fa-sterling-sign"></i>
+         <i class="pm-ic pm-ic-4 fa-solid fa-yen-sign"></i>
+         <i class="pm-ic pm-ic-5 fa-solid fa-chart-line"></i>
+         <i class="pm-ic pm-ic-6 fa-solid fa-coins"></i>
+         <i class="pm-ic pm-ic-7 fa-solid fa-arrow-trend-up"></i>
+         <i class="pm-ic pm-ic-8 fa-solid fa-circle-dollar-to-slot"></i>
+         <i class="pm-ic pm-ic-9 fa-solid fa-bitcoin-sign"></i>
+         <i class="pm-ic pm-ic-10 fa-solid fa-sack-dollar"></i>
+         <i class="pm-ic pm-ic-11 fa-solid fa-chart-pie"></i>
+         <i class="pm-ic pm-ic-12 fa-solid fa-money-bill-trend-up"></i>
+         <i class="pm-ic pm-ic-13 fa-solid fa-piggy-bank"></i>
+         <i class="pm-ic pm-ic-14 fa-solid fa-hand-holding-dollar"></i>
+         <i class="pm-ic pm-ic-15 fa-solid fa-wallet"></i>
+         <i class="pm-ic pm-ic-16 fa-solid fa-money-bill-wave"></i>
+         <i class="pm-ic pm-ic-17 fa-solid fa-scale-balanced"></i>
+         <i class="pm-ic pm-ic-18 fa-solid fa-gem"></i>
+         <i class="pm-ic pm-ic-19 fa-solid fa-percent"></i>
+         <i class="pm-ic pm-ic-20 fa-solid fa-chart-column"></i>
+         <i class="pm-ic pm-ic-21 fa-solid fa-money-bill-transfer"></i>
+         <i class="pm-ic pm-ic-22 fa-solid fa-vault"></i>
+      </div>
+   </div>
+   <div class="profile__inner p-relative p-20" style="z-index:1;">
+      <div class="row gy-4">
+
+
+         <div class="col-xxl-3 col-lg-4">
+            @* User summary card *@
+            <div class="pm-user-card">
+               <div class="pm-user-cover"></div>
+               <div class="pm-user-avatar">
+                  <img src="~/assets/img/profile/user-10.jpg" alt="avatar">
+                  <span class="pm-user-status" title="Online"></span>
+               </div>
+               <h4 class="pm-user-name" id="pm-name">@User.Identity?.Name</h4>
+               <p class="pm-user-email" id="pm-email">@User.Identity?.Name</p>
+               <span class="pm-user-badge"><i class="fa-solid fa-circle-check"></i> Verified Member</span>
+               <div class="pm-user-mini">
+                  <div>
+                     <span class="pm-user-mini-val" id="pm-mini-balance">$0.00</span>
+                     <span class="pm-user-mini-lbl">Balance</span>
+                  </div>
+                  <div>
+                     <span class="pm-user-mini-val" id="pm-mini-accounts">0</span>
+                     <span class="pm-user-mini-lbl">Accounts</span>
+                  </div>
+               </div>
+            </div>
+
+            @* Profile Menu Tab *@
+            @await Html.PartialAsync("Profile/ProfileTab")
+         </div>
+
+
+         @* Part of TAB Profile  { Personal Detail,  } *@
+         <div class="col-xxl-9 col-lg-8">
+            <div class="profile__tab-content" style="border-radius: 5px;">
+               <div class="tab-content" id="profile-tabContent">
+                  <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                     @* Dashboard *@
+                     @await Html.PartialAsync("Profile/Dashboard")
+                  </div>
+                  <div class="tab-pane fade" id="nav-information" role="tabpanel" aria-labelledby="nav-information-tab">
+                     @* Personal Details *@
+                     @await Html.PartialAsync("Profile/PersonalDetail")
+                  </div>
+                  <div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+                     @* Payment Method *@
+                     @await Html.PartialAsync("Profile/PaymentMethod")
+                  </div>
+                  <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab">
+                     @* Broker *@
+                     @await Html.PartialAsync("Profile/Broker")
+                  </div>
+                  <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
+                     @* Rebates *@
+                     @await Html.PartialAsync("Profile/Rebates")
+                  </div>
+                  <div class="tab-pane fade" id="nav-notification" role="tabpanel" aria-labelledby="nav-notification-tab">
+                     @* Withdrawal  *@
+                     @await Html.PartialAsync("Profile/Withdraw")
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+      </div>
+   </div>
+</div>
+
+<!-- profile area end -->
+@section Scripts {
+   <script>
+      $(document).ready(function() {
+         // Load Data From User
+         loadDataUser();
+         function loadDataUser (){$.ajax({
+            url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_LOAD_USER,
+            type: 'GET',
+            contentType: 'application/json',
+            xhrFields: { withCredentials: true },// IMPORTANT for cookies
+            data: null,
+            success: function (res) {
+               if(res.responseCode == 200)
+               {
+                  console.log(res.data);
+                  $('.full-name').val(res.data.fullName);
+                  $('.address').val(res.data.address);
+                  $('.gender').val(res.data.gender).trigger('change');
+                  $('.email').val(res.data.email);
+                  $('.phone').val(res.data.phone);
+                  $('.telegram').val(res.data.telegram);
+                  $('.whatapp').val(res.data.whatapp);
+
+                  // Sidebar user card
+                  if (res.data.fullName) { $('#pm-name').text(res.data.fullName); }
+                  if (res.data.email) { $('#pm-email').text(res.data.email); }
+               }
+               else {
+                  Swal.fire({
+                     title: 'Warning!',
+                     text: res.message,
+                     icon: 'warning',
+                     confirmButtonText: 'Warning'
+                  });
+               }
+            },
+            error: function (error) {
+               Swal.fire({
+                  title: 'Error!',
+                  text: error.message,
+                  icon: 'error',
+                  confirmButtonText: 'Close'
+               });
+               
+               console.log(error);
+            }
+         });
+         }
+         
+         // Logut Function
+         $('.btn-logout').click(function() {
+            $.ajax({
+               url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_LOGOUT,
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },// IMPORTANT for cookies
+               data: null,
+               success: function (res) {
+                  if(res.responseCode == 200)
+                  {
+                     Swal.fire({
+                        title: 'Success!',
+                        text: 'Login Success!',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                     });
+                     window.location.href = '/Home/Login';
+                  }
+                  else {
+                     Swal.fire({
+                        title: 'Warning!',
+                        text: res.message,
+                        icon: 'warning',
+                        confirmButtonText: 'Warning'
+                     });
+                  }
+               },
+               error: function (error) {
+                  Swal.fire({
+                     title: 'Error!',
+                     text: error.message,
+                     icon: 'error',
+                     confirmButtonText: 'Close'
+                  });
+               }
+            });
+         });
+                     
+         // Update Function
+         $('.btn-update-profile').click(function (event){
+            event.preventDefault();
+            var full_name = $('.full-name').val(); 
+            var email = $('.email').val();
+            var address = $('.address').val();
+            var phone = $('.phone').val();
+            var telegram = $('.telegram').val();
+            var whatapp = $('.whatapp').val();
+            
+            $.ajax({
+               url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_UPDATE_USER,
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },// IMPORTANT for cookies
+               data: JSON.stringify(
+                  {
+                     FullName: full_name,
+                     Email: email,
+                     Address: address,
+                     Phone: phone,
+                     Telegram: telegram,
+                     Whatapp: whatapp
+                  }),
+               success: function (res) {
+                  if(res.responseCode == 200)
+                  {
+                     Swal.fire({
+                        title: 'Success!',
+                        text: 'Login Success!',
+                        icon: 'success',
+                        confirmButtonText: 'Close'
+                     });
+                     
+                     $('.full-name').val(res.data.fullName);
+                     $('.address').val(res.data.address);
+                     $('.gender').val(res.data.gender).trigger('change');
+                     $('.email').val(res.data.email);
+                     $('.phone').val(res.data.phone);
+                     $('.telegram').val(res.data.telegram);
+                     $('.whatapp').val(res.data.whatapp);
+                  }
+                  else {
+                     Swal.fire({
+                        title: 'Warning!',
+                        text: res.message,
+                        icon: 'warning',
+                        confirmButtonText: 'Close'
+                     });
+                  }
+               },
+               error: function (error) {
+                  Swal.fire({
+                     title: 'Error!',
+                     text: error.message,
+                     icon: 'error',
+                     confirmButtonText: 'Close'
+                  });
+               }
+            });
+         });
+                        
+         // Update Password
+         $('.btn-update-password').click(function (event){
+            event.preventDefault();
+            var current_password = $('.current_password').val();
+            var password = $('.password').val();
+            var repassword = $('.repassword').val();
+            
+            console.log(current_password + ' ' + password + ' ' + repassword);
+            
+            if (password != repassword)
+            {
+               Swal.fire({
+                  title: 'Warning!',
+                  text: 'Password and Repassword must be the same',
+                  icon: 'warning',
+                  confirmButtonText: 'Close'
+               });
+               return;
+            }
+            
+            $.ajax({
+               url: window.APP_CONFIG.BASE_URL + window.APP_CONFIG.PATH_CHANGE_PASSWORD,
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },// IMPORTANT for cookies
+               data: JSON.stringify({
+                  currentPassword: current_password,
+                  newPassword: password
+               }),
+               success: function (res) {
+                  if(res.responseCode == 200)
+                  {
+                     Swal.fire({
+                        title: 'Success!',
+                        text: 'Login Success!',
+                        icon: 'success',
+                        confirmButtonText: 'Close'
+                     });
+                     window.location.href = '/Home/Login';
+                     
+                  }
+                  else {
+                     Swal.fire({
+                        title: 'Warning!',
+                        text: res.responseMessage,
+                        icon: 'warning',
+                        confirmButtonText: 'Close'
+                     });
+                     $('.current_password').val('');
+                     $('.password').val('');
+                     $('.repassword').val('');
+                  }
+               },
+               error: function (error) {
+                  Swal.fire({
+                     title: 'Error!',
+                     text: error.message,
+                     icon: 'error',
+                     confirmButtonText: 'Close'
+                  });
+               }
+            });
+         });
+      });
+   </script>
+}

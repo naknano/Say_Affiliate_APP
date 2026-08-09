@@ -1,0 +1,316 @@
+@model WebApplication1.Data.DTO.Dashboard.DashboardDto
+@using System.Globalization
+@{
+    var m = Model ?? new WebApplication1.Data.DTO.Dashboard.DashboardDto();
+    var enUs = new CultureInfo("en-US");
+    string Money(decimal v) => v.ToString("C2", enUs);
+
+    int Ring(decimal part, decimal whole)
+        => whole <= 0 ? (part > 0 ? 100 : 0) : (int)Math.Clamp(part / whole * 100m, 0m, 100m);
+
+    var balanceRing   = Ring(m.CashbackBalance, m.TotalEarned == 0 ? m.CashbackBalance : m.TotalEarned);
+    var earnedRing    = m.TotalEarned > 0 ? 100 : 0;
+    var withdrawnRing = Ring(m.TotalWithdrawn, m.TotalEarned);
+    var accountsRing  = (int)Math.Clamp(m.ActiveAccounts / 5.0 * 100.0, 0.0, 100.0);
+}
+<div class="profile__main dash-modern dash2">
+
+   <!-- ===== Welcome hero ===== -->
+   <div class="dash-welcome">
+      <span class="dash-hero-decor" aria-hidden="true">
+         <i class="fa-solid fa-coins"></i>
+         <i class="fa-solid fa-sack-dollar"></i>
+         <i class="fa-solid fa-chart-line"></i>
+         <i class="fa-solid fa-percent"></i>
+         <i class="fa-solid fa-dollar-sign"></i>
+         <i class="fa-solid fa-money-bill-trend-up"></i>
+      </span>
+      <div class="row align-items-center">
+         <div class="col-md-8">
+            <div class="profile__main-inner d-flex flex-wrap align-items-center">
+               <div class="profile__main-thumb">
+                  <img src="~/assets/img/profile/user-10.jpg" alt="">
+                  <div class="profile__main-thumb-edit">
+                     <input id="profile-thumb-input" class="profile-img-popup" type="file">
+                     <label for="profile-thumb-input"><i class="fa-solid fa-camera"></i></label>
+                  </div>
+               </div>
+               <div class="profile__main-content">
+                  <span class="dash-hello">Welcome back</span>
+                  <h4 class="profile__main-title">Hello, @(m.UserName ?? User.Identity?.Name) 👋</h4>
+                  @if (m.NotificationCount > 0)
+                  {
+                     <p class="dash-noti"><i class="fa-solid fa-bell"></i> You have <span>&nbsp;@m.NotificationCount.ToString("00")&nbsp;</span> pending @(m.NotificationCount == 1 ? "item" : "items")</p>
+                  }
+                  else
+                  {
+                     <p class="dash-noti"><i class="fa-solid fa-circle-check"></i> You're all caught up</p>
+                  }
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="dash-logout-wrap text-md-end">
+               <button class="btn-logout dash-logout-btn"><i class="fa-solid fa-right-from-bracket"></i>Logout</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- ===== Ring stat cards ===== -->
+   @{
+      // (value, label, foot, icon, colour, ring-percent)
+      var ringStats = new[]
+      {
+         (Money(m.CashbackBalance), "Cashback Balance", "Available now",   "fa-arrow-trend-up",     "#4b57e6", balanceRing),
+         (Money(m.TotalEarned),     "Total Earned",     "All time",        "fa-sack-dollar",        "#12b886", earnedRing),
+         (Money(m.TotalWithdrawn),  "Total Withdrawn",  "Paid out",        "fa-money-bill-transfer","#f59f00", withdrawnRing),
+         (m.ActiveAccounts.ToString(), "Active Accounts", "Linked brokers","fa-building-columns",   "#845ef7", accountsRing)
+      };
+   }
+   <div class="row g-4 mt-1 dash2-stats">
+      @foreach (var s in ringStats)
+      {
+         <div class="col-xl-3 col-md-6">
+            <div class="dash2-card" style="--c:@s.Item5;">
+               <span class="dash2-ring" style="--p:@s.Item6;">
+                  <i class="fa-solid @s.Item4"></i>
+               </span>
+               <div class="dash2-card-meta">
+                  <span class="dash2-card-label">@s.Item2</span>
+                  <h3 class="dash2-card-value">@s.Item1</h3>
+                  <span class="dash2-card-foot">@s.Item3</span>
+               </div>
+            </div>
+         </div>
+      }
+   </div>
+
+   <!-- ===== Chart + wallet ===== -->
+   <div class="row g-4 mt-1">
+
+      <!-- Earnings area chart -->
+      <div class="col-xl-8">
+         <div class="dash-panel h-100">
+            <div class="dash-panel-head">
+               <div>
+                  <h3 class="dash2-gross">@Money(m.GrossCashback)</h3>
+                  <span class="dash2-gross-sub">Gross Cashback</span>
+               </div>
+               <div class="dash2-legend">
+                  <span><i style="background:#4b57e6"></i> Earned</span>
+                  <span><i style="background:#12b886"></i> Withdrawn</span>
+               </div>
+            </div>
+
+            @{
+               var months = m.ChartMonths.Count > 0
+                  ? m.ChartMonths.ToArray()
+                  : new[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug" };
+
+               var earnedRaw = m.ChartEarned.Select(v => (double)v).ToArray();
+               var withdrawnRaw = m.ChartWithdrawn.Select(v => (double)v).ToArray();
+               if (earnedRaw.Length == 0) earnedRaw = new double[months.Length];
+               if (withdrawnRaw.Length == 0) withdrawnRaw = new double[months.Length];
+
+               // scale both series to 0..100 against a shared max so the chart is comparable
+               var peak = Math.Max(earnedRaw.DefaultIfEmpty(0).Max(), withdrawnRaw.DefaultIfEmpty(0).Max());
+               if (peak <= 0) peak = 1;
+               var earned = earnedRaw.Select(v => v / peak * 100.0).ToArray();
+               var withdrawn = withdrawnRaw.Select(v => v / peak * 100.0).ToArray();
+
+               string Path(double[] data, int w, int h, int pad)
+               {
+                  var n = data.Length;
+                  if (n == 0) return "";
+                  var plotW = w - pad * 2;
+                  var plotH = h - pad * 2;
+                  var pts = new List<(double x, double y)>();
+                  for (var i = 0; i < n; i++)
+                  {
+                     var x = pad + plotW * (n == 1 ? 0 : (double)i / (n - 1));
+                     var y = pad + plotH * (1 - data[i] / 100.0);
+                     pts.Add((x, y));
+                  }
+                  var sb = new System.Text.StringBuilder();
+                  sb.Append($"M {pts[0].x:0.#} {pts[0].y:0.#} ");
+                  for (var i = 1; i < n; i++)
+                  {
+                     var cx = (pts[i - 1].x + pts[i].x) / 2;
+                     sb.Append($"C {cx:0.#} {pts[i - 1].y:0.#} {cx:0.#} {pts[i].y:0.#} {pts[i].x:0.#} {pts[i].y:0.#} ");
+                  }
+                  return sb.ToString();
+               }
+
+               int W = 720, H = 300, P = 18;
+               var earnedLine = Path(earned, W, H, P);
+               var withdrawnLine = Path(withdrawn, W, H, P);
+            }
+
+            <div class="dash2-chart">
+               <svg viewBox="0 0 @W @H" preserveAspectRatio="none" class="dash2-svg">
+                  <defs>
+                     <linearGradient id="gradEarned" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#4b57e6" stop-opacity="0.28"></stop>
+                        <stop offset="100%" stop-color="#4b57e6" stop-opacity="0"></stop>
+                     </linearGradient>
+                     <linearGradient id="gradWith" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#12b886" stop-opacity="0.24"></stop>
+                        <stop offset="100%" stop-color="#12b886" stop-opacity="0"></stop>
+                     </linearGradient>
+                  </defs>
+                  <!-- gridlines -->
+                  @for (var g = 0; g <= 3; g++)
+                  {
+                     var gy = P + (H - P * 2) * (g / 3.0);
+                     <line x1="@P" y1="@gy.ToString("0.#")" x2="@(W - P)" y2="@gy.ToString("0.#")" stroke="rgba(16,44,84,0.06)" stroke-width="1"></line>
+                  }
+                  <!-- areas -->
+                  <path d="@earnedLine L @(W - P) @(H - P) L @P @(H - P) Z" fill="url(#gradEarned)"></path>
+                  <path d="@withdrawnLine L @(W - P) @(H - P) L @P @(H - P) Z" fill="url(#gradWith)"></path>
+                  <!-- lines -->
+                  <path d="@earnedLine" fill="none" stroke="#4b57e6" stroke-width="3" stroke-linecap="round"></path>
+                  <path d="@withdrawnLine" fill="none" stroke="#12b886" stroke-width="3" stroke-linecap="round"></path>
+               </svg>
+               <div class="dash2-xaxis">
+                  @foreach (var mo in months)
+                  {
+                     <span>@mo</span>
+                  }
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Cashback wallet card + mini stats -->
+      <div class="col-xl-4">
+         <div class="dash-panel h-100 dash2-side">
+            <div class="dash2-wallet">
+               <span class="dash2-wallet-shape"></span>
+               <div class="dash2-wallet-top">
+                  <div>
+                     <span class="dash2-wallet-brand">Say Affiliates</span>
+                     <span class="dash2-wallet-type">CASHBACK WALLET</span>
+                  </div>
+                  <span class="dash2-wallet-chip"></span>
+               </div>
+               <div class="dash2-wallet-num">**** &nbsp; **** &nbsp; **** &nbsp; @m.WalletTail</div>
+               <div class="dash2-wallet-foot">
+                  <div>
+                     <small>Member</small>
+                     <b>@(m.UserName ?? User.Identity?.Name)</b>
+                  </div>
+                  <div class="text-end">
+                     <small>Balance</small>
+                     <b>@Money(m.CashbackBalance)</b>
+                  </div>
+               </div>
+            </div>
+
+            <div class="dash2-mini">
+               <div class="dash2-mini-item">
+                  <span class="dash2-mini-icon" style="--c:#4b57e6;"><i class="fa-solid fa-building-columns"></i></span>
+                  <div>
+                     <b>@m.BrokerCount</b>
+                     <small>Brokers</small>
+                  </div>
+               </div>
+               <div class="dash2-mini-item">
+                  <span class="dash2-mini-icon" style="--c:#12b886;"><i class="fa-solid fa-money-bill-transfer"></i></span>
+                  <div>
+                     <b>@m.WithdrawalCount</b>
+                     <small>Withdrawals</small>
+                  </div>
+               </div>
+            </div>
+
+            <div class="dash2-lifetime">
+               <div>
+                  <h3>@Money(m.TotalEarned)</h3>
+                  <a asp-controller="Profile" asp-action="Rebates">Lifetime cashback</a>
+               </div>
+               <span class="dash2-yoy">YoY @(m.YoyPercent >= 0 ? "+" : "")@m.YoyPercent.ToString("0")%</span>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- ===== Quick actions + recent activity ===== -->
+   <div class="row g-4 mt-1">
+      <div class="col-lg-7">
+         <div class="dash-panel h-100">
+            <div class="dash-panel-head">
+               <h4 class="dash-panel-title"><i class="fa-solid fa-bolt"></i> Quick Actions</h4>
+            </div>
+            <div class="dash-actions">
+               <a class="dash-action" asp-controller="Profile" asp-action="Brokers">
+                  <span class="dash-action-icon" style="--a:#4b57e6;"><i class="fa-solid fa-plus"></i></span>
+                  <span class="dash-action-txt"><b>Add Trading Account</b><small>Link a broker account</small></span>
+               </a>
+               <a class="dash-action" asp-controller="Profile" asp-action="Withdraw">
+                  <span class="dash-action-icon" style="--a:#12b886;"><i class="fa-solid fa-money-bill-transfer"></i></span>
+                  <span class="dash-action-txt"><b>Withdraw Funds</b><small>Cash out your rebates</small></span>
+               </a>
+               <a class="dash-action" asp-controller="Profile" asp-action="Details">
+                  <span class="dash-action-icon" style="--a:#f59f00;"><i class="fa-solid fa-user-pen"></i></span>
+                  <span class="dash-action-txt"><b>Edit Profile</b><small>Update your details</small></span>
+               </a>
+               <a class="dash-action" asp-controller="Home" asp-action="Broker">
+                  <span class="dash-action-icon" style="--a:#845ef7;"><i class="fa-solid fa-building-columns"></i></span>
+                  <span class="dash-action-txt"><b>Browse Brokers</b><small>Find a new broker</small></span>
+               </a>
+            </div>
+         </div>
+      </div>
+
+      <div class="col-lg-5">
+         <div class="dash-panel h-100">
+            <div class="dash-panel-head">
+               <h4 class="dash-panel-title"><i class="fa-solid fa-clock-rotate-left"></i> Recent Activity</h4>
+               <a class="dash-panel-link" asp-controller="Profile" asp-action="Rebates">View all</a>
+            </div>
+            @if (m.RecentActivity.Count > 0)
+            {
+               <ul class="dash-activity">
+                  @foreach (var a in m.RecentActivity)
+                  {
+                     var dotClass = a.IsCredit ? "dash-dot-green" : "dash-dot-amber";
+                     var dotIcon = a.IsCredit ? "fa-arrow-down" : "fa-money-bill-transfer";
+                     <li>
+                        <span class="dash-activity-dot @dotClass"><i class="fa-solid @dotIcon"></i></span>
+                        <div class="dash-activity-body">
+                           <p><b>@a.Title</b> @a.Subtitle</p>
+                           <span>@a.TimeAgo</span>
+                        </div>
+                        @if (a.Status == "pending")
+                        {
+                           <span class="dash-activity-amt pm-muted">Pending</span>
+                        }
+                        else if (a.Status == "rejected")
+                        {
+                           <span class="dash-activity-amt pm-muted">Rejected</span>
+                        }
+                        else if (a.IsCredit)
+                        {
+                           <span class="dash-activity-amt text-success">+@Money(a.Amount)</span>
+                        }
+                        else
+                        {
+                           <span class="dash-activity-amt text-danger">-@Money(a.Amount)</span>
+                        }
+                     </li>
+                  }
+               </ul>
+            }
+            else
+            {
+               <div class="dash-activity-empty text-center" style="padding:38px 16px;color:#9aa6b8;">
+                  <i class="fa-solid fa-clock-rotate-left" style="font-size:32px;opacity:.35;"></i>
+                  <p style="margin:12px 0 4px;font-weight:600;color:#7a8699;">No activity yet</p>
+                  <span style="font-size:13px;">Link a broker account and start earning cashback.</span>
+               </div>
+            }
+         </div>
+      </div>
+   </div>
+</div>

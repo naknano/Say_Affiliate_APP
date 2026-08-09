@@ -1,0 +1,573 @@
+@{
+    ViewData["Title"] = "How to Choose the Right Broker for Your Trading Needs";
+}
+
+<div class="br-page">
+
+    <!-- ══ HERO ══ -->
+    <section class="br-hero">
+        <div class="container container-1230">
+            <div class="br-hero-inner">
+
+                <nav class="br-hero-breadcrumb">
+                    <a asp-controller="Home"      asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <a asp-controller="Resources" asp-action="Index">Resources</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <a asp-controller="Resources" asp-action="ForexBrokers">Forex Brokers</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>How to Choose the Right Broker</span>
+                </nav>
+
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <div class="br-hero-logo-wrap">
+                            <div class="br-hero-logo" style="background:linear-gradient(135deg,#059669,#0d9488);border:none;">
+                                <i class="fa-solid fa-compass" style="font-size:32px;color:#fff;"></i>
+                            </div>
+                            <span class="br-hero-badge"><i class="fa-solid fa-book-open"></i> Complete Guide 2025</span>
+                        </div>
+                        <h1 class="br-hero-title">How to Choose the Right Broker for Your Trading Needs</h1>
+                        <div class="br-hero-meta">
+                            <span><i class="fa-solid fa-user-pen"></i> Say Affiliates Editorial Team</span>
+                            <span><i class="fa-regular fa-calendar"></i> Updated 30 Nov 2024</span>
+                            <span><i class="fa-solid fa-clock"></i> 14 min read</span>
+                        </div>
+                        <div class="br-hero-chips">
+                            <div class="br-hero-chip">
+                                <div class="br-hero-chip-icon"><i class="fa-solid fa-list-check"></i></div>
+                                <div class="br-hero-chip-text">
+                                    <span class="br-hero-chip-label">Steps Covered</span>
+                                    <span class="br-hero-chip-val">8 Key Criteria</span>
+                                </div>
+                            </div>
+                            <div class="br-hero-chip">
+                                <div class="br-hero-chip-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                                <div class="br-hero-chip-text">
+                                    <span class="br-hero-chip-label">Regulation</span>
+                                    <span class="br-hero-chip-val">FCA · ASIC · CySEC</span>
+                                </div>
+                            </div>
+                            <div class="br-hero-chip">
+                                <div class="br-hero-chip-icon"><i class="fa-solid fa-desktop"></i></div>
+                                <div class="br-hero-chip-text">
+                                    <span class="br-hero-chip-label">Platforms</span>
+                                    <span class="br-hero-chip-val">MT4 · MT5 · cTrader</span>
+                                </div>
+                            </div>
+                            <div class="br-hero-chip">
+                                <div class="br-hero-chip-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                                <div class="br-hero-chip-text">
+                                    <span class="br-hero-chip-label">Cashback</span>
+                                    <span class="br-hero-chip-val">Up to $7.50/lot</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                        <div class="br-score-card" style="text-align:left;">
+                            <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;"><i class="fa-solid fa-compass me-2" style="color:#38bdf8;"></i>Quick Broker Checklist</div>
+                            @{
+                                var checklist = new[] { "ASIC, FCA, or CySEC regulated", "Raw spreads from 0.0 pips", "MT4, MT5, or cTrader support", "Instant e-wallet withdrawals", "24/7 customer support", "Cashback rebate program" };
+                            }
+                            @foreach (var c in checklist)
+                            {
+                                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                                    <i class="fa-solid fa-circle-check" style="color:#4ade80;font-size:13px;flex-shrink:0;"></i>
+                                    <span style="font-size:13px;color:rgba(255,255,255,.82);">@c</span>
+                                </div>
+                            }
+                            <div style="margin-top:18px;">
+                                <a asp-controller="Resources" asp-action="ForexBrokers" class="br-score-cta">
+                                    Compare Top Brokers <i class="fa-solid fa-arrow-right-long"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ BODY ══ -->
+    <div class="br-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-3 col-md-4">
+                    <partial name="_Sidebar" model="@("ForexBrokers")" />
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+                    <div class="br-article">
+
+                        <!-- Article banner -->
+                        <div class="ba-banner">
+                            <div class="ba-banner-icon" style="background:linear-gradient(135deg,#059669,#0d9488);"><i class="fa-solid fa-compass"></i></div>
+                            <div class="ba-banner-text">
+                                <span class="ba-banner-label">Say Affiliates Complete Guide</span>
+                                <div class="ba-banner-title">How to Choose the <span>Right Forex Broker</span></div>
+                                <div class="ba-banner-meta">
+                                    <span><i class="fa-solid fa-user-pen"></i> Say Affiliates Editorial Team</span>
+                                    <span><i class="fa-regular fa-calendar"></i> Updated 30 Nov 2024</span>
+                                    <span><i class="fa-solid fa-clock"></i> 14 min read</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Intro -->
+                        <p class="br-p">Choosing the right forex broker is one of the most important decisions a trader makes. The wrong choice can cost you money through excessive spreads, poor execution, or — worst of all — an unregulated broker that puts your capital at risk. In this complete guide, you will learn exactly what to look for, step by step:</p>
+                        <ul class="ba-question-list">
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> Why regulation is the single most important factor</li>
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> How to compare spreads, commissions, and total trading costs</li>
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> Which trading platform suits your strategy</li>
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> What account types are best for beginners vs professionals</li>
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> How to evaluate instrument range and market access</li>
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> The role of cashback rebates in reducing your net cost</li>
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> ECN vs STP vs Market Maker — which broker type is right for you</li>
+                            <li><i class="fa-solid fa-circle-arrow-right"></i> Our top recommended brokers for 2025</li>
+                        </ul>
+
+                        <!-- Key Highlights -->
+                        <div class="br-highlights">
+                            <div class="br-highlights-title"><i class="fa-solid fa-circle-check"></i> Key Takeaways</div>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Always verify regulation before depositing — use FCA, ASIC, or CySEC registers</li>
+                                <li><i class="fa-solid fa-check"></i> Total trading cost = spread + commission + swap — compare all three</li>
+                                <li><i class="fa-solid fa-check"></i> ECN brokers offer the tightest spreads and are best for active traders</li>
+                                <li><i class="fa-solid fa-check"></i> MT4 is best for EAs; cTrader is best for DOM and lowest commission</li>
+                                <li><i class="fa-solid fa-check"></i> Always register through Say Affiliates to earn automatic cashback on every trade</li>
+                                <li><i class="fa-solid fa-check"></i> Negative balance protection is essential — avoid any broker that does not offer it</li>
+                            </ul>
+                        </div>
+
+                        <!-- TOC -->
+                        <div class="br-toc">
+                            <div class="br-toc-title"><i class="fa-solid fa-list-ul"></i> Table of Contents</div>
+                            <ol>
+                                <li><a href="#why-it-matters">Why Your Broker Choice Matters</a></li>
+                                <li><a href="#regulation">Step 1: Check Regulation &amp; Safety</a></li>
+                                <li><a href="#costs">Step 2: Compare Spreads &amp; Trading Costs</a></li>
+                                <li><a href="#platforms">Step 3: Evaluate Trading Platforms</a></li>
+                                <li><a href="#accounts">Step 4: Review Account Types</a></li>
+                                <li><a href="#instruments">Step 5: Assess Instruments &amp; Markets</a></li>
+                                <li><a href="#support">Step 6: Test Customer Support</a></li>
+                                <li><a href="#deposits">Step 7: Understand Deposits &amp; Withdrawals</a></li>
+                                <li><a href="#cashback">Step 8: Find a Cashback Rebate Program</a></li>
+                                <li><a href="#broker-types">ECN vs STP vs Market Maker</a></li>
+                                <li><a href="#top-brokers">Our Top Recommended Brokers</a></li>
+                                <li><a href="#faqs">Frequently Asked Questions</a></li>
+                            </ol>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 1. Why it matters -->
+                        <div class="br-section" id="why-it-matters">
+                            <h2 class="br-h2">1. Why Your Broker Choice Matters</h2>
+                            <p class="br-p">Many new traders underestimate the impact their broker has on their long-term profitability. In reality, the broker you choose directly determines your effective trading costs, the reliability of your order execution, the safety of your capital, and your ability to trade the instruments and markets you want.</p>
+                            <div class="br-stats-strip">
+                                <div class="br-stat-card">
+                                    <div class="br-stat-card-icon" style="background:#fef2f2;color:#dc2626;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                    <span class="br-stat-card-val" style="font-size:13px;">Capital Risk</span>
+                                    <span class="br-stat-card-lbl">Wrong broker = funds at risk</span>
+                                </div>
+                                <div class="br-stat-card">
+                                    <div class="br-stat-card-icon" style="background:#fffbeb;color:#d97706;"><i class="fa-solid fa-chart-line"></i></div>
+                                    <span class="br-stat-card-val" style="font-size:13px;">Cost Impact</span>
+                                    <span class="br-stat-card-lbl">Spreads erode profit daily</span>
+                                </div>
+                                <div class="br-stat-card">
+                                    <div class="br-stat-card-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-bolt"></i></div>
+                                    <span class="br-stat-card-val" style="font-size:13px;">Execution</span>
+                                    <span class="br-stat-card-lbl">Speed affects every trade</span>
+                                </div>
+                                <div class="br-stat-card">
+                                    <div class="br-stat-card-icon" style="background:#eff6ff;color:#2563eb;"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                                    <span class="br-stat-card-val" style="font-size:13px;">Cashback</span>
+                                    <span class="br-stat-card-lbl">Right broker = rebates earned</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 2. Regulation -->
+                        <div class="br-section" id="regulation">
+                            <h2 class="br-h2">2. Step 1 — Check Regulation &amp; Safety</h2>
+                            <p class="br-p">Regulation is the single most important factor when selecting a broker. A regulated broker is legally required to keep your funds in a segregated account, undergo regular audits, maintain capital requirements, and — in many jurisdictions — contribute to investor compensation schemes that protect your money if the broker becomes insolvent.</p>
+                            <h3 class="br-h3">Top regulatory authorities to trust:</h3>
+                            <div class="br-reg-grid">
+                                <div class="br-reg-card">
+                                    <div class="br-reg-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                                    <div>
+                                        <p class="br-reg-card-name">FCA — United Kingdom</p>
+                                        <p class="br-reg-card-body">World's most respected. FSCS protection up to £85,000. Leverage capped at 1:30 for retail.</p>
+                                        <span class="br-reg-card-badge"><i class="fa-solid fa-circle-check"></i> Gold standard</span>
+                                    </div>
+                                </div>
+                                <div class="br-reg-card">
+                                    <div class="br-reg-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                                    <div>
+                                        <p class="br-reg-card-name">ASIC — Australia</p>
+                                        <p class="br-reg-card-body">Strict capital adequacy, mandatory fund segregation, regular audits. AFSL licence required.</p>
+                                        <span class="br-reg-card-badge"><i class="fa-solid fa-circle-check"></i> Top-tier</span>
+                                    </div>
+                                </div>
+                                <div class="br-reg-card">
+                                    <div class="br-reg-card-icon"><i class="fa-solid fa-landmark"></i></div>
+                                    <div>
+                                        <p class="br-reg-card-name">CySEC — Cyprus (EU)</p>
+                                        <p class="br-reg-card-body">MiFID II compliant. €20,000 Investor Compensation Fund. Passportable across EU.</p>
+                                        <span class="br-reg-card-badge"><i class="fa-solid fa-circle-check"></i> Top-tier</span>
+                                    </div>
+                                </div>
+                                <div class="br-reg-card">
+                                    <div class="br-reg-card-icon"><i class="fa-solid fa-globe-africa"></i></div>
+                                    <div>
+                                        <p class="br-reg-card-name">FSCA — South Africa</p>
+                                        <p class="br-reg-card-body">Recognised top-tier regulator for African markets. Strict FSP licensing requirements.</p>
+                                        <span class="br-reg-card-badge"><i class="fa-solid fa-circle-check"></i> Top-tier</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="br-callout">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span><strong>Always verify independently.</strong> Search the broker's licence number on the official regulator's website (e.g., register.fca.org.uk for FCA, asic.gov.au for ASIC) before depositing any funds.</span>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 3. Costs -->
+                        <div class="br-section" id="costs">
+                            <h2 class="br-h2">3. Step 2 — Compare Spreads &amp; Trading Costs</h2>
+                            <p class="br-p">Your total trading cost per round-turn lot consists of three elements: the <strong>spread</strong>, the <strong>commission</strong> (on raw/ECN accounts), and the <strong>overnight swap</strong> (for positions held past rollover). Understanding all three is essential to calculate your true cost per trade.</p>
+                            <div class="br-fee-grid">
+                                <div class="br-fee-card">
+                                    <span class="br-fee-card-label">Standard Account</span>
+                                    <span class="br-fee-card-val">~1.2 pips</span>
+                                    <span class="br-fee-card-sub">No commission — cost in spread</span>
+                                </div>
+                                <div class="br-fee-card">
+                                    <span class="br-fee-card-label">ECN/Raw Account</span>
+                                    <span class="br-fee-card-val">0.0 pips</span>
+                                    <span class="br-fee-card-sub">+ $6–7 commission per lot</span>
+                                </div>
+                                <div class="br-fee-card">
+                                    <span class="br-fee-card-label">With Cashback</span>
+                                    <span class="br-fee-card-val">Near $0</span>
+                                    <span class="br-fee-card-sub">Rebate offsets commission cost</span>
+                                </div>
+                            </div>
+                            <h3 class="br-h3">Which account type costs less?</h3>
+                            <p class="br-p">For high-volume or active traders, Raw/ECN accounts almost always cost less than Standard accounts. A standard 1.2 pip spread on EUR/USD equals ~$12 per round-turn lot. An ECN account at 0.02 pips + $7.00 commission costs ~$7.20 — nearly half as much. When you add Say Affiliates cashback on top, the effective cost drops even further.</p>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 4. Platforms -->
+                        <div class="br-section" id="platforms">
+                            <h2 class="br-h2">4. Step 3 — Evaluate Trading Platforms</h2>
+                            <p class="br-p">Your trading platform is your primary tool. Choose one that matches your trading style and technical requirements:</p>
+                            <div class="br-platform-grid">
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-chart-bar"></i></div>
+                                    <div class="br-platform-name">MetaTrader 4</div>
+                                    <p class="br-platform-desc">Best for: algorithmic traders, EA users, and anyone who wants the widest indicator ecosystem and community support.</p>
+                                    <div class="br-platform-tags">
+                                        <span class="br-platform-tag" style="background:#eff6ff;color:#1d4ed8;">Expert Advisors</span>
+                                        <span class="br-platform-tag" style="background:#eff6ff;color:#1d4ed8;">Largest community</span>
+                                    </div>
+                                </div>
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-chart-area"></i></div>
+                                    <div class="br-platform-name">MetaTrader 5</div>
+                                    <p class="br-platform-desc">Best for: multi-asset traders who need stocks, ETFs, and futures alongside forex — plus superior backtesting.</p>
+                                    <div class="br-platform-tags">
+                                        <span class="br-platform-tag" style="background:#f0fdf4;color:#16a34a;">21 timeframes</span>
+                                        <span class="br-platform-tag" style="background:#f0fdf4;color:#16a34a;">Multi-asset</span>
+                                    </div>
+                                </div>
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="background:#fff7ed;color:#ea580c;"><i class="fa-solid fa-layer-group"></i></div>
+                                    <div class="br-platform-name">cTrader</div>
+                                    <p class="br-platform-desc">Best for: scalpers and professional traders who want Level II Depth of Market, detachable charts, and the lowest commission.</p>
+                                    <div class="br-platform-tags">
+                                        <span class="br-platform-tag" style="background:#fff7ed;color:#ea580c;">Depth of Market</span>
+                                        <span class="br-platform-tag" style="background:#fff7ed;color:#ea580c;">Lowest cost</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 5. Accounts -->
+                        <div class="br-section" id="accounts">
+                            <h2 class="br-h2">5. Step 4 — Review Account Types &amp; Minimum Deposits</h2>
+                            <p class="br-p">Most brokers offer two to four account types. Here's a quick guide to which suits each trading profile:</p>
+                            <div class="br-account-grid">
+                                <div class="br-account-card">
+                                    <div class="br-account-card-hd" style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);">
+                                        <div class="br-account-card-hd-name">Standard Account</div>
+                                        <div class="br-account-card-hd-sub">Best for beginners</div>
+                                    </div>
+                                    <div class="br-account-row"><span>Spread</span><span>~1.0–1.5 pips</span></div>
+                                    <div class="br-account-row"><span>Commission</span><span>None</span></div>
+                                    <div class="br-account-row"><span>Min. Deposit</span><span>$0–$200</span></div>
+                                    <div class="br-account-row"><span>Best For</span><span>Learning, low volume</span></div>
+                                </div>
+                                <div class="br-account-card">
+                                    <div class="br-account-card-hd" style="background:linear-gradient(135deg,#065f46,#059669);">
+                                        <div class="br-account-card-hd-name">ECN / Raw Account</div>
+                                        <div class="br-account-card-hd-sub">Best for active traders</div>
+                                    </div>
+                                    <div class="br-account-row"><span>Spread</span><span>0.0–0.1 pips</span></div>
+                                    <div class="br-account-row"><span>Commission</span><span>$3–7/lot</span></div>
+                                    <div class="br-account-row"><span>Min. Deposit</span><span>$100–$500</span></div>
+                                    <div class="br-account-row"><span>Best For</span><span>Scalpers, high volume</span></div>
+                                </div>
+                                <div class="br-account-card">
+                                    <div class="br-account-card-hd" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);">
+                                        <div class="br-account-card-hd-name">Pro / VIP Account</div>
+                                        <div class="br-account-card-hd-sub">Best for professionals</div>
+                                    </div>
+                                    <div class="br-account-row"><span>Spread</span><span>0.0 pips</span></div>
+                                    <div class="br-account-row"><span>Commission</span><span>Reduced rate</span></div>
+                                    <div class="br-account-row"><span>Min. Deposit</span><span>$1,000+</span></div>
+                                    <div class="br-account-row"><span>Best For</span><span>Professional, high capital</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 6. Instruments -->
+                        <div class="br-section" id="instruments">
+                            <h2 class="br-h2">6. Step 5 — Assess Instruments &amp; Markets</h2>
+                            <p class="br-p">Ensure the broker offers the instruments you need. Most regulated brokers cover these core asset classes:</p>
+                            <div class="br-market-pills">
+                                <div class="br-market-pill" style="background:#eff6ff;color:#1d4ed8;"><i class="fa-solid fa-dollar-sign"></i> Forex <span>Major, minor &amp; exotic pairs</span></div>
+                                <div class="br-market-pill" style="background:#f0fdf4;color:#16a34a;"><i class="fa-solid fa-chart-simple"></i> Indices <span>S&amp;P 500, DAX, Nikkei</span></div>
+                                <div class="br-market-pill" style="background:#fffbeb;color:#d97706;"><i class="fa-solid fa-oil-well"></i> Commodities <span>Gold, Silver, Oil</span></div>
+                                <div class="br-market-pill" style="background:#fdf4ff;color:#9333ea;"><i class="fa-brands fa-bitcoin"></i> Crypto <span>BTC, ETH &amp; more</span></div>
+                                <div class="br-market-pill" style="background:#f5f3ff;color:#7c3aed;"><i class="fa-solid fa-building-columns"></i> Shares <span>US, UK, EU, AU stocks</span></div>
+                                <div class="br-market-pill" style="background:#f0fdfa;color:#0d9488;"><i class="fa-solid fa-layer-group"></i> ETFs <span>SPY, QQQ, GLD</span></div>
+                            </div>
+                            <p class="br-p">If you plan to trade beyond standard forex pairs — particularly global equities or commodity futures — verify that your chosen broker and platform (MT5 or cTrader) support those instruments before opening an account.</p>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 7. Support -->
+                        <div class="br-section" id="support">
+                            <h2 class="br-h2">7. Step 6 — Test Customer Support Before Depositing</h2>
+                            <p class="br-p">A broker's customer support quality is often invisible until you need it — and then it matters enormously. Before depositing, always test live chat and email response times with a genuine pre-sales question.</p>
+                            <div class="row g-3">
+                                @{
+                                    var supportTips = new[] {
+                                        new { Icon="fa-solid fa-comments",          Bg="#eff6ff", Clr="#2563eb", T="Test Live Chat",         D="Send a technical question about the platform before depositing. Response within 2 minutes is the benchmark for top-tier brokers." },
+                                        new { Icon="fa-solid fa-envelope",          Bg="#f0fdf4", Clr="#16a34a", T="Check Email Response",   D="Email support@broker.com a question about account types. A 24-hour response time or less is acceptable. Longer is a red flag." },
+                                        new { Icon="fa-solid fa-globe",             Bg="#fff7ed", Clr="#ea580c", T="Verify Languages",       D="If English is not your first language, confirm your broker supports your native language — especially for account or withdrawal disputes." },
+                                        new { Icon="fa-solid fa-clock",             Bg="#fdf4ff", Clr="#9333ea", T="Check Support Hours",    D="Forex markets run 24/5. Your broker's support should ideally match those hours — 24/7 is even better for crypto or weekend trading." },
+                                    };
+                                }
+                                @foreach (var t in supportTips)
+                                {
+                                    <div class="col-sm-6">
+                                        <div class="br-fact-item">
+                                            <div class="br-fact-icon" style="background:@t.Bg;color:@t.Clr;"><i class="@t.Icon"></i></div>
+                                            <div>
+                                                <span class="br-fact-val">@t.T</span>
+                                                <span style="font-size:12.5px;color:#64748b;display:block;margin-top:4px;line-height:1.55;">@t.D</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 8. Deposits -->
+                        <div class="br-section" id="deposits">
+                            <h2 class="br-h2">8. Step 7 — Understand Deposits &amp; Withdrawals</h2>
+                            <p class="br-p">Withdrawal speed and fees are the most common complaint among traders who chose the wrong broker. Check these points before committing:</p>
+                            <table class="br-facts-table">
+                                <tr><td>Segregated Funds</td><td>Your deposit must be held separately from the broker's operating funds — mandatory for regulated brokers</td></tr>
+                                <tr><td>Withdrawal Speed</td><td>E-wallets (Skrill, Neteller, PayPal): instant · Bank transfer: 1–5 days · Card: 3–5 days</td></tr>
+                                <tr><td>Withdrawal Fees</td><td>Top brokers charge zero internal withdrawal fees — always check the fee schedule before depositing</td></tr>
+                                <tr><td>Minimum Withdrawal</td><td>Ranges from $0 (BlackBull, OANDA) to $50 (FxPro) — verify this matches your trading style</td></tr>
+                                <tr><td>Method Match Rule</td><td>Most brokers require you to withdraw to the same method you deposited — this is an anti-money-laundering requirement, not a restriction</td></tr>
+                                <tr><td>Negative Balance Protection</td><td>Mandatory under FCA and CySEC rules — always choose a broker that guarantees you cannot lose more than your deposit</td></tr>
+                            </table>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 9. Cashback -->
+                        <div class="br-section" id="cashback">
+                            <h2 class="br-h2">9. Step 8 — Find a Cashback Rebate Program</h2>
+                            <p class="br-p">Once you have selected a regulated broker with competitive costs, the final step to maximise your profitability is to register through a cashback rebate program. This earns you an automatic rebate on every lot you trade — reducing your net trading cost even further.</p>
+                            <div class="br-highlights">
+                                <div class="br-highlights-title"><i class="fa-solid fa-money-bill-transfer"></i> Say Affiliates Cashback — How It Works</div>
+                                <ul>
+                                    <li><i class="fa-solid fa-check"></i> Register a free Say Affiliates account (takes 2 minutes)</li>
+                                    <li><i class="fa-solid fa-check"></i> Open your broker account through your unique referral link</li>
+                                    <li><i class="fa-solid fa-check"></i> Trade any instruments on any account type</li>
+                                    <li><i class="fa-solid fa-check"></i> Earn cashback on every lot — win or lose — credited weekly</li>
+                                    <li><i class="fa-solid fa-check"></i> Withdraw at any time with no minimum hold period</li>
+                                    <li><i class="fa-solid fa-check"></i> 8+ regulated partner brokers — ASIC, FCA, CySEC coverage</li>
+                                </ul>
+                            </div>
+                            <p class="br-p">With Say Affiliates cashback, the effective round-turn cost on an IC Markets cTrader Raw account (~$6.02/lot) can drop to near zero — making it one of the most cost-efficient retail trading setups available globally.</p>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 10. Broker Types -->
+                        <div class="br-section" id="broker-types">
+                            <h2 class="br-h2">10. ECN vs STP vs Market Maker — Which Broker Type Is Right for You?</h2>
+                            <p class="br-p">Understanding broker execution models helps you choose the structure that best matches your trading style and cost expectations:</p>
+                            <div class="br-account-grid">
+                                <div class="br-account-card">
+                                    <div class="br-account-card-hd" style="background:linear-gradient(135deg,#065f46,#059669);">
+                                        <div class="br-account-card-hd-name">ECN Broker</div>
+                                        <div class="br-account-card-hd-sub">Electronic Communications Network</div>
+                                    </div>
+                                    <div class="br-account-row"><span>Execution</span><span>Direct to liquidity pool</span></div>
+                                    <div class="br-account-row"><span>Spreads</span><span>From 0.0 pips (+ commission)</span></div>
+                                    <div class="br-account-row"><span>Conflict of Interest</span><span>None — no dealing desk</span></div>
+                                    <div class="br-account-row"><span>Best For</span><span>Scalpers, HFT, high volume</span></div>
+                                    <div class="br-account-row"><span>Example</span><span>IC Markets, FP Markets</span></div>
+                                </div>
+                                <div class="br-account-card">
+                                    <div class="br-account-card-hd" style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);">
+                                        <div class="br-account-card-hd-name">STP Broker</div>
+                                        <div class="br-account-card-hd-sub">Straight Through Processing</div>
+                                    </div>
+                                    <div class="br-account-row"><span>Execution</span><span>Passed to liquidity providers</span></div>
+                                    <div class="br-account-row"><span>Spreads</span><span>Low — markup applied</span></div>
+                                    <div class="br-account-row"><span>Conflict of Interest</span><span>Minimal</span></div>
+                                    <div class="br-account-row"><span>Best For</span><span>Swing traders, moderate volume</span></div>
+                                    <div class="br-account-row"><span>Example</span><span>PU Prime, OANDA</span></div>
+                                </div>
+                                <div class="br-account-card">
+                                    <div class="br-account-card-hd" style="background:linear-gradient(135deg,#7f1d1d,#b91c1c);">
+                                        <div class="br-account-card-hd-name">Market Maker</div>
+                                        <div class="br-account-card-hd-sub">Dealing Desk (DD)</div>
+                                    </div>
+                                    <div class="br-account-row"><span>Execution</span><span>Broker takes other side</span></div>
+                                    <div class="br-account-row"><span>Spreads</span><span>Fixed — often wider</span></div>
+                                    <div class="br-account-row"><span>Conflict of Interest</span><span>Potential — avoid for scalping</span></div>
+                                    <div class="br-account-row"><span>Best For</span><span>Long-term, low frequency</span></div>
+                                    <div class="br-account-row"><span>Example</span><span>Some retail platforms</span></div>
+                                </div>
+                            </div>
+                            <div class="br-callout">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>All Say Affiliates partner brokers operate as ECN or STP model brokers — there are no Market Maker or dealing desk brokers in our network. This guarantees your trades are executed without any conflict of interest.</span>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- 11. Top Brokers -->
+                        <div class="br-section" id="top-brokers">
+                            <h2 class="br-h2">11. Our Top Recommended Brokers for 2025</h2>
+                            <p class="br-p">Based on our eight-step selection framework, here are our top-rated partner brokers — all regulated, all offering cashback through Say Affiliates:</p>
+                            <div style="overflow-x:auto;margin:0 0 20px;">
+                                <table class="ba-compare-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Broker</th>
+                                            <th>Best For</th>
+                                            <th>Regulation</th>
+                                            <th>Min. Deposit</th>
+                                            <th>Spread From</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            var recs = new[]
+                                            {
+                                                new { Rank=1, Name="IC Markets",        BestFor="Scalpers / HFT / EA",   Regs=new[]{"ASIC","CySEC","FSA"}, Dep="$200", Spr="0.0 pips", Ctrl="Resources", Act="IcMarketsReview" },
+                                                new { Rank=2, Name="FxPro",             BestFor="Regulation priority",   Regs=new[]{"FCA","CySEC","FSCA"}, Dep="$100", Spr="0.0 pips", Ctrl="Resources", Act="FxProReview" },
+                                                new { Rank=3, Name="PU Prime",          BestFor="Low deposit / beginner",Regs=new[]{"ASIC","FSA"},          Dep="$20",  Spr="0.0 pips", Ctrl="Resources", Act="PuPrimeReview" },
+                                                new { Rank=4, Name="BlackBull Markets", BestFor="Zero min deposit",      Regs=new[]{"FMA","FSA"},           Dep="$0",   Spr="0.0 pips", Ctrl="Home", Act="ComingSoon" },
+                                                new { Rank=5, Name="OANDA",             BestFor="Trust / legacy brand",  Regs=new[]{"FCA","ASIC","CFTC"},   Dep="$0",   Spr="1.0 pip",  Ctrl="Home", Act="ComingSoon" },
+                                            };
+                                            string[] rc2 = { "", "gold", "silver", "bronze" };
+                                        }
+                                        @foreach (var r in recs)
+                                        {
+                                            var cls = r.Rank <= 3 ? rc2[r.Rank] : "";
+                                            <tr>
+                                                <td><span class="ba-rank-badge @cls">@r.Rank</span></td>
+                                                <td style="font-weight:700;">
+                                                    <a asp-controller="@r.Ctrl" asp-action="@r.Act" style="color:#0f5ec9;text-decoration:none;">@r.Name</a>
+                                                </td>
+                                                <td style="color:#64748b;font-size:13px;">@r.BestFor</td>
+                                                <td>@foreach (var rg in r.Regs) { <span class="ba-reg-tag">@rg</span> }</td>
+                                                <td>@r.Dep</td>
+                                                <td><span class="ba-spread-val">@r.Spr</span></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        <!-- FAQs -->
+                        <div class="br-section" id="faqs">
+                            <h2 class="br-h2">12. Frequently Asked Questions</h2>
+                            <div class="br-faq">
+                                @{
+                                    var faqs = new[]
+                                    {
+                                        new { Q="What is the most important factor when choosing a forex broker?",         A="Regulation is the single most important factor. An FCA, ASIC, or CySEC-regulated broker is legally required to segregate your funds, maintain capital adequacy, and in many cases contribute to investor compensation schemes that protect you if the broker fails." },
+                                        new { Q="Should I choose an ECN or a Standard account?",                           A="For active traders and scalpers, ECN/Raw accounts almost always cost less. A standard 1.2 pip EUR/USD spread costs ~$12/lot. An ECN account at 0.02 pips + $7.00 commission costs ~$7.20 — 40% cheaper. Standard accounts suit very low-volume or beginner traders." },
+                                        new { Q="Is MT4 or MT5 better?",                                                   A="MT4 is better for algorithmic traders using Expert Advisors, as it has the largest EA library and community. MT5 is better for multi-asset traders who need access to stocks, ETFs, and futures alongside forex, and its strategy tester is significantly more powerful." },
+                                        new { Q="What is a Market Maker broker and should I avoid them?",                  A="A Market Maker broker takes the other side of your trades, which creates a potential conflict of interest — the broker profits when you lose. This does not mean all Market Makers are bad, but ECN/STP brokers are preferred for scalpers and high-frequency traders who need the most transparent execution." },
+                                        new { Q="How do I verify a broker's regulation?",                                  A="Always verify independently on the regulator's official website: FCA at register.fca.org.uk, ASIC at asic.gov.au, and CySEC at cysec.gov.cy. Search the broker's legal entity name or licence number — do not rely solely on the broker's own claims." },
+                                        new { Q="How does cashback help reduce my trading costs?",                         A="Cashback rebates return a portion of the broker's spread or commission revenue to you on every lot traded. For example, earning $7.50/lot cashback on an IC Markets ECN account with a ~$6.02 round-turn cost effectively makes every trade net-positive from a cost perspective." },
+                                        new { Q="Can I switch brokers after I have opened an account?",                   A="Yes. You can open new accounts with different brokers at any time. Simply register each new broker through Say Affiliates to ensure all accounts are linked to your cashback program. Most brokers allow full withdrawal of funds with no exit fees." },
+                                    };
+                                    foreach (var f in faqs)
+                                    {
+                                        var id = "faq-" + Guid.NewGuid().ToString("N")[..6];
+                                        <div class="br-faq-item">
+                                            <button class="br-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#@id" aria-expanded="false">
+                                                @f.Q <i class="fa-solid fa-chevron-down"></i>
+                                            </button>
+                                            <div class="collapse" id="@id">
+                                                <div class="br-faq-body">@f.A</div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Bottom CTA -->
+                        <div class="br-bottom-cta">
+                            <h3>Ready to Start Trading with the Right Broker?</h3>
+                            <p>Register through Say Affiliates, choose from 8+ regulated partner brokers, and earn automatic cashback on every lot you trade — forever free.</p>
+                            <div class="br-cta-btns">
+                                <a asp-controller="Home"      asp-action="Register"     class="br-cta-btn-primary"><i class="fa-solid fa-user-plus"></i> Create Free Account</a>
+                                <a asp-controller="Resources" asp-action="ForexBrokers" class="br-cta-btn-ghost"><i class="fa-solid fa-building-columns"></i> Compare All Brokers</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

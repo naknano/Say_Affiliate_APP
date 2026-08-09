@@ -1,0 +1,106 @@
+// font url
+
+$font-url: 'https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300..700&family=Teko:wght@300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Phudu:wght@300..900&display=swap" rel="stylesheet';
+
+@font-face {
+    font-family: 'Morganite-Bold';
+    src: url('../fonts/Morganite-ExtraBold.woff2') format('woff2'),
+    url('../fonts/Morganite-ExtraBold.woff') format('woff'),
+    url('../fonts/Morganite-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Morganite-SemiBold';
+    src: url('../fonts/Morganite-SemiBold.woff2') format('woff2'),
+    url('../fonts/Morganite-SemiBold.woff') format('woff'),
+    url('../fonts/Morganite-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+}
+
+// ClashDisplay-Light
+  @font-face {
+    font-family: 'ClashDisplay-Light';
+    src: url('../fonts/ClashDisplay-Light.woff2') format('woff2'),
+    url('../fonts/ClashDisplay-Light.woff') format('woff'),
+    url('../fonts/ClashDisplay-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'ClashDisplay-Regular';
+    src: url('../fonts/ClashDisplay-Regular.woff2') format('woff2'),
+    url('../fonts/ClashDisplay-Regular.woff') format('woff'),
+    url('../fonts/ClashDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'ClashDisplay-Medium';
+    src: url('../fonts/ClashDisplay-Medium.woff2') format('woff2'),
+    url('../fonts/ClashDisplay-Medium.woff') format('woff'),
+    url('../fonts/ClashDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'ClashDisplay-Semibold';
+    src: url('../fonts/ClashDisplay-Semibold.woff2') format('woff2'),
+    url('../fonts/ClashDisplay-Semibold.woff') format('woff'),
+    url('../fonts/ClashDisplay-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'ClashDisplay-Bold';
+    src: url('../fonts/ClashDisplay-Bold.woff2') format('woff2'),
+    url('../fonts/ClashDisplay-Bold.woff') format('woff'),
+    url('../fonts/ClashDisplay-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+
+// font family
+$font-family: (
+    'ff': (
+        'body': "'Kanit', sans-serif",
+        'heading': "'Space Grotesk', sans-serif",
+        'p': "'Kanit', sans-serif",
+        'teko': "'Teko', sans-serif",
+        'funnel': "'Funnel Display', sans-serif",
+        'sora': "'Sora', sans-serif",
+        'dm': "'DM Sans', sans-serif",
+        'inter': "'Inter', sans-serif",
+        'poppins': "'Poppins', sans-serif",
+        'playfair': "'Playfair Display', serif",
+        'jakarta': "'Plus Jakarta Sans', sans-serif",
+        'familjen': "'Familjen Grotesk', sans-serif",
+        'morganite-bold': "'Morganite-Bold', sans-serif",
+        'morganite-semibold': "'Morganite-SemiBold', sans-serif",
+        'clash-light': "'ClashDisplay-Light', serif",
+        'clash-regular': "'ClashDisplay-Regular', serif",
+        'clash-medium': "'ClashDisplay-Medium', serif",
+        'clash-semibold': "'ClashDisplay-Semibold', serif",
+        'clash-bold': "'ClashDisplay-Bold', serif",
+        'phudu': "'Phudu', serif",
+        'fontawesome': '"Font Awesome 6 Pro"',
+    )
+);
+
+// font size
+$font-size: (
+    'fz': (
+        'body': 18px,
+        'p': 18px,
+    )
+);

@@ -1,0 +1,108 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 fact css
+/*----------------------------------------*/
+
+.al-fact-archi{
+  $self: &;
+  &-thumb{
+    margin-left: -88px;
+    @media #{$xl,$lg,$md,$sm,$xs} {
+      margin-left: 0;
+    }
+    & img{
+      float: right;
+    }
+  }
+  &-wrap{
+    @media #{$md,$sm} {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+  }
+  &-subtitle{
+    font-size: 24px;
+    line-height: 1.42;
+    color: var(--tp-grey-1);
+    @media #{$md,$sm} {
+      margin-bottom: 10px;
+    }
+    @media #{$xs} {
+      margin-bottom: 5px;
+    }
+    
+  }
+  &-wrapper{
+    @media #{$xl,$lg} {
+      margin-left: 0;
+    }
+    @media #{$md,$sm,$xs} {
+      margin-left: 0;
+    }
+  }
+  &-content{
+    & p{
+      @media #{$xl,$lg,$md,$sm,$xs} {
+        margin-right: 0;
+        font-size: 16px;
+        & br{
+          display: none;
+        }
+      }
+      @media #{$md} {
+        font-size: 15px;
+      }
+      @media #{$sm,$xs} {
+        font-size: 14px;
+      }
+    }
+  }
+  &-number{
+    font-size: 70px;
+    line-height: 1.14;
+    @media #{$lg}{
+      font-size: 55px;
+    }
+    @media #{$md,$sm} {
+      font-size: 50px;
+    }
+    @media #{$xs} {
+      font-size: 40px;
+    }
+  }
+  &-icon{
+    &-2{
+      width: 75px;
+      height: 75px;
+      display: inline-block;
+    }
+    &-3{
+      color: var(--tp-theme-primary);
+    }
+  }
+  &-count{
+    &-2{
+      @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+        margin: 0;
+      }
+      #{$self}{
+        &-subtitle{
+          font-size: 20px;
+          @media #{$lg}{
+            font-size: 21px;
+          }
+        }
+      }
+    }
+    &-3{
+      & h5{
+        color: #bcbcbc;
+      }
+      & h3{
+        color: var(--tp-common-white);
+      }
+    }
+  }
+}

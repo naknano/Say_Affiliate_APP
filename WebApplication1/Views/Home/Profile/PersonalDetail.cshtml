@@ -1,0 +1,302 @@
+ <div class="profile__info">
+    <h3 class="profile__info-title">Personal Details</h3>
+    <div class="col-xl-12">
+       <div class="tp-product-details-tab-nav tp-tab text-left">
+          <nav>
+             <div class="nav nav-tabs p-relative tp-product-tab" id="navPresentationTab" role="tablist">
+                <button class="nav-link active" id="nav-cashback-tab" data-bs-toggle="tab" data-bs-target="#nav-cashback" type="button" role="tab" aria-controls="nav-cashback" aria-selected="true">
+                   <i class="fa-solid fa-circle-user me-1"></i> Personal Data
+                </button>
+                <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review" aria-selected="false">
+                   <i class="fa-solid fa-lock me-1"></i> Password
+                </button>
+                <button class="nav-link" id="nav-user-review-tab" data-bs-toggle="tab" data-bs-target="#nav-user-review" type="button" role="tab" aria-controls="nav-user-review" aria-selected="false">
+                   <i class="fa-solid fa-dollar-sign me-1"></i> Withdraw Threshold
+                </button>
+                <button class="nav-link" id="nav-user-kyc-tab" data-bs-toggle="tab" data-bs-target="#nav-user-kyc" type="button" role="tab" aria-controls="nav-user-kyc" aria-selected="false">
+                   <i class="fa-solid fa-id-card me-1"></i> Verification - KYC
+                </button>
+             </div>
+          </nav>
+
+          <div class="tab-content" id="navPresentationTabContent">
+
+             @* Personal Data Tab*@
+             <div class="tab-pane fade show active" id="nav-cashback" role="tabpanel" aria-labelledby="nav-cashback-tab" tabindex="0">
+                <div class="tp-product-details-review-wrapper pt-40">
+                   <div class="profile__info-content">
+                      <form action="#">
+                         <div class="row g-3">
+                            <div class="col-xxl-6 col-md-6">
+                               <div class="profile__input-box">
+                                  <label class="pm-field-label">Full Name</label>
+                                  <div class="profile__input">
+                                     <input class="full-name" type="text" placeholder="Enter your full name" value="">
+                                     <span><i class="fa-solid fa-user"></i></span>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-6 col-md-6">
+                               <div class="profile__input-box">
+                                  <label class="pm-field-label">Email Address</label>
+                                  <div class="profile__input">
+                                     <input class="email" type="email" placeholder="Enter your email" value="">
+                                     <span><i class="fa-solid fa-envelope"></i></span>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-6 col-md-6">
+                               <div class="profile__input-box">
+                                  <label class="pm-field-label">Phone Number</label>
+                                  <div class="profile__input">
+                                     <input class="phone" type="text" placeholder="Enter your phone number" value="">
+                                     <span><i class="fa-solid fa-phone"></i></span>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-6 col-md-6">
+                               <div class="profile__input-box">
+                                  <label class="pm-field-label">Telegram Username</label>
+                                  <div class="profile__input">
+                                     <input class="telegram" type="text" placeholder="@@username" value="">
+                                     <span><i class="fa-brands fa-telegram"></i></span>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-6 col-md-6">
+                               <div class="profile__input-box">
+                                  <label class="pm-field-label">WhatsApp</label>
+                                  <div class="profile__input">
+                                     <input class="whatapp" type="text" placeholder="Enter your WhatsApp number" value="">
+                                     <span><i class="fa-brands fa-whatsapp"></i></span>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-6 col-md-6">
+                               <div class="profile__input-box">
+                                  <label class="pm-field-label">Gender</label>
+                                  <div class="profile__input">
+                                     <span><i class="fa-solid fa-venus-mars"></i></span>
+                                     <select id="service" class="tp-select tp-input gender" name="service">
+                                        <option value="1">Select Gender</option>
+                                        <option value="2">Male</option>
+                                        <option value="3">Female</option>
+                                        <option value="4">Others</option>
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-12">
+                               <div class="profile__input-box">
+                                  <label class="pm-field-label">Address</label>
+                                  <div class="profile__input">
+                                     <input type="text" class="address" placeholder="Enter your full address" value="">
+                                     <span><i class="fa-solid fa-location-dot"></i></span>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-xxl-12">
+                               <div class="profile__btn">
+                                  <button type="submit" class="tp-btn-cart main-background-color sm btn-update-profile">
+                                     <i class="fa-solid fa-floppy-disk me-1"></i> Update Profile
+                                  </button>
+                               </div>
+                            </div>
+                         </div>
+                      </form>
+                   </div>
+                </div>
+             </div>
+
+             @* Password Tab*@
+             <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab" tabindex="0">
+                <div class="tp-product-details-review-wrapper pt-40">
+                   <form action="#">
+                      <div class="row g-3">
+                         <div class="col-xxl-12 col-md-12">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">Current Password</label>
+                               <div class="profile__input">
+                                  <input class="current_password" type="password" placeholder="Enter your current password" value="">
+                                  <span><i class="fa-solid fa-lock"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-12 col-md-12">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">New Password</label>
+                               <div class="profile__input">
+                                  <input class="password" type="password" placeholder="Enter your new password" value="">
+                                  <span><i class="fa-solid fa-key"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-12 col-md-12">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">Confirm New Password</label>
+                               <div class="profile__input">
+                                  <input class="repassword" type="password" placeholder="Re-enter your new password" value="">
+                                  <span><i class="fa-solid fa-shield-halved"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-12">
+                            <div class="profile__btn">
+                               <button type="submit" class="tp-btn-cart main-background-color sm btn-update-password">
+                                  <i class="fa-solid fa-floppy-disk me-1"></i> Update Password
+                               </button>
+                            </div>
+                         </div>
+                      </div>
+                   </form>
+                </div>
+             </div>
+
+             @* Withdraw Threshold Tab*@
+             <div class="tab-pane fade" id="nav-user-review" role="tabpanel" aria-labelledby="nav-user-review-tab" tabindex="0">
+                <div class="tp-product-details-review-wrapper pt-40">
+                   <form action="#">
+                      <div class="row g-3">
+                         <div class="col-xxl-12 col-md-12">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">Bank Transfer Threshold (USD)</label>
+                               <div class="profile__input">
+                                  <input class="withdraw_threshold" type="number" placeholder="Minimum amount for bank withdrawal" value="">
+                                  <span><i class="fa-solid fa-building-columns"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-12 col-md-12">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">Crypto Transfer Threshold (USD)</label>
+                               <div class="profile__input">
+                                  <input class="withdraw_threshold_crypto" type="number" placeholder="Minimum amount for crypto withdrawal" value="">
+                                  <span><i class="fa-solid fa-coins"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-12">
+                            <div class="profile__btn">
+                               <button type="submit" class="tp-btn-cart main-background-color sm">
+                                  <i class="fa-solid fa-floppy-disk me-1"></i> Save Threshold
+                               </button>
+                            </div>
+                         </div>
+                      </div>
+                   </form>
+                </div>
+             </div>
+
+             @* KYC Tab*@
+             <div class="tab-pane fade" id="nav-user-kyc" role="tabpanel" aria-labelledby="nav-user-kyc-tab" tabindex="0">
+                <div class="tp-product-details-review-wrapper pt-30">
+                   <form action="#">
+                      <div class="row g-3">
+                         <div class="col-xxl-12 col-md-12">
+                            <div class="pm-kyc-notice">
+                               <i class="fa-solid fa-circle-info"></i>
+                               Please fill out the form with your personal details. You are not allowed to edit the details once you have submitted the application.
+                            </div>
+                         </div>
+                         <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">First Name</label>
+                               <div class="profile__input">
+                                  <input class="first-name" type="text" placeholder="Enter your first name" value="">
+                                  <span><i class="fa-solid fa-user"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">Last Name</label>
+                               <div class="profile__input">
+                                  <input class="last-name" type="text" placeholder="Enter your last name" value="">
+                                  <span><i class="fa-solid fa-user-tag"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">Date of Birth</label>
+                               <div class="profile__input">
+                                  <input class="date-of-birth" type="date" value="">
+                                  <span><i class="fa-solid fa-calendar-days"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">Country</label>
+                               <div class="profile__input">
+                                  <span><i class="fa-solid fa-globe"></i></span>
+                                  <select id="country" class="tp-select tp-input" name="country">
+                                     <option value="">Select Country</option>
+                                     <option value="KH">Cambodia</option>
+                                     <option value="TH">Thailand</option>
+                                     <option value="VN">Vietnam</option>
+                                     <option value="LA">Laos</option>
+                                     <option value="MY">Malaysia</option>
+                                     <option value="SG">Singapore</option>
+                                     <option value="ID">Indonesia</option>
+                                     <option value="PH">Philippines</option>
+                                     <option value="CN">China</option>
+                                     <option value="JP">Japan</option>
+                                     <option value="KR">South Korea</option>
+                                     <option value="IN">India</option>
+                                     <option value="US">United States</option>
+                                     <option value="CA">Canada</option>
+                                     <option value="GB">United Kingdom</option>
+                                     <option value="FR">France</option>
+                                     <option value="DE">Germany</option>
+                                     <option value="IT">Italy</option>
+                                     <option value="AU">Australia</option>
+                                     <option value="AE">United Arab Emirates</option>
+                                     <option value="SA">Saudi Arabia</option>
+                                     <option value="QA">Qatar</option>
+                                     <option value="ZA">South Africa</option>
+                                     <option value="NG">Nigeria</option>
+                                  </select>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">City</label>
+                               <div class="profile__input">
+                                  <input class="city" type="text" placeholder="Enter your city" value="">
+                                  <span><i class="fa-solid fa-city"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-6 col-md-6">
+                            <div class="profile__input-box">
+                               <label class="pm-field-label">ZIP / Postal Code</label>
+                               <div class="profile__input">
+                                  <input class="zip-code" type="text" placeholder="Enter your ZIP or postal code" value="">
+                                  <span><i class="fa-solid fa-map-pin"></i></span>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="col-xxl-12">
+                            <div class="pm-kyc-upload-section">
+                               <h5 class="main-color"><i class="fa-solid fa-id-card me-2"></i>Upload — Proof of Identity</h5>
+                               <p class="pm-kyc-desc">Upload high-quality scans or photos of your official government-issued identification documents.</p>
+                            </div>
+                         </div>
+                         <div class="col-xxl-12">
+                            <div class="profile__btn">
+                               <button type="submit" class="tp-btn-cart main-background-color sm btn-update-profile">
+                                  <i class="fa-solid fa-paper-plane me-1"></i> Submit KYC
+                               </button>
+                            </div>
+                         </div>
+                      </div>
+                   </form>
+                </div>
+             </div>
+
+          </div>
+       </div>
+    </div>
+ </div>

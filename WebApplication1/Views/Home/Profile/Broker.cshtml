@@ -1,0 +1,499 @@
+@model WebApplication1.Data.DTO.TradingAccount.TradingAccountPageDto
+@{
+    var tradingAccounts = Model?.Accounts ?? new List<WebApplication1.Data.DTO.TradingAccount.UserTradingAccountResponseDto>();
+    var brokerOptions = Model?.Brokers ?? new List<WebApplication1.Data.DTO.TradingAccount.BrokerOptionDto>();
+
+    var transactions = Model?.Transactions ?? new List<WebApplication1.Data.DTO.TradingAccount.TransactionListItemDto>();
+
+    Func<string?, string> norm = s => (s ?? "").Trim().ToLowerInvariant();
+
+    int allCount      = transactions.Count;
+    int pendingCount  = transactions.Count(t => norm(t.Status) == "pending");
+    int approvedCount = transactions.Count(t => norm(t.Status) == "approved");
+    int rejectedCount = transactions.Count(t => norm(t.Status) == "rejected");
+
+    Func<string, string> statusLabel = s => s switch
+    {
+        "approved" => "Approved",
+        "pending"  => "Pending",
+        "rejected" => "Rejected",
+        "active"   => "Active",
+        "inactive" => "Inactive",
+        _          => string.IsNullOrEmpty(s) ? "—" : char.ToUpper(s[0]) + s[1..]
+    };
+}
+
+<!-- Top action -->
+<div class="pb-top-bar">
+   <a class="broker-btn broker-btn-solid" asp-controller="Home" asp-action="Broker">
+      <i class="fa-solid fa-building-columns"></i> See all Brokers / Exchanges <i class="fa-solid fa-arrow-right-long"></i>
+   </a>
+</div>
+
+<!-- Transactions -->
+<div class="pb-txn mb-50">
+   <div class="pb-head">
+      <h3 class="profile__info-title">Transaction History</h3>
+   </div>
+
+   <div class="pb-toolbar">
+      <div class="pb-filter" role="tablist">
+         <button type="button" class="pb-filter-btn is-active" data-filter="all">All <span>@allCount</span></button>
+         <button type="button" class="pb-filter-btn" data-filter="pending">Pending <span>@pendingCount</span></button>
+         <button type="button" class="pb-filter-btn" data-filter="approved">Approved <span>@approvedCount</span></button>
+         <button type="button" class="pb-filter-btn" data-filter="rejected">Rejected <span>@rejectedCount</span></button>
+      </div>
+      <div class="pb-search-wrap">
+         <i class="fa-solid fa-magnifying-glass"></i>
+         <input type="text" class="pb-search" id="pb-txn-search" placeholder="Search transactions..." autocomplete="off">
+      </div>
+   </div>
+
+   <div class="profile__ticket table-responsive">
+      <table class="table">
+         <thead>
+            <tr>
+               <th scope="col">Transaction ID</th>
+               <th scope="col">Date</th>
+               <th scope="col">Broker</th>
+               <th scope="col">Type</th>
+               <th scope="col">Amount</th>
+               <th scope="col">Status</th>
+            </tr>
+         </thead>
+         <tbody>
+            @foreach (var t in transactions)
+            {
+               var st = norm(t.Status);
+               <tr class="pb-row" data-status="@st">
+                  <th scope="row">#@(t.Id.Length >= 8 ? t.Id[..8].ToUpper() : t.Id)</th>
+                  <td>@t.CreatedAt.ToString("dd MMM yyyy")</td>
+                  <td>@(string.IsNullOrEmpty(t.BrokerName) ? "—" : t.BrokerName)</td>
+                  <td>@t.TransactionType</td>
+                  <td><b>@t.Amount.ToString("0.00") @t.Currency</b></td>
+                  <td><span class="pb-badge pb-badge-@st">@statusLabel(st)</span></td>
+               </tr>
+            }
+            <tr class="pb-empty" @(transactions.Count > 0 ? "hidden" : "")>
+               <td colspan="6" class="text-center">No transactions yet.</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+   <div class="pb-pager" id="pb-txn-pager"></div>
+</div>
+
+<!-- Trading accounts -->
+<div class="pb-accounts">
+   <div class="pb-head pb-head-flex">
+      <h3 class="profile__info-title mb-0">Trading Accounts</h3>
+      <button type="button" class="pb-add-btn" data-bs-toggle="modal" data-bs-target="#addAccountModal">
+         <i class="fa-solid fa-plus"></i> Add Trading Account
+      </button>
+   </div>
+   <div class="pb-toolbar pb-toolbar-end">
+      <div class="pb-search-wrap">
+         <i class="fa-solid fa-magnifying-glass"></i>
+         <input type="text" class="pb-search" id="pb-acc-search" placeholder="Search accounts..." autocomplete="off">
+      </div>
+   </div>
+
+   <div class="profile__ticket table-responsive">
+      <table class="table">
+         <thead>
+            <tr>
+               <th scope="col">Account No.</th>
+               <th scope="col">Broker</th>
+               <th scope="col">Status</th>
+               <th scope="col" class="text-end">Actions</th>
+            </tr>
+         </thead>
+         <tbody id="pb-accounts-body">
+            @foreach (var a in tradingAccounts)
+            {
+               <tr data-id="@a.Id" data-acc="@a.TradingAcc" data-broker="@a.BrokerName" data-broker-id="@(a.BrokerId?.ToString())">
+                  <th scope="row">@a.TradingAcc</th>
+                  <td class="pb-cell-broker">@(string.IsNullOrEmpty(a.BrokerName) ? "—" : a.BrokerName)</td>
+                  <td><span class="pb-badge pb-badge-active">Active</span></td>
+                  <td class="pb-actions">
+                     <button type="button" class="pb-icon-btn pb-edit" title="Edit"><i class="fa-solid fa-pen"></i></button>
+                     <button type="button" class="pb-icon-btn pb-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                  </td>
+               </tr>
+            }
+            <tr class="pb-accounts-empty" @(tradingAccounts.Count > 0 ? "hidden" : "")>
+               <td colspan="4" class="text-center">You haven't linked any trading accounts yet.</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+   <div class="pb-pager" id="pb-acc-pager"></div>
+</div>
+
+<!-- Add trading account modal -->
+<div class="modal fade pb-modal" id="addAccountModal" tabindex="-1" aria-labelledby="addAccountLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addAccountLabel"><i class="fa-solid fa-circle-plus"></i> Add Trading Account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <form id="addAccountForm">
+            <div class="modal-body">
+               <div class="pb-field">
+                  <label for="acc-broker">Broker</label>
+                  <select id="acc-broker" class="pb-input" required>
+                     <option value="" selected disabled>Select a broker</option>
+                     @foreach (var b in brokerOptions)
+                     {
+                        <option value="@b.Id">@b.Name</option>
+                     }
+                  </select>
+               </div>
+               <div class="pb-field">
+                  <label for="acc-number">Account Number</label>
+                  <input id="acc-number" class="pb-input" type="text" placeholder="e.g. 512-889-014" required>
+               </div>
+               <div class="pb-note-inline">
+                  <i class="fa-solid fa-circle-info"></i>
+                  Please add your <b>trading account</b>.
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="broker-btn broker-btn-ghost" data-bs-dismiss="modal">Cancel</button>
+               <button type="submit" class="broker-btn broker-btn-solid" id="addAccountSubmit">Add Account</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+<script>
+   (function () {
+      var root = document.currentScript.closest('.tab-pane') || document;
+
+      // Move the modal to <body> so the Bootstrap backdrop doesn't sit on top of it
+      // (the profile tab lives inside a transformed container that traps stacking context).
+      var modal = document.getElementById('addAccountModal');
+      if (modal && modal.parentElement !== document.body) {
+         document.body.appendChild(modal);
+      }
+
+      var wrap = root.querySelector('.pb-txn');
+      if (!wrap) return;
+
+      var PAGE_SIZE = 5;
+
+      // ---- Reusable client-side paginator (5 rows / page + filler rows) ----
+      function createPaginator(opts) {
+         var tbody = opts.tbody;
+         var pager = opts.pager;
+         var colspan = opts.colspan;
+         var rowSelector = opts.rowSelector;
+         var emptyRow = opts.emptyRow || null;
+         var included = opts.included || function () { return true; };
+         var current = 1;
+
+         function dataRows() {
+            return Array.prototype.filter.call(tbody.querySelectorAll(rowSelector), included);
+         }
+         function clearFillers() {
+            tbody.querySelectorAll('.pb-filler').forEach(function (f) { f.remove(); });
+         }
+         function totalPages(rows) {
+            return Math.max(1, Math.ceil(rows.length / PAGE_SIZE));
+         }
+
+         function render() {
+            clearFillers();
+            var rows = dataRows();
+            var pages = totalPages(rows);
+            if (current > pages) { current = pages; }
+
+            // hide every candidate row, then reveal only the current page
+            Array.prototype.forEach.call(tbody.querySelectorAll(rowSelector), function (r) { r.style.display = 'none'; });
+            var start = (current - 1) * PAGE_SIZE;
+            var pageRows = rows.slice(start, start + PAGE_SIZE);
+            pageRows.forEach(function (r) { r.style.display = ''; });
+
+            var used = pageRows.length;
+            if (emptyRow) {
+               var isEmpty = rows.length === 0;
+               emptyRow.hidden = !isEmpty;
+               emptyRow.style.display = isEmpty ? '' : 'none';
+               if (isEmpty) { used += 1; }
+            }
+
+            // pad with empty filler rows so the table always shows PAGE_SIZE rows
+            for (var i = used; i < PAGE_SIZE; i++) {
+               var tr = document.createElement('tr');
+               tr.className = 'pb-filler';
+               tr.innerHTML = '<td colspan="' + colspan + '">&nbsp;</td>';
+               tbody.appendChild(tr);
+            }
+            renderPager(pages);
+         }
+
+         function renderPager(pages) {
+            if (!pager) { return; }
+            if (pages <= 1) { pager.innerHTML = ''; return; }
+            var html = '<button class="pb-page-btn" data-page="prev"' + (current === 1 ? ' disabled' : '') + '><i class="fa-solid fa-chevron-left"></i></button>';
+            for (var p = 1; p <= pages; p++) {
+               html += '<button class="pb-page-btn' + (p === current ? ' is-active' : '') + '" data-page="' + p + '">' + p + '</button>';
+            }
+            html += '<button class="pb-page-btn" data-page="next"' + (current === pages ? ' disabled' : '') + '><i class="fa-solid fa-chevron-right"></i></button>';
+            pager.innerHTML = html;
+         }
+
+         if (pager) {
+            pager.addEventListener('click', function (e) {
+               var btn = e.target.closest('.pb-page-btn');
+               if (!btn || btn.disabled) { return; }
+               var pages = totalPages(dataRows());
+               var page = btn.getAttribute('data-page');
+               if (page === 'prev') { current = Math.max(1, current - 1); }
+               else if (page === 'next') { current = Math.min(pages, current + 1); }
+               else { current = parseInt(page, 10); }
+               render();
+            });
+         }
+
+         return {
+            render: render,
+            reset: function () { current = 1; render(); },
+            last: function () { current = totalPages(dataRows()); render(); }
+         };
+      }
+
+      // debounce helper keeps typing smooth (no work on every keystroke)
+      function debounce(fn, wait) {
+         var t;
+         return function () {
+            var ctx = this, args = arguments;
+            clearTimeout(t);
+            t = setTimeout(function () { fn.apply(ctx, args); }, wait);
+         };
+      }
+      function rowMatches(row, text) {
+         return !text || (row.textContent || '').toLowerCase().indexOf(text) !== -1;
+      }
+      function bindSearch(inputId, apply) {
+         var input = document.getElementById(inputId);
+         if (!input) { return; }
+         input.addEventListener('input', debounce(function () {
+            apply(input.value.trim().toLowerCase());
+         }, 200));
+      }
+
+      // ---- Transactions: filter + search + pagination ----
+      var buttons = wrap.querySelectorAll('.pb-filter-btn');
+      var currentFilter = 'all';
+      var txnSearch = '';
+
+      var txnPaginator = createPaginator({
+         tbody: wrap.querySelector('.pb-txn tbody') || wrap.querySelector('tbody'),
+         pager: document.getElementById('pb-txn-pager'),
+         colspan: 6,
+         rowSelector: '.pb-row',
+         emptyRow: wrap.querySelector('.pb-empty'),
+         included: function (row) {
+            var passFilter = currentFilter === 'all' || row.getAttribute('data-status') === currentFilter;
+            return passFilter && rowMatches(row, txnSearch);
+         }
+      });
+      txnPaginator.render();
+
+      buttons.forEach(function (btn) {
+         btn.addEventListener('click', function () {
+            buttons.forEach(function (b) { b.classList.remove('is-active'); });
+            btn.classList.add('is-active');
+            currentFilter = btn.getAttribute('data-filter');
+            txnPaginator.reset();
+         });
+      });
+
+      bindSearch('pb-txn-search', function (value) { txnSearch = value; txnPaginator.reset(); });
+
+      // ---- Add / Edit / Delete trading account ----
+      var form = document.getElementById('addAccountForm');
+      var accountsBody = document.getElementById('pb-accounts-body');
+      var modalEl = document.getElementById('addAccountModal');
+      var titleEl = document.getElementById('addAccountLabel');
+      var submitBtn = document.getElementById('addAccountSubmit');
+      var brokerSelect = document.getElementById('acc-broker');
+      var accInput = document.getElementById('acc-number');
+      var editingId = null; // null = add mode, otherwise the account id being edited
+
+      // Accounts pagination (5 per page + filler rows) + search
+      var accSearch = '';
+      var accountsPaginator = accountsBody ? createPaginator({
+         tbody: accountsBody,
+         pager: document.getElementById('pb-acc-pager'),
+         colspan: 4,
+         rowSelector: 'tr[data-id]',
+         emptyRow: accountsBody.querySelector('.pb-accounts-empty'),
+         included: function (row) { return rowMatches(row, accSearch); }
+      }) : null;
+      if (accountsPaginator) {
+         accountsPaginator.render();
+         bindSearch('pb-acc-search', function (value) { accSearch = value; accountsPaginator.reset(); });
+      }
+
+      function escapeHtml(value) {
+         var div = document.createElement('div');
+         div.textContent = value == null ? '' : value;
+         return div.innerHTML;
+      }
+
+      function actionsCell() {
+         return '<td class="pb-actions">' +
+            '<button type="button" class="pb-icon-btn pb-edit" title="Edit"><i class="fa-solid fa-pen"></i></button>' +
+            '<button type="button" class="pb-icon-btn pb-delete" title="Delete"><i class="fa-solid fa-trash"></i></button>' +
+            '</td>';
+      }
+
+      function selectedBrokerName() {
+         var opt = brokerSelect.options[brokerSelect.selectedIndex];
+         return opt ? opt.text : '';
+      }
+
+      function appendAccountRow(id, brokerId, brokerName, tradingAcc) {
+         if (!accountsBody) return;
+         var emptyRow = accountsBody.querySelector('.pb-accounts-empty');
+         if (emptyRow) { emptyRow.hidden = true; }
+         var tr = document.createElement('tr');
+         tr.setAttribute('data-id', id || '');
+         tr.setAttribute('data-acc', tradingAcc || '');
+         tr.setAttribute('data-broker', brokerName || '');
+         tr.setAttribute('data-broker-id', brokerId || '');
+         tr.innerHTML =
+            '<th scope="row">' + escapeHtml(tradingAcc) + '</th>' +
+            '<td class="pb-cell-broker">' + (brokerName ? escapeHtml(brokerName) : '&mdash;') + '</td>' +
+            '<td><span class="pb-badge pb-badge-pending">Pending</span></td>' +
+            actionsCell();
+         accountsBody.appendChild(tr);
+      }
+
+      function openAddMode() {
+         editingId = null;
+         if (form) { form.reset(); }
+         titleEl.innerHTML = '<i class="fa-solid fa-circle-plus"></i> Add Trading Account';
+         submitBtn.textContent = 'Add Account';
+      }
+
+      function openEditMode(row) {
+         editingId = row.getAttribute('data-id');
+         accInput.value = row.getAttribute('data-acc') || '';
+         brokerSelect.value = row.getAttribute('data-broker-id') || ''; // preselect by broker id
+         titleEl.innerHTML = '<i class="fa-solid fa-pen"></i> Edit Trading Account';
+         submitBtn.textContent = 'Update Account';
+         new bootstrap.Modal(modalEl).show();
+      }
+
+      // reset to add-mode whenever the modal is opened via the "+ Add" button
+      var addBtn = document.querySelector('.pb-add-btn');
+      if (addBtn) { addBtn.addEventListener('click', openAddMode); }
+
+      // delegate edit/delete clicks on the accounts table
+      if (accountsBody) {
+         accountsBody.addEventListener('click', function (e) {
+            var row = e.target.closest('tr');
+            if (!row) return;
+
+            if (e.target.closest('.pb-edit')) {
+               openEditMode(row);
+            } else if (e.target.closest('.pb-delete')) {
+               deleteRow(row);
+            }
+         });
+      }
+
+      function deleteRow(row) {
+         var id = row.getAttribute('data-id');
+         Swal.fire({
+            title: 'Remove account?',
+            text: 'This will unlink ' + (row.getAttribute('data-acc') || 'this account') + '.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, remove',
+            confirmButtonColor: '#e05252'
+         }).then(function (result) {
+            if (!result.isConfirmed) return;
+            $.ajax({
+               url: '/Broker/DeleteTradingAccount',
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               data: JSON.stringify({ Id: id }),
+               success: function (res) {
+                  if (res.responseCode === 200) {
+                     row.remove();
+                     if (accountsPaginator) { accountsPaginator.render(); }
+                     Swal.fire({ title: 'Removed', text: res.responseMessage, icon: 'success', timer: 1400, showConfirmButton: false });
+                  } else {
+                     Swal.fire({ title: 'Warning!', text: res.responseMessage, icon: 'warning', confirmButtonText: 'Close' });
+                  }
+               },
+               error: function () {
+                  Swal.fire({ title: 'Error!', text: 'Something went wrong. Please try again.', icon: 'error', confirmButtonText: 'Close' });
+               }
+            });
+         });
+      }
+
+      if (form) {
+         form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var brokerId = brokerSelect.value;          // real broker GUID (option value)
+            var brokerName = selectedBrokerName();      // broker name (option text) for display
+            var tradingAcc = accInput.value;
+            var isEdit = !!editingId;
+            var payload = isEdit
+               ? { Id: editingId, BrokerId: brokerId, TradingAcc: tradingAcc }
+               : { BrokerId: brokerId, TradingAcc: tradingAcc };
+
+            submitBtn.disabled = true;
+            $.ajax({
+               url: isEdit ? '/Broker/UpdateTradingAccount' : '/Broker/AddTradingAccount',
+               type: 'POST',
+               contentType: 'application/json',
+               xhrFields: { withCredentials: true },
+               data: JSON.stringify(payload),
+               success: function (res) {
+                  if (res.responseCode === 200) {
+                     var savedAcc = (res.data && res.data.tradingAcc) || tradingAcc;
+
+                     if (isEdit) {
+                        var row = accountsBody.querySelector('tr[data-id="' + editingId + '"]');
+                        if (row) {
+                           row.setAttribute('data-acc', savedAcc);
+                           row.setAttribute('data-broker', brokerName);
+                           row.setAttribute('data-broker-id', brokerId);
+                           row.querySelector('th').textContent = savedAcc;
+                           var brokerCell = row.querySelector('.pb-cell-broker');
+                           if (brokerCell) { brokerCell.textContent = brokerName || '—'; }
+                        }
+                        if (accountsPaginator) { accountsPaginator.render(); }
+                     } else {
+                        appendAccountRow(res.data && res.data.id, brokerId, brokerName, savedAcc);
+                        if (accountsPaginator) { accountsPaginator.last(); } // show the page with the new row
+                     }
+
+                     var instance = bootstrap.Modal.getInstance(modalEl);
+                     if (instance) { instance.hide(); }
+                     openAddMode();
+
+                     Swal.fire({ title: 'Success!', text: res.responseMessage, icon: 'success', timer: 1500, showConfirmButton: false });
+                  } else {
+                     Swal.fire({ title: 'Warning!', text: res.responseMessage, icon: 'warning', confirmButtonText: 'Close' });
+                  }
+               },
+               error: function () {
+                  Swal.fire({ title: 'Error!', text: 'Something went wrong. Please try again.', icon: 'error', confirmButtonText: 'Close' });
+               },
+               complete: function () { submitBtn.disabled = false; }
+            });
+         });
+      }
+   })();
+</script>

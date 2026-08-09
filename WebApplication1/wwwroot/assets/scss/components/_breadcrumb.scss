@@ -1,0 +1,137 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.4 Breadcrumb
+/*----------------------------------------*/
+
+
+.tp-breadcrumb{
+    &-wrap{
+        border-top: 1px solid #eee;
+        padding: 18px 0px;
+    }
+    &-list{
+        & ul{
+            display: flex;
+            & li{
+                font-family: var(--tp-ff-heading);
+                font-weight: 500;
+                font-size: 18px;
+                color: var(--tp-common-black-3);
+                list-style: none;
+                & span{
+                    width: 8px;
+                    height: 8px;
+                    display: inline-block;
+                    background: var(--tp-grey-1);
+                    border-radius: 40px;
+                    margin: 0 10px;
+                }
+                & a{
+                    color: var(--tp-grey-1);
+                    @include bgborder(currentColor, 0,0);
+                    @include transition(all .4s ease);
+                    &:hover{
+                        @include bgborder(currentColor, 0,100%);
+                        @include transition(all .4s ease);
+                    }
+                }
+            }
+        }
+    }
+    &-2{
+        &-spacing{
+            padding-top: 96px;
+            @media #{$lg,$md,$sm,$xs}{
+                padding-top: 80px;
+            }
+        }
+        &-list{
+            & ul{
+                & li{
+                    font-family: var(--tp-ff-dm);
+                    color: var(--tp-common-black-5);
+                    & a{
+                        color: var(--tp-common-black-5);
+                    }
+                }
+            }
+        }
+    }
+    &-banner{
+        &-list{
+            & span{
+                & svg{
+                    transform: translateY(6px);
+                    margin-right: 8px;
+                }
+            }
+        }
+        &-content{
+            padding: 26px 0px 16px 0px;
+        }
+        &-spacing{
+            padding-top: 540px;
+            @media #{$lg,$md,$sm}{
+                padding-top: 400px;
+            }
+            @media #{$xs}{
+                padding-top: 250px;
+            }
+        }
+        &-2{
+            &-spacing{
+                padding-top: 460px;
+                padding-bottom: 42px;
+                @media #{$lg,$md,$sm}{
+                    padding-top: 400px;
+                }
+                @media #{$xs}{
+                    padding-top: 250px;
+                }
+            }
+        }
+    }
+    &-3{
+        &-border{
+            border-top: 1px solid rgba(17, 17, 18, 0.1);
+        }
+        &-white{
+            border-top: 1px solid rgba(243, 241, 242, 0.1);
+            & ul{
+                & li{
+                    color: var(--tp-grey-5);
+                    & a{
+                        color: var(--tp-grey-5);
+                    }
+                    & span{
+                        background: var(--tp-grey-5);
+                    }
+                }
+            }
+        }
+    }
+    &-4{
+        &-spacing{
+            padding-top: 225px;
+            padding-bottom: 510px;
+            @media #{$xxl,$xl,$lg}{
+                padding-bottom: 310px;
+            }
+            @media #{$md,$sm}{
+                padding-bottom: 210px;
+            }
+            @media #{$xs}{
+                padding-bottom: 170px;
+                padding-top: 150px;
+            }
+            & .tp-breadcrumb-3-white {
+                border-top: none;
+                padding-top: 0;
+            }
+        }
+        &-shape{
+            padding-left: 255px;
+        }
+    }
+}

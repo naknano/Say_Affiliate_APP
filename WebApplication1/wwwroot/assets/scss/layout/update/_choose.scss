@@ -1,0 +1,167 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 chose css
+/*----------------------------------------*/
+
+.al-choose-archi{
+    &-thumb{
+        margin-left: -200px;
+        margin-right: 83px;
+        &-4{
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                margin-left: 0;
+            }
+        }
+        @media #{$xxl,$xl,$lg,$md,$sm,$xs} {
+            margin-left: 0;
+            margin-right: 0;
+            & img{
+                width: 100%;
+            }
+        }
+    }
+    &-faq{
+        & .accordion {
+            --bs-accordion-border-width: 0;
+            --bs-accordion-btn-icon: none;
+            --bs-accordion-btn-active-icon: none;
+        }
+        &-btn{
+            font-weight: 700;
+            font-size: 30px;
+            color: #bcbcbc;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+        &.collapsed {
+            border-bottom-right-radius: 0!important;
+            border-bottom-left-radius: 0!important;
+        }
+        &.accordion-button:not(.collapsed) {
+            background: none;
+            box-shadow: none;
+            color: var(--tp-common-white);
+        }
+        &.accordion-button:focus {
+            border-color: none;
+            box-shadow: none;
+        }
+        &:not(.collapsed) .accordion-btn::before {
+            -webkit-transform: translateX(-50%) rotate(90deg);
+            -moz-transform: translateX(-50%) rotate(90deg);
+            -ms-transform: translateX(-50%) rotate(90deg);
+            -o-transform: translateX(-50%) rotate(90deg);
+            transform: translateX(-50%) rotate(90deg);
+            color: var(--tp-common-black);
+            background-color: var(--tp-theme-secondary);
+            opacity: 1;
+        }
+        & .accordion-btn {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            &:not(.collapsed)::after {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            }
+            &::before {
+            position: absolute;
+            content: "";
+            width: 2px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            background-color: #fff;
+            opacity: 0.5;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            }
+            &::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 2px;
+            left: 0;
+            top: 43%;
+            transform: translateY(-50%);
+            background-color: #fff;
+            opacity: 0.5;
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            }
+        }
+        }
+        & .accordion-item {
+            color: var(--tp-grey-2);
+            background: none;
+            &:last-of-type {
+                border-bottom-right-radius: 0!important;
+                border-bottom-left-radius: 0!important;
+            }
+        }
+        &-list{
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #b9b4b4;
+        }
+    }
+    &-details{
+        &-para{
+            padding: 0;
+            padding-top: 23px;
+            & p{
+                margin-bottom: 0;
+                font-family: var(--tp-ff-inter);
+                color: var(--tp-common-white-2);
+            }
+        }
+    }
+    &-expreance{
+        display: flex;
+        align-items: center;
+        clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+        background: rgba(255,255,255,0.10);
+        padding: 30px 72px 16px 70px;
+        @media #{$xxl,$xl,$lg,$md,$sm,$xs} {
+            padding: 30px 25px 16px 30px;
+        }
+        @media #{$xs} {
+            padding: 30px 25px 16px 14px;
+        }
+        & h2{
+            font-size: 100px;
+            line-height: 1;
+            color: var(--tp-theme-secondary);
+            margin: 0;
+            margin-right: 20px;
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                font-size: 70px;
+            }
+        }
+        & h5{
+            font-size: 24px;
+            line-height: 1.42;
+            color: var(--tp-common-white);
+            @media #{$xl,$lg,$md,$sm,$xs} {
+                font-size: 20px;
+            }
+            @media #{$xs} {
+                font-size: 17px;
+            }
+        }
+    }
+    &-shape{
+        top: 0;
+        right: 0;
+        z-index: -1;
+    }
+}

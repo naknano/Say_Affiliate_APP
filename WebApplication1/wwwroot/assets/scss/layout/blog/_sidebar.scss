@@ -1,0 +1,145 @@
+@use '../../utils' as *;
+/*----------------------------------------*/
+/*  5.3 Sidebar css
+/*----------------------------------------*/
+
+.#{$theme-prifix}-sidebar{
+    &-search{
+        &-input{
+            position: relative;
+            & input{
+                width: 100%;
+                height: 60px;
+                font-family: var(--tp-ff-heading);
+                line-height: 70px;
+                padding: 0 25px;
+                outline: none;
+                font-size: 16px;
+                border: none;
+                padding-right: 50px;
+                background: var(--tp-common-white-2);
+                color: var(--tp-common-black);
+                border: 1px solid transparent;
+                border-radius: 0;
+                @include placeholder{
+                    color: var(--tp-grey-1);
+                    font-size: 16px;
+                    font-weight: 400;
+                    border-color: #D9D9D9;
+                }
+                &:focus{
+                    background: transparent;
+                }
+            }
+            & button{
+                position: absolute;
+                top: 0;
+                right: 25px;
+                height: 100%;
+                line-height: 60px;
+                color: var(--tp-common-black);
+            }
+        }
+    }
+    &-widget{
+        border: 1px solid var(--tp-border-1);
+        padding: 45px 30px 5px 30px;
+        &-title{
+            font-family: var(--tp-ff-heading);
+            font-weight: 700;
+            font-size: 25px;
+            color: var(--tp-common-black);
+        }
+        &-content{
+            & ul{
+                & li{
+                    list-style: none;
+                    margin-bottom: 17px;
+                    & a{
+                        font-family: var(--tp-ff-heading);
+                        font-weight: 500;
+                        font-size: 18px;
+                        color: var(--tp-grey-1);
+                        display: flex;
+                        justify-content: space-between;
+                        &:hover{
+                            color: var(--tp-common-black);
+                        }
+                        & span{
+                            display: inline-block;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-rc{
+        &-post{
+            &-tag{
+                font-family: var(--tp-ff-p);
+                font-weight: 400;
+                font-size: 14px;
+                color: var(--tp-grey-1);
+                border: 1px solid var(--tp-border-1);
+                border-radius: 100px;
+                display: inline-block;
+                padding: 5px 16px;
+                line-height: 1;
+                &:hover{
+                    background: var(--tp-common-black);
+                    color: var(--tp-common-white);
+                    border-color: var(--tp-common-black);
+                }
+            }
+            &-title{
+                font-size: 18px;
+                line-height: 111%;
+                color: var(--tp-common-black);
+            }
+            &-dates{
+                font-weight: 400;
+                font-size: 14px;
+                color: var(--tp-grey-1);
+            }
+        }
+        &-tag{
+            & ul{
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+                @media #{$xl,$lg,$md,$sm,$xs}{
+                    gap: 10px;
+                }
+                & li{
+                    list-style: none;
+                    & a{
+                        font-family: var(--tp-ff-heading);
+                        font-weight: 500;
+                        font-size: 16px;
+                        color: var(--tp-grey-1);
+                        border-radius: 100px;
+                        background: var(--tp-common-white-2);
+                        line-height: 1;
+                        padding: 2px 14px;
+                        @media #{$xl,$xs}{
+                            padding: 2px 6px;
+                        }
+                        &:hover{
+                            background: var(--tp-theme-primary);
+                            color: var(--tp-common-black);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-details{
+        &-wrap{
+            background: var(--tp-common-white-2);
+        }
+    }
+    &-banner{
+        padding: 50px 30px 50px 30px;
+    }
+}

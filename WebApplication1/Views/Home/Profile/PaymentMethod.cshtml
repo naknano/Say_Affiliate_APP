@@ -1,0 +1,392 @@
+<div class="pmpay">
+   <!-- header -->
+   <div class="pmpay-head">
+      <h3 class="pmpay-title">Payment Methods</h3>
+      <div class="pmpay-head-right">
+         <span class="pmpay-threshold-note">Pay me when I reach <b id="pmpay-threshold">$50</b></span>
+         <button type="button" class="pmpay-threshold-btn" id="pmpay-set-threshold">
+            <i class="fa-solid fa-table-list"></i> Set Threshold
+         </button>
+      </div>
+   </div>
+
+   <!-- method cards -->
+   <div class="row justify-content-center g-4">
+
+      <!-- Bank transfer -->
+      <div class="col-lg-5 col-md-6">
+         <div class="pmpay-card">
+            <div class="pmpay-card-top">
+               <span class="pmpay-logo pmpay-logo-bank"><i class="fa-solid fa-building-columns"></i></span>
+               <span class="pmpay-logo-text">Bank<br>Transfer</span>
+            </div>
+            <div class="pmpay-card-body">
+               <h4 class="pmpay-method-name">Bank Transfer</h4>
+               <p class="pmpay-method-desc">Accept payments via Bank Transfer.</p>
+               <a href="#" class="pmpay-action" data-bs-toggle="modal" data-bs-target="#bankDetailModal">
+                  <span class="pmpay-action-circle pmpay-action-add"><i class="fa-solid fa-plus"></i></span>
+                  <span class="pmpay-action-label">Enter your details</span>
+               </a>
+            </div>
+            <div class="pmpay-card-foot">
+               <span class="pmpay-status" data-on="Active" data-off="Inactive">Inactive</span>
+               <label class="pmpay-switch">
+                  <input type="checkbox" class="pmpay-toggle">
+                  <span class="pmpay-slider"></span>
+               </label>
+            </div>
+         </div>
+      </div>
+
+      <!-- Crypto -->
+      <div class="col-lg-5 col-md-6">
+         <div class="pmpay-card">
+            <div class="pmpay-card-top">
+               <span class="pmpay-logo pmpay-logo-crypto"><i class="fa-brands fa-bitcoin"></i></span>
+               <span class="pmpay-logo-text">Pay with<br>Crypto</span>
+            </div>
+            <div class="pmpay-card-body">
+               <h4 class="pmpay-method-name">Crypto</h4>
+               <p class="pmpay-method-desc">Accept manual payments.</p>
+               <a href="#" class="pmpay-action" data-bs-toggle="modal" data-bs-target="#cryptoDetailModal">
+                  <span class="pmpay-action-circle pmpay-action-add"><i class="fa-solid fa-plus"></i></span>
+                  <span class="pmpay-action-label pmpay-action-edit">Enter your details</span>
+               </a>
+            </div>
+            <div class="pmpay-card-foot">
+               <span class="pmpay-status" data-on="Active" data-off="Inactive">Inactive</span>
+               <label class="pmpay-switch">
+                  <input type="checkbox" class="pmpay-toggle">
+                  <span class="pmpay-slider"></span>
+               </label>
+            </div>
+         </div>
+      </div>
+
+   </div>
+</div>
+
+<!-- Bank detail modal -->
+<div class="modal fade pb-modal" id="bankDetailModal" tabindex="-1" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title"><i class="fa-solid fa-building-columns"></i> Bank Transfer Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <div class="pb-field">
+               <label for="bank_name">Bank Name</label>
+               <input id="bank_name" name="bank_name" class="pb-input" type="text" placeholder="e.g. ABA Bank">
+            </div>
+            <div class="pb-field">
+               <label for="account_name">Account Name</label>
+               <input id="account_name" name="account_name" class="pb-input" type="text" placeholder="Full name on account">
+            </div>
+            <div class="pb-field">
+               <label for="bank_account_num">Account Number</label>
+               <input id="bank_account_num" name="bank_account_num" class="pb-input" type="text" placeholder="e.g. 000 123 456">
+            </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="broker-btn broker-btn-ghost" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="broker-btn broker-btn-solid" id="bankDetailSubmit">Save</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Crypto detail modal -->
+<div class="modal fade pb-modal" id="cryptoDetailModal" tabindex="-1" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title"><i class="fa-brands fa-bitcoin"></i> Crypto Payment Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+            <div class="modal-body">
+               <div class="pb-field">
+                  <label for="usdc_wallet">Enter your USDC (ERC-20) Wallet Address</label>
+                  <input id="usdc_wallet" name="usdc_wallet" class="pb-input" type="text" placeholder="Paste your wallet number">
+               </div>
+               <div class="pb-field">
+                  <label for="eth_wallet">Enter your ETH Wallet Address</label>
+                  <input id="eth_wallet" name="eth_wallet" class="pb-input" type="text" placeholder="Paste your wallet number">
+               </div>
+               <div class="pb-field">
+                  <label for="btc_wallet">Enter your BTC Wallet Address</label>
+                  <input id="btc_wallet" name="btc_wallet" class="pb-input" type="text" placeholder="Paste your wallet number">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="broker-btn broker-btn-ghost" data-bs-dismiss="modal">Cancel</button>
+               <button type="button" class="broker-btn broker-btn-solid" id="cryptoDetailSubmit">Submit</button>
+            </div>
+      </div>
+   </div>
+</div>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+      var scope = document.querySelector('.pmpay');
+      if (!scope) { return; }
+
+      // move modals to <body> so the Bootstrap backdrop sits behind them
+      ['bankDetailModal', 'cryptoDetailModal'].forEach(function (id) {
+         var m = document.getElementById(id);
+         if (m && m.parentElement !== document.body) { document.body.appendChild(m); }
+      });
+
+      // toggle Active / Inactive label
+      scope.querySelectorAll('.pmpay-toggle').forEach(function (toggle) {
+         var foot = toggle.closest('.pmpay-card-foot');
+         var label = foot ? foot.querySelector('.pmpay-status') : null;
+         if (!label) { return; }
+         toggle.addEventListener('change', function () {
+            label.textContent = toggle.checked ? label.getAttribute('data-on') : label.getAttribute('data-off');
+            label.classList.toggle('is-active', toggle.checked);
+         });
+         label.classList.toggle('is-active', toggle.checked);
+      });
+
+      // set payout threshold
+      var setBtn = document.getElementById('pmpay-set-threshold');
+      var thresholdEl = document.getElementById('pmpay-threshold');
+      if (setBtn && thresholdEl && window.Swal) {
+         setBtn.addEventListener('click', function () {
+            var current = (thresholdEl.textContent || '$50').replace(/[^0-9.]/g, '');
+            Swal.fire({
+               title: 'Set payout threshold',
+               input: 'number',
+               inputLabel: 'Pay me when my balance reaches ($)',
+               inputValue: current,
+               inputAttributes: { min: '1', step: '1' },
+               showCancelButton: true,
+               confirmButtonText: 'Save',
+               confirmButtonColor: '#009AEE'
+            }).then(function (res) {
+               if (res.isConfirmed && res.value) {
+                  thresholdEl.textContent = '$' + parseInt(res.value, 10);
+               }
+            });
+         });
+      }
+
+      // ---- Bank payment method: load once (cache) -> create or update ----
+      var bankSubmit = document.getElementById('bankDetailSubmit');
+      var bankModalEl = document.getElementById('bankDetailModal');
+      var bankTitle = bankModalEl ? bankModalEl.querySelector('.modal-title') : null;
+      var bankCard = scope.querySelectorAll('.pmpay-card')[0];
+      var bankFields = {
+         name: document.getElementById('bank_name'),
+         accName: document.getElementById('account_name'),
+         accNum: document.getElementById('bank_account_num')
+      };
+
+      function fillBankForm(data) {
+         bankFields.name.value = (data && data.bank_name) || '';
+         bankFields.accName.value = (data && data.account_name) || '';
+         bankFields.accNum.value = (data && data.bank_account_num) || '';
+      }
+
+      function readBankForm() {
+         return {
+            bank_id: '',
+            bank_name: bankFields.name.value.trim(),
+            account_name: bankFields.accName.value.trim(),
+            bank_account_num: bankFields.accNum.value.trim()
+         };
+      }
+
+      function renderBankState(exists) {
+         if (bankCard) {
+            var circle = bankCard.querySelector('.pmpay-action-circle');
+            var label = bankCard.querySelector('.pmpay-action-label');
+            var toggle = bankCard.querySelector('.pmpay-toggle');
+            var status = bankCard.querySelector('.pmpay-status');
+            if (circle) {
+               circle.classList.toggle('pmpay-action-done', exists);
+               circle.classList.toggle('pmpay-action-add', !exists);
+               circle.innerHTML = exists ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-plus"></i>';
+            }
+            if (label) { label.textContent = exists ? 'Edit Details' : 'Enter your details'; }
+            if (toggle) { toggle.checked = exists; }
+            if (status) { status.textContent = exists ? 'Active' : 'Inactive'; status.classList.toggle('is-active', exists); }
+         }
+         if (bankTitle) {
+            bankTitle.innerHTML = '<i class="fa-solid fa-building-columns"></i> ' + (exists ? 'Update Bank Details' : 'Add Bank Details');
+         }
+         if (bankSubmit) { bankSubmit.textContent = exists ? 'Update' : 'Save'; }
+      }
+
+      function closeBankModal() {
+         var instance = bootstrap.Modal.getInstance(bankModalEl);
+         if (instance) { instance.hide(); }
+      }
+
+      function loadBankPaymentMethod() {
+         $.ajax({
+            url: '/Profile/GetBankPaymentMethod',
+            type: 'GET',
+            xhrFields: { withCredentials: true },
+            success: function (res) {
+               var data = (res && res.responseCode === 200) ? res.data : null;
+               if (data) { fillBankForm(data); }
+               renderBankState(!!data);
+            },
+            error: function () { renderBankState(false); }
+         });
+      }
+
+      function saveBankPaymentMethod() {
+         var payload = readBankForm();
+         if (!payload.bank_account_num) {
+            alertFail('Please enter your bank account number.');
+            return;
+         }
+
+         bankSubmit.disabled = true;
+         $.ajax({
+            url: '/Profile/AddBankAccountMethod',
+            type: 'POST',
+            contentType: 'application/json',
+            xhrFields: { withCredentials: true },
+            data: JSON.stringify(payload),
+            success: function (res) {
+               if (res.responseCode === 200) {
+                  if (res.data) { fillBankForm(res.data); }
+                  renderBankState(true);
+                  closeBankModal();
+                  alertOk(res.responseMessage);
+               } else {
+                  alertFail(res.responseMessage);
+               }
+            },
+            error: function () {
+               alertFail('Something went wrong. Please try again.');
+            },
+            complete: function () { bankSubmit.disabled = false; }
+         });
+      }
+
+      if (bankSubmit) {
+         loadBankPaymentMethod();
+         bankSubmit.addEventListener('click', saveBankPaymentMethod);
+      }
+
+      // ---- Crypto payment method: load once (cache) -> create or update ----
+      var cryptoSubmit = document.getElementById('cryptoDetailSubmit');
+      var cryptoModalEl = document.getElementById('cryptoDetailModal');
+      var cryptoTitle = cryptoModalEl ? cryptoModalEl.querySelector('.modal-title') : null;
+      var cryptoCard = scope.querySelectorAll('.pmpay-card')[1];
+      var cryptoFields = {
+         usdc: document.getElementById('usdc_wallet'),
+         eth: document.getElementById('eth_wallet'),
+         btc: document.getElementById('btc_wallet')
+      };
+      var hasCrypto = false; // cached state: does the user already have a record?
+
+      function fillCryptoForm(data) {
+         cryptoFields.usdc.value = (data && data.usdc_wallet_num) || '';
+         cryptoFields.eth.value = (data && data.eth_wallet_num) || '';
+         cryptoFields.btc.value = (data && data.btc_wallet_num) || '';
+      }
+
+      function readCryptoForm() {
+         return {
+            usdc_wallet: cryptoFields.usdc.value.trim(),
+            eth_wallet: cryptoFields.eth.value.trim(),
+            btc_wallet: cryptoFields.btc.value.trim()
+         };
+      }
+
+      function alertOk(message) {
+         Swal.fire({ title: 'Success!', text: message, icon: 'success', timer: 1600, showConfirmButton: false });
+      }
+      function alertFail(message) {
+         Swal.fire({ title: 'Failed!', text: message, icon: 'error', confirmButtonText: 'Close' });
+      }
+
+      // reflect create vs update state on the card + modal
+      function renderCryptoState(exists) {
+         hasCrypto = exists;
+
+         if (cryptoCard) {
+            var circle = cryptoCard.querySelector('.pmpay-action-circle');
+            var label = cryptoCard.querySelector('.pmpay-action-label');
+            var toggle = cryptoCard.querySelector('.pmpay-toggle');
+            var status = cryptoCard.querySelector('.pmpay-status');
+            if (circle) {
+               circle.classList.toggle('pmpay-action-done', exists);
+               circle.classList.toggle('pmpay-action-add', !exists);
+               circle.innerHTML = exists ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-plus"></i>';
+            }
+            if (label) { label.textContent = exists ? 'Edit Details' : 'Enter your details'; }
+            if (toggle) { toggle.checked = exists; }
+            if (status) { status.textContent = exists ? 'Active' : 'Inactive'; status.classList.toggle('is-active', exists); }
+         }
+
+         if (cryptoTitle) {
+            cryptoTitle.innerHTML = '<i class="fa-brands fa-bitcoin"></i> ' + (exists ? 'Update Crypto Details' : 'Add Crypto Details');
+         }
+         if (cryptoSubmit) { cryptoSubmit.textContent = exists ? 'Update' : 'Save'; }
+      }
+
+      function closeCryptoModal() {
+         var instance = bootstrap.Modal.getInstance(cryptoModalEl);
+         if (instance) { instance.hide(); }
+      }
+
+      // load existing details ONCE on page load (cached; the modal reuses it)
+      function loadCryptoPaymentMethod() {
+         $.ajax({
+            url: '/Profile/GetCryptoPaymentMethod',
+            type: 'GET',
+            xhrFields: { withCredentials: true },
+            success: function (res) {
+               var data = (res && res.responseCode === 200) ? res.data : null;
+               if (data) { fillCryptoForm(data); }
+               renderCryptoState(!!data);
+            },
+            error: function () { renderCryptoState(false); }
+         });
+      }
+
+      // save (create or update) via AJAX — no page reload
+      function saveCryptoPaymentMethod() {
+         var payload = readCryptoForm();
+         if (!payload.usdc_wallet && !payload.eth_wallet && !payload.btc_wallet) {
+            alertFail('Please enter at least one wallet address.');
+            return;
+         }
+
+         cryptoSubmit.disabled = true;
+         $.ajax({
+            url: '/Profile/AddCryptoPaymentMethod',
+            type: 'POST',
+            contentType: 'application/json',
+            xhrFields: { withCredentials: true },
+            data: JSON.stringify(payload),
+            success: function (res) {
+               if (res.responseCode === 200) {
+                  if (res.data) { fillCryptoForm(res.data); }
+                  renderCryptoState(true); // record now exists -> update mode next time
+                  closeCryptoModal();
+                  alertOk(res.responseMessage);
+               } else {
+                  alertFail(res.responseMessage);
+               }
+            },
+            error: function () {
+               alertFail('Something went wrong. Please try again.');
+            },
+            complete: function () { cryptoSubmit.disabled = false; }
+         });
+      }
+
+      if (cryptoSubmit) {
+         loadCryptoPaymentMethod();
+         cryptoSubmit.addEventListener('click', saveCryptoPaymentMethod);
+      }
+   });
+</script>

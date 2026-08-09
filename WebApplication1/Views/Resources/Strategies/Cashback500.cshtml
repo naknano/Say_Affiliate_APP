@@ -1,0 +1,107 @@
+@{
+    ViewData["Title"] = "How $500 in Forex Cashback Adds Up Over Three Months";
+    string ac = "#16a34a", al = "#f0fdf4";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#052e16,#166534,#021a0d);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>$500 Cashback</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">How $500 in Forex Cashback Adds Up Over Three Months</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 15 Jan 2025</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 7 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Cashback Strategy</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(22,163,74,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#86efac;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-sack-dollar me-1"></i> 3-Month Cashback Scenario</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Monthly lots traded",V="20 lots"},new{L="Cashback rate",V="$7.50/lot"},new{L="Monthly cashback",V="$150"},new{L="3-Month total",V="$450–$500"},new{L="Annual projection",V="$1,800+"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#86efac;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip">
+    <div class="container container-1230"><div class="row g-0">
+        <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">$150</div><div class="na-stat-lbl">Per Month (20 lots)</div></div></div>
+        <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">$500</div><div class="na-stat-lbl">In 3 Months</div></div></div>
+        <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">$1,800+</div><div class="na-stat-lbl">Annual Projection</div></div></div>
+        <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">$0</div><div class="na-stat-lbl">Platform Cost</div></div></div>
+    </div></div>
+</div>
+<div class="na-layout">
+    <div class="container container-1230"><div class="row g-4 align-items-start">
+        <div class="col-lg-9">
+            <article class="na-article">
+                <p class="na-lead">The number $500 might not sound like a trading strategy. But when it represents pure cashback — money returned to you from spreads you already paid, on trades you were going to make anyway — it changes the conversation entirely. This article breaks down exactly how a regular retail trader reaches $500 in cashback over a 90-day period, and what happens when that figure continues to grow.</p>
+                <h2 class="na-h2">The Cashback Maths — Month by Month</h2>
+                <p class="na-p">Cashback is paid per standard lot traded. On EUR/USD via a typical Say Affiliates partner broker, the rate is $7.50 per lot. Here is how the numbers stack up across three months of active trading:</p>
+                <table class="br-facts-table">
+                    <thead><tr><th>Month</th><th style="text-align:center;">Lots Traded</th><th style="text-align:center;">Rate</th><th style="text-align:center;">Cashback Earned</th><th style="text-align:center;">Running Total</th></tr></thead>
+                    <tbody>
+                        <tr><td>Month 1</td><td style="text-align:center;">20</td><td style="text-align:center;">$7.50</td><td style="text-align:center;color:@ac;font-weight:700;">$150</td><td style="text-align:center;font-weight:700;">$150</td></tr>
+                        <tr><td>Month 2</td><td style="text-align:center;">22</td><td style="text-align:center;">$7.50</td><td style="text-align:center;color:@ac;font-weight:700;">$165</td><td style="text-align:center;font-weight:700;">$315</td></tr>
+                        <tr><td>Month 3</td><td style="text-align:center;">25</td><td style="text-align:center;">$7.50</td><td style="text-align:center;color:@ac;font-weight:700;">$187.50</td><td style="text-align:center;font-weight:700;">$502.50</td></tr>
+                    </tbody>
+                </table>
+                <p class="na-p">As trading confidence grows and lot sizes or frequency increase moderately, the total crosses $500 by the end of month 3 — without any change to the underlying trading strategy.</p>
+                <h2 class="na-h2">Three Trading Volume Levels</h2>
+                <div class="br-fact-grid" style="grid-template-columns:repeat(3,1fr);margin:20px 0;">
+                    @foreach(var t in new[]{new{K="Conservative",V="10 lots/mo → $75/mo → $900/yr",Bg="#f0fdf4",Clr="#16a34a"},new{K="Moderate",V="20 lots/mo → $150/mo → $1,800/yr",Bg="#eff6ff",Clr="#2563eb"},new{K="Active",V="50 lots/mo → $375/mo → $4,500/yr",Bg="#f5f3ff",Clr="#7c3aed"}})
+                    {<div class="br-fact-item"><div class="br-fact-icon" style="background:@t.Bg;color:@t.Clr;"><i class="fa-solid fa-chart-line"></i></div><div><div class="br-fact-key">@t.K</div><div class="br-fact-val" style="font-size:12px;">@t.V</div></div></div>}
+                </div>
+                <h2 class="na-h2">Why Cashback Compounds Your Trading Edge</h2>
+                <p class="na-p">Every trader faces a fundamental cost: the spread. Every time you open a position you pay it. Cashback doesn't eliminate that cost — it partially refunds it. On a 1-pip EUR/USD spread at $10/lot, a $7.50 cashback returns 75% of that cost. This means your strategy's breakeven point moves significantly in your favour: you need fewer pips of profit to overcome the cost of the trade.</p>
+                <div class="na-pullquote"><div class="na-pullquote-text">"Cashback doesn't make bad trades good. But it makes good trades significantly more profitable — because every pip you capture costs you less to earn."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+                <h2 class="na-h2">Reinvesting Cashback — The Multiplier Effect</h2>
+                <p class="na-p">Traders who withdraw cashback monthly get a straight cost-reduction benefit. Those who reinvest it — treating it as additional risk capital — can access a compounding effect over time. A trader who adds $150/month in cashback to their trading account grows their position sizing capacity without depositing additional personal capital.</p>
+                <h2 class="na-h2">How to Maximise Your 3-Month Cashback</h2>
+                <ul class="na-list">
+                    <li>Register with Say Affiliates <strong>before</strong> opening a broker account — existing accounts are sometimes eligible to be linked retroactively, but registering first is always easier</li>
+                    <li>Choose a broker with <strong>higher cashback rates</strong> on your most-traded instruments — use the Say Affiliates broker comparison to find the best per-lot rate for EUR/USD, Gold, or your primary pair</li>
+                    <li>Trade a <strong>raw/ECN account</strong> where available — commission-based accounts often carry higher cashback rates than spread-based standard accounts</li>
+                    <li>Track your lots monthly using the Say Affiliates dashboard to verify cashback is accumulating as expected</li>
+                    <li>Request your payout monthly — there is no benefit to letting cashback accumulate in the platform longer than a month</li>
+                </ul>
+                <div class="na-cta">
+                    <div class="na-cta-label" style="color:#86efac;">Start Your 3-Month Cashback Clock</div>
+                    <div class="na-cta-title">Earn Your First $500 — Free to Start</div>
+                    <p class="na-cta-sub">Register free, choose your broker, and begin earning cashback on every trade from day one.</p>
+                    <div class="na-cta-btns">
+                        <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                        <a asp-controller="Home" asp-action="ForexCaculator" class="na-cta-btn-ghost"><i class="fa-solid fa-calculator me-2"></i>Cashback Calculator</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <div class="col-lg-3">
+            <div style="position:sticky;top:90px;">
+                <div class="na-sidebar-card mb-3">
+                    <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+                    @foreach(var r in new[]{new{Ctrl="Resources",Act="StrategyDayTrading",Icon="fa-solid fa-sun",Bg="#fff7ed",Clr="#ea580c",T="Day Trading Forex",D="05 Aug 2024"},new{Ctrl="Resources",Act="StrategySwingTrading",Icon="fa-solid fa-wave-square",Bg="#ecfeff",Clr="#0891b2",T="Swing Trading Strategy Ideas",D="28 Jun 2024"},new{Ctrl="Resources",Act="StrategyScalping",Icon="fa-solid fa-bolt",Bg="#fff1f0",Clr="#b91c1c",T="The Art of Scalping Trading",D="10 Jan 2024"}})
+                    {<a asp-controller="@r.Ctrl" asp-action="@r.Act" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.Clr;"><i class="@r.Icon"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+                </div>
+                <div class="na-sidebar-card">
+                    <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+                    <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                        <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                        <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div>
+</div>
+</div>

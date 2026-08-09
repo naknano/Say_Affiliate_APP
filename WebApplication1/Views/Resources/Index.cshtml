@@ -1,0 +1,179 @@
+@{
+    ViewData["Title"] = "Forex Resources";
+
+    var cards = new[]
+    {
+        new { Action="LearnForexBasics",
+              Icon="fa-solid fa-graduation-cap",
+              BannerGrad="linear-gradient(135deg,#7f1d1d 0%,#b91c1c 55%,#ef4444 100%)",
+              Clr="#e53935", Light="#fff1f0",
+              Tag="Foundations", Count="8 Lessons", Badge="",
+              Title="Learn Forex Basics",
+              Desc="Master currency pairs, pips, leverage, and risk management to build a rock-solid trading foundation before risking a single cent.",
+              Cta="Start Learning" },
+        new { Action="ForexBrokers",
+              Icon="fa-solid fa-award",
+              BannerGrad="linear-gradient(135deg,#1e3a8a 0%,#2563eb 55%,#60a5fa 100%)",
+              Clr="#2563eb", Light="#eff6ff",
+              Tag="Broker Reviews", Count="50+ Brokers", Badge="Popular",
+              Title="Forex Brokers",
+              Desc="Compare cashback-eligible brokers side by side — spreads, regulation, platforms, and rebate rates — to find your ideal match.",
+              Cta="Compare Brokers" },
+        new { Action="ForexTools",
+              Icon="fa-solid fa-wand-magic-sparkles",
+              BannerGrad="linear-gradient(135deg,#78350f 0%,#d97706 55%,#fbbf24 100%)",
+              Clr="#d97706", Light="#fffbeb",
+              Tag="Trading Tools", Count="6 Tools", Badge="Free",
+              Title="Forex Tools",
+              Desc="Position calculators, VPS guides, economic calendars and more — the essential toolkit that gives you an operational edge every session.",
+              Cta="Open Tools" },
+        new { Action="ForexNews",
+              Icon="fa-solid fa-newspaper",
+              BannerGrad="linear-gradient(135deg,#14532d 0%,#16a34a 55%,#4ade80 100%)",
+              Clr="#16a34a", Light="#f0fdf4",
+              Tag="News & Press", Count="5 Articles", Badge="",
+              Title="Forex News",
+              Desc="Industry press coverage and market insights — stay on top of regulatory shifts, platform innovations, and cashback industry news.",
+              Cta="Read News" },
+        new { Action="Strategies",
+              Icon="fa-solid fa-chart-line",
+              BannerGrad="linear-gradient(135deg,#3b0764 0%,#7c3aed 55%,#a78bfa 100%)",
+              Clr="#7c3aed", Light="#f5f3ff",
+              Tag="Strategy Library", Count="12 Guides", Badge="New",
+              Title="Strategies & Technical Analysis",
+              Desc="From day trading to algorithmic EAs — proven strategies for every skill level, paired with technical analysis frameworks that actually work.",
+              Cta="Browse Strategies" },
+        new { Action="ForexCashback",
+              Icon="fa-solid fa-circle-dollar-to-slot",
+              BannerGrad="linear-gradient(135deg,#0f172a 0%,#0e7490 55%,#009AEE 100%)",
+              Clr="#0891b2", Light="#ecfeff",
+              Tag="Cashback & Rebates", Count="3 Guides", Badge="",
+              Title="Forex Cashback",
+              Desc="Earn rebates on every lot you trade, regardless of outcome. Learn how cashback turns your trading volume into a consistent second income stream.",
+              Cta="Get Cashback" },
+    };
+}
+
+<style>
+/* ── Resources Index hero ───────────────────────────────── */
+.rsi-hero{background:linear-gradient(135deg,#060c1a 0%,#0d1f40 50%,#030609 100%);padding:120px 0 52px;position:relative;overflow:hidden;}
+.rsi-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.rsi-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:5px 16px;font-size:11px;font-weight:700;color:#7dd3fc;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;}
+.rsi-hero-title{font-size:clamp(30px,4.5vw,52px);font-weight:900;color:#fff;line-height:1.12;margin:0 0 14px;}
+.rsi-hero-title span{background:linear-gradient(90deg,#38bdf8,#818cf8,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.rsi-hero-sub{font-size:15px;color:rgba(255,255,255,.62);line-height:1.75;max-width:500px;margin:0;}
+.rsi-stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;}
+.rsi-stat{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 18px;}
+.rsi-stat-num{font-size:22px;font-weight:900;color:#fff;line-height:1;}
+.rsi-stat-lbl{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;text-transform:uppercase;letter-spacing:.06em;line-height:1.35;}
+.rsi-hero-visual{display:flex;flex-direction:column;gap:10px;}
+.rsi-hero-chip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:9px 14px;}
+.rsi-hero-chip-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.rsi-hero-chip-txt{font-size:13px;font-weight:600;color:rgba(255,255,255,.75);}
+
+/* ── Cards grid ─────────────────────────────────────────── */
+.rsi-grid{padding:56px 0 100px;background:#f8fafc;}
+.rsi-section-hd{text-align:center;margin-bottom:44px;}
+.rsi-section-label{display:inline-block;font-size:11px;font-weight:700;color:#009AEE;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.rsi-section-title{font-size:clamp(22px,3vw,32px);font-weight:900;color:#0f1b2d;line-height:1.2;margin:0 0 10px;}
+.rsi-section-sub{font-size:15px;color:#64748b;max-width:500px;margin:0 auto;}
+
+.rsi-card{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#fff;border:1.5px solid #e8edf4;text-decoration:none;color:inherit;height:100%;transition:box-shadow .22s,transform .22s,border-color .22s;}
+.rsi-card:hover{transform:translateY(-5px);border-color:transparent;text-decoration:none;color:inherit;}
+.rsi-card-banner{height:160px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.rsi-card-banner::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.07);}
+.rsi-card-banner::after{content:'';position:absolute;left:-30px;bottom:-30px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,.05);}
+.rsi-card-icon-wrap{width:68px;height:68px;border-radius:18px;background:rgba(255,255,255,.18);backdrop-filter:blur(4px);border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;position:relative;z-index:1;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.rsi-card-badge{position:absolute;top:12px;right:12px;font-size:10px;font-weight:800;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);color:#fff;letter-spacing:.06em;text-transform:uppercase;z-index:2;}
+.rsi-card-tag{position:absolute;bottom:12px;left:14px;font-size:10px;font-weight:700;color:rgba(255,255,255,.8);letter-spacing:.07em;text-transform:uppercase;z-index:2;}
+.rsi-card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.rsi-card-count{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;}
+.rsi-card-title{font-size:17px;font-weight:800;color:#0f1b2d;line-height:1.3;margin:0;}
+.rsi-card-desc{font-size:13.5px;color:#64748b;line-height:1.7;flex:1;margin:0;}
+.rsi-card-cta{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;margin-top:6px;transition:gap .18s;}
+.rsi-card:hover .rsi-card-cta{gap:11px;}
+</style>
+
+<div class="res-page">
+
+    <!-- Hero -->
+    <section class="rsi-hero">
+        <div class="container container-1230">
+            <nav class="res-breadcrumb" style="margin-bottom:22px;">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Forex Resources</span>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7">
+                    <div class="rsi-hero-eyebrow"><i class="fa-solid fa-layer-group"></i> Knowledge Hub</div>
+                    <h1 class="rsi-hero-title">Your Complete<br><span>Forex Resource Centre</span></h1>
+                    <p class="rsi-hero-sub">Everything you need to trade smarter — broker comparisons, strategy guides, tools, market news, and cashback education. Free, forever.</p>
+                    <div class="rsi-stat-row">
+                        <div class="rsi-stat"><div class="rsi-stat-num">6</div><div class="rsi-stat-lbl">Resource<br>Categories</div></div>
+                        <div class="rsi-stat"><div class="rsi-stat-num">50+</div><div class="rsi-stat-lbl">Guides &amp;<br>Articles</div></div>
+                        <div class="rsi-stat"><div class="rsi-stat-num">Free</div><div class="rsi-stat-lbl">All Content<br>Access</div></div>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div class="rsi-hero-visual">
+                        @foreach(var c in cards)
+                        {<div class="rsi-hero-chip"><div class="rsi-hero-chip-dot" style="background:@c.Clr;box-shadow:0 0 6px @c.Clr;"></div><i class="@c.Icon" style="font-size:14px;color:@c.Clr;width:16px;text-align:center;"></i><span class="rsi-hero-chip-txt">@c.Title</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);font-weight:600;">@c.Count</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cards Grid -->
+    <section class="rsi-grid">
+        <div class="container container-1230">
+            <div class="rsi-section-hd">
+                <div class="rsi-section-label"><i class="fa-solid fa-compass me-1"></i> Browse by Category</div>
+                <h2 class="rsi-section-title">Everything You Need to Trade Better</h2>
+                <p class="rsi-section-sub">Six focused resource categories — from first trade to advanced algo systems.</p>
+            </div>
+            <div class="row g-4">
+                @foreach (var c in cards)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <a asp-controller="Resources" asp-action="@c.Action" class="rsi-card" style="@(c.Badge!=""?"":"")--card-clr:@c.Clr;">
+                            <div class="rsi-card-banner" style="background:@c.BannerGrad;">
+                                @if(c.Badge != "")
+                                {<span class="rsi-card-badge">@c.Badge</span>}
+                                <div class="rsi-card-icon-wrap"><i class="@c.Icon"></i></div>
+                                <span class="rsi-card-tag">@c.Tag</span>
+                            </div>
+                            <div class="rsi-card-body">
+                                <span class="rsi-card-count" style="color:@c.Clr;">@c.Count</span>
+                                <h3 class="rsi-card-title">@c.Title</h3>
+                                <p class="rsi-card-desc">@c.Desc</p>
+                                <span class="rsi-card-cta" style="color:@c.Clr;">@c.Cta <i class="fa-solid fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA strip -->
+    <div style="background:linear-gradient(135deg,#0f1b2d,#1e3a5f);padding:52px 0;">
+        <div class="container container-1230">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div style="font-size:11px;font-weight:700;color:#7dd3fc;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;"><i class="fa-solid fa-star me-1"></i> Ready to Start?</div>
+                    <h2 style="font-size:clamp(20px,3vw,30px);font-weight:900;color:#fff;margin:0 0 8px;line-height:1.25;">Put Your Knowledge Into Practice</h2>
+                    <p style="font-size:15px;color:rgba(255,255,255,.6);margin:0;max-width:560px;">Register free with Say Affiliates, link an ECN broker, and start earning cashback on every trade you place — while using all these resources to sharpen your edge.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start;" class="justify-content-lg-end">
+                        <a asp-controller="Authentication" asp-action="Register" style="display:inline-flex;align-items:center;gap:8px;background:#009AEE;color:#fff;font-size:14px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:background .18s;"><i class="fa-solid fa-user-plus"></i> Register Free</a>
+                        <a asp-controller="Home" asp-action="ForexCaculator" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:#fff;font-size:14px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;white-space:nowrap;border:1.5px solid rgba(255,255,255,.2);"><i class="fa-solid fa-calculator"></i> Cashback Calc</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

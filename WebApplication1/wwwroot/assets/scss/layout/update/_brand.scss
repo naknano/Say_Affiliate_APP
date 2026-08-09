@@ -1,0 +1,98 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 brand css
+/*----------------------------------------*/
+
+.al-brand-seo{
+    &-title {
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: -0.04em;
+        color: var(--tp-common-black-1);
+        font-family: var(--tp-ff-inter);
+        @media #{$sm,$xs} {
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+    }
+    &-box {
+        & a {
+            color: #8a969a;
+            transition: .3s;
+            &:not(:last-child) {
+                margin-right: 55px;
+                @media #{$md} {
+                    margin-right: 35px;
+                }
+                @media #{$sm,$xs} {
+                    margin-right: 25px;
+                }
+            }
+            &:hover {
+                color: var(--tp-common-black-1);
+            }
+        }
+    }
+    &-wave-border {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+.al-brand {
+    &-title {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 1;
+        margin-bottom: 0;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: var(--tp-common-black-1);
+        font-family: var(--tp-ff-inter);
+
+        &::after {
+            content: '';
+            height: 6px;
+            width: 6px;
+            margin-left: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            transform: translateY(-4px);
+            background-color: var(--tp-common-black-1);
+        }
+    }
+
+    &-wrapper {
+        padding: 27px 0 23px 0;
+        background: var(--tp-common-yellow);
+        & .slide-transtion {
+            -webkit-transition-timing-function: linear;
+            transition-timing-function: linear;
+        }
+    }
+
+    &-active {
+        & .swiper-slide {
+            width: auto;
+        }
+    }
+}
+
+.al-brands-archi{
+    &-slider{
+        & .swiper-slide{
+            width: auto;
+        }
+    }
+    &-title {
+        & span{
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 133%;
+            text-align: center;
+            color: var(--tp-grey-1);
+        }
+    }
+}

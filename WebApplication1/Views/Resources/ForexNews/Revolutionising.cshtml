@@ -1,0 +1,178 @@
+@{
+    ViewData["Title"] = "How Say Affiliates Is Revolutionising Forex Cashback On Their Free Platform";
+    var accentColor = "#166534";
+    var accentLight = "#f0fdf4";
+
+    var relatedArticles = new[]
+    {
+        new { Ctrl="Resources", Act="ForexNewsFreePlatform", Icon="fa-solid fa-gift",        Bg="#f5f3ff", Clr="#7c3aed", Title="Here's a Free Platform That Reinvents Forex Cashback",        Date="16 Mar 2023" },
+        new { Ctrl="Resources", Act="ForexNewsChangingGame", Icon="fa-solid fa-chess-rook",  Bg="#fff7ed", Clr="#ea580c", Title="How Say Affiliates Is Changing The Game For Independent Traders",Date="16 Mar 2023" },
+        new { Ctrl="Resources", Act="ForexNewsRedefining",   Icon="fa-solid fa-star",        Bg="#ecfeff", Clr="#0891b2", Title="How Say Affiliates Is Redefining The Industry Of Forex Trading",Date="29 Jul 2022" },
+    };
+}
+
+<div class="br-page">
+
+    <section class="na-hero" style="background:linear-gradient(135deg,#052e16 0%,#14532d 55%,#021a0d 100%);">
+        <div class="container container-1230">
+            <nav class="br-hero-breadcrumb">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="ForexNews">Forex News</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Revolutionising Cashback</span>
+            </nav>
+
+            <div class="row align-items-center g-4 mt-1">
+                <div class="col-lg-8">
+                    <div class="na-pub-badge">
+                        <div class="na-pub-icon" style="background:#fff;color:#166534;font-size:9px;font-weight:900;line-height:1.1;text-align:center;">NNL<br>News</div>
+                        <div>
+                            <div class="na-pub-label">Featured In</div>
+                            <div class="na-pub-name">NNL News</div>
+                        </div>
+                    </div>
+                    <h1 class="na-headline">How Say Affiliates Is Revolutionising Forex Cashback On Their Free Platform</h1>
+                    <div class="na-byline">
+                        <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Bogdan Ulmu</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 29 Jul 2022</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 10 min read</span>
+                        <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Press Coverage</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="br-score-card" style="border-color:rgba(22,163,74,.35);">
+                        <div style="font-size:11px;font-weight:700;color:#86efac;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-rotate me-1"></i> Platform Metrics</div>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            @foreach (var item in new[] {
+                                new { L="Regulated broker partners",  V="100+" },
+                                new { L="Countries supported",        V="50+" },
+                                new { L="Avg. cashback per lot",      V="$5–$15" },
+                                new { L="Withdrawal methods",         V="Bank, Crypto, eWallet" },
+                                new { L="Payout frequency",           V="Monthly" },
+                            })
+                            {
+                                <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:8px;">
+                                    <span style="color:rgba(255,255,255,.6);">@item.L</span>
+                                    <span style="color:#86efac;font-weight:700;">@item.V</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="na-stat-strip">
+        <div class="container container-1230">
+            <div class="row g-0">
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">100+</div><div class="na-stat-lbl">Regulated Brokers</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">50+</div><div class="na-stat-lbl">Countries</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">$15</div><div class="na-stat-lbl">Max Cashback/Lot</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">3</div><div class="na-stat-lbl">Withdrawal Methods</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="na-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-8">
+                    <article class="na-article">
+
+                        <p class="na-lead">Say Affiliates has built a network of partnerships with over 100 reliable regulated brokerages across the globe — and the platform is using those relationships to deliver something that was previously inaccessible to most retail traders: a genuine, transparent, and scalable cashback programme that pays out on every single trade without exception.</p>
+
+                        <p class="na-p">The forex cashback industry has existed in various forms since the early 2000s. But for most of that time, it operated as an opaque, fragmented system — traders had to find individual rebate programmes for each broker, rates were hidden, and payouts were inconsistent. Say Affiliates has consolidated and transparent-ised this entire ecosystem into a single unified platform.</p>
+
+                        <h2 class="na-h2">The Broker Partnership Model</h2>
+                        <p class="na-p">Say Affiliates has established formal Introducing Broker (IB) agreements with each of its 100+ broker partners. Under these agreements, the platform receives a portion of the spread or commission generated by each trader it refers to the broker. This is standard practice in the brokerage industry — IBs have been compensated this way for decades.</p>
+                        <p class="na-p">What Say Affiliates has done differently is the distribution of that IB revenue. Rather than retaining the full commission, the platform pays the majority of it back to the trader, keeping a smaller margin to sustain operations. The result is a three-party win: the broker gets a client, the trader gets lower effective trading costs, and Say Affiliates earns a sustainable margin aligned with trading volume.</p>
+
+                        <div class="na-pullquote">
+                            <div class="na-pullquote-text">"We've effectively created a rebate marketplace where transparency is the default. Every broker's cashback rate is published on our platform. Traders can compare before they choose — and switch brokers within our network if they find a better rate."</div>
+                            <div class="na-pullquote-src">— Say Affiliates, Platform Statement</div>
+                        </div>
+
+                        <h2 class="na-h2">How Rates Are Determined</h2>
+                        <p class="na-p">Cashback rates on Say Affiliates vary by broker, instrument, and account type. The key factors that determine the rate a trader receives are:</p>
+                        <ul class="na-list">
+                            <li><strong>Broker IB commission:</strong> Higher-commission brokers enable higher cashback rates. Say Affiliates negotiates rates based on expected referral volumes</li>
+                            <li><strong>Instrument type:</strong> Cashback is typically highest on major forex pairs (EUR/USD, GBP/USD) and commodities (Gold, Oil). Exotic pairs and stocks may carry lower rates</li>
+                            <li><strong>Account type:</strong> Raw/ECN accounts with commission-based pricing often carry higher cashback than spread-based standard accounts</li>
+                            <li><strong>Trading volume:</strong> Some brokers offer tiered rates — higher monthly lot volumes unlock better cashback rates per lot</li>
+                        </ul>
+
+                        <div class="na-callout">
+                            <div class="na-callout-title"><i class="fa-solid fa-shield-halved me-1"></i> Regulated Brokers Only</div>
+                            Every broker in the Say Affiliates network holds regulatory authorization from a recognised financial regulator — FCA (UK), ASIC (Australia), CySEC (Cyprus), FSCA (South Africa), or equivalent. Say Affiliates does not work with unregulated offshore brokers.
+                        </div>
+
+                        <h2 class="na-h2">Withdrawal Options and Payout Process</h2>
+                        <p class="na-p">Accumulated cashback is paid out monthly. Traders can choose from three withdrawal routes:</p>
+                        <div class="row g-3 my-2">
+                            @foreach (var w in new[] {
+                                new { Icon="fa-solid fa-building-columns", Bg="#f0fdf4", Clr="#166534", Name="Bank Transfer",  Desc="Direct bank transfer in USD, EUR, or GBP. Processing time: 3–5 business days." },
+                                new { Icon="fa-solid fa-wallet",           Bg="#eff6ff", Clr="#2563eb", Name="E-Wallet",       Desc="PayPal, Skrill, Neteller, and regional e-wallets. Usually processed within 24 hours." },
+                                new { Icon="fa-brands fa-bitcoin",         Bg="#fff7ed", Clr="#d97706", Name="Cryptocurrency", Desc="USDT (TRC-20 / ERC-20), BTC, ETH. Ideal for international traders. Near-instant settlement." },
+                            })
+                            {
+                                <div class="col-md-4">
+                                    <div style="border:1.5px solid #e8edf4;border-radius:14px;padding:18px;text-align:center;background:#fff;">
+                                        <div style="width:44px;height:44px;border-radius:12px;background:@w.Bg;color:@w.Clr;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 10px;"><i class="@w.Icon"></i></div>
+                                        <div style="font-size:14px;font-weight:700;color:#0f1b2d;margin-bottom:6px;">@w.Name</div>
+                                        <div style="font-size:12px;color:#64748b;line-height:1.6;">@w.Desc</div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <h2 class="na-h2">The Revolutionary Part: Transparency at Scale</h2>
+                        <p class="na-p">What truly sets Say Affiliates apart in 2025 is not the cashback itself — it is the transparency. Every broker's rate, every instrument's cashback, and every payout calculation is visible and verifiable on the platform. Traders can see exactly what they will earn before they trade, track their earnings in real time, and verify that their payouts match the published rates.</p>
+                        <p class="na-p">This level of transparency is unprecedented in the cashback space. Competing services have historically used opaque rate structures, delayed reporting, and complex terms that made it difficult for traders to verify they were receiving what they were promised. Say Affiliates has built its platform with auditability as a core design principle.</p>
+
+                        <div class="na-cta">
+                            <div class="na-cta-label" style="color:#86efac;">Join the Revolution</div>
+                            <div class="na-cta-title">100+ Regulated Brokers. One Free Platform.</div>
+                            <p class="na-cta-sub">Register free, choose from 100+ regulated brokers, and start earning cashback on every trade with full transparency on every rate and payout.</p>
+                            <div class="na-cta-btns">
+                                <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                                <a asp-controller="Resources" asp-action="ForexBrokers" class="na-cta-btn-ghost"><i class="fa-solid fa-building-columns me-2"></i>Browse 100+ Brokers</a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+                <div class="col-lg-4">
+                    <div style="position:sticky;top:90px;">
+                        <div class="na-sidebar-card mb-3">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-newspaper me-2"></i>Related Articles</div>
+                            @foreach (var r in relatedArticles)
+                            {
+                                <a asp-controller="@r.Ctrl" asp-action="@r.Act" class="na-related-item">
+                                    <div class="na-related-icon" style="background:@r.Bg;color:@r.Clr;"><i class="@r.Icon"></i></div>
+                                    <div>
+                                        <div class="na-related-title">@r.Title</div>
+                                        <div class="na-related-date"><i class="fa-regular fa-calendar me-1"></i>@r.Date</div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                        <div class="na-sidebar-card">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-calculator me-2"></i>Calculate Your Cashback</div>
+                            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@accentColor;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                                <a asp-controller="Resources" asp-action="ForexBrokers" class="frt-tool-btn"><i class="fa-solid fa-building-columns frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Browse Brokers</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,159 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.8 counter css start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-counter{
+    &-item{
+        width: 380px;
+        height: 380px;
+        border: 1px solid var(--tp-border-1);
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        @media #{$xl} {
+            width: 300px;
+            height: 300px;
+        }
+        @media #{$lg} {
+            width: 250px;
+            height: 250px;
+        }
+        @media #{$md,$sm,$xs} {
+            width: 180px;
+            height: 180px;
+        }
+        @media #{$xs} {
+            width: 162px;
+            height: 162px;
+        }
+    }
+    &-wrap{
+        &-box{
+            display: flex;
+            justify-content: space-between;
+        
+            @media #{$sm,$xs} {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        
+            >* {
+                &:not(:first-child) {
+                    margin-inline-start: -100px;
+        
+                    @media #{$sm,$xs} {
+                        margin-inline-start: 0;
+                    }
+                }
+            }
+        }
+    }
+    &-pp{
+        &-wrap{
+            &-box{
+                & .tp-counter-item{
+                    & span{
+                        @media #{$md,$sm,$xs}{
+                            margin-bottom: 5px;
+                        }
+                        @media #{$xs}{
+                            & svg{
+                                width: 40px;
+                                height: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-2{
+        &-item{
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                margin-left: 0;
+            }
+        }
+    }
+    &-team{
+        &-count{
+            display: flex;
+            align-items: self-start;
+            margin-right: 10px;
+            & span{
+                font-size: 24px;
+                margin-top: 10px;
+                display: inline-block;
+            }
+        }
+        &-dvdr{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            @media #{$lg,$md,$sm,$xs}{
+                display: none;
+            }
+            &-2{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 35px;
+                @media #{$lg,$md,$sm,$xs}{
+                    display: none;
+                }
+            }
+        }
+    }
+    &-cst{
+        &-item{
+            &.borders{
+                position: relative;
+                @media #{$lg,$md,$sm,$xs}{
+                    &::before{
+                        display: none;
+                    }
+                }
+                &::before{
+                    position: absolute;
+                    content: "";
+                    background: linear-gradient(170deg,rgba(180, 231, 23, 1) 0%, rgba(16, 48, 42, 1) 100%);
+                    height: 87px;
+                    width: 1px;
+                    top: 0;
+                    right: 0;
+                }
+            }
+            &-inner{
+                @media #{$lg,$md,$sm,$xs}{
+                    justify-content: center!important;
+                }
+            }
+            &.ml-100{
+                @media #{$xxl,$xl,$lg,$md,$sm,$xs}{
+                    margin-left: 50px;
+                }
+                @media #{$xl,$lg,$md,$sm,$xs}{
+                    margin-left: 0;
+                }
+            }
+        }
+        &-2{
+            &-wrap{
+                & .tp-counter-cst-item.borders::before {
+                    background: linear-gradient(170deg, #b4e71712 0%, #10302a87 100%);
+                }
+            }
+        }
+    }
+    &-md{
+        &-item{
+            @media #{$xl,$lg,$md,$sm,$xs}{
+                margin-left: 0;
+            }
+        }
+    }
+}

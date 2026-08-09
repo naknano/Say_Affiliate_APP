@@ -1,0 +1,82 @@
+@{
+    ViewData["Title"] = "Forex Brokers";
+
+    var articles = new[]
+    {
+        new { IsReview=true,  Ctrl="Resources", Act="PuPrimeReview", Img="28.Pacific-Union---PUPrime.png", Broker="PU Prime",          Title="PU Prime Review 2025 — Complete PUPrime Guide &amp; Cashback",                 Date="20 May 2025", Excerpt="Complete PU Prime review covering platforms, spreads, account types, regulation, and trading tools. Earn up to $7.50/lot cashback through Say Affiliates." },
+        new { IsReview=true,  Ctrl="Home",      Act="ComingSoon",    Img="10.FP-Markets.png",              Broker="FP Markets",        Title="FP Markets Review 2025 — Complete FP Markets Cashback Guide",                   Date="12 Jun 2025", Excerpt="Complete FP Markets review covering ECN accounts, ultra-tight spreads, ASIC & CySEC regulation, and how to maximise your FP Markets rebates through Say Affiliates." },
+        new { IsReview=true,  Ctrl="Resources", Act="IcMarketsReview", Img="42.IC-Markets.png",             Broker="IC Markets",        Title="IC Markets Review 2025 — Complete IC Markets Guide",                             Date="05 May 2025", Excerpt="IC Markets guide to trading platforms, spreads, regulation, and IC Markets cashback & rebates for smarter, cost-optimised trading in 2025." },
+        new { IsReview=true,  Ctrl="Resources", Act="FxProReview",   Img="70.FxPro.png",                   Broker="FxPro",             Title="FxPro Review 2025 — Complete FxPro Cashback Guide",                              Date="14 Mar 2025", Excerpt="This FxPro guide helps traders maximise profitability through FxPro cashback. Learn how to earn FxPro rebates on every trade with Say Affiliates." }, 
+        new { IsReview=false, Ctrl="Resources", Act="BestCashbackBrokers", Img="",                           Broker="",                 Title="10 Best Forex Brokers Cashback Rebate Programs in 2025",                         Date="27 Jan 2025", Excerpt="The Top 10 Best Forex Rebate Programs and Rates revealed. Compare cashback rates, payment schedules, and partner conditions to maximise your trading returns." },
+        new { IsReview=false, Ctrl="Resources", Act="HowToChooseBroker", Img="",                           Broker="",                 Title="How to Choose the Right Broker for Your Trading Needs",                         Date="30 Nov 2024", Excerpt="Understanding broker types is crucial for optimising your trading costs. Discover how ECN, STP, and Market Maker brokers work and which is best for your strategy." },
+    };
+}
+
+<div class="res-page">
+
+    <section class="lfb-hero">
+        <div class="container container-1230">
+            <nav class="res-breadcrumb" aria-label="breadcrumb">
+                <a asp-controller="Home"      asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Forex Brokers</span>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <h1 style="font-size:clamp(30px,4.5vw,46px);font-weight:800;color:#0f1b2d;line-height:1.15;margin:0 0 16px;">Forex Brokers</h1>
+                </div>
+                <div class="col-lg-7">
+                    <p class="lfb-hero-desc">Discover top cashback Forex brokers, read in-depth reviews, compare features and spreads, and find the best-fit broker for your trading style and goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="res-sub-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-3 col-md-4">
+                    <partial name="_Sidebar" model="@("ForexBrokers")" />
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+                    <div class="row g-4">
+                        @foreach (var a in articles)
+                        {
+                            <div class="col-lg-4 col-sm-6">
+                                <a asp-controller="@a.Ctrl" asp-action="@a.Act" class="frb-card">
+                                    @if (a.IsReview)
+                                    {
+                                        <div class="frb-thumb">
+                                            <span class="frb-thumb-brand">SAY AFFILIATES</span>
+                                            <img src="~/assets/img/broker/@a.Img" alt="@a.Broker">
+                                            <span class="frb-thumb-label">BROKER REVIEW 2025</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="frb-thumb frb-thumb-generic">
+                                            <i class="fa-solid fa-newspaper"></i>
+                                            <span>Forex Brokers Guide</span>
+                                        </div>
+                                    }
+                                    <div class="frb-body">
+                                        <span class="frb-author">Say Affiliates</span>
+                                        <h3 class="frb-title">@Html.Raw(a.Title)</h3>
+                                        <span class="frb-date"><i class="fa-regular fa-calendar me-1"></i>Published @a.Date</span>
+                                        <p class="frb-excerpt">@a.Excerpt</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

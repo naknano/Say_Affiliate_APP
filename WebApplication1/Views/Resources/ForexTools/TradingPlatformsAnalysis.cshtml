@@ -1,0 +1,667 @@
+@{
+    ViewData["Title"] = "Forex Trading Platforms Analysis: MT4, MT5, and TradingView";
+
+    var faqs = new[]
+    {
+        new { Q="Is MT4 better than MT5 for forex trading?",
+              A="MT4 remains the most popular platform for forex-specific trading, largely due to its massive library of third-party EAs and indicators built in MQL4. MT5 is technically superior — more timeframes, more order types, hedging on more brokers, and a faster backtester — but the MQL4 library advantage keeps MT4 dominant for algorithmic traders. Choose MT5 if you trade multi-asset or want the best backtesting environment." },
+        new { Q="Can I use TradingView to trade directly with my broker?",
+              A="Yes — TradingView supports direct broker integration with many brokers through its 'Trading Panel'. When your broker supports it, you can place, modify, and close trades directly from TradingView charts. However, not all brokers support this. Check your broker's supported platforms page or look for the 'Trade' button in TradingView's broker connection settings." },
+        new { Q="Which platform is best for automated trading (EAs)?",
+              A="MT4 and MT5 both support Expert Advisors (EAs) — automated trading robots coded in MQL4 and MQL5 respectively. TradingView supports Pine Script alerts that can trigger trades via third-party automation tools (like 3Commas or Webhook), but it is not a native automated trading platform. For serious algorithmic trading, MT5 with MQL5 is the most powerful option." },
+        new { Q="Is TradingView free to use?",
+              A="TradingView offers a free tier with limited indicators, alerts, and chart layouts. Paid plans (Essential, Plus, Premium, Ultimate) unlock more indicators per chart, more alerts, replay mode, multiple chart layouts, and priority support. For most retail traders, the free or Essential plan is sufficient for analysis." },
+        new { Q="Which platform has the best mobile app?",
+              A="TradingView has the most feature-rich and visually polished mobile app, with full charting, drawing tools, and Pine Script indicator support. MetaTrader 4 and MetaTrader 5 mobile apps provide solid trade execution and basic charting but lack the analysis depth of TradingView mobile. Many traders use TradingView mobile for analysis and MT4/MT5 mobile for execution." },
+        new { Q="Can I run MT4 on a Mac?",
+              A="MT4 and MT5 are primarily Windows applications. On Mac, you can run them via Wine (a Windows compatibility layer), CrossOver, or a virtual machine running Windows. Many brokers also offer a WebTrader (browser-based MT4/MT5) that works natively on Mac and any OS without installation." },
+        new { Q="Does my choice of platform affect my cashback rebates?",
+              A="Cashback rebates are calculated on lot volume regardless of the platform you use — whether you trade on MT4, MT5, or via a broker integration on TradingView, your rebates are the same per lot. The platform does not affect your rebate rate. However, some platforms (like MT5's advanced backtester) can help you optimise your trading volume and strategy efficiency, indirectly improving your total cashback." },
+    };
+
+    var platforms = new[]
+    {
+        new {
+            Id       = "mt4",
+            Name     = "MetaTrader 4",
+            Short    = "MT4",
+            Year     = "2005",
+            Dev      = "MetaQuotes Software",
+            Lang     = "MQL4",
+            TF       = "9 timeframes",
+            Ind      = "30 built-in",
+            EA       = "Full EA support",
+            BestFor  = "Forex, CFDs, Algorithmic trading",
+            Icon     = "fa-solid fa-chart-line",
+            Color    = "#2563eb",
+            Bg       = "#eff6ff",
+            Border   = "#bfdbfe",
+            Tag      = "Industry Standard",
+            TagBg    = "#2563eb",
+            Desc     = "MetaTrader 4 is the world's most widely used forex trading platform, released in 2005 by MetaQuotes Software. Despite its age, MT4 remains dominant primarily due to its enormous ecosystem of Expert Advisors (EAs), custom indicators, and scripts developed over two decades. Its MQL4 programming language is straightforward enough for non-developers to modify existing tools while powerful enough for professional algorithmic systems.",
+            Desc2    = "MT4 supports nine timeframes (M1 through MN), 30 built-in technical indicators, three chart types, and a comprehensive strategy tester for backtesting EAs on historical data. The platform runs on Windows, macOS (via Wine or CrossOver), iOS, Android, and in-browser via WebTrader.",
+            Pros     = new[] { "Largest EA and indicator library in the industry", "Widely supported by almost every forex broker", "Familiar, stable interface with 20+ years of refinement", "Excellent for automated trading with MQL4 EAs", "Free via your broker — no subscription cost", "Strong community and support resources" },
+            Cons     = new[] { "Limited to 9 timeframes vs MT5's 21", "No built-in economic calendar or news feed integration", "Older technology — lacks multi-threading and faster execution", "Cannot hedge on same account with some brokers", "MQL4 becoming outdated compared to MQL5", "Limited asset classes — primarily forex and CFDs" }
+        },
+        new {
+            Id       = "mt5",
+            Name     = "MetaTrader 5",
+            Short    = "MT5",
+            Year     = "2010",
+            Dev      = "MetaQuotes Software",
+            Lang     = "MQL5",
+            TF       = "21 timeframes",
+            Ind      = "38 built-in",
+            EA       = "Full EA + MQL5",
+            BestFor  = "Multi-asset, Stocks, Futures, Algo",
+            Icon     = "fa-solid fa-chart-bar",
+            Color    = "#16a34a",
+            Bg       = "#f0fdf4",
+            Border   = "#bbf7d0",
+            Tag      = "Next Generation",
+            TagBg    = "#16a34a",
+            Desc     = "MetaTrader 5 was released in 2010 as the successor to MT4, offering substantially more timeframes (21 vs 9), more built-in indicators (38 vs 30), improved backtesting with multi-currency optimisation, and support for additional asset classes including stocks, futures, and options. MQL5 is a more modern, object-oriented language than MQL4 with better performance and broader capabilities.",
+            Desc2    = "MT5 also supports the MetaTrader Market — a marketplace for EAs, indicators, and scripts — and integrates an economic calendar directly into the platform. Hedging is supported by default on MT5, making it the preferred choice for traders who want to hold opposing positions simultaneously. Execution speed improvements and multi-threading make it faster for HFT and high-volume strategies.",
+            Pros     = new[] { "21 timeframes including M2, M3, M4, M6, M10, M12, M20 not on MT4", "More built-in indicators and chart types", "Superior backtester with multi-currency optimisation", "Supports stocks, futures, options alongside forex/CFDs", "Built-in economic calendar with news feed", "MQL5 is more powerful and modern than MQL4" },
+            Cons     = new[] { "Smaller EA library than MT4 (MQL4 EAs don't work on MT5)", "Less universally supported than MT4 by brokers", "Migration from MT4 requires rewriting EAs in MQL5", "Some traders find it more complex than MT4", "Not all MT4 indicators are compatible without conversion", "Larger installation size and resource usage" }
+        },
+        new {
+            Id       = "tv",
+            Name     = "TradingView",
+            Short    = "TradingView",
+            Year     = "2011",
+            Dev      = "TradingView Inc.",
+            Lang     = "Pine Script",
+            TF       = "20+ timeframes",
+            Ind      = "100+ built-in",
+            EA       = "Alerts + Webhook",
+            BestFor  = "Analysis, Charting, Multi-asset",
+            Icon     = "fa-solid fa-tv",
+            Color    = "#7c3aed",
+            Bg       = "#f5f3ff",
+            Border   = "#ddd6fe",
+            Tag      = "Best for Analysis",
+            TagBg    = "#7c3aed",
+            Desc     = "TradingView is a cloud-based charting and social trading platform launched in 2011, now used by over 50 million traders and investors worldwide. Unlike MT4/MT5, TradingView runs entirely in the browser with no installation required, and is equally powerful on desktop and mobile. Its Pine Script language enables sophisticated custom indicator development with a large open-source community sharing free scripts.",
+            Desc2    = "TradingView covers forex, stocks, indices, crypto, commodities, and bonds in a single platform with a clean, modern interface. Its drawing tools are more extensive than MT4/MT5, and the social layer allows traders to share chart ideas and follow top analysts. Direct broker integration is available with a growing number of brokers, enabling order placement from within the chart.",
+            Pros     = new[] { "Browser-based — no installation, works on any device", "100+ built-in indicators plus thousands of community scripts", "Beautiful, modern charting with advanced drawing tools", "Social trading layer — share ideas, follow analysts", "Covers all asset classes in one platform", "Pine Script community with millions of free indicators" },
+            Cons     = new[] { "Not all brokers support direct TradingView execution", "Automated trading requires third-party webhook tools", "Free tier is limited — full features require paid subscription", "No native EA/robot functionality", "Backtesting is limited compared to MT5 Strategy Tester", "Dependent on internet connection — no offline mode" }
+        },
+    };
+}
+
+<div class="br-page">
+
+    @* ══ HERO ══ *@
+    <section class="br-hero" style="background:linear-gradient(135deg,#1c0a00 0%,#431407 55%,#1c1000 100%);">
+        <div class="container container-1230">
+
+            <nav class="br-hero-breadcrumb">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="ForexTools">Forex Tools</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Platform Analysis</span>
+            </nav>
+
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+
+                    <div class="br-hero-chips" style="margin-top:0;margin-bottom:18px;">
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(234,88,12,.3);color:#fdba74;"><i class="fa-solid fa-desktop"></i></span>
+                            <div><div class="br-hero-chip-label">Platforms</div><div class="br-hero-chip-val">3 Compared</div></div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(234,88,12,.3);color:#fdba74;"><i class="fa-solid fa-chart-line"></i></span>
+                            <div><div class="br-hero-chip-label">Includes</div><div class="br-hero-chip-val">MT4 · MT5 · TV</div></div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(234,88,12,.3);color:#fdba74;"><i class="fa-solid fa-circle-dollar-to-slot"></i></span>
+                            <div><div class="br-hero-chip-label">Access</div><div class="br-hero-chip-val">Free via Broker</div></div>
+                        </div>
+                        <div class="br-hero-chip">
+                            <span class="br-hero-chip-icon" style="background:rgba(234,88,12,.3);color:#fdba74;"><i class="fa-solid fa-mobile-screen"></i></span>
+                            <div><div class="br-hero-chip-label">Available</div><div class="br-hero-chip-val">All Devices</div></div>
+                        </div>
+                    </div>
+
+                    <h1 class="br-hero-title">Forex Trading Platforms Analysis</h1>
+                    <p style="color:#fdba74;font-size:16px;font-weight:600;margin:0 0 12px;">MT4, MT5, and TradingView — Complete Comparison 2025</p>
+                    <p style="color:rgba(255,255,255,.6);font-size:14px;margin:0 0 16px;line-height:1.7;max-width:560px;">
+                        Explore the differences, advantages, and disadvantages of the three most popular forex trading platforms. Find out which one best fits your trading style, strategy, and broker.
+                    </p>
+                    <div class="br-hero-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Published 08 Aug 2023</span>
+                        <span><i class="fa-regular fa-clock"></i> 14 min read</span>
+                        <span><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="br-score-card" style="border-color:rgba(234,88,12,.35);">
+                        <div style="font-size:11px;font-weight:700;color:#fdba74;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;text-align:center;">Quick Platform Comparison</div>
+                        <div class="fta-quick-compare">
+                            <div class="fta-quick-row">
+                                <span class="fta-quick-label">Platform</span>
+                                <span class="fta-quick-val" style="color:#7dd3fc;">MT4</span>
+                                <span class="fta-quick-val" style="color:#86efac;">MT5</span>
+                                <span class="fta-quick-val" style="color:#c4b5fd;">TV</span>
+                            </div>
+                            <div class="fta-quick-row">
+                                <span class="fta-quick-label">Timeframes</span>
+                                <span class="fta-quick-val">9</span>
+                                <span class="fta-quick-val">21</span>
+                                <span class="fta-quick-val">20+</span>
+                            </div>
+                            <div class="fta-quick-row">
+                                <span class="fta-quick-label">Indicators</span>
+                                <span class="fta-quick-val">30+</span>
+                                <span class="fta-quick-val">38+</span>
+                                <span class="fta-quick-val">100+</span>
+                            </div>
+                            <div class="fta-quick-row">
+                                <span class="fta-quick-label">EA / Robots</span>
+                                <span class="fta-quick-val" style="color:#86efac;"><i class="fa-solid fa-check"></i></span>
+                                <span class="fta-quick-val" style="color:#86efac;"><i class="fa-solid fa-check"></i></span>
+                                <span class="fta-quick-val" style="color:#fbbf24;">Alerts</span>
+                            </div>
+                            <div class="fta-quick-row">
+                                <span class="fta-quick-label">Social Layer</span>
+                                <span class="fta-quick-val" style="color:#f87171;"><i class="fa-solid fa-xmark"></i></span>
+                                <span class="fta-quick-val" style="color:#f87171;"><i class="fa-solid fa-xmark"></i></span>
+                                <span class="fta-quick-val" style="color:#86efac;"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                            <div class="fta-quick-row">
+                                <span class="fta-quick-label">Multi-asset</span>
+                                <span class="fta-quick-val" style="color:#fbbf24;">Limited</span>
+                                <span class="fta-quick-val" style="color:#86efac;"><i class="fa-solid fa-check"></i></span>
+                                <span class="fta-quick-val" style="color:#86efac;"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                            <div class="fta-quick-row">
+                                <span class="fta-quick-label">Cost</span>
+                                <span class="fta-quick-val">Free</span>
+                                <span class="fta-quick-val">Free</span>
+                                <span class="fta-quick-val">Free+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══ STATS STRIP ══ *@
+    <div class="psc-strip-wrap" style="background:linear-gradient(135deg,#fff7ed,#fef3c7);">
+        <div class="container container-1230">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#fed7aa;">
+                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-desktop"></i></div>
+                        <div class="br-stat-card-val">3</div>
+                        <div class="br-stat-card-lbl">Platforms Reviewed</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#fed7aa;">
+                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-users"></i></div>
+                        <div class="br-stat-card-val">50M+</div>
+                        <div class="br-stat-card-lbl">Combined Users</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#fed7aa;">
+                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="br-stat-card-val">20+</div>
+                        <div class="br-stat-card-lbl">Features Compared</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="br-stat-card" style="border-color:#fed7aa;">
+                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+                        <div class="br-stat-card-val">Free</div>
+                        <div class="br-stat-card-lbl">All Platforms Accessible</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ══ MAIN LAYOUT ══ *@
+    <div class="br-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-9">
+                    <article class="br-article">
+
+                        @* Banner *@
+                        <div class="ba-banner" style="background:linear-gradient(135deg,#1c0a00 0%,#431407 60%,#1c1000 100%);">
+                            <div class="ba-banner-icon" style="background:linear-gradient(135deg,#ea580c,#c2410c);box-shadow:0 8px 28px rgba(234,88,12,.4);"><i class="fa-solid fa-desktop"></i></div>
+                            <div class="ba-banner-text">
+                                <div class="ba-banner-label" style="color:#fdba74;">COMPLETE PLATFORM COMPARISON 2025</div>
+                                <div class="ba-banner-title">FOREX TRADING PLATFORMS ANALYSIS<br><span style="color:#fb923c;">MT4, MT5, and TradingView</span></div>
+                                <div class="ba-banner-meta">
+                                    <span><i class="fa-regular fa-calendar"></i>08 Aug 2023</span>
+                                    <span><i class="fa-regular fa-clock"></i>14 min read</span>
+                                    <span><i class="fa-solid fa-pen-nib"></i>Say Affiliates</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Intro *@
+                        <ul class="ba-question-list">
+                            <li><i class="fa-solid fa-chevron-right"></i><span>What are the main differences between MT4, MT5, and TradingView?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>Which platform is best for automated trading and Expert Advisors?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>Can you trade directly from TradingView with your forex broker?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>Is MT5 worth switching to if you currently use MT4?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>Which platform has the best charting and technical analysis tools?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>What is Pine Script and how does it compare to MQL4/MQL5?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>Which platform is best for beginners vs experienced traders?</span></li>
+                            <li><i class="fa-solid fa-chevron-right"></i><span>Does your platform choice affect cashback rebates?</span></li>
+                        </ul>
+
+                        <div class="br-callout" style="border-left-color:#ea580c;background:linear-gradient(135deg,#fff7ed,#fef3c7);">
+                            <i class="fa-solid fa-circle-info me-2" style="color:#ea580c;"></i>
+                            <strong>Bottom Line:</strong> MT4 is best for EA traders and pure forex; MT5 is better for multi-asset and advanced backtesting; TradingView is the top choice for charting, analysis, and social trading. Most serious traders use TradingView for analysis and MT4/MT5 for execution.
+                        </div>
+
+                        @* TOC *@
+                        <div class="br-toc">
+                            <div class="br-toc-title"><i class="fa-solid fa-list me-2"></i>Table of Contents</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ol style="margin:0;padding-left:18px;line-height:2.2;font-size:14px;">
+                                        <li><a href="#s1">Why Platform Choice Matters</a></li>
+                                        <li><a href="#s2">MT4 — Full Review</a></li>
+                                        <li><a href="#s3">MT5 — Full Review</a></li>
+                                        <li><a href="#s4">TradingView — Full Review</a></li>
+                                        <li><a href="#s5">Feature Comparison Table</a></li>
+                                    </ol>
+                                </div>
+                                <div class="col-md-6">
+                                    <ol start="6" style="margin:0;padding-left:18px;line-height:2.2;font-size:14px;">
+                                        <li><a href="#s6">Which Platform for Your Style?</a></li>
+                                        <li><a href="#s7">MT4 vs MT5 — Key Differences</a></li>
+                                        <li><a href="#s8">TradingView with Your Broker</a></li>
+                                        <li><a href="#s9">Platform + Cashback Strategy</a></li>
+                                        <li><a href="#s10">FAQs</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Section 1 *@
+                        <div class="br-section" id="s1">
+                            <h2 class="br-h2">1. Why Your Platform Choice Matters</h2>
+                            <p class="br-p">Your trading platform is your primary interface with the market — every chart you read, every trade you place, every EA you run depends on it. Choosing the right platform directly affects your execution speed, analysis depth, automation capabilities, and overall trading costs.</p>
+                            <div class="row g-3 mt-1">
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#fff7ed;border-color:#fed7aa;">
+                                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-bolt"></i></div>
+                                        <div class="br-stat-card-val" style="color:#c2410c;">Execution</div>
+                                        <div class="br-stat-card-lbl">Speed &amp; reliability</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#fff7ed;border-color:#fed7aa;">
+                                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-chart-area"></i></div>
+                                        <div class="br-stat-card-val" style="color:#c2410c;">Analysis</div>
+                                        <div class="br-stat-card-lbl">Charts &amp; indicators</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#fff7ed;border-color:#fed7aa;">
+                                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-robot"></i></div>
+                                        <div class="br-stat-card-val" style="color:#c2410c;">Automation</div>
+                                        <div class="br-stat-card-lbl">EA &amp; scripting</div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-sm-3">
+                                    <div class="br-stat-card" style="background:#fff7ed;border-color:#fed7aa;">
+                                        <div class="br-stat-card-icon" style="background:#ffedd5;color:#ea580c;"><i class="fa-solid fa-mobile-screen"></i></div>
+                                        <div class="br-stat-card-val" style="color:#c2410c;">Mobile</div>
+                                        <div class="br-stat-card-lbl">On-the-go trading</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Platform Reviews *@
+                        @foreach (var p in platforms)
+                        {
+                            var secId = p.Id == "mt4" ? "s2" : (p.Id == "mt5" ? "s3" : "s4");
+                            var secNum = p.Id == "mt4" ? "2" : (p.Id == "mt5" ? "3" : "4");
+                            <div class="br-section" id="@secId">
+                                <h2 class="br-h2">@secNum. @p.Name (@p.Short)</h2>
+
+                                <div class="fta-platform-header" style="border-color:@p.Border;background:@p.Bg;">
+                                    <div class="fta-platform-header-icon" style="background:@p.Color;"><i class="@p.Icon"></i></div>
+                                    <div class="fta-platform-header-info">
+                                        <div class="fta-platform-header-name" style="color:@p.Color;">@p.Name</div>
+                                        <div class="fta-platform-header-tag" style="background:@p.TagBg;">@p.Tag</div>
+                                    </div>
+                                    <div class="fta-platform-header-facts">
+                                        <div class="fta-platform-fact"><span>Released</span><strong>@p.Year</strong></div>
+                                        <div class="fta-platform-fact"><span>Developer</span><strong>@p.Dev</strong></div>
+                                        <div class="fta-platform-fact"><span>Language</span><strong>@p.Lang</strong></div>
+                                        <div class="fta-platform-fact"><span>Timeframes</span><strong>@p.TF</strong></div>
+                                        <div class="fta-platform-fact"><span>Indicators</span><strong>@p.Ind</strong></div>
+                                        <div class="fta-platform-fact"><span>Best For</span><strong>@p.BestFor</strong></div>
+                                    </div>
+                                </div>
+
+                                <p class="br-p">@p.Desc</p>
+                                <p class="br-p">@p.Desc2</p>
+
+                                <div class="br-pros-cons">
+                                    <div class="br-pros">
+                                        <div class="br-pros-title"><i class="fa-solid fa-circle-check me-2"></i>Advantages</div>
+                                        <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;color:#374151;">
+                                            @foreach (var pro in p.Pros) { <li>@pro</li> }
+                                        </ul>
+                                    </div>
+                                    <div class="br-cons">
+                                        <div class="br-cons-title"><i class="fa-solid fa-circle-xmark me-2"></i>Disadvantages</div>
+                                        <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;color:#374151;">
+                                            @foreach (var con in p.Cons) { <li>@con</li> }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="br-divider"></div>
+                        }
+
+                        @* Section 5 — Comparison Table *@
+                        <div class="br-section" id="s5">
+                            <h2 class="br-h2">5. Full Feature Comparison Table</h2>
+                            <p class="br-p">A side-by-side breakdown of all key features across MetaTrader 4, MetaTrader 5, and TradingView.</p>
+
+                            <div style="overflow-x:auto;margin-bottom:24px;">
+                                <table class="fta-compare-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Feature</th>
+                                            <th style="color:#7dd3fc;"><i class="fa-solid fa-chart-line me-1"></i>MT4</th>
+                                            <th style="color:#86efac;"><i class="fa-solid fa-chart-bar me-1"></i>MT5</th>
+                                            <th style="color:#c4b5fd;"><i class="fa-solid fa-tv me-1"></i>TradingView</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Release Year</td><td>2005</td><td>2010</td><td>2011</td></tr>
+                                        <tr><td>Timeframes</td><td>9</td><td>21</td><td>20+</td></tr>
+                                        <tr><td>Built-in Indicators</td><td>30</td><td>38</td><td>100+</td></tr>
+                                        <tr><td>Custom Indicators</td><td>MQL4</td><td>MQL5</td><td>Pine Script</td></tr>
+                                        <tr><td>Expert Advisors / Bots</td><td class="fta-check">✓ Full</td><td class="fta-check">✓ Full</td><td class="fta-warn">Alerts only</td></tr>
+                                        <tr><td>Backtesting</td><td class="fta-warn">Basic</td><td class="fta-check">✓ Advanced</td><td class="fta-cross">✗ Limited</td></tr>
+                                        <tr><td>Social / Community</td><td class="fta-cross">✗ None</td><td class="fta-cross">✗ None</td><td class="fta-check">✓ 50M+ users</td></tr>
+                                        <tr><td>Drawing Tools</td><td class="fta-warn">Standard</td><td class="fta-warn">Standard</td><td class="fta-check">✓ Advanced</td></tr>
+                                        <tr><td>Economic Calendar</td><td class="fta-cross">✗ External</td><td class="fta-check">✓ Built-in</td><td class="fta-check">✓ Built-in</td></tr>
+                                        <tr><td>News Feed</td><td class="fta-warn">Basic</td><td class="fta-check">✓ Integrated</td><td class="fta-check">✓ Integrated</td></tr>
+                                        <tr><td>Multi-asset (Stocks, Crypto)</td><td class="fta-cross">✗ Limited</td><td class="fta-check">✓ Full</td><td class="fta-check">✓ All markets</td></tr>
+                                        <tr><td>VPS Hosting Support</td><td class="fta-check">✓ Yes</td><td class="fta-check">✓ Yes</td><td class="fta-cross">✗ No</td></tr>
+                                        <tr><td>Mobile App</td><td class="fta-warn">Good</td><td class="fta-warn">Good</td><td class="fta-check">✓ Excellent</td></tr>
+                                        <tr><td>Browser-based (no install)</td><td class="fta-warn">WebTrader</td><td class="fta-warn">WebTrader</td><td class="fta-check">✓ Native web</td></tr>
+                                        <tr><td>Broker Integration</td><td class="fta-check">✓ Universal</td><td class="fta-check">✓ Wide</td><td class="fta-warn">Growing list</td></tr>
+                                        <tr><td>Hedging</td><td class="fta-warn">Broker dependent</td><td class="fta-check">✓ Default</td><td class="fta-warn">Broker dependent</td></tr>
+                                        <tr><td>One-click Trading</td><td class="fta-check">✓ Yes</td><td class="fta-check">✓ Yes</td><td class="fta-check">✓ Yes</td></tr>
+                                        <tr><td>Cost</td><td class="fta-check">Free (broker)</td><td class="fta-check">Free (broker)</td><td class="fta-warn">Free + paid plans</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 6 — Which for Your Style *@
+                        <div class="br-section" id="s6">
+                            <h2 class="br-h2">6. Which Platform for Your Trading Style?</h2>
+                            <p class="br-p">The best platform depends on how you trade. Here is a practical recommendation for each major trading style.</p>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="ptb-style-card" style="border-color:#bfdbfe;background:#eff6ff;">
+                                        <div class="ptb-style-hd" style="color:#2563eb;">
+                                            <span class="ptb-style-icon" style="background:#2563eb;"><i class="fa-solid fa-bolt"></i></span>
+                                            <span class="ptb-style-name">Scalper</span>
+                                        </div>
+                                        <div class="ptb-style-rows">
+                                            <div class="ptb-style-row"><span>Recommended</span><strong style="color:#2563eb;">MT4 or MT5</strong></div>
+                                            <div class="ptb-style-row"><span>For Analysis</span><strong>TradingView</strong></div>
+                                            <div class="ptb-style-row"><span>Key Need</span><strong>Low latency, fast execution</strong></div>
+                                        </div>
+                                        <div class="ptb-style-tip"><i class="fa-solid fa-lightbulb me-1" style="color:#2563eb;"></i>Use TradingView for fast chart reading and MT4/MT5 for direct trade execution via VPS for lowest latency.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ptb-style-card" style="border-color:#fed7aa;background:#fff7ed;">
+                                        <div class="ptb-style-hd" style="color:#d97706;">
+                                            <span class="ptb-style-icon" style="background:#d97706;"><i class="fa-solid fa-sun"></i></span>
+                                            <span class="ptb-style-name">Day Trader</span>
+                                        </div>
+                                        <div class="ptb-style-rows">
+                                            <div class="ptb-style-row"><span>Recommended</span><strong style="color:#d97706;">TradingView + MT4/MT5</strong></div>
+                                            <div class="ptb-style-row"><span>For Analysis</span><strong>TradingView</strong></div>
+                                            <div class="ptb-style-row"><span>Key Need</span><strong>Superior charting + execution</strong></div>
+                                        </div>
+                                        <div class="ptb-style-tip"><i class="fa-solid fa-lightbulb me-1" style="color:#d97706;"></i>Most day traders run TradingView for chart analysis and MT4/MT5 side-by-side for placing trades. Best of both worlds.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ptb-style-card" style="border-color:#bbf7d0;background:#f0fdf4;">
+                                        <div class="ptb-style-hd" style="color:#16a34a;">
+                                            <span class="ptb-style-icon" style="background:#16a34a;"><i class="fa-solid fa-chart-area"></i></span>
+                                            <span class="ptb-style-name">Swing Trader</span>
+                                        </div>
+                                        <div class="ptb-style-rows">
+                                            <div class="ptb-style-row"><span>Recommended</span><strong style="color:#16a34a;">TradingView or MT5</strong></div>
+                                            <div class="ptb-style-row"><span>For Analysis</span><strong>TradingView</strong></div>
+                                            <div class="ptb-style-row"><span>Key Need</span><strong>Advanced drawings, alerts</strong></div>
+                                        </div>
+                                        <div class="ptb-style-tip"><i class="fa-solid fa-lightbulb me-1" style="color:#16a34a;"></i>TradingView's Pine Script alerts work well for swing trading entry notifications. MT5's economic calendar is also valuable.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ptb-style-card" style="border-color:#ddd6fe;background:#f5f3ff;">
+                                        <div class="ptb-style-hd" style="color:#7c3aed;">
+                                            <span class="ptb-style-icon" style="background:#7c3aed;"><i class="fa-solid fa-robot"></i></span>
+                                            <span class="ptb-style-name">Algo / EA Trader</span>
+                                        </div>
+                                        <div class="ptb-style-rows">
+                                            <div class="ptb-style-row"><span>Recommended</span><strong style="color:#7c3aed;">MT5 (MQL5)</strong></div>
+                                            <div class="ptb-style-row"><span>For Analysis</span><strong>MT5 built-in</strong></div>
+                                            <div class="ptb-style-row"><span>Key Need</span><strong>EA + fast backtester</strong></div>
+                                        </div>
+                                        <div class="ptb-style-tip"><i class="fa-solid fa-lightbulb me-1" style="color:#7c3aed;"></i>MT5 with MQL5 is the strongest environment for automated trading. MQL5 is faster, supports OOP, and the Strategy Tester is far superior to MT4's.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 7 — MT4 vs MT5 *@
+                        <div class="br-section" id="s7">
+                            <h2 class="br-h2">7. MT4 vs MT5 — Key Differences Explained</h2>
+                            <p class="br-p">MetaQuotes designed MT5 as the successor to MT4, but the two platforms are <strong>not backward compatible</strong> — MQL4 code does not run on MT5 and vice versa. This is why millions of traders still use MT4 despite MT5's technical advantages.</p>
+
+                            <div class="br-highlights" style="border-color:#fed7aa;background:linear-gradient(135deg,#fff7ed,#fef3c7);">
+                                <div class="br-highlights-title" style="color:#c2410c;"><i class="fa-solid fa-code me-2"></i>The MQL4 vs MQL5 Gap — Why MT4 Lives On</div>
+                                <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;color:#374151;">
+                                    <li>There are <strong>thousands of MQL4 EAs and indicators</strong> available for MT4 — many are free or low-cost</li>
+                                    <li>MQL4 EAs cannot run on MT5 — conversion requires significant rewriting</li>
+                                    <li>Many profitable strategies were coded in MQL4 and never ported</li>
+                                    <li>Brokers that haven't upgraded keep MT4 traders locked in</li>
+                                    <li>For new algorithmic projects, <strong>MQL5 is the better starting point</strong></li>
+                                </ul>
+                            </div>
+
+                            <table class="br-facts-table" style="margin-top:20px;">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th style="text-align:center;color:#2563eb;">MT4</th>
+                                        <th style="text-align:center;color:#16a34a;">MT5</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Timeframes</td><td style="text-align:center;">9</td><td style="text-align:center;color:#16a34a;font-weight:700;">21 ✓</td></tr>
+                                    <tr><td>Pending Order Types</td><td style="text-align:center;">4</td><td style="text-align:center;color:#16a34a;font-weight:700;">6 ✓</td></tr>
+                                    <tr><td>Strategy Tester</td><td style="text-align:center;">Single-threaded</td><td style="text-align:center;color:#16a34a;font-weight:700;">Multi-threaded ✓</td></tr>
+                                    <tr><td>Asset classes</td><td style="text-align:center;">Forex, CFDs</td><td style="text-align:center;color:#16a34a;font-weight:700;">+ Stocks, Futures ✓</td></tr>
+                                    <tr><td>Built-in indicators</td><td style="text-align:center;">30</td><td style="text-align:center;color:#16a34a;font-weight:700;">38 ✓</td></tr>
+                                    <tr><td>Economic calendar</td><td style="text-align:center;color:#ef4444;">External only</td><td style="text-align:center;color:#16a34a;font-weight:700;">Built-in ✓</td></tr>
+                                    <tr><td>EA library size</td><td style="text-align:center;color:#2563eb;font-weight:700;">Largest ✓</td><td style="text-align:center;">Growing</td></tr>
+                                    <tr><td>Broker support</td><td style="text-align:center;color:#2563eb;font-weight:700;">Near-universal ✓</td><td style="text-align:center;">Wide but not all</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 8 — TradingView + Broker *@
+                        <div class="br-section" id="s8">
+                            <h2 class="br-h2">8. Using TradingView with Your Forex Broker</h2>
+                            <p class="br-p">TradingView's broker integration lets you place and manage trades directly from the chart without switching to MT4/MT5. The integration is available for a growing number of brokers through TradingView's native Trading Panel.</p>
+
+                            <div class="br-platform-grid" style="grid-template-columns:1fr;">
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="color:#7c3aed;background:#f5f3ff;"><i class="fa-solid fa-plug"></i></div>
+                                    <div>
+                                        <div class="br-platform-name">How to Connect Your Broker to TradingView</div>
+                                        <div class="br-platform-desc">In TradingView, click the "Trading Panel" button at the bottom of the chart. Select your broker from the list of supported brokers, log in with your broker credentials, and your account balance and positions will appear directly in TradingView. You can then place, modify, and close trades from the chart.</div>
+                                        <div class="br-platform-tags">
+                                            <span class="br-platform-tag">Native Integration</span>
+                                            <span class="br-platform-tag">Real-time P&amp;L</span>
+                                            <span class="br-platform-tag">Chart-based Execution</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="br-platform-card">
+                                    <div class="br-platform-icon" style="color:#ea580c;background:#fff7ed;"><i class="fa-solid fa-code-branch"></i></div>
+                                    <div>
+                                        <div class="br-platform-name">Using TradingView Alerts with MT4/MT5 (Webhook)</div>
+                                        <div class="br-platform-desc">If your broker doesn't support TradingView integration, you can still use TradingView for analysis and set Pine Script alerts that trigger webhook notifications to third-party automation services (e.g., 3Commas, Autoview, or custom MT4 bridge EAs). This lets TradingView signal entry/exit and MT4/MT5 execute the trade automatically.</div>
+                                        <div class="br-platform-tags">
+                                            <span class="br-platform-tag">Pine Script Alerts</span>
+                                            <span class="br-platform-tag">Webhook / Bridge</span>
+                                            <span class="br-platform-tag">MT4/MT5 Execution</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="br-callout">
+                                <i class="fa-solid fa-lightbulb me-2" style="color:#d97706;"></i>
+                                <strong>Tip:</strong> Even if you trade on MT4 or MT5, consider setting up a free TradingView account for charting. TradingView's chart quality, drawing tools, and Pine Script community make it the best analysis environment available — and it's free for basic use.
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* Section 9 — Cashback *@
+                        <div class="br-section" id="s9">
+                            <h2 class="br-h2">9. Platform + Cashback — Reducing Your Trading Cost</h2>
+                            <p class="br-p">Regardless of which platform you use, cashback rebates reduce your net trading cost per lot. Your choice of MT4, MT5, or TradingView does not affect your rebate rate — what matters is the broker and the volume you trade.</p>
+
+                            <div class="br-highlights">
+                                <div class="br-highlights-title"><i class="fa-solid fa-circle-dollar-to-slot me-2"></i>Platform + Cashback Strategy</div>
+                                <ul style="margin:0;padding:0 0 0 18px;line-height:2.2;font-size:14px;">
+                                    <li>Use <strong>TradingView for analysis</strong> — best charting, Pine Script indicators, alerts</li>
+                                    <li>Execute trades on <strong>MT4 or MT5</strong> with a cashback-eligible broker</li>
+                                    <li>All lot volume on MT4/MT5 <strong>earns cashback</strong> regardless of how you analysed the trade</li>
+                                    <li>Scalpers on MT4 with high lot volume earn the <strong>most cashback per month</strong></li>
+                                    <li>ECN accounts via MT5 with cashback can <strong>recover commissions partially or fully</strong></li>
+                                    <li>Register via Say Affiliates to access <strong>exclusive cashback rates not available direct</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-sm-6">
+                                    <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn">
+                                        <i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#ea580c;"></i>
+                                        <span class="frt-tool-btn-label">Cashback Calculator</span>
+                                        <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a asp-controller="Resources" asp-action="ForexBrokers" class="frt-tool-btn">
+                                        <i class="fa-solid fa-building-columns frt-tool-btn-icon" style="color:#2563eb;"></i>
+                                        <span class="frt-tool-btn-label">Compare Brokers</span>
+                                        <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="br-divider"></div>
+
+                        @* FAQs *@
+                        <div class="br-section" id="s10">
+                            <h2 class="br-h2">10. Frequently Asked Questions</h2>
+                            <div class="br-faq">
+                                @foreach (var faq in faqs)
+                                {
+                                    var uid = Guid.NewGuid().ToString("N")[..6];
+                                    <div class="br-faq-item">
+                                        <button class="br-faq-btn collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#faq-@uid"
+                                                aria-expanded="false">
+                                            @faq.Q
+                                            <i class="fa-solid fa-chevron-down ms-auto"></i>
+                                        </button>
+                                        <div id="faq-@uid" class="collapse">
+                                            <div class="br-faq-body">@faq.A</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        @* CTA *@
+                        <div class="br-bottom-cta">
+                            <div style="font-size:12px;font-weight:700;color:#ea580c;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Get the Best Setup</div>
+                            <h2 style="font-size:clamp(20px,3vw,28px);font-weight:900;color:#0f1b2d;margin:0 0 10px;">Best Platform. Best Broker. Earn Cashback.</h2>
+                            <p style="font-size:14px;color:#64748b;max-width:560px;margin:0 auto 24px;line-height:1.7;">Choose the right trading platform, pair it with a cashback-eligible broker, and recover costs on every trade you place.</p>
+                            <div class="br-cta-btns">
+                                <a asp-controller="Resources" asp-action="ForexBrokers" class="br-cta-btn-primary" style="background:linear-gradient(135deg,#ea580c,#c2410c);">
+                                    <i class="fa-solid fa-building-columns me-2"></i>Compare Brokers
+                                </a>
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="br-cta-btn-ghost">
+                                    <i class="fa-solid fa-calculator me-2"></i>Cashback Calculator
+                                </a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+                @* Sidebar *@
+                <div class="col-lg-3">
+                    <partial name="_Sidebar" model="@("ForexTools")" />
+                    <div class="br-toc" style="margin-top:24px;position:sticky;top:90px;">
+                        <div class="br-toc-title"><i class="fa-solid fa-list me-2"></i>On This Page</div>
+                        <ol style="margin:0;padding-left:18px;font-size:13px;line-height:2.2;">
+                            <li><a href="#s1">Why Platform Matters</a></li>
+                            <li><a href="#s2">MT4 Review</a></li>
+                            <li><a href="#s3">MT5 Review</a></li>
+                            <li><a href="#s4">TradingView Review</a></li>
+                            <li><a href="#s5">Feature Comparison</a></li>
+                            <li><a href="#s6">By Trading Style</a></li>
+                            <li><a href="#s7">MT4 vs MT5</a></li>
+                            <li><a href="#s8">TradingView + Broker</a></li>
+                            <li><a href="#s9">Cashback Strategy</a></li>
+                            <li><a href="#s10">FAQs</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

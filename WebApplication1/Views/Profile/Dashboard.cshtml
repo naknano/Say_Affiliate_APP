@@ -1,0 +1,7 @@
+@model WebApplication1.Data.DTO.Dashboard.DashboardDto
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_ProfileLayout";
+}
+
+@await Html.PartialAsync("~/Views/Home/Profile/Dashboard.cshtml", Model)

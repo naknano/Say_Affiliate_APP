@@ -1,0 +1,7 @@
+@model WebApplication1.Data.DTO.TradingAccount.TradingAccountPageDto
+@{
+    ViewData["Title"] = "Broker";
+    Layout = "_ProfileLayout";
+}
+
+@await Html.PartialAsync("~/Views/Home/Profile/Broker.cshtml", Model)

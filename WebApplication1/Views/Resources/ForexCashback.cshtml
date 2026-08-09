@@ -1,0 +1,128 @@
+@{
+    ViewData["Title"] = "Forex Cashback";
+
+    var steps = new[]
+    {
+        new { Num="01", Icon="fa-solid fa-user-plus",            Title="Create a Free Account", Desc="Sign up with Say Affiliates in under 2 minutes. No fees, no commitments — your account is free forever." },
+        new { Num="02", Icon="fa-solid fa-building-columns",     Title="Choose a Partner Broker", Desc="Browse our curated list of 12+ regulated brokers and open a trading account through your unique Say Affiliates link." },
+        new { Num="03", Icon="fa-solid fa-chart-line",           Title="Trade as Normal",        Desc="Trade any instruments you like — forex pairs, commodities, indices. There's nothing different about how you trade." },
+        new { Num="04", Icon="fa-solid fa-wallet",               Title="Collect Your Cashback",  Desc="Earn automatic rebates on every lot traded. Cashback is credited weekly directly to your Say Affiliates wallet." },
+    };
+
+    var benefits = new[]
+    {
+        new { Icon="fa-solid fa-infinity",          Bg="#eff6ff", Clr="#2563eb", Title="Earn on Every Trade",       Desc="Cashback applies regardless of whether your trade is profitable. You earn on every lot, every time." },
+        new { Icon="fa-solid fa-lock-open",         Bg="#f0fdf4", Clr="#16a34a", Title="No Lock-ins",              Desc="No minimum trading requirements, no lock-up periods. Withdraw your cashback whenever you want." },
+        new { Icon="fa-solid fa-shield-halved",     Bg="#f5f3ff", Clr="#7c3aed", Title="Regulated Brokers Only",   Desc="We partner exclusively with regulated, reputable brokers — so your trading capital is always protected." },
+        new { Icon="fa-solid fa-hand-holding-dollar",Bg="#fff1f0",Clr="#e53935", Title="Up to $8.50 per Lot",      Desc="Our top partners offer up to $8.50 cashback per standard lot. The more you trade, the more you earn." },
+        new { Icon="fa-solid fa-calendar-check",    Bg="#fffbeb", Clr="#d97706", Title="Weekly Payouts",           Desc="Cashback is calculated and credited to your wallet every week — consistently and transparently." },
+        new { Icon="fa-solid fa-chart-simple",      Bg="#f1f5f9", Clr="#1e293b", Title="Full Transparency",        Desc="Track every cashback payment in real time through your Say Affiliates dashboard — full audit trail." },
+    };
+}
+
+<div class="res-page">
+
+    <section class="lfb-hero">
+        <div class="container container-1230">
+            <nav class="res-breadcrumb" aria-label="breadcrumb">
+                <a asp-controller="Home"      asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Forex Cashback</span>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <h1 style="font-size:clamp(30px,4.5vw,46px);font-weight:800;color:#0f1b2d;line-height:1.15;margin:0 0 16px;">Forex Cashback</h1>
+                </div>
+                <div class="col-lg-7">
+                    <p class="lfb-hero-desc">Earn automatic cashback on every trade you place — win or lose. Say Affiliates returns a portion of the broker's spread back to your wallet every week, for free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lfb-stats">
+        <div class="container container-1230">
+            <div class="row align-items-center text-center g-3">
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">$8.50</span><span class="lfb-stat-lbl">Max per Lot</span></div></div>
+                <div class="col-auto d-none d-md-block"><div class="lfb-stat-sep" style="height:52px;"></div></div>
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">12+</span><span class="lfb-stat-lbl">Partner Brokers</span></div></div>
+                <div class="col-auto d-none d-md-block"><div class="lfb-stat-sep" style="height:52px;"></div></div>
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">Weekly</span><span class="lfb-stat-lbl">Payouts</span></div></div>
+                <div class="col-auto d-none d-md-block"><div class="lfb-stat-sep" style="height:52px;"></div></div>
+                <div class="col"><div class="lfb-stat"><span class="lfb-stat-val">Free</span><span class="lfb-stat-lbl">Forever</span></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="res-sub-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-3 col-md-4">
+                    <partial name="_Sidebar" model="@("ForexCashback")" />
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+
+                    @* How it works *@
+                    <h2 class="lfb-section-title">How Forex Cashback Works</h2>
+                    <p class="lfb-section-sub">Four simple steps to start earning cashback on every trade you place.</p>
+
+                    <div class="row g-3 mb-5">
+                        @foreach (var s in steps)
+                        {
+                            <div class="col-md-6">
+                                <div class="lfb-card" style="flex-direction:row;gap:16px;align-items:flex-start;">
+                                    <div style="min-width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#0f5ec9,#1a78e8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;">
+                                        <i class="@s.Icon"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:11px;font-weight:800;color:#94a3b8;letter-spacing:.1em;margin-bottom:4px;">STEP @s.Num</div>
+                                        <h3 class="lfb-card-title" style="margin-bottom:6px;">@s.Title</h3>
+                                        <p class="lfb-card-desc">@s.Desc</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    @* Benefits *@
+                    <h2 class="lfb-section-title">Why Say Affiliates Cashback?</h2>
+                    <p class="lfb-section-sub">Everything that makes our cashback program stand out.</p>
+
+                    <div class="row g-4 mb-4">
+                        @foreach (var b in benefits)
+                        {
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="lfb-card">
+                                    <div class="lfb-card-icon" style="background:@b.Bg;color:@b.Clr;">
+                                        <i class="@b.Icon"></i>
+                                    </div>
+                                    <h3 class="lfb-card-title">@b.Title</h3>
+                                    <p class="lfb-card-desc">@b.Desc</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="lfb-cta">
+                        <h3>Start Earning Cashback Today</h3>
+                        <p>Join thousands of traders already earning automatic rebates with Say Affiliates — completely free.</p>
+                        <div class="d-flex gap-3 justify-content-center flex-wrap">
+                            <a asp-controller="Home" asp-action="Register" class="lfb-cta-btn">
+                                Create Free Account <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                            <a asp-controller="Home" asp-action="Broker" class="lfb-cta-btn" style="background:transparent;border:2px solid rgba(255,255,255,.5);color:#fff;">
+                                View Brokers <i class="fa-solid fa-building-columns"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

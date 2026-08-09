@@ -1,0 +1,114 @@
+@{
+    ViewData["Title"] = "Algorithmic Trading: Using Automation to Enhance Your Trading Strategy";
+    string ac = "#475569", al = "#f1f5f9";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#0f1118,#1e2433,#07090d);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Algorithmic Trading</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Algorithmic Trading: Using Automation to Enhance Your Trading Strategy</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 18 Nov 2023</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 10 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Algo Trading</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(71,85,105,.4);">
+                    <div style="font-size:11px;font-weight:700;color:#cbd5e1;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-robot me-1"></i> Algo Trading Profile</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Platform",V="MT4 / MT5"},new{L="Language",V="MQL4 / MQL5"},new{L="Backtest period",V="Minimum 2 years"},new{L="Forward test",V="3 months on demo"},new{L="VPS",V="Required for 24/7"},new{L="Cost offset",V="Via cashback rebates"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#cbd5e1;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">MT4/5</div><div class="na-stat-lbl">Primary Platforms</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">24/5</div><div class="na-stat-lbl">Automated Operation</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">VPS</div><div class="na-stat-lbl">Essential Infrastructure</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">Backtest</div><div class="na-stat-lbl">Before Live Trading</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Algorithmic trading uses pre-programmed rules to enter and exit trades automatically — without emotion, without fatigue, and without needing to monitor charts in real time. Expert Advisors (EAs) on MT4 and MT5 execute your strategy 24 hours a day, 5 days a week, with perfect mechanical consistency. The question is not whether algo trading works — it is whether your algorithm is built correctly.</p>
+
+            <h2 class="na-h2">Types of Trading Algorithms</h2>
+            <div class="row g-3 mb-3">
+                @foreach(var t in new[]{
+                    new{N="Trend-Following EAs",I="fa-solid fa-arrow-trend-up",Bg="#f0fdf4",C="#16a34a",D="Trade in the direction of the dominant trend using MA crossovers, breakout systems, or ADX-based signals. Most robust category — work across multiple timeframes and instruments."},
+                    new{N="Mean-Reversion EAs",I="fa-solid fa-arrows-left-right",Bg="#eff6ff",C="#2563eb",D="Assume price reverts to average after extremes. RSI overbought/oversold, Bollinger Band bounces. Work best in ranging markets — prone to losses during strong trends."},
+                    new{N="Scalping EAs",I="fa-solid fa-bolt",Bg="#fff1f0",C="#e53935",D="High-frequency, short-duration trades targeting 2–10 pips per entry. Require ECN broker, VPS, and very tight spreads. Generate the most cashback of any EA type due to volume."},
+                    new{N="News EAs",I="fa-solid fa-newspaper",Bg="#fff7ed",C="#d97706",D="Trigger on high-impact economic releases. Very high risk — execution quality during news events is unpredictable. Require extremely low latency. Not recommended without deep technical knowledge."}
+                })
+                {<div class="col-md-6"><div style="border:1.5px solid #e8edf4;border-radius:12px;padding:14px;"><div style="display:flex;gap:10px;"><div style="width:34px;height:34px;border-radius:9px;background:@t.Bg;color:@t.C;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;"><i class="@t.I"></i></div><div><div style="font-size:13px;font-weight:700;color:#0f1b2d;margin-bottom:4px;">@t.N</div><div style="font-size:12px;color:#64748b;line-height:1.5;">@t.D</div></div></div></div></div>}
+            </div>
+
+            <div class="na-callout" style="border-color:#fecaca;background:#fff5f5;"><div class="na-callout-title" style="color:#991b1b;"><i class="fa-solid fa-triangle-exclamation me-1"></i> Avoid Grid and Martingale EAs</div>Grid and Martingale strategies add to losing positions to average down the entry price. In trending markets, they can cause catastrophic account losses. These are the most common cause of blown accounts in the EA community. Avoid them regardless of their marketing claims.</div>
+
+            <h2 class="na-h2">Building, Buying, or Renting an EA</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">Option A</div><div><div class="na-step-title">Custom-Built EA</div><div class="na-step-text">Code your own strategy in MQL4/MQL5 — or hire a developer via MQL5.com or Upwork. Full control over the logic. Requires either programming skill or budget. Recommended for traders with a proven manual strategy they want to automate.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">Option B</div><div><div class="na-step-title">Purchase an Existing EA</div><div class="na-step-text">MQL5 Marketplace has thousands of EAs. Look for: verified live myfxbook track record (not backtests), consistent monthly returns under 5–10%, drawdown under 15%, at least 6 months live trading. Be sceptical of EAs priced over $500 with unverifiable claims.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">Option C</div><div><div class="na-step-title">Rent via MQL5 Marketplace</div><div class="na-step-text">Many EAs are available to rent for $30–$100/month before committing to purchase. Test on a demo account for 1–3 months to verify the strategy works for your broker's pricing and execution before deploying live capital.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Backtesting Methodology</h2>
+            <ul class="na-list">
+                <li>Use <strong>minimum 2 years</strong> of historical data — ideally 5+ years to cover multiple market regimes</li>
+                <li>Use <strong>99% tick data</strong> (downloaded via tools like Tick Data Suite) for accuracy — MT4's default data quality is insufficient for scalping EAs</li>
+                <li>Check <strong>drawdown and consistency</strong>, not just total profit — a smooth equity curve is more valuable than a high-return volatile one</li>
+                <li>Optimise parameters <strong>conservatively</strong> — avoid curve-fitting (over-optimising to historical data that won't repeat)</li>
+                <li><strong>Forward-test on demo</strong> for 3 months minimum before deploying to live account</li>
+            </ul>
+
+            <h2 class="na-h2">VPS + EA + Cashback: The Optimal Infrastructure</h2>
+            <p class="na-p">For algorithmic traders, the complete infrastructure stack is: EA strategy + ECN broker + VPS + cashback programme. Each element plays a distinct role:</p>
+            <table class="br-facts-table">
+                <thead><tr><th>Component</th><th>Role</th><th style="text-align:center;">Monthly Cost</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>EA (Expert Advisor)</strong></td><td>Executes strategy 24/5 without human intervention</td><td style="text-align:center;">$0–$100</td></tr>
+                    <tr><td><strong>ECN Broker</strong></td><td>Provides low-spread execution suitable for automated trading</td><td style="text-align:center;">Per trade (spread)</td></tr>
+                    <tr><td><strong>VPS</strong></td><td>Keeps MT4/MT5 running 24/7 with low-latency connection to broker</td><td style="text-align:center;">$10–$50</td></tr>
+                    <tr><td><strong>Say Affiliates Cashback</strong></td><td>Returns $5–$15 per lot traded back to the trader monthly</td><td style="text-align:center; color:#16a34a; font-weight:700;">$0 (earns you money)</td></tr>
+                </tbody>
+            </table>
+            <p class="na-p">An EA trading 100 lots/month at $7.50/lot generates $750 in monthly cashback — more than enough to cover VPS costs ($10–$50) and EA rental fees. For high-volume algo traders, cashback often represents the single largest positive contribution to overall P&L after the strategy itself.</p>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#cbd5e1;">Automate. Trade. Earn.</div>
+                <div class="na-cta-title">Run Your EA — Earn Cashback 24/5</div>
+                <p class="na-cta-sub">Register with Say Affiliates, choose an ECN broker, deploy your EA on a VPS, and earn cashback automatically on every trade your algorithm places.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Resources" asp-action="WhyUseVPS" class="na-cta-btn-ghost"><i class="fa-solid fa-server me-2"></i>VPS Setup Guide</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:90px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+            @foreach(var r in new[]{new{A="StrategyScalping",I="fa-solid fa-bolt",Bg="#fff1f0",C="#b91c1c",T="The Art of Scalping Trading",D="10 Jan 2024"},new{A="StrategyVolatile",I="fa-solid fa-tornado",Bg="#fff7ed",C="#d97706",T="Trading in Volatile Markets",D="05 Dec 2023"},new{A="StrategyCashback500",I="fa-solid fa-sack-dollar",Bg="#f0fdf4",C="#16a34a",T="How $500 in Cashback Adds Up",D="15 Jan 2025"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-server me-2"></i>For Algo Traders</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Resources" asp-action="WhyUseVPS" class="frt-tool-btn"><i class="fa-solid fa-server frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">VPS Setup Guide</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

@@ -1,0 +1,50 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 banner css
+/*----------------------------------------*/
+
+.al-banner-shop{
+    $self : &;
+    &-item{
+        min-height: 280px;
+        padding: 65px 48px 55px;
+        @media #{$xl, $lg}{
+            padding: 65px 25px 55px;
+        }
+        @media #{$xs}{
+            min-height: 250px;
+            padding: 49px 29px 45px;
+        }
+
+        &:hover{
+            #{$self}{
+                &-thumb{
+                    @include transform(scale(1.1));
+                }
+            }
+        }
+    }
+    &-thumb{
+        @extend %bg-thumb;
+        z-index: -1;
+
+        @media #{$xs}{
+            background-position: center left;
+        }
+    }
+    &-title{
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 1.17;
+        margin-bottom: 20px;
+        font-family: var(--tp-ff-dm);
+        & a{
+            &:hover{
+                color: var(--tp-theme-secondary);
+            }
+        }
+    }
+}
+
+

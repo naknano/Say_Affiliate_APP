@@ -1,0 +1,126 @@
+@{
+    ViewData["Title"] = "Forex Tools";
+
+    var articles = new[]
+    {
+        new { Ctrl="Home",      Act="ForexCaculator",   Icon="fa-solid fa-calculator",      Bg="#eff6ff", Clr="#2563eb", Label="CASHBACK CALCULATOR",      Title="Say Affiliates Cashback Calculator: A Step-by-Step Guide",                Date="13 Aug 2025", Excerpt="Use the Say Affiliates Cashback Calculator to estimate rebates by broker, instrument, and trading volume. This step-by-step guide explains calculating cashback per lot, comparing brokers, and planning trades to reduce costs and increase net returns." },
+        new { Ctrl="Resources", Act="PositionSizeCalculator", Icon="fa-solid fa-chart-line",   Bg="#f0fdf4", Clr="#16a34a", Label="POSITION SIZE CALCULATOR", Title="Forex Position Size Calculator: Formulas and Examples",                   Date="23 Jan 2024", Excerpt="Position Size Calculator examples and formulas — see how it works. Calculate the correct lot size for every trade based on account balance, risk percentage, and stop-loss distance to protect your capital and grow consistently." },
+        new { Ctrl="Resources", Act="PositionSizeTradeBetter", Icon="fa-solid fa-sliders",    Bg="#f5f3ff", Clr="#7c3aed", Label="POSITION SIZE CALCULATOR", Title="Position Size Calculator — Trade Better with Our Free Forex Tools",       Date="23 Jan 2024", Excerpt="Forex trading requires a keen balance of market insight and effective risk management. Discover how our free position size calculator helps you size trades correctly and maintain consistent risk across all market conditions." },
+        new { Ctrl="Resources", Act="TradingPlatformsAnalysis", Icon="fa-solid fa-desktop",   Bg="#fff7ed", Clr="#ea580c", Label="PLATFORM ANALYSIS",        Title="Forex Trading Platforms Analysis: MT4, MT5, and TradingView",             Date="08 Aug 2023", Excerpt="Explore the differences, advantages, and disadvantages of popular Forex trading platforms MT4, MT5, and TradingView. Learn which platform best suits your trading style and how broker rebates fit into each environment." },
+        new { Ctrl="Resources", Act="WhyUseVPS",            Icon="fa-solid fa-server",           Bg="#fff1f0", Clr="#e53935", Label="VPS GUIDE",                Title="Why is it Important to Use a VPS When Trading Forex?",                    Date="31 Mar 2023", Excerpt="VPS hosting can reduce latency, prevent disconnections, and keep your EAs running 24/5 — but it comes with a cost. This is how forex cashback can make a difference by offsetting those infrastructure expenses over time." },
+        new { Ctrl="Home",      Act="Economic",          Icon="fa-solid fa-calendar-days",    Bg="#ecfdf5", Clr="#059669", Label="ECONOMIC CALENDAR",        Title="Forex Economic Calendar: How to Trade Major News Events",                 Date="15 Feb 2023", Excerpt="Master the Economic Calendar to time your entries and exits around high-impact events — NFP, CPI, central bank decisions, and more. Reduce exposure during volatile releases and capture breakouts with precision." },
+    };
+}
+
+<div class="res-page">
+
+    <section class="lfb-hero">
+        <div class="container container-1230">
+            <nav class="res-breadcrumb" aria-label="breadcrumb">
+                <a asp-controller="Home"      asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Forex Tools</span>
+            </nav>
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <h1 style="font-size:clamp(30px,4.5vw,46px);font-weight:800;color:#0f1b2d;line-height:1.15;margin:0 0 16px;">Forex Tools</h1>
+                </div>
+                <div class="col-lg-7">
+                    <p class="lfb-hero-desc">Explore essential trading tools and platforms — from position size calculators to VPS services — that streamline and enhance your trading experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="res-sub-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+
+                <div class="col-lg-3 col-md-4">
+                    <partial name="_Sidebar" model="@("ForexTools")" />
+                </div>
+
+                <div class="col-lg-9 col-md-8">
+                    <div class="row g-4">
+                        @foreach (var a in articles)
+                        {
+                            <div class="col-lg-4 col-sm-6">
+                                <a asp-controller="@a.Ctrl" asp-action="@a.Act" class="frb-card">
+                                    <div class="frb-thumb frb-thumb-tool" style="--tool-bg:@a.Bg;--tool-clr:@a.Clr;">
+                                        <i class="@a.Icon"></i>
+                                        <span>@a.Label</span>
+                                    </div>
+                                    <div class="frb-body">
+                                        <span class="frb-author">Say Affiliates</span>
+                                        <h3 class="frb-title">@a.Title</h3>
+                                        <span class="frb-date"><i class="fa-regular fa-calendar me-1"></i>Published @a.Date</span>
+                                        <p class="frb-excerpt">@a.Excerpt</p>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="frt-tools-strip">
+                        <div class="frt-tools-strip-hd">
+                            <i class="fa-solid fa-toolbox frt-tools-strip-icon"></i>
+                            <div>
+                                <div class="frt-tools-strip-title">Free Trading Tools</div>
+                                <div class="frt-tools-strip-sub">Use our calculators and live data widgets — no account required</div>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-sm-6 col-lg-4">
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn">
+                                    <i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#2563eb;"></i>
+                                    <span class="frt-tool-btn-label">Cashback Calculator</span>
+                                    <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <a asp-controller="Home" asp-action="LiveBrokerSpreads" class="frt-tool-btn">
+                                    <i class="fa-solid fa-arrow-trend-up frt-tool-btn-icon" style="color:#16a34a;"></i>
+                                    <span class="frt-tool-btn-label">Live Broker Spreads</span>
+                                    <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn">
+                                    <i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#059669;"></i>
+                                    <span class="frt-tool-btn-label">Economic Calendar</span>
+                                    <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <a asp-controller="Home" asp-action="CrossRates" class="frt-tool-btn">
+                                    <i class="fa-solid fa-table-cells frt-tool-btn-icon" style="color:#d97706;"></i>
+                                    <span class="frt-tool-btn-label">Cross Rates Table</span>
+                                    <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <a asp-controller="Home" asp-action="HeatMap" class="frt-tool-btn">
+                                    <i class="fa-solid fa-signal frt-tool-btn-icon" style="color:#7c3aed;"></i>
+                                    <span class="frt-tool-btn-label">Forex Heat Map</span>
+                                    <i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <a asp-controller="Home" asp-action="ComingSoon" class="frt-tool-btn frt-tool-btn--soon">
+                                    <i class="fa-solid fa-coins frt-tool-btn-icon" style="color:#94a3b8;"></i>
+                                    <span class="frt-tool-btn-label">Lot Size Calculator</span>
+                                    <span class="frt-tool-btn-soon">SOON</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

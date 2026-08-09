@@ -1,0 +1,201 @@
+@{
+    ViewData["Title"] = "Here's a Free Platform That Reinvents Forex Cashback";
+    var accentColor = "#7c3aed";
+    var accentLight = "#f5f3ff";
+
+    var relatedArticles = new[]
+    {
+        new { Ctrl="Resources", Act="ForexNewsChangingGame",    Icon="fa-solid fa-chess-rook",   Bg="#fff7ed", Clr="#ea580c", Title="How Say Affiliates Is Changing The Game For Independent Traders", Date="16 Mar 2023" },
+        new { Ctrl="Resources", Act="ForexNewsUniqueTools",     Icon="fa-solid fa-toolbox",      Bg="#eff6ff", Clr="#2563eb", Title="Say Affiliates Introduces Unique Free Tools",                    Date="16 Mar 2023" },
+        new { Ctrl="Resources", Act="ForexNewsRevolutionising", Icon="fa-solid fa-rotate",       Bg="#f0fdf4", Clr="#16a34a", Title="How Say Affiliates Is Revolutionising Forex Cashback",           Date="29 Jul 2022" },
+    };
+}
+
+<div class="br-page">
+
+    @* ══ HERO ══ *@
+    <section class="na-hero" style="background:linear-gradient(135deg,#1a0533 0%,#2d1057 55%,#0d0220 100%);">
+        <div class="container container-1230">
+            <nav class="br-hero-breadcrumb">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="ForexNews">Forex News</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Free Platform</span>
+            </nav>
+
+            <div class="row align-items-center g-4 mt-1">
+                <div class="col-lg-8">
+                    <div class="na-pub-badge">
+                        <div class="na-pub-icon" style="background:#fff;color:#7c3aed;">E</div>
+                        <div>
+                            <div class="na-pub-label">Featured In</div>
+                            <div class="na-pub-name">Entrepreneur</div>
+                        </div>
+                    </div>
+                    <h1 class="na-headline">Here's a Free Platform That Reinvents Forex Cashback</h1>
+                    <div class="na-byline">
+                        <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> MiriNich Tech</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 16 Mar 2023</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 8 min read</span>
+                        <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Press Coverage</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="br-score-card" style="border-color:rgba(124,58,237,.4);">
+                        <div style="font-size:11px;font-weight:700;color:#c4b5fd;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-gift me-1"></i> Platform At a Glance</div>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            @foreach (var item in new[] {
+                                new { L="Cost to join", V="Free" },
+                                new { L="Cashback per lot", V="Up to $15" },
+                                new { L="Broker partners", V="100+" },
+                                new { L="Assets covered", V="Forex, Stocks, Crypto" },
+                                new { L="Payout frequency", V="Monthly" },
+                            })
+                            {
+                                <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:8px;">
+                                    <span style="color:rgba(255,255,255,.6);">@item.L</span>
+                                    <span style="color:#c4b5fd;font-weight:700;">@item.V</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ══ STAT STRIP ══ *@
+    <div class="na-stat-strip">
+        <div class="container container-1230">
+            <div class="row g-0">
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">$0</div><div class="na-stat-lbl">Cost to Register</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">100+</div><div class="na-stat-lbl">Broker Partners</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">$15</div><div class="na-stat-lbl">Max Cashback/Lot</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">24/7</div><div class="na-stat-lbl">Rebate Tracking</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    @* ══ LAYOUT ══ *@
+    <div class="na-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-8">
+                    <article class="na-article">
+
+                        <p class="na-lead">Say Affiliates has emerged as one of the most talked-about platforms in retail forex trading — not because it promises extraordinary returns, but because it gives traders back money they were already losing without knowing it. The platform is completely free to join, and it pays cashback on every single trade a user places, regardless of whether that trade is a winner or a loser.</p>
+
+                        <p class="na-p">For years, forex cashback existed only as an insider benefit — a quiet arrangement between introducing brokers and the major trading platforms. Institutional traders and high-volume retail accounts had access to rebate programmes that meaningfully reduced their trading costs. Individual traders, particularly those just starting out, had no access to these deals and no awareness that such arrangements even existed.</p>
+
+                        <p class="na-p">Say Affiliates was built to change that. By negotiating directly with regulated brokers around the world, the platform has created a structure where ordinary retail traders can receive a portion of the spread they pay on every trade — automatically, without changing their broker, their strategy, or their trading style.</p>
+
+                        <div class="na-pullquote">
+                            <div class="na-pullquote-text">"We built Say Affiliates because we saw a gap that no one was addressing. Retail traders were paying full spreads while brokers were paying rebates to institutional affiliates. We just connected those two groups directly."</div>
+                            <div class="na-pullquote-src">— Say Affiliates Founder</div>
+                        </div>
+
+                        <h2 class="na-h2">What Exactly Is Forex Cashback?</h2>
+                        <p class="na-p">When a retail trader opens a position on EUR/USD with a broker, the broker earns revenue through the spread — the difference between the buy and sell price. On a standard lot, a 1-pip spread on EUR/USD represents approximately $10 in revenue for the broker. A portion of that revenue is shared with introducing brokers (IBs) as a commission for sending clients to the platform.</p>
+                        <p class="na-p">Say Affiliates acts as the IB for its registered users. Instead of keeping those commissions, the platform passes them back to traders as cashback. The result: traders who would have paid $10/lot in spread costs now receive $5–$15 of that back as a rebate, effectively reducing their cost of trading by 50–100%.</p>
+
+                        <div class="na-callout">
+                            <div class="na-callout-title"><i class="fa-solid fa-lightbulb me-1"></i> Key Insight</div>
+                            Cashback is earned on every trade — winning or losing. A trader who loses a trade still earns cashback on that trade's spread, which helps recover a portion of the loss automatically.
+                        </div>
+
+                        <h2 class="na-h2">How the Platform Works — Step by Step</h2>
+                        <div class="na-step-grid">
+                            <div class="na-step">
+                                <div class="na-step-num" style="background:@accentLight;color:@accentColor;">01</div>
+                                <div><div class="na-step-title">Register for Free on Say Affiliates</div><div class="na-step-text">Create a free account on sayaffiliates.com. No deposit required, no subscription fees. Registration takes under 3 minutes.</div></div>
+                            </div>
+                            <div class="na-step">
+                                <div class="na-step-num" style="background:@accentLight;color:@accentColor;">02</div>
+                                <div><div class="na-step-title">Choose Your Broker from the Network</div><div class="na-step-text">Browse 100+ regulated broker partners and select the one that matches your trading style. Compare spreads, instruments, and cashback rates side by side.</div></div>
+                            </div>
+                            <div class="na-step">
+                                <div class="na-step-num" style="background:@accentLight;color:@accentColor;">03</div>
+                                <div><div class="na-step-title">Open a Trading Account via Say Affiliates</div><div class="na-step-text">Open your live trading account through the Say Affiliates referral link. Your trading activity is automatically linked for cashback tracking.</div></div>
+                            </div>
+                            <div class="na-step">
+                                <div class="na-step-num" style="background:@accentLight;color:@accentColor;">04</div>
+                                <div><div class="na-step-title">Trade Normally — Earn Cashback Automatically</div><div class="na-step-text">Continue trading exactly as you would. Every lot you trade is tracked in real time. Cashback accumulates automatically in your Say Affiliates account.</div></div>
+                            </div>
+                            <div class="na-step">
+                                <div class="na-step-num" style="background:@accentLight;color:@accentColor;">05</div>
+                                <div><div class="na-step-title">Withdraw Your Cashback Monthly</div><div class="na-step-text">Request a payout to your bank account, e-wallet, or crypto wallet. Withdrawals are processed monthly with no minimum threshold on most plans.</div></div>
+                            </div>
+                        </div>
+
+                        <h2 class="na-h2">Why "Free" Matters in a Fee-Heavy Industry</h2>
+                        <p class="na-p">Forex trading is a cost-intensive activity. Every pip of spread, every commission charge, and every overnight swap is a drag on a trader's P&L. Professional traders spend significant time optimising their trading costs — choosing brokers with tighter spreads, negotiating volume discounts, and using cashback arrangements to reduce per-trade costs.</p>
+                        <p class="na-p">Retail traders rarely have access to these optimisations. Say Affiliates democratises that access. By making the platform free to use and paying rebates directly to users, the platform eliminates one of the most significant structural disadvantages that retail traders face versus institutional participants.</p>
+
+                        <div class="na-pullquote">
+                            <div class="na-pullquote-text">"A trader placing 20 standard lots per month on EUR/USD could earn $150–$300 in cashback. Over a year, that's $1,800–$3,600 — simply by having registered on the right platform before opening their broker account."</div>
+                            <div class="na-pullquote-src">— Say Affiliates Platform Analysis</div>
+                        </div>
+
+                        <h2 class="na-h2">Coverage Across Asset Classes</h2>
+                        <p class="na-p">While forex cashback is the platform's primary offering, Say Affiliates has expanded its network to cover stocks, indices, commodities, and cryptocurrency trading. Traders who diversify across multiple asset classes can earn rebates on all of them through the same single account, consolidated into one monthly payout.</p>
+
+                        <ul class="na-list">
+                            <li><strong>Forex pairs:</strong> Major, minor, and exotic currency pairs — EUR/USD, GBP/USD, USD/JPY and 100+ more</li>
+                            <li><strong>Commodities:</strong> Gold (XAU/USD), Silver (XAG/USD), Oil (WTI and Brent)</li>
+                            <li><strong>Indices:</strong> US30, SPX500, FTSE100, GER40, NAS100</li>
+                            <li><strong>Crypto CFDs:</strong> BTC/USD, ETH/USD, and major altcoins through CFD brokers</li>
+                            <li><strong>Stocks:</strong> US and European equities through partnered brokers</li>
+                        </ul>
+
+                        <h2 class="na-h2">The Verdict</h2>
+                        <p class="na-p">For any retail forex trader who is not already using a cashback platform, Say Affiliates represents a straightforward opportunity to reduce trading costs with zero upfront investment. The platform does not require changing brokers, adjusting strategies, or depositing any funds with Say Affiliates directly.</p>
+                        <p class="na-p">The only question is not whether cashback is worth it — it invariably is — but whether traders know that platforms like Say Affiliates exist. For those discovering it for the first time, the recommendation is simple: register before opening your next broker account, and start earning on every trade from day one.</p>
+
+                        <div class="na-cta">
+                            <div class="na-cta-label" style="color:#c4b5fd;">Start Earning Today</div>
+                            <div class="na-cta-title">Join Say Affiliates — It's Free</div>
+                            <p class="na-cta-sub">Register your free account, choose a broker, and start earning cashback on every trade — no fees, no minimums, no catch.</p>
+                            <div class="na-cta-btns">
+                                <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="na-cta-btn-ghost"><i class="fa-solid fa-calculator me-2"></i>Calculate Your Cashback</a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+                @* Sidebar *@
+                <div class="col-lg-4">
+                    <div style="position:sticky;top:90px;">
+                        <div class="na-sidebar-card mb-3">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-newspaper me-2"></i>Related Articles</div>
+                            @foreach (var r in relatedArticles)
+                            {
+                                <a asp-controller="@r.Ctrl" asp-action="@r.Act" class="na-related-item">
+                                    <div class="na-related-icon" style="background:@r.Bg;color:@r.Clr;"><i class="@r.Icon"></i></div>
+                                    <div>
+                                        <div class="na-related-title">@r.Title</div>
+                                        <div class="na-related-date"><i class="fa-regular fa-calendar me-1"></i>@r.Date</div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                        <div class="na-sidebar-card">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+                            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:#7c3aed;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,179 @@
+@{
+    ViewData["Title"] = "Economic Calendar";
+}
+
+<div class="lbs hm pre-header pt-140 pb-120">
+   <span class="lbs-bg-glow lbs-bg-glow-1"></span>
+   <span class="lbs-bg-glow lbs-bg-glow-2"></span>
+
+   <!-- floating decorations -->
+   <div class="hm-decor" aria-hidden="true">
+      <span class="hm-coin hm-coin-1"><i class="fa-regular fa-calendar-days"></i></span>
+      <span class="hm-coin hm-coin-2"><i class="fa-solid fa-chart-column"></i></span>
+      <span class="hm-coin hm-coin-3"><i class="fa-solid fa-bell"></i></span>
+      <span class="hm-coin hm-coin-4"><i class="fa-solid fa-newspaper"></i></span>
+      <span class="hm-coin hm-coin-5"><i class="fa-solid fa-clock"></i></span>
+      <span class="hm-coin hm-coin-6"><i class="fa-solid fa-flag"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-1"><i class="fa-solid fa-arrow-trend-up"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-2"><i class="fa-solid fa-arrow-trend-down"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-3"><i class="fa-solid fa-percent"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-4"><i class="fa-solid fa-money-bill-wave"></i></span>
+   </div>
+
+   <div class="container container-1230">
+
+      <!-- hero -->
+      <div class="lbs-hero">
+         <span class="lbs-hero-badge"><i class="fa-regular fa-calendar-days"></i> Trading Tools</span>
+         <h1 class="lbs-hero-title">Economic <span>Calendar</span></h1>
+         <p class="lbs-hero-sub">
+            Real-time updates on key economic events and data releases from around the world. Anticipate market
+            movements and plan your trades around important news &mdash; so you stay informed and ready for every
+            market shift.
+         </p>
+         <div class="lbs-hero-stats">
+            <div class="lbs-hero-stat"><b>30+</b><span>Countries</span></div>
+            <div class="lbs-hero-stat"><b>3</b><span>Impact Levels</span></div>
+            <div class="lbs-hero-stat"><b><i class="fa-solid fa-circle lbs-live-dot"></i> Live</b><span>Real-time feed</span></div>
+         </div>
+      </div>
+
+      <!-- calendar widget card -->
+      <div class="lbs-card">
+         <div class="lbs-card-head">
+            <div>
+               <h3>Live Economic Calendar</h3>
+               <p>Upcoming events, forecasts and prior values &mdash; updated in real time.</p>
+            </div>
+            <div class="lbs-powered">Powered by <b>TradingView</b></div>
+         </div>
+
+         <div class="eco-widget">
+            <!-- TradingView Economic Calendar Widget -->
+            <div class="tradingview-widget-container">
+               <div class="tradingview-widget-container__widget"></div>
+               <script type="text/javascript"
+                       src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+               {
+               "colorTheme": "light",
+               "isTransparent": true,
+               "locale": "en",
+               "countryFilter": "us,eu,gb,jp,cn,au,ca,ch,de,fr,nz,kh",
+               "importanceFilter": "0,1",
+               "width": "100%",
+               "height": 600
+               }
+               </script>
+            </div>
+            <!-- TradingView Economic Calendar Widget END -->
+         </div>
+      </div>
+
+      <!-- impact levels guide -->
+      <div class="hm-guide">
+         <div class="hm-guide-card hm-guide-down">
+            <span class="hm-guide-cell"><i class="fa-solid fa-signal"></i> High</span>
+            <h5>High Impact</h5>
+            <p>Major releases like rate decisions and NFP &mdash; expect strong market moves.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-mid">
+            <span class="hm-guide-cell hm-guide-cell-amber"><i class="fa-solid fa-signal"></i> Medium</span>
+            <h5>Medium Impact</h5>
+            <p>Notable data that can nudge prices &mdash; worth watching around release time.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-int">
+            <span class="hm-guide-cell hm-guide-cell-blue"><i class="fa-solid fa-clock"></i> Forecast</span>
+            <h5>Forecast vs Actual</h5>
+            <p>Surprises against the forecast are what really drive the market reaction.</p>
+         </div>
+      </div>
+
+      <!-- how to use accordion -->
+      <details class="lbs-acc" open>
+         <summary>How do I use the Economic Calendar?<span class="lbs-acc-ico"><i class="fa-solid fa-chevron-down"></i></span></summary>
+         <div class="lbs-acc-content">
+            <ol class="lbs-steps">
+               <li>Browse the upcoming events in the calendar above, listed by release time.</li>
+               <li>Focus on <b>high-impact</b> events &mdash; these tend to move the markets the most.</li>
+               <li>Compare the <b>forecast</b> against the <b>previous</b> value to gauge market expectations.</li>
+               <li>Plan your entries and exits around major releases to manage risk and volatility.</li>
+            </ol>
+         </div>
+      </details>
+
+      <!-- educational content -->
+      <div class="lbs-content">
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-circle-question"></i></span>
+               <h3 class="lbs-info-title">What Is an Economic Calendar?</h3>
+            </div>
+            <p>An economic calendar is a schedule of upcoming economic events and indicators &mdash; such as interest-rate
+               announcements, GDP reports, employment data and inflation figures &mdash; that can impact financial markets.
+               By keeping track of these events, you can better understand market sentiment and adjust your trading
+               strategy accordingly.</p>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-bolt"></i></span>
+               <h3 class="lbs-info-title">Why Use Our Economic Calendar?</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Real-time updates</b> &mdash; stay informed with the latest economic events as they happen.</li>
+               <li><b>Comprehensive coverage</b> &mdash; view events from multiple countries in one centralized tool.</li>
+               <li><b>Customizable filters</b> &mdash; filter by date, country or impact level to focus on what matters most.</li>
+               <li><b>Smarter decisions</b> &mdash; plan your trades around high-impact events to manage risk and volatility.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-rocket"></i></span>
+               <h3 class="lbs-info-title">Benefits for Forex Traders</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Improved market awareness</b> &mdash; stay on top of global events to better predict market trends.</li>
+               <li><b>Risk management</b> &mdash; plan around scheduled events to reduce exposure to sudden volatility.</li>
+               <li><b>Informed decision-making</b> &mdash; act on the same data the professionals watch.</li>
+               <li><b>Anywhere access</b> &mdash; the calendar works seamlessly on desktop and mobile.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-comments"></i></span>
+               <h3 class="lbs-info-title">Frequently Asked Questions</h3>
+            </div>
+
+            <details class="lbs-faq-item">
+               <summary>What is an economic calendar?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>It's a schedule of upcoming economic releases &mdash; like GDP, inflation and interest-rate decisions
+                  &mdash; that traders watch because they can significantly move the markets.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>How often is the data updated?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>The calendar updates in real time, reflecting new figures the moment they are released.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>Can I filter events by country or impact?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>Yes &mdash; use the controls in the calendar to filter by country and importance so you only see the
+                  events that matter to your strategy.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>How does it help my trading?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>By knowing when high-impact news is due, you can prepare for volatility, avoid getting caught off guard,
+                  and time your entries and exits with more confidence.</p>
+            </details>
+         </div>
+      </div>
+
+      <!-- join cta -->
+      <div class="lbs-join">
+         <a asp-controller="Home" asp-action="Register">
+            <i class="fa-solid fa-lightbulb"></i> Join Now &amp; Start Earning Cashback <i class="fa-solid fa-lightbulb"></i>
+         </a>
+      </div>
+   </div>
+</div>

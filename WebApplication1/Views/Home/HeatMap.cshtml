@@ -1,0 +1,182 @@
+@{
+    ViewData["Title"] = "Forex Heat Map";
+}
+
+<div class="lbs hm pre-header pt-140 pb-120">
+   <span class="lbs-bg-glow lbs-bg-glow-1"></span>
+   <span class="lbs-bg-glow lbs-bg-glow-2"></span>
+
+   <!-- floating forex decorations -->
+   <div class="hm-decor" aria-hidden="true">
+      <span class="hm-coin hm-coin-1"><i class="fa-solid fa-dollar-sign"></i></span>
+      <span class="hm-coin hm-coin-2"><i class="fa-solid fa-euro-sign"></i></span>
+      <span class="hm-coin hm-coin-3"><i class="fa-solid fa-sterling-sign"></i></span>
+      <span class="hm-coin hm-coin-4"><i class="fa-solid fa-yen-sign"></i></span>
+      <span class="hm-coin hm-coin-5"><i class="fa-solid fa-franc-sign"></i></span>
+      <span class="hm-coin hm-coin-6"><i class="fa-solid fa-won-sign"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-1"><i class="fa-solid fa-arrow-trend-up"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-2"><i class="fa-solid fa-arrow-trend-down"></i></span>
+      <span class="hm-tile hm-tile-up hm-tile-3"><i class="fa-solid fa-arrow-trend-up"></i></span>
+      <span class="hm-tile hm-tile-down hm-tile-4"><i class="fa-solid fa-arrow-trend-down"></i></span>
+   </div>
+
+   <div class="container container-1230">
+
+      <!-- hero -->
+      <div class="lbs-hero">
+         <span class="lbs-hero-badge"><i class="fa-solid fa-signal"></i> Trading Tools</span>
+         <h1 class="lbs-hero-title">Forex <span>Heat Map</span></h1>
+         <p class="lbs-hero-sub">
+            A vibrant, visual snapshot of currency strength across the global market. See at a glance which currencies
+            are performing strongly or weakly &mdash; so you can quickly spot trends and potential trading opportunities.
+         </p>
+         <div class="lbs-hero-stats">
+            <div class="lbs-hero-stat"><b>9</b><span>Currencies</span></div>
+            <div class="lbs-hero-stat"><b>72</b><span>Comparisons</span></div>
+            <div class="lbs-hero-stat"><b><i class="fa-solid fa-circle lbs-live-dot"></i> Live</b><span>Real-time feed</span></div>
+         </div>
+      </div>
+
+      <!-- heat map widget card -->
+      <div class="lbs-card">
+         <div class="lbs-card-head">
+            <div>
+               <h3>Live Forex Heat Map</h3>
+               <p>Colour-coded currency strength, updated in real time &mdash; green is stronger, red is weaker.</p>
+            </div>
+            <div class="lbs-powered">Powered by <b>TradingView</b></div>
+         </div>
+
+         <div class="hm-legend">
+            <span class="hm-legend-txt hm-legend-weak"><i class="fa-solid fa-arrow-trend-down"></i> Weaker</span>
+            <span class="hm-legend-bar"></span>
+            <span class="hm-legend-txt hm-legend-strong">Stronger <i class="fa-solid fa-arrow-trend-up"></i></span>
+         </div>
+
+         <div class="eco-widget">
+            <!-- TradingView Forex Heat Map Widget -->
+            <div class="tradingview-widget-container">
+               <div class="tradingview-widget-container__widget"></div>
+               <script type="text/javascript"
+                       src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
+               {
+               "colorTheme": "light",
+               "isTransparent": true,
+               "locale": "en",
+               "currencies": ["EUR","USD","JPY","GBP","CHF","AUD","CAD","NZD","CNY"],
+               "backgroundColor": "#ffffff",
+               "width": "100%",
+               "height": 500
+               }
+               </script>
+            </div>
+            <!-- TradingView Forex Heat Map Widget END -->
+         </div>
+      </div>
+
+      <!-- how to read the heat map -->
+      <div class="hm-guide">
+         <div class="hm-guide-card hm-guide-up">
+            <span class="hm-guide-cell"><i class="fa-solid fa-arrow-trend-up"></i> +0.27%</span>
+            <h5>Green = Strengthening</h5>
+            <p>The base currency is gaining ground against the quote currency.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-down">
+            <span class="hm-guide-cell"><i class="fa-solid fa-arrow-trend-down"></i> &minus;0.24%</span>
+            <h5>Red = Weakening</h5>
+            <p>The base currency is losing value against the quote currency.</p>
+         </div>
+         <div class="hm-guide-card hm-guide-int">
+            <span class="hm-guide-scale"><i></i><i></i><i></i><i></i><i></i></span>
+            <h5>Intensity = Momentum</h5>
+            <p>The deeper the colour, the larger the recent price move.</p>
+         </div>
+      </div>
+
+      <!-- how to use accordion -->
+      <details class="lbs-acc" open>
+         <summary>How do I use the Forex Heat Map?<span class="lbs-acc-ico"><i class="fa-solid fa-chevron-down"></i></span></summary>
+         <div class="lbs-acc-content">
+            <ol class="lbs-steps">
+               <li>Pick a base currency down the left column and read across its row.</li>
+               <li><b>Green</b> cells show where that currency is stronger; <b>red</b> cells show where it's weaker.</li>
+               <li>The deeper the colour, the bigger the move &mdash; that's your market intensity.</li>
+               <li>Use the strongest-vs-weakest pairs to find high-momentum trading opportunities.</li>
+            </ol>
+         </div>
+      </details>
+
+      <!-- educational content -->
+      <div class="lbs-content">
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-circle-question"></i></span>
+               <h3 class="lbs-info-title">What Is a Forex Heat Map?</h3>
+            </div>
+            <p>A forex heat map is a graphical tool that displays the performance of various currencies using
+               colour-coding. The colours indicate the relative strength or weakness of each currency &mdash; making it
+               easy to gauge market sentiment at a glance.</p>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-bolt"></i></span>
+               <h3 class="lbs-info-title">Why Use Our Forex Heat Map?</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Immediate visual insights</b> &mdash; see at a glance which currencies are strong or weak.</li>
+               <li><b>Time-saving analysis</b> &mdash; quickly identify market trends without digging through data.</li>
+               <li><b>User-friendly design</b> &mdash; optimized for both desktop and mobile for ease of use.</li>
+               <li><b>Enhanced market insight</b> &mdash; understand momentum and sentiment across the market fast.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-rocket"></i></span>
+               <h3 class="lbs-info-title">Benefits for Forex Traders</h3>
+            </div>
+            <ul class="lbs-check-list">
+               <li><b>Quick market overview</b> &mdash; a rapid, clear snapshot of global currency performance.</li>
+               <li><b>Efficient strategy planning</b> &mdash; visual trends help you time your entries and exits.</li>
+               <li><b>Enhanced risk management</b> &mdash; understand market sentiment at a glance to reduce uncertainty.</li>
+               <li><b>User-centric design</b> &mdash; simple and intuitive, accessible on any device.</li>
+            </ul>
+         </div>
+
+         <div class="lbs-info-block">
+            <div class="lbs-info-head">
+               <span class="lbs-info-icon"><i class="fa-solid fa-comments"></i></span>
+               <h3 class="lbs-info-title">Frequently Asked Questions</h3>
+            </div>
+
+            <details class="lbs-faq-item">
+               <summary>What is a forex heat map?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>It's a colour-coded grid that shows the relative strength or weakness of each currency against the
+                  others, so you can read market sentiment at a glance.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>How often is the data updated?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>The heat map updates in real time to reflect current market movements.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>What do the colours mean?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>Green indicates a currency is stronger against another, red indicates weaker, and the intensity of the
+                  colour reflects the size of the move.</p>
+            </details>
+            <details class="lbs-faq-item">
+               <summary>Can I use this on my mobile device?<span class="lbs-acc-ico"><i class="fa-solid fa-plus"></i></span></summary>
+               <p>Yes &mdash; the tool is fully responsive and works seamlessly on both desktop and mobile platforms.</p>
+            </details>
+         </div>
+      </div>
+
+      <!-- join cta -->
+      <div class="lbs-join">
+         <a asp-controller="Home" asp-action="Register">
+            <i class="fa-solid fa-lightbulb"></i> Join Now &amp; Start Earning Cashback <i class="fa-solid fa-lightbulb"></i>
+         </a>
+      </div>
+   </div>
+</div>

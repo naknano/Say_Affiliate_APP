@@ -1,0 +1,112 @@
+@{
+    ViewData["Title"] = "How to Use Technical Analysis for Forex Trading";
+    string ac = "#4f46e5", al = "#eff6ff";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#0f0e27,#1e1b4b,#07060f);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Technical Analysis</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">How to Use Technical Analysis for Forex Trading</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 12 May 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 10 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Technical Analysis</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(79,70,229,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#c7d2fe;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-chart-bar me-1"></i> TA Toolkit</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Chart type",V="Candlestick"},new{L="Core indicators",V="MA, RSI, MACD"},new{L="Key concept",V="Support & Resistance"},new{L="Best timeframe",V="H1–H4 for most traders"},new{L="Chart patterns",V="15+ standard patterns"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#c7d2fe;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">3</div><div class="na-stat-lbl">Core Indicators</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">15+</div><div class="na-stat-lbl">Chart Patterns</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">H1–H4</div><div class="na-stat-lbl">Primary Timeframe</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">S/R</div><div class="na-stat-lbl">The Foundation</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Technical analysis is the study of past price data to identify patterns and probabilities for future price movement. It is the most widely used analytical framework in retail forex trading — and when applied systematically, it provides clear, objective entry and exit signals that remove emotion from trading decisions.</p>
+
+            <h2 class="na-h2">The Foundation: Support and Resistance</h2>
+            <p class="na-p">Support and resistance (S/R) levels are the cornerstone of all technical analysis. Price tends to react at these zones because traders cluster their orders there — creating self-fulfilling patterns of buying at support and selling at resistance.</p>
+            <ul class="na-list">
+                <li><strong>Previous highs and lows:</strong> Where price reversed before — it often does so again</li>
+                <li><strong>Round numbers:</strong> 1.1000, 1.1500 on EUR/USD — psychological magnets for orders</li>
+                <li><strong>Fibonacci levels:</strong> 38.2%, 50%, 61.8% retracements of impulse swings — natural pullback targets</li>
+                <li><strong>Moving average levels:</strong> 50 EMA, 200 EMA as dynamic support/resistance</li>
+                <li><strong>Prior support becomes resistance</strong> after a break — and vice versa (a key principle)</li>
+            </ul>
+
+            <h2 class="na-h2">The Three Core Indicators</h2>
+            <div class="row g-3 mb-3">
+                @foreach(var ind in new[]{
+                    new{N="Moving Averages (MA)",I="fa-solid fa-arrow-trend-up",Bg="#eff6ff",C="#2563eb",D="Smooth price data to show trend direction. 20 EMA = short-term trend. 50 EMA = medium-term. 200 EMA = long-term. Price above 200 EMA = bullish bias. When faster MA crosses slower MA = trend change signal."},
+                    new{N="RSI (Relative Strength Index)",I="fa-solid fa-gauge-high",Bg="#f5f3ff",C="#7c3aed",D="Momentum oscillator (0–100). Above 70 = overbought (potential sell). Below 30 = oversold (potential buy). RSI divergence — price makes new high but RSI doesn't — signals weakening momentum and possible reversal."},
+                    new{N="MACD",I="fa-solid fa-chart-line",Bg="#f0fdf4",C="#16a34a",D="Trend-following momentum indicator. Signal line cross = entry signal. Histogram expanding = strengthening momentum. Zero line cross = trend change. Best used on H4+ timeframes to filter false signals."}
+                })
+                {<div class="col-md-4"><div style="border:1.5px solid #e8edf4;border-radius:14px;padding:16px;height:100%;"><div style="width:36px;height:36px;border-radius:10px;background:@ind.Bg;color:@ind.C;display:flex;align-items:center;justify-content:center;font-size:15px;margin-bottom:10px;"><i class="@ind.I"></i></div><div style="font-size:13px;font-weight:800;color:#0f1b2d;margin-bottom:6px;">@ind.N</div><div style="font-size:12px;color:#64748b;line-height:1.6;">@ind.D</div></div></div>}
+            </div>
+
+            <h2 class="na-h2">Key Candlestick Patterns</h2>
+            <table class="br-facts-table">
+                <thead><tr><th>Pattern</th><th>Type</th><th>Signal</th><th style="text-align:center;">Reliability</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Pin Bar (Hammer/Shooting Star)</strong></td><td>Reversal</td><td>Long wick shows rejection of a level; body at opposite end</td><td style="text-align:center;color:#16a34a;font-weight:700;">High</td></tr>
+                    <tr><td><strong>Engulfing Candle</strong></td><td>Reversal</td><td>Large body fully engulfs previous candle — momentum shift</td><td style="text-align:center;color:#16a34a;font-weight:700;">High</td></tr>
+                    <tr><td><strong>Doji</strong></td><td>Indecision</td><td>Open ≈ Close; market is undecided — watch next candle for direction</td><td style="text-align:center;color:#d97706;font-weight:700;">Medium</td></tr>
+                    <tr><td><strong>Inside Bar</strong></td><td>Continuation</td><td>Candle contained within prior candle — compression before breakout</td><td style="text-align:center;color:#d97706;font-weight:700;">Medium</td></tr>
+                    <tr><td><strong>Morning/Evening Star</strong></td><td>Reversal</td><td>3-candle pattern at key levels; strong reversal signal</td><td style="text-align:center;color:#16a34a;font-weight:700;">High</td></tr>
+                </tbody>
+            </table>
+
+            <h2 class="na-h2">Multi-Timeframe Analysis</h2>
+            <p class="na-p">The most powerful application of technical analysis is aligning multiple timeframes for high-confluence setups:</p>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">D1</div><div><div class="na-step-title">Define the Trend</div><div class="na-step-text">Use the Daily chart to establish the dominant trend direction. Is price making higher highs and lows (bullish) or lower highs and lows (bearish)? Only take trades aligned with this direction.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">H4</div><div><div class="na-step-title">Identify the Setup Zone</div><div class="na-step-text">Zoom into H4 to find where price is likely to react — a key S/R confluence with the D1 trend. This is your entry zone where you expect a pullback to end and the trend to resume.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">H1</div><div><div class="na-step-title">Time the Entry</div><div class="na-step-text">Drop to H1 or M30 for precise entry timing. Wait for a reversal candlestick pattern (pin bar, engulfing) at the H4 setup zone. This gives you the tightest stop-loss and best R:R ratio.</div></div></div>
+            </div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#c7d2fe;">Read the Chart. Earn the Cashback.</div>
+                <div class="na-cta-title">Combine TA Precision with Cashback Returns</div>
+                <p class="na-cta-sub">Use technical analysis to find your best setups, then earn cashback on every trade through Say Affiliates — reducing your cost on each and every position.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Resources" asp-action="StrategyTechCashback" class="na-cta-btn-ghost"><i class="fa-solid fa-chart-mixed me-2"></i>TA + Cashback Guide</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:90px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+            @foreach(var r in new[]{new{A="StrategyTechCashback",I="fa-solid fa-chart-mixed",Bg="#f5f3ff",C="#7c3aed",T="Elevate Your Forex Game: TA + Cashback",D="19 Sep 2024"},new{A="StrategyAdvanced",I="fa-solid fa-brain",Bg="#e0e7ff",C="#312e81",T="Advanced Trading Strategies",D="15 Feb 2024"},new{A="StrategySwingTrading",I="fa-solid fa-wave-square",Bg="#ecfeff",C="#0891b2",T="Swing Trading Strategy Ideas",D="28 Jun 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Resources" asp-action="PositionSizeCalculator" class="frt-tool-btn"><i class="fa-solid fa-chart-line frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Position Size Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#059669;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

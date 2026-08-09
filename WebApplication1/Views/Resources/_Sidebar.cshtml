@@ -1,0 +1,60 @@
+@model string
+@* Model = active action name e.g. "ForexBrokers" *@
+@{
+    var items = new[]
+    {
+        new { Action="LearnForexBasics", Icon="fa-solid fa-graduation-cap", Bg="#fff1f0", Clr="#e53935",
+              Label="Learn Forex Basics",
+              Desc="Master foundational concepts of the foreign exchange market — like currency pairs, pips, and risk management — to build a solid trading framework." },
+        new { Action="ForexBrokers",     Icon="fa-solid fa-award",           Bg="#eff6ff", Clr="#2563eb",
+              Label="Forex Brokers",
+              Desc="Discover top cashback Forex brokers, compare their features, and find the best fit for your trading style and goals." },
+        new { Action="ForexTools",       Icon="fa-solid fa-wand-magic-sparkles", Bg="#fffbeb", Clr="#d97706",
+              Label="Forex Tools",
+              Desc="Explore essential trading tools and platforms — from position size calculators to VPS services — that streamline and enhance your trading experience." },
+        new { Action="ForexNews",        Icon="fa-solid fa-bullhorn",        Bg="#f0fdf4", Clr="#16a34a",
+              Label="Forex News",
+              Desc="Stay informed on the latest market updates, regulatory changes, and industry insights that can shape your forex trading decisions." },
+        new { Action="Strategies",       Icon="fa-solid fa-chart-line",      Bg="#f5f3ff", Clr="#7c3aed",
+              Label="Strategies & Technical Analysis",
+              Desc="Learn proven trading strategies and master chart analysis, indicators, and risk-management techniques to consistently identify profitable opportunities." },
+        new { Action="ForexCashback",    Icon="fa-solid fa-circle-dollar-to-slot", Bg="#f1f5f9", Clr="#1e293b",
+              Label="Forex Cashback",
+              Desc="Maximise your trading returns with cashback programs — earn while you trade and enjoy transparent, automatic rewards on every position." },
+    };
+}
+
+<aside class="res-sidebar">
+    <h2 class="res-sidebar-title">Resources</h2>
+    <div class="accordion" id="resNavAccordion">
+        @foreach (var item in items)
+        {
+            var active = item.Action == Model;
+            <div class="res-nav-item">
+                <button class="res-nav-header @(active ? "active" : "")"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#rn-@item.Action"
+                        aria-expanded="@(active ? "true" : "false")">
+                    <span class="res-nav-icon" style="background:@item.Bg;color:@item.Clr;">
+                        <i class="@item.Icon"></i>
+                    </span>
+                    <span class="res-nav-name">@item.Label</span>
+                    <i class="fa-solid fa-chevron-down res-nav-chevron"></i>
+                </button>
+                <div id="rn-@item.Action" class="collapse @(active ? "show" : "")" data-bs-parent="#resNavAccordion">
+                    <div class="res-nav-body">
+                        <p class="res-nav-desc">@item.Desc</p>
+                        @if (!active)
+                        {
+                            <a asp-controller="Resources" asp-action="@item.Action"
+                               style="font-size:12px;font-weight:600;color:var(--pm-primary);text-decoration:none;">
+                                Explore <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</aside>

@@ -1,0 +1,91 @@
+
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 video css
+/*----------------------------------------*/
+
+
+.al-video{
+    &-height{
+        height: 760px;
+        overflow: hidden;
+        @media #{$xl,$lg}{
+            height: 600px;
+        }
+        @media #{$md}{
+            height: 460px;
+        }
+        @media #{$sm,$xs}{
+            height: 300px;
+        }
+    }
+    &-img{
+        position: relative;
+        &::after{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            content: '';
+            background-color: rgba($color: #021217, $alpha: 0.2);
+        }
+        & img{
+            position: relative;
+            height: 100%;
+            width: 100%;
+            margin-top: -50px;
+            @media #{$sm,$xs}{
+                height: 400px;
+                object-fit: cover;
+            }
+        }
+    }
+    &-play-btn{
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        z-index: 22;
+        text-align: center;
+        transform: translateY(-50%);
+        & a{
+            height: 180px;
+            width: 180px;
+            line-height: 188px;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            display: inline-block;
+            letter-spacing: -0.02em;
+            color: var(--tp-common-white);
+            border: 1px solid var(--tp-common-white);
+            font-family: var(--tp-ff-inter);
+            @media #{$md,$sm,$xs}{
+                height: 140px;
+                width: 140px;
+                line-height: 146px;
+            }
+            & span{
+                transform: translateY(-2px);
+                margin-left: 6px;
+            }
+        }
+    }
+    &-inner-style{
+        & .tp-video-img img {
+            margin-top: -400px;
+            @media #{$x3l,$xxl,$xl}{
+                margin-top: -200px;
+            }
+            @media #{$lg,$md}{
+                margin-top: -100px;
+            }
+            @media #{$sm,$xs}{
+                margin-top: -50px;
+            }
+        }
+    }
+}

@@ -13,4 +13,77 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\css\atropos.min.css" />
+      <None Include="wwwroot\css\bootstrap.css" />
+      <None Include="wwwroot\css\effect-slicer.css" />
+      <None Include="wwwroot\css\font-awesome-pro.css" />
+      <None Include="wwwroot\css\magnific-popup.css" />
+      <None Include="wwwroot\css\main.css" />
+      <None Include="wwwroot\css\main.css.map" />
+      <None Include="wwwroot\css\spacing.css" />
+      <None Include="wwwroot\css\swiper-bundle.css" />
+      <None Include="wwwroot\css\swiper-gl.css" />
+      <None Include="wwwroot\js\ajax-form.js" />
+      <None Include="wwwroot\js\atropos.js" />
+      <None Include="wwwroot\js\backtop.js" />
+      <None Include="wwwroot\js\bootstrap-bundle.js" />
+      <None Include="wwwroot\js\customize.js" />
+      <None Include="wwwroot\js\distortion-img-depend.js" />
+      <None Include="wwwroot\js\distortion-img.js" />
+      <None Include="wwwroot\js\effect-slicer.js" />
+      <None Include="wwwroot\js\hover-effect.umd.js" />
+      <None Include="wwwroot\js\imagesloaded-pkgd.js" />
+      <None Include="wwwroot\js\img-revel\image.js" />
+      <None Include="wwwroot\js\img-revel\imageTrail.js" />
+      <None Include="wwwroot\js\img-revel\index.js" />
+      <None Include="wwwroot\js\img-revel\utils.js" />
+      <None Include="wwwroot\js\isotope-pkgd.js" />
+      <None Include="wwwroot\js\magnific-popup.js" />
+      <None Include="wwwroot\js\main.js" />
+      <None Include="wwwroot\js\matter.js" />
+      <None Include="wwwroot\js\nice-select.js" />
+      <None Include="wwwroot\js\parallax-slider.js" />
+      <None Include="wwwroot\js\plugin.js" />
+      <None Include="wwwroot\js\portfolio-slider-1.js" />
+      <None Include="wwwroot\js\purecounter.js" />
+      <None Include="wwwroot\js\ripple-2.js" />
+      <None Include="wwwroot\js\skew-slider\index.js" />
+      <None Include="wwwroot\js\skew-slider\slideshow.js" />
+      <None Include="wwwroot\js\skew-slider\utils.js" />
+      <None Include="wwwroot\js\slider-init.js" />
+      <None Include="wwwroot\js\split-type.js" />
+      <None Include="wwwroot\js\splitting.js" />
+      <None Include="wwwroot\js\swipe.js" />
+      <None Include="wwwroot\js\swiper-bundle.js" />
+      <None Include="wwwroot\js\swiper-gl.js" />
+      <None Include="wwwroot\js\three.js" />
+      <None Include="wwwroot\js\throwable.js" />
+      <None Include="wwwroot\js\tp-cursor.js" />
+      <None Include="wwwroot\js\vendor\jquery.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\assets\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BCrypt.Net-Next" Version="4.1.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.26" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.26" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.6">
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.17.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+      <PackageReference Include="Serilog" Version="4.3.1" />
+      <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+      <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.0" />
+      <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+      <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.17.0" />
+    </ItemGroup>
+
 </Project>

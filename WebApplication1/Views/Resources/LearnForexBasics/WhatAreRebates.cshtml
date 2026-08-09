@@ -1,0 +1,96 @@
+@{
+    ViewData["Title"] = "What Are Forex Rebates and How Do They Work?";
+    string ac = "#16a34a", al = "#f0fdf4";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#03190d,#14532d,#01100a);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="LearnForexBasics">Learn Forex Basics</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Forex Rebates</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">What Are Forex Rebates and How Do They Work?</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 20 Feb 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 6 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Cashback</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(22,163,74,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#bbf7d0;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-circle-dollar-to-slot me-1"></i> Rebates At a Glance</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Paid on",V="Every trade"},new{L="Win or lose",V="Yes, both"},new{L="Typical rate",V="$2–$8.50 / lot"},new{L="Cost to you",V="Free"},new{L="Payout",V="Weekly"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#bbf7d0;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">$8.50</div><div class="na-stat-lbl">Max Rebate / Lot</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">100%</div><div class="na-stat-lbl">Trades Eligible</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">50+</div><div class="na-stat-lbl">Partner Brokers</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">$0</div><div class="na-stat-lbl">Cost to Join</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">A Forex rebate — also called cashback — is a portion of the spread or commission that is returned to you every time you trade. It doesn't matter whether the trade is a winner or a loser: as long as you open and close a position, you earn. Rebates quietly lower your trading costs and, over time, become a genuine second income stream.</p>
+
+            <h2 class="na-h2">Where the Money Comes From</h2>
+            <p class="na-p">When you trade, your broker earns from the spread or commission. Brokers also pay to acquire active traders. A cashback provider like Say Affiliates introduces traders to the broker and, in return, receives a share of that spread revenue. Instead of keeping it all, the provider passes the majority straight back to you. Everybody wins — the broker gets an active client, and you get paid to do what you were going to do anyway.</p>
+
+            <h2 class="na-h2">How Rebates Work, Step by Step</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Register Free</div><div class="na-step-text">Create a Say Affiliates account in minutes. There's no cost and no obligation — you're simply linking your future trading to a rebate program.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Open or Link a Broker Account</div><div class="na-step-text">Choose a regulated partner broker and open an account through the platform, or link an eligible existing one so your trades are tracked.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Trade As Normal</div><div class="na-step-text">Keep trading your usual strategy. Every lot you trade is recorded and a rebate is calculated automatically — no extra steps required.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">04</div><div><div class="na-step-title">Get Paid</div><div class="na-step-text">Your accumulated cashback is paid out on a regular schedule, straight to your account — win, lose or break even.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">A Real Example</h2>
+            <p class="na-p">Suppose you trade 30 standard lots of EUR/USD in a month at a rebate rate of $7.50 per lot. That's <strong>$225 in cashback</strong> for that month — regardless of whether your trading was profitable. Scale that up over a year of active trading and the numbers become impossible to ignore:</p>
+            <ul class="na-list">
+                <li><strong>10 lots/month</strong> at $7.50 → $75/month → <strong>$900/year</strong></li>
+                <li><strong>30 lots/month</strong> at $7.50 → $225/month → <strong>$2,700/year</strong></li>
+                <li><strong>100 lots/month</strong> at $7.50 → $750/month → <strong>$9,000/year</strong></li>
+            </ul>
+
+            <h2 class="na-h2">Why Rebates Matter Most for Beginners</h2>
+            <p class="na-p">New traders tend to trade small and make mistakes — that's part of learning. Rebates soften the cost of that learning curve by returning money on every trade, including the losing ones. Combined with a low-spread broker, cashback can be the difference between a break-even month and a profitable one.</p>
+            <div class="na-pullquote"><div class="na-pullquote-text">"Cashback is the only edge in trading that works whether you win or lose. It doesn't replace skill — it rewards activity, and it compounds quietly in the background."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#bbf7d0;">Start Earning on Every Trade</div>
+                <div class="na-cta-title">Turn Your Trading Volume Into Income</div>
+                <p class="na-cta-sub">Register free, connect a partner broker, and start collecting automatic rebates on every lot you trade.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Home" asp-action="ForexCaculator" class="na-cta-btn-ghost"><i class="fa-solid fa-calculator me-2"></i>Estimate My Cashback</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:100px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Guides</div>
+            @foreach(var r in new[]{new{A="LearnForexGuide",I="fa-solid fa-earth-americas",Bg="#eff6ff",C="#2563eb",T="Forex Basics Guide",D="12 Feb 2024"},new{A="LearnTradeOnBudget",I="fa-solid fa-piggy-bank",Bg="#fffbeb",C="#d97706",T="Trade Forex on a Budget",D="06 Mar 2024"},new{A="LearnCommonMistakes",I="fa-solid fa-triangle-exclamation",Bg="#fff1f2",C="#e11d48",T="Common Trading Mistakes",D="22 Mar 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="Broker" class="frt-tool-btn"><i class="fa-solid fa-award frt-tool-btn-icon" style="color:#d97706;"></i><span class="frt-tool-btn-label">Compare Brokers</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="LiveBrokerSpreads" class="frt-tool-btn"><i class="fa-solid fa-arrow-trend-up frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Live Broker Spreads</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

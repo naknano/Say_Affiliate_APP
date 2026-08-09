@@ -1,0 +1,169 @@
+@{
+    ViewData["Title"] = "Trading Assistance Platform Say Affiliates Introduces Unique Free Tools";
+    var accentColor = "#d97706";
+    var accentLight = "#fff7ed";
+
+    var tools = new[]
+    {
+        new { Icon="fa-solid fa-calculator",        Bg="#eff6ff", Clr="#2563eb", Name="Cashback Calculator",     Desc="Estimate your monthly and annual cashback by entering your broker, instrument, lot size, and volume. Instantly see how much you would earn versus what you currently pay in spreads." },
+        new { Icon="fa-solid fa-arrow-trend-up",    Bg="#f0fdf4", Clr="#16a34a", Name="Live Broker Spreads",     Desc="See real-time pricing and spreads from 100+ brokerage houses side by side. Updated live during market hours so you can compare execution quality before choosing a broker." },
+        new { Icon="fa-solid fa-chart-line",        Bg="#f5f3ff", Clr="#7c3aed", Name="Position Size Calculator",Desc="Calculate the correct lot size for any trade based on account balance, risk percentage, and stop-loss distance. Works for all major pairs, commodities, and indices." },
+        new { Icon="fa-solid fa-calendar-days",     Bg="#ecfdf5", Clr="#059669", Name="Economic Calendar",       Desc="Track all high-impact economic events — NFP, CPI, central bank decisions and more. Filter by currency, impact level, and date range to plan your trading week ahead." },
+        new { Icon="fa-solid fa-signal",            Bg="#fff1f0", Clr="#e53935", Name="Forex Heat Map",          Desc="Visualise currency strength and weakness across all major pairs at a glance. Identify which currencies are trending and which to avoid with a colour-coded strength map." },
+    };
+
+    var relatedArticles = new[]
+    {
+        new { Ctrl="Resources", Act="ForexNewsFreePlatform",    Icon="fa-solid fa-gift",    Bg="#f5f3ff", Clr="#7c3aed", Title="Here's a Free Platform That Reinvents Forex Cashback",              Date="16 Mar 2023" },
+        new { Ctrl="Resources", Act="ForexNewsChangingGame",    Icon="fa-solid fa-chess-rook", Bg="#fff7ed", Clr="#ea580c", Title="How Say Affiliates Is Changing The Game For Independent Traders", Date="16 Mar 2023" },
+        new { Ctrl="Resources", Act="ForexNewsRevolutionising", Icon="fa-solid fa-rotate", Bg="#f0fdf4", Clr="#16a34a", Title="How Say Affiliates Is Revolutionising Forex Cashback",               Date="29 Jul 2022" },
+    };
+}
+
+<div class="br-page">
+
+    <section class="na-hero" style="background:linear-gradient(135deg,#1c1000 0%,#3b2200 55%,#120b00 100%);">
+        <div class="container container-1230">
+            <nav class="br-hero-breadcrumb">
+                <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="Index">Forex Resources</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a asp-controller="Resources" asp-action="ForexNews">Forex News</a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span>Unique Free Tools</span>
+            </nav>
+
+            <div class="row align-items-center g-4 mt-1">
+                <div class="col-lg-8">
+                    <div class="na-pub-badge">
+                        <div class="na-pub-icon" style="background:#fff;color:#7c3aed;font-size:8px;font-weight:900;">Yahoo!</div>
+                        <div>
+                            <div class="na-pub-label">Featured In</div>
+                            <div class="na-pub-name">Yahoo Finance</div>
+                        </div>
+                    </div>
+                    <h1 class="na-headline">Trading Assistance Platform Say Affiliates Introduces Unique Free Tools</h1>
+                    <div class="na-byline">
+                        <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Bogdan Ulmu</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 16 Mar 2023</span>
+                        <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 7 min read</span>
+                        <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Press Coverage</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="br-score-card" style="border-color:rgba(217,119,6,.3);">
+                        <div style="font-size:11px;font-weight:700;color:#fcd34d;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-toolbox me-1"></i> Tools Suite</div>
+                        <div style="display:flex;flex-direction:column;gap:10px;">
+                            @foreach (var t in tools)
+                            {
+                                <div style="display:flex;align-items:center;gap:10px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:8px;">
+                                    <div style="width:28px;height:28px;border-radius:8px;background:@t.Bg;color:@t.Clr;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;"><i class="@t.Icon"></i></div>
+                                    <span style="color:rgba(255,255,255,.8);">@t.Name</span>
+                                    <span style="margin-left:auto;font-size:10px;font-weight:700;color:#16a34a;background:#f0fdf4;border-radius:999px;padding:2px 8px;">FREE</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="na-stat-strip">
+        <div class="container container-1230">
+            <div class="row g-0">
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">5</div><div class="na-stat-lbl">Free Trading Tools</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">100+</div><div class="na-stat-lbl">Broker Spreads Live</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">$0</div><div class="na-stat-lbl">Cost to Access All Tools</div></div></div>
+                <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@accentColor;">Real-Time</div><div class="na-stat-lbl">Spread & Pricing Data</div></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="na-layout">
+        <div class="container container-1230">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-8">
+                    <article class="na-article">
+
+                        <p class="na-lead">Say Affiliates, already known as the platform that pays traders cashback on every trade, has taken its offering a step further — introducing a suite of five professional-grade trading tools, all available completely free of charge. The announcement has drawn attention from the trading community because the tools are not trivial additions: they include a live broker spread comparison engine with real-time data from over 100 brokerage houses.</p>
+
+                        <p class="na-p">The trading tools market has historically been divided between free tools with limited functionality and professional tools locked behind expensive subscriptions. Bloomberg Terminal access, for example, costs approximately $24,000 per year. While Say Affiliates is not positioning itself as a Bloomberg competitor, the quality and utility of the tools it has launched challenge the assumption that retail traders must accept inferior data infrastructure.</p>
+
+                        <div class="na-pullquote">
+                            <div class="na-pullquote-text">"Every tool we've launched solves a real problem that costs retail traders money — either through poor trade sizing, choosing a high-spread broker, or trading the wrong time. These tools exist to fix those issues."</div>
+                            <div class="na-pullquote-src">— Say Affiliates, Platform Statement</div>
+                        </div>
+
+                        <h2 class="na-h2">The Five Tools Explained</h2>
+                        <div style="display:flex;flex-direction:column;gap:16px;margin:20px 0;">
+                            @foreach (var t in tools)
+                            {
+                                <div class="na-step">
+                                    <div class="na-step-num" style="background:@t.Bg;color:@t.Clr;font-size:18px;"><i class="@t.Icon"></i></div>
+                                    <div>
+                                        <div class="na-step-title">@t.Name</div>
+                                        <div class="na-step-text">@t.Desc</div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <h2 class="na-h2">Why Free Tools Alongside Cashback Matters</h2>
+                        <p class="na-p">The combination of cashback rebates and professional trading tools addresses both sides of the cost equation for retail traders. Cashback reduces the per-trade cost of accessing the market. Trading tools improve the quality of decisions made within the market. Together, they lower entry barriers for serious independent traders who cannot justify professional tool subscriptions while still building their trading accounts.</p>
+                        <p class="na-p">The Live Broker Spreads tool is particularly significant. Spread comparison data — showing exactly what each broker charges on each instrument in real time — was previously only available through paid research services or by manually checking multiple platforms. Say Affiliates has consolidated this into a single, free, live-updating dashboard.</p>
+
+                        <div class="na-callout">
+                            <div class="na-callout-title"><i class="fa-solid fa-circle-info me-1"></i> Did You Know?</div>
+                            Choosing a broker with a 0.2-pip tighter spread on EUR/USD saves $2 per standard lot. For a trader placing 20 lots per month, that is $40 per month or $480 per year — simply from switching to the right broker. The Live Spreads tool makes this comparison instant.
+                        </div>
+
+                        <h2 class="na-h2">Access — No Subscription Required</h2>
+                        <p class="na-p">All five tools are accessible without a Say Affiliates account. Visitors can use the Cashback Calculator, check live spreads, and view the Economic Calendar immediately. A free registration unlocks the full trading dashboard with personalised cashback tracking and payout management.</p>
+                        <p class="na-p">This open-access approach is a deliberate choice. Say Affiliates earns revenue when traders use the platform to access cashback-eligible brokers. Making the tools freely available without registration is designed to demonstrate value first and build trust before asking for any commitment.</p>
+
+                        <div class="na-cta">
+                            <div class="na-cta-label" style="color:#fcd34d;">Access All Tools Free</div>
+                            <div class="na-cta-title">Professional Tools + Cashback in One Place</div>
+                            <p class="na-cta-sub">Use our free calculators, live spread comparison, and economic calendar — then register to start earning cashback on every trade.</p>
+                            <div class="na-cta-btns">
+                                <a asp-controller="Resources" asp-action="ForexTools" class="na-cta-btn-primary"><i class="fa-solid fa-toolbox me-2"></i>Explore All Tools</a>
+                                <a asp-controller="Home" asp-action="LiveBrokerSpreads" class="na-cta-btn-ghost"><i class="fa-solid fa-arrow-trend-up me-2"></i>Live Broker Spreads</a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>
+
+                <div class="col-lg-4">
+                    <div style="position:sticky;top:90px;">
+                        <div class="na-sidebar-card mb-3">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-newspaper me-2"></i>Related Articles</div>
+                            @foreach (var r in relatedArticles)
+                            {
+                                <a asp-controller="@r.Ctrl" asp-action="@r.Act" class="na-related-item">
+                                    <div class="na-related-icon" style="background:@r.Bg;color:@r.Clr;"><i class="@r.Icon"></i></div>
+                                    <div>
+                                        <div class="na-related-title">@r.Title</div>
+                                        <div class="na-related-date"><i class="fa-regular fa-calendar me-1"></i>@r.Date</div>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                        <div class="na-sidebar-card">
+                            <div class="na-sidebar-card-hd" style="color:@accentColor;background:@accentLight;"><i class="fa-solid fa-toolbox me-2"></i>Try the Tools</div>
+                            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@accentColor;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                                <a asp-controller="Home" asp-action="LiveBrokerSpreads" class="frt-tool-btn"><i class="fa-solid fa-arrow-trend-up frt-tool-btn-icon" style="color:#16a34a;"></i><span class="frt-tool-btn-label">Live Broker Spreads</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#059669;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

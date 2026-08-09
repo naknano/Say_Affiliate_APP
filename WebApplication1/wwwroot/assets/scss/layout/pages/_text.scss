@@ -1,0 +1,209 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.31 text css start
+/*----------------------------------------*/
+
+.#{$theme-prifix}-text{
+    &-slider{
+        &-item{
+            display: flex;
+            align-items: center;
+            & span{
+                font-family: var(--tp-ff-heading);
+                font-weight: 700;
+                font-size: 22px;
+                text-transform: uppercase;
+                color: var(--tp-common-black);
+                &.icons{
+                    padding: 0 60px;
+                    display: inline-block;
+                    transform: translateY(-2px);
+                }
+                &.borders{
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    background: var(--tp-common-black);
+                    border-radius: 30px;
+                    margin: 0 60px;
+                }
+            }
+        }
+        &-active{
+            & .swiper-slide{
+                width: auto;
+            }
+        }
+    }
+    &-cst{
+        &-title{
+            font-size: 180px;
+            display: flex;
+            align-items: center;
+            @media #{$md}{
+                font-size: 130px;
+            }
+            @media #{$sm,$xs}{
+                font-size: 100px;
+            }
+            & span{
+                border-radius: 120px;
+                width: 138px;
+                height: 138px;
+                background: var(--tp-common-black-1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 36px;
+                @media #{$md,$sm,$xs}{
+                    width: 90px;
+                    height: 90px;
+                }
+            }
+        }
+        &-slide{
+            &-active{
+                & .swiper-slide{
+                    width: auto;
+                }
+            }
+        }
+    }
+    &-it{
+        &-slider{
+            &-item{
+                & span{
+                    font-family: var(--tp-ff-inter);
+                    font-weight: 600;
+                    font-size: 16px;
+                    letter-spacing: -0.03em;
+                    text-transform: capitalize;
+                    color: var(--tp-common-black-1);
+                    border: 1px solid rgba(16, 48, 42, 0.1);
+                    border-radius: 50px;
+                    display: inline-block;
+                    padding: 10px 32px;
+                    transition: all .4s ease;
+                    &:hover{
+                        background: var(--tp-common-green-2);
+                        border-color: var(--tp-common-green-2);
+                    }
+                }
+            }
+            &-active{
+                & .swiper-slide{
+                    width: auto;
+                }
+            }
+        }
+        &-item{
+            & span{
+                font-weight: 700;
+                font-size: 132px;
+                line-height: 1.2;
+                letter-spacing: -0.04em;
+                text-transform: capitalize;
+                color: transparent;
+                color: transparent;
+                transition: .3s;
+                cursor: pointer;
+                white-space: nowrap;
+                display: inline-block;
+                background-size: 0% 100%;
+                padding-right: 30px;
+                background-repeat: no-repeat;
+                font-family: var(--tp-ff-inter);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke: 2px #b0d5ba;
+                transition: background-size .6s cubic-bezier(.32,.55,.58,.76) 0s,.6s -webkit-clip-path cubic-bezier(.32,.55,.58,.76) 0s;
+                background-image: linear-gradient(90deg, #b0d5ba 0%, #b0d5ba 50%, transparent 50.1%);
+                @media #{$lg,$md,$sm}{
+                    font-size: 100px;
+                }
+                @media #{$xs}{
+                    font-size: 50px;
+                }
+                &:hover {
+                    background-size: 200% 100%;
+                }
+            }
+        }
+    }
+    &-pb{
+        &-slider{
+            padding: 29px 0;
+            & .tp-text-slider-item span {
+                font-family: var(--tp-ff-inter);
+                font-weight: 500;
+                font-size: 24px;
+                text-transform: capitalize;
+                color: var(--tp-grey-5);
+            }
+            & .tp-text-slider-item span.icons {
+                padding: 0 40px 0px 12px;
+            }
+        }
+        &-item{
+            & span{
+                font-weight: 600;
+                font-size: 82px;
+                color: var(--tp-common-black-5);
+                padding-right: 20px;
+                -webkit-text-fill-color: var(--tp-common-black-5);
+                -webkit-text-stroke-color: var(--tp-common-black-5);
+                -webkit-text-stroke-width: 0;
+                @media #{$xs}{
+                    font-size: 55px;
+                }
+            }
+        }
+        &-moving{
+            &-bottom{
+                & .tp-text-pb-item{
+                    & span{
+                        opacity: 0.08;
+                    }
+                }
+            }
+        }
+    }
+    &-ai{
+        &-slider{
+            &-active{
+                & .swiper-slide{
+                    width: auto;
+                }
+            }
+            &-content{
+                padding: 52px 0;
+                @media #{$md,$sm,$xs}{
+                    padding: 32px 0;
+                }
+            }
+            &-single{
+                transform: rotate(3deg);
+                &-2{
+                    transform: rotate(-3deg);
+                }
+            }
+        }
+    }
+    &-md{
+        &-title{
+            font-size: 160px;
+            opacity: 0.05;
+            @media #{$lg,$md,$sm,$xs}{
+                font-size: 120px;
+            }
+        }
+        &-slider{
+            &-active{
+                & .swiper-slide{
+                    width: auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+@model WebApplication1.Data.DTO.Broker.BrokerCardDto
+@{
+    var b = Model;
+    var isTop = (b.Rating ?? 0) >= 4.7m
+                || (!string.IsNullOrEmpty(b.Badges) && b.Badges.Contains("top", StringComparison.OrdinalIgnoreCase));
+    var img = string.IsNullOrWhiteSpace(b.ImageUrl)
+                ? ""
+                : (b.ImageUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase) ? b.ImageUrl : Url.Content("~/assets/img/Broker/" + b.ImageUrl));
+    var tag = !string.IsNullOrWhiteSpace(b.RatingLabel)
+                ? b.RatingLabel
+                : (!string.IsNullOrWhiteSpace(b.Badges) ? b.Badges.Split(',')[0].Trim() : "Cashback");
+    var rating = (double)(b.Rating ?? 0);
+    var initials = string.IsNullOrWhiteSpace(b.Name) ? "?" : b.Name.Trim()[..1].ToUpperInvariant();
+}
+<div class="broker-card">
+   @if (isTop)
+   {
+      <span class="broker-card-flag"><i class="fa-solid fa-crown"></i> Top Broker</span>
+   }
+   <a asp-controller="Home" asp-action="BrokerDetail" asp-route-id="@b.Id" class="broker-card-logo">
+      @if (!string.IsNullOrEmpty(img))
+      {
+         <img src="@img" alt="@b.Name">
+      }
+      else
+      {
+         <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:70px;font-size:34px;font-weight:800;color:#009AEE;">@initials</span>
+      }
+   </a>
+   <div class="broker-card-body">
+      <div class="broker-card-head">
+         <h4 class="broker-card-name"><a asp-controller="Home" asp-action="BrokerDetail" asp-route-id="@b.Id">@b.Name</a></h4>
+         <span class="broker-card-tag">@tag</span>
+      </div>
+      <div class="broker-card-rating">
+         @for (var i = 1; i <= 5; i++)
+         {
+            <i class="fa-solid fa-star @(i <= Math.Round(rating) ? "" : "is-dim")"></i>
+         }
+         <span>@rating.ToString("0.0")</span>
+      </div>
+      <div class="broker-card-rebate">
+         <div>
+            <span class="broker-rebate-label">Rebate up to</span>
+            <span class="broker-rebate-value">@(string.IsNullOrWhiteSpace(b.CashbackOffer) ? "—" : b.CashbackOffer)</span>
+         </div>
+         <span class="broker-rebate-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
+      </div>
+      <ul class="broker-card-meta">
+         @if (!string.IsNullOrWhiteSpace(b.PaymentSchedule))
+         {
+            <li><span>Payout</span><b>@b.PaymentSchedule</b></li>
+         }
+         @if (!string.IsNullOrWhiteSpace(b.Badges))
+         {
+            <li><span>Highlights</span><b>@b.Badges</b></li>
+         }
+         @if (!string.IsNullOrWhiteSpace(b.RatingLabel))
+         {
+            <li><span>Rated</span><b>@b.RatingLabel</b></li>
+         }
+      </ul>
+   </div>
+   <div class="broker-card-actions">
+      <a asp-controller="Home" asp-action="BrokerDetail" asp-route-id="@b.Id" class="broker-btn broker-btn-ghost">View Details</a>
+      @if (!string.IsNullOrWhiteSpace(b.SignupUrl))
+      {
+         <a href="@b.SignupUrl" target="_blank" rel="noopener" class="broker-btn broker-btn-solid">Get Rebate <i class="fa-solid fa-arrow-right-long"></i></a>
+      }
+      else
+      {
+         <a asp-controller="Home" asp-action="Register" class="broker-btn broker-btn-solid">Get Rebate <i class="fa-solid fa-arrow-right-long"></i></a>
+      }
+   </div>
+</div>

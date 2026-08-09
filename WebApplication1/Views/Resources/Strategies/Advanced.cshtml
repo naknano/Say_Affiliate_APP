@@ -1,0 +1,100 @@
+@{
+    ViewData["Title"] = "Advanced Trading Strategies: Using Fundamental and Technical Analysis to Enhance Your Returns";
+    string ac = "#312e81", al = "#e0e7ff";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#0f0e27,#1e1b4b,#07060f);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Strategies">Strategies</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Advanced Strategies</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Advanced Trading Strategies: Using Fundamental and Technical Analysis to Enhance Your Returns</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 15 Feb 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 11 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Advanced Strategies</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(49,46,129,.4);">
+                    <div style="font-size:11px;font-weight:700;color:#c7d2fe;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-brain me-1"></i> Advanced Framework</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Approach",V="Top-down"},new{L="Macro level",V="Fundamental (D1+)"},new{L="Execution level",V="Technical (H4, H1)"},new{L="Review frequency",V="Weekly macro + daily chart"},new{L="Best for",V="Experienced traders"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#c7d2fe;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">Top-Down</div><div class="na-stat-lbl">The Core Approach</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">D1+</div><div class="na-stat-lbl">Macro Analysis Level</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">H4/H1</div><div class="na-stat-lbl">Technical Entry Level</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">Highest</div><div class="na-stat-lbl">Edge When Both Align</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">Advanced forex traders don't choose between fundamental and technical analysis — they use both. Fundamentals provide the macro context and directional bias: which currency should be stronger and why. Technical analysis provides the precise timing: exactly where and when to enter. Together, they create the highest-probability setups in currency trading.</p>
+
+            <h2 class="na-h2">Fundamental Analysis for Forex Traders</h2>
+            <p class="na-p">Fundamental analysis in forex focuses on the economic forces that drive currency strength and weakness. The primary driver is <strong>interest rate differentials</strong> — currencies from countries with higher (or rising) interest rates tend to attract capital inflow and strengthen. Key data points to track:</p>
+            <div class="row g-3 mb-3">
+                @foreach(var f in new[]{new{K="Interest Rates",I="fa-solid fa-percent",Bg="#eff6ff",C="#2563eb",V="Central bank rate decisions are the single most powerful driver of currency direction. Fed (USD), ECB (EUR), BoE (GBP), BoJ (JPY), RBA (AUD) — track all major central bank calendars."},new{K="Inflation (CPI/PCE)",I="fa-solid fa-arrow-trend-up",Bg="#fff7ed",C="#ea580c",V="High inflation typically leads to rate hikes → currency strength. Low inflation → rate cuts → currency weakness. CPI releases are tier-1 market-moving events."},new{K="Employment Data",I="fa-solid fa-briefcase",Bg="#f0fdf4",C="#16a34a",V="NFP (US), unemployment rate, jobs claims. Strong employment = strong economy → potential rate hikes. Directly impacts USD pairs and USD crosses."},new{K="GDP Growth",I="fa-solid fa-chart-line",Bg="#f5f3ff",C="#7c3aed",V="Higher GDP growth relative to peers supports currency strength. Compare growth differentials between two countries to forecast pair direction."}})
+                {<div class="col-md-6"><div style="border:1.5px solid #e8edf4;border-radius:12px;padding:14px;"><div style="display:flex;gap:10px;align-items:flex-start;"><div style="width:34px;height:34px;border-radius:9px;background:@f.Bg;color:@f.C;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;"><i class="@f.I"></i></div><div><div style="font-size:13px;font-weight:700;color:#0f1b2d;margin-bottom:4px;">@f.K</div><div style="font-size:12px;color:#64748b;line-height:1.5;">@f.V</div></div></div></div></div>}
+            </div>
+
+            <h2 class="na-h2">The Top-Down Framework — Step by Step</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Identify the Macro Theme</div><div class="na-step-text">Example: The Federal Reserve is hiking rates while the Bank of Japan maintains ultra-loose monetary policy. Thesis: USD should strengthen relative to JPY. Preferred trade direction: Long USD/JPY.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Confirm on the D1 Chart</div><div class="na-step-text">Check the Daily chart to confirm the pair is technically aligned with the macro thesis. Is USD/JPY making higher highs and higher lows? Is price above the 200 EMA? Technical confirmation must agree with the fundamental thesis before proceeding.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Find Entry on H4</div><div class="na-step-text">Drop to H4 and identify a pullback to a key support level (previous S/R, EMA confluence, Fibonacci retracement). Wait for a bullish rejection pattern at the level. This gives the precise entry with the tightest possible stop relative to the potential move size.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">04</div><div><div class="na-step-title">Set Target at Next Major Resistance</div><div class="na-step-text">Use the D1 chart to identify the next major resistance level as your primary target. Because the fundamental thesis supports the move, you can hold for larger targets (100–300 pips) with confidence that the macro driver remains in play.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">Currency Correlations Every Advanced Trader Must Know</h2>
+            <table class="br-facts-table">
+                <thead><tr><th>Correlation</th><th>Impact</th><th style="text-align:center;">Direction</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>USD / DXY Index</strong></td><td>DXY rising = EUR/USD, GBP/USD, AUD/USD falling; USD/JPY, USD/CHF rising</td><td style="text-align:center;color:#16a34a;font-weight:700;">Inverse</td></tr>
+                    <tr><td><strong>AUD/USD / Gold (XAU)</strong></td><td>Gold rising typically lifts AUD/USD; Australia is a major gold exporter</td><td style="text-align:center;color:#2563eb;font-weight:700;">Positive</td></tr>
+                    <tr><td><strong>USD/CAD / Oil (WTI)</strong></td><td>Oil rising = CAD stronger = USD/CAD falling; Canada is an oil-exporting economy</td><td style="text-align:center;color:#16a34a;font-weight:700;">Inverse</td></tr>
+                    <tr><td><strong>Risk-on / JPY, CHF</strong></td><td>Risk-on sentiment weakens JPY and CHF (safe havens sold); risk-off strengthens them</td><td style="text-align:center;color:#16a34a;font-weight:700;">Inverse</td></tr>
+                </tbody>
+            </table>
+
+            <div class="na-pullquote"><div class="na-pullquote-text">"The fundamental analysis tells you the 'why'. The technical analysis tells you the 'when and where'. Trades with both aligned have the highest historical probability of reaching their target without the trade turning against you early."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#c7d2fe;">Trade with Full Context</div>
+                <div class="na-cta-title">Advanced Strategies + Cashback on Every Trade</div>
+                <p class="na-cta-sub">Apply the top-down framework to find your highest-conviction setups, then earn cashback on every position through Say Affiliates.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Home" asp-action="Economic" class="na-cta-btn-ghost"><i class="fa-solid fa-calendar-days me-2"></i>Economic Calendar</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:90px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Strategies</div>
+            @foreach(var r in new[]{new{A="StrategyTechAnalysis",I="fa-solid fa-chart-bar",Bg="#e0e7ff",C="#4f46e5",T="How to Use Technical Analysis",D="12 May 2024"},new{A="StrategyForexSignals",I="fa-solid fa-signal",Bg="#fff1f0",C="#e53935",T="How to Use Forex Signals",D="20 Mar 2024"},new{A="StrategySwingTrading",I="fa-solid fa-wave-square",Bg="#ecfeff",C="#0891b2",T="Swing Trading Strategy Ideas",D="28 Jun 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#059669;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

@@ -1,0 +1,107 @@
+@{
+    ViewData["Title"] = "Forex Basics: A Short Guide to Understanding the Foreign Exchange Market";
+    string ac = "#2563eb", al = "#eff6ff";
+}
+<div class="br-page">
+<section class="na-hero" style="background:linear-gradient(135deg,#0a1b3d,#1e3a8a,#050b1c);">
+    <div class="container container-1230">
+        <nav class="br-hero-breadcrumb">
+            <a asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house"></i></a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="Index">Resources</a><i class="fa-solid fa-chevron-right"></i>
+            <a asp-controller="Resources" asp-action="LearnForexBasics">Learn Forex Basics</a><i class="fa-solid fa-chevron-right"></i>
+            <span>Forex Basics</span>
+        </nav>
+        <div class="row align-items-center g-4 mt-1">
+            <div class="col-lg-8">
+                <h1 class="na-headline">Forex Basics: A Short Guide to Understanding the Foreign Exchange Market</h1>
+                <div class="na-byline">
+                    <span class="na-byline-item"><i class="fa-solid fa-pen-nib"></i> Say Affiliates</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-calendar"></i> 12 Feb 2024</span>
+                    <span class="na-byline-item"><i class="fa-regular fa-clock"></i> 8 min read</span>
+                    <span class="na-byline-item"><i class="fa-solid fa-tag"></i> Beginner</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="br-score-card" style="border-color:rgba(37,99,235,.35);">
+                    <div style="font-size:11px;font-weight:700;color:#bfdbfe;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;text-align:center;"><i class="fa-solid fa-earth-americas me-1"></i> Forex At a Glance</div>
+                    <div style="display:flex;flex-direction:column;gap:9px;">
+                        @foreach(var r in new[]{new{L="Market size",V="$7.5T / day"},new{L="Opening hours",V="24 hours, 5 days"},new{L="Most traded",V="EUR/USD"},new{L="Min. to start",V="From $50"},new{L="Central exchange",V="None (OTC)"}})
+                        {<div style="display:flex;justify-content:space-between;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:7px;"><span style="color:rgba(255,255,255,.6);">@r.L</span><span style="color:#bfdbfe;font-weight:700;">@r.V</span></div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="na-stat-strip"><div class="container container-1230"><div class="row g-0">
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">$7.5T</div><div class="na-stat-lbl">Daily Volume</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">24/5</div><div class="na-stat-lbl">Always Open</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">8</div><div class="na-stat-lbl">Major Currencies</div></div></div>
+    <div class="col-6 col-md-3"><div class="na-stat"><div class="na-stat-num" style="color:@ac;">4</div><div class="na-stat-lbl">Trading Sessions</div></div></div>
+</div></div></div>
+<div class="na-layout"><div class="container container-1230"><div class="row g-4 align-items-start">
+    <div class="col-lg-9">
+        <article class="na-article">
+            <p class="na-lead">The foreign exchange market — Forex or FX — is the largest and most liquid financial market on earth, with more than $7.5 trillion changing hands every single day. Yet its core idea is simple: you exchange one currency for another, hoping the one you hold rises in value. This guide breaks the essentials down into plain English so you can start with confidence.</p>
+
+            <h2 class="na-h2">What Is the Forex Market?</h2>
+            <p class="na-p">Unlike the stock market, Forex has no central exchange. It runs "over the counter" (OTC) across a global network of banks, brokers, institutions and individual traders. Because those participants span every time zone, the market stays open 24 hours a day, five days a week — from the Sydney open on Monday morning to the New York close on Friday evening. That constant availability is one of the reasons Forex is so accessible to part-time and full-time traders alike.</p>
+
+            <h2 class="na-h2">How a Currency Pair Works</h2>
+            <p class="na-p">Every Forex trade involves two currencies at once — you buy one while selling the other. That's why prices are always quoted as a <strong>pair</strong>, such as EUR/USD. The first currency is the <em>base</em>; the second is the <em>quote</em>. If EUR/USD is trading at 1.0850, it means one euro is worth 1.0850 US dollars.</p>
+            <ul class="na-list">
+                <li><strong>Major pairs</strong> always include the US dollar — EUR/USD, GBP/USD, USD/JPY. They have the tightest spreads and deepest liquidity.</li>
+                <li><strong>Minor pairs</strong> (crosses) exclude the USD — for example EUR/GBP or AUD/JPY.</li>
+                <li><strong>Exotic pairs</strong> combine a major currency with one from a smaller economy, like USD/TRY. They move sharply and carry wider spreads.</li>
+            </ul>
+
+            <h2 class="na-h2">Key Terms Every Beginner Must Know</h2>
+            <div class="na-step-grid">
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">01</div><div><div class="na-step-title">Pips</div><div class="na-step-text">A pip is the smallest standard price move, usually the 4th decimal place (0.0001). If EUR/USD moves from 1.0850 to 1.0851, that's one pip. Pips are how you measure profit and loss.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">02</div><div><div class="na-step-title">Lots</div><div class="na-step-text">Trade size is measured in lots. A standard lot is 100,000 units, a mini lot 10,000, and a micro lot just 1,000 — letting beginners start small and control risk.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">03</div><div><div class="na-step-title">Leverage &amp; Margin</div><div class="na-step-text">Leverage lets you control a large position with a small deposit (margin). At 1:100, $1,000 controls $100,000. It magnifies profits — and losses — so use it carefully.</div></div></div>
+                <div class="na-step"><div class="na-step-num" style="background:@al;color:@ac;">04</div><div><div class="na-step-title">Spread</div><div class="na-step-text">The spread is the small gap between the buy (ask) and sell (bid) price — effectively the broker's fee. Tighter spreads mean lower trading costs, which matters most for active traders.</div></div></div>
+            </div>
+
+            <h2 class="na-h2">The Four Trading Sessions</h2>
+            <div class="row g-3 mb-3">
+                @foreach(var s in new[]{
+                    new{N="Sydney",T="22:00–07:00 UTC",D="The quiet opener of the trading week. Lower volatility, ideal for range strategies on AUD and NZD pairs.",Bg="#eff6ff",Clr="#2563eb"},
+                    new{N="Tokyo",T="00:00–09:00 UTC",D="The Asian session. JPY pairs are most active. Steady, orderly moves suit patient entries.",Bg="#f0fdf4",Clr="#16a34a"},
+                    new{N="London",T="07:00–16:00 UTC",D="The busiest session globally. Huge liquidity and sharp moves on EUR and GBP pairs.",Bg="#fffbeb",Clr="#d97706"},
+                    new{N="New York",T="13:00–22:00 UTC",D="USD-driven. Major economic data lands here. The London–NY overlap is the peak window.",Bg="#fdf2f8",Clr="#db2777"}
+                })
+                {<div class="col-md-6 col-lg-3"><div style="border:1.5px solid #e8edf4;border-radius:14px;padding:16px;background:@s.Bg;height:100%;"><div style="font-size:14px;font-weight:800;color:@s.Clr;margin-bottom:4px;">@s.N</div><div style="font-size:11px;font-weight:700;color:@s.Clr;opacity:.7;margin-bottom:8px;">@s.T</div><div style="font-size:12px;color:#374151;line-height:1.6;">@s.D</div></div></div>}
+            </div>
+
+            <h2 class="na-h2">Turning Costs Into Cashback</h2>
+            <p class="na-p">Every trade you place carries a cost — the spread or commission. What most beginners don't realise is that a portion of that cost can be returned to you as <strong>cashback</strong>. Through Say Affiliates, you earn an automatic rebate on every trade with a partner broker, whether the trade wins or loses. Over hundreds of trades, that adds up to a meaningful second income stream on top of your profits.</p>
+            <div class="na-pullquote"><div class="na-pullquote-text">"The best time to learn the fundamentals is before your first trade. The second best time is now — and every lot you trade from here can earn cashback while you learn."</div><div class="na-pullquote-src">— Say Affiliates</div></div>
+
+            <div class="na-cta">
+                <div class="na-cta-label" style="color:#bfdbfe;">Put the Basics Into Practice</div>
+                <div class="na-cta-title">Start Trading With Cashback From Day One</div>
+                <p class="na-cta-sub">Register free, choose a regulated low-spread broker from the Say Affiliates network, and earn rebates on every trade as you learn.</p>
+                <div class="na-cta-btns">
+                    <a asp-controller="Authentication" asp-action="Register" class="na-cta-btn-primary"><i class="fa-solid fa-user-plus me-2"></i>Register Free</a>
+                    <a asp-controller="Home" asp-action="ForexCaculator" class="na-cta-btn-ghost"><i class="fa-solid fa-calculator me-2"></i>Cashback Calculator</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-lg-3"><div style="position:sticky;top:100px;">
+        <div class="na-sidebar-card mb-3">
+            <div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-list me-2"></i>More Guides</div>
+            @foreach(var r in new[]{new{A="LearnRebates",I="fa-solid fa-circle-dollar-to-slot",Bg="#f0fdf4",C="#16a34a",T="What Are Forex Rebates?",D="20 Feb 2024"},new{A="LearnTradingPlan",I="fa-solid fa-clipboard-list",Bg="#f5f3ff",C="#7c3aed",T="How to Create a Trading Plan",D="28 Feb 2024"},new{A="LearnTradingPsychology",I="fa-solid fa-brain",Bg="#ecfeff",C="#0891b2",T="Trading Psychology",D="14 Mar 2024"}})
+            {<a asp-controller="Resources" asp-action="@r.A" class="na-related-item"><div class="na-related-icon" style="background:@r.Bg;color:@r.C;"><i class="@r.I"></i></div><div><div class="na-related-title">@r.T</div><div class="na-related-date">@r.D</div></div></a>}
+        </div>
+        <div class="na-sidebar-card"><div class="na-sidebar-card-hd" style="color:@ac;background:@al;"><i class="fa-solid fa-calculator me-2"></i>Free Tools</div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+                <a asp-controller="Home" asp-action="ForexCaculator" class="frt-tool-btn"><i class="fa-solid fa-calculator frt-tool-btn-icon" style="color:@ac;"></i><span class="frt-tool-btn-label">Cashback Calculator</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="Economic" class="frt-tool-btn"><i class="fa-solid fa-calendar-days frt-tool-btn-icon" style="color:#059669;"></i><span class="frt-tool-btn-label">Economic Calendar</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+                <a asp-controller="Home" asp-action="CrossRates" class="frt-tool-btn"><i class="fa-solid fa-arrow-down-up-across-line frt-tool-btn-icon" style="color:#2563eb;"></i><span class="frt-tool-btn-label">Forex Cross Rates</span><i class="fa-solid fa-arrow-right frt-tool-btn-arrow"></i></a>
+            </div>
+        </div>
+    </div></div>
+</div></div></div>
+</div>

@@ -1,0 +1,353 @@
+@model WebApplication1.Data.DTO.Broker.BrokerDetailPageDto
+@{
+    var b = Model?.Broker ?? new WebApplication1.Data.DTO.Broker.BrokerCardDto();
+    var related = Model?.Related ?? new List<WebApplication1.Data.DTO.Broker.BrokerCardDto>();
+
+    string Img(string? url) => string.IsNullOrWhiteSpace(url)
+        ? ""
+        : (url.StartsWith("http", StringComparison.OrdinalIgnoreCase) ? url : Url.Content("~/assets/img/Broker/" + url));
+
+    var rating = (double)(b.Rating ?? 0);
+    var isTop = (b.Rating ?? 0) >= 4.7m || (!string.IsNullOrEmpty(b.Badges) && b.Badges.Contains("top", StringComparison.OrdinalIgnoreCase));
+    var badgeList = string.IsNullOrWhiteSpace(b.Badges)
+        ? new List<string>()
+        : b.Badges.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+    var overview = !string.IsNullOrWhiteSpace(b.Description) ? b.Description
+                 : (!string.IsNullOrWhiteSpace(b.Note) ? b.Note : null);
+    var rebate = string.IsNullOrWhiteSpace(b.CashbackOffer) ? "—" : b.CashbackOffer;
+    var payout = string.IsNullOrWhiteSpace(b.PaymentSchedule) ? "—" : b.PaymentSchedule;
+    var heroImg = Img(b.ImageUrl);
+    var initials = string.IsNullOrWhiteSpace(b.Name) ? "?" : b.Name.Trim()[..1].ToUpperInvariant();
+    ViewData["Title"] = b.Name;
+}
+
+<div class="bkd-page">
+<span class="bkd-page-bg" aria-hidden="true">
+   <span class="bkd-blob bkd-blob-1"></span>
+   <span class="bkd-blob bkd-blob-2"></span>
+   <span class="bkd-blob bkd-blob-3"></span>
+</span>
+
+<!-- broker details area start -->
+<div class="tp-product-details-area pre-header pt-120 broker-modern bkd-modern">
+   <div class="container">
+
+      <!-- ===== Hero ===== -->
+      <div class="bkd-hero mb-30">
+         <div class="row align-items-center">
+            <div class="col-lg-3">
+               <div class="bkd-hero-logo">
+                  @if (!string.IsNullOrEmpty(heroImg))
+                  {
+                     <img src="@heroImg" alt="@b.Name">
+                  }
+                  else
+                  {
+                     <span style="display:flex;align-items:center;justify-content:center;width:100%;min-height:90px;font-size:46px;font-weight:800;color:#009AEE;">@initials</span>
+                  }
+               </div>
+            </div>
+            <div class="col-lg-6">
+               <div class="bkd-hero-main">
+                  <div class="bkd-hero-badges">
+                     @if (isTop)
+                     {
+                        <span class="bkd-badge bkd-badge-gold"><i class="fa-solid fa-crown"></i> Top Broker</span>
+                     }
+                     @foreach (var badge in badgeList)
+                     {
+                        <span class="bkd-badge">@badge</span>
+                     }
+                     <span class="bkd-badge"><i class="fa-solid fa-money-bill-transfer"></i> Cashback</span>
+                  </div>
+                  <h2 class="bkd-hero-title">@b.Name</h2>
+                  <div class="bkd-hero-ratings">
+                     <div class="bkd-rating-chip">
+                        <span class="bkd-rating-score">@rating.ToString("0.0")</span>
+                        <span class="bkd-rating-stars">
+                           @for (var i = 1; i <= 5; i++)
+                           {
+                              <i class="fa-solid fa-star @(i <= Math.Round(rating) ? "" : "is-dim")"></i>
+                           }
+                        </span>
+                        <span class="bkd-rating-src">@(string.IsNullOrWhiteSpace(b.RatingLabel) ? "Say Affiliates" : b.RatingLabel)</span>
+                     </div>
+                  </div>
+                  <p class="bkd-hero-desc">
+                     @if (!string.IsNullOrWhiteSpace(overview))
+                     {
+                        @overview
+                     }
+                     else
+                     {
+                        <text>Trade with <span class="main-color">@b.Name</span> and earn cashback on every trade through Say Affiliates.</text>
+                     }
+                  </p>
+               </div>
+            </div>
+            <div class="col-lg-3">
+               <div class="bkd-hero-cta">
+                  <div class="bkd-hero-rebate">
+                     <span class="bkd-hero-rebate-label">Rebate up to</span>
+                     <span class="bkd-hero-rebate-value">@rebate</span>
+                  </div>
+                  <a asp-controller="Home" asp-action="SetupRebates" asp-route-id="@b.Id" class="broker-btn broker-btn-solid w-100 mb-10">Open Account &amp; Get Rebate <i class="fa-solid fa-arrow-right-long"></i></a>
+                  @if (!string.IsNullOrWhiteSpace(b.WebsiteUrl))
+                  {
+                     <a href="@b.WebsiteUrl" target="_blank" rel="noopener" class="broker-btn broker-btn-ghost w-100">Visit Broker Website</a>
+                  }
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- ===== Quick stats strip ===== -->
+      <div class="row bkd-stats mb-40">
+         <div class="col-lg-3 col-6 mb-15">
+            <div class="bkd-stat">
+               <span class="bkd-stat-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
+               <div>
+                  <span class="bkd-stat-label">Cashback</span>
+                  <span class="bkd-stat-value">@rebate</span>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-3 col-6 mb-15">
+            <div class="bkd-stat">
+               <span class="bkd-stat-icon"><i class="fa-solid fa-calendar-check"></i></span>
+               <div>
+                  <span class="bkd-stat-label">Payout</span>
+                  <span class="bkd-stat-value">@payout</span>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-3 col-6 mb-15">
+            <div class="bkd-stat">
+               <span class="bkd-stat-icon"><i class="fa-solid fa-star"></i></span>
+               <div>
+                  <span class="bkd-stat-label">Rating</span>
+                  <span class="bkd-stat-value">@rating.ToString("0.0") @(string.IsNullOrWhiteSpace(b.RatingLabel) ? "" : "· " + b.RatingLabel)</span>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-3 col-6 mb-15">
+            <div class="bkd-stat">
+               <span class="bkd-stat-icon"><i class="fa-solid fa-shield-halved"></i></span>
+               <div>
+                  <span class="bkd-stat-label">Status</span>
+                  <span class="bkd-stat-value">@(string.IsNullOrWhiteSpace(b.Status) ? "Active" : char.ToUpper(b.Status[0]) + b.Status[1..])</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- ===== Tabs ===== -->
+   <div class="tp-product-details-bottom pb-140">
+      <div class="container container-1230">
+         <div class="row">
+            <div class="col-xl-12">
+               <div class="bkd-tab-wrap text-center mb-20">
+                  <nav>
+                     <div class="nav broker-tabs bkd-tabs" id="navPresentationTab" role="tablist">
+                        <button class="nav-link active" id="nav-cashback-tab" data-bs-toggle="tab" data-bs-target="#nav-cashback" type="button" role="tab" aria-controls="nav-cashback" aria-selected="true"><i class="fa-solid fa-money-bill-transfer"></i> Rebates</button>
+                        <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review" aria-selected="false"><i class="fa-solid fa-magnifying-glass-chart"></i> Overview</button>
+                        <button class="nav-link" id="nav-regulation-tab" data-bs-toggle="tab" data-bs-target="#nav-regulation" type="button" role="tab" aria-controls="nav-regulation" aria-selected="false"><i class="fa-solid fa-shield-halved"></i> Safety</button>
+                        <button class="nav-link" id="nav-offer-tab" data-bs-toggle="tab" data-bs-target="#nav-offer" type="button" role="tab" aria-controls="nav-offer" aria-selected="false"><i class="fa-solid fa-gift"></i> Offers</button>
+                     </div>
+                  </nav>
+               </div>
+
+               <div class="tab-content" id="navPresentationTabContent">
+
+                  <!-- ===== Rebates ===== -->
+                  <div class="tab-pane fade show active" id="nav-cashback" role="tabpanel" aria-labelledby="nav-cashback-tab" tabindex="0">
+                     <div class="pt-30">
+                        <div class="bkd-panel">
+                           <h3 class="bkd-panel-title">Cashback Rebate</h3>
+                           <p class="bkd-panel-sub">Earn rebates automatically on every closed trade with @b.Name through Say Affiliates.</p>
+                           <div class="row mt-10">
+                              <div class="col-md-4 mb-15">
+                                 <div class="bkd-stat">
+                                    <span class="bkd-stat-icon"><i class="fa-solid fa-money-bill-transfer"></i></span>
+                                    <div>
+                                       <span class="bkd-stat-label">Rebate up to</span>
+                                       <span class="bkd-stat-value">@rebate</span>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 mb-15">
+                                 <div class="bkd-stat">
+                                    <span class="bkd-stat-icon"><i class="fa-solid fa-calendar-check"></i></span>
+                                    <div>
+                                       <span class="bkd-stat-label">Payout Schedule</span>
+                                       <span class="bkd-stat-value">@payout</span>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 mb-15">
+                                 <div class="bkd-stat">
+                                    <span class="bkd-stat-icon"><i class="fa-solid fa-circle-check"></i></span>
+                                    <div>
+                                       <span class="bkd-stat-label">Eligible Trades</span>
+                                       <span class="bkd-stat-value">All · win or lose</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="bkd-panel mt-25">
+                           <h3 class="bkd-panel-title">How It Works</h3>
+                           <div class="row mt-10">
+                              <div class="col-md-4 mb-15">
+                                 <div class="bkd-step">
+                                    <span class="bkd-step-num">1</span>
+                                    <h4>Register with Say Affiliates</h4>
+                                    <p>Create your free account and choose @b.Name from our broker list.</p>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 mb-15">
+                                 <div class="bkd-step">
+                                    <span class="bkd-step-num">2</span>
+                                    <h4>Open / Link your broker account</h4>
+                                    <p>Open a new @b.Name account through our link, or link your existing one.</p>
+                                 </div>
+                              </div>
+                              <div class="col-md-4 mb-15">
+                                 <div class="bkd-step">
+                                    <span class="bkd-step-num">3</span>
+                                    <h4>Trade &amp; get paid</h4>
+                                    <p>Trade as usual — rebates are credited to your Say Affiliates wallet.</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- ===== Overview ===== -->
+                  <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab" tabindex="0">
+                     <div class="pt-30">
+                        <div class="bkd-panel">
+                           <h3 class="bkd-panel-title">Broker Overview</h3>
+                           @if (!string.IsNullOrWhiteSpace(overview))
+                           {
+                              <p>@overview</p>
+                           }
+                           else
+                           {
+                              <p>@b.Name is a partner broker on the Say Affiliates network. Trade with @b.Name and earn automatic cashback rebates on every trade, reducing your effective trading costs.</p>
+                           }
+                        </div>
+                        @if (badgeList.Count > 0)
+                        {
+                           <div class="bkd-panel mt-25">
+                              <h3 class="bkd-panel-title"><i class="fa-solid fa-circle-check"></i> Highlights</h3>
+                              <ul class="bkd-list">
+                                 @foreach (var badge in badgeList)
+                                 {
+                                    <li>@badge</li>
+                                 }
+                              </ul>
+                           </div>
+                        }
+                     </div>
+                  </div>
+
+                  <!-- ===== Safety ===== -->
+                  <div class="tab-pane fade" id="nav-regulation" role="tabpanel" aria-labelledby="nav-regulation-tab" tabindex="0">
+                     <div class="pt-30">
+                        <div class="row">
+                           <div class="col-md-4 mb-15">
+                              <div class="bkd-safety">
+                                 <i class="fa-solid fa-vault"></i>
+                                 <h4>Segregated Funds</h4>
+                                 <p>Reputable brokers keep client money separate from company funds at top-tier banks.</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4 mb-15">
+                              <div class="bkd-safety">
+                                 <i class="fa-solid fa-umbrella"></i>
+                                 <h4>Negative Balance Protection</h4>
+                                 <p>Retail clients generally cannot lose more than their account balance.</p>
+                              </div>
+                           </div>
+                           <div class="col-md-4 mb-15">
+                              <div class="bkd-safety">
+                                 <i class="fa-solid fa-file-shield"></i>
+                                 <h4>Verify Regulation</h4>
+                                 <p>Always confirm @b.Name's licence on the official regulator's register before depositing.</p>
+                              </div>
+                           </div>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(b.WebsiteUrl))
+                        {
+                           <div class="bkd-panel mt-15">
+                              <p class="mb-0">Official website: <a class="main-color" href="@b.WebsiteUrl" target="_blank" rel="noopener">@b.WebsiteUrl</a></p>
+                           </div>
+                        }
+                     </div>
+                  </div>
+
+                  <!-- ===== Offers ===== -->
+                  <div class="tab-pane fade" id="nav-offer" role="tabpanel" aria-labelledby="nav-offer-tab" tabindex="0">
+                     <div class="pt-30">
+                        <div class="row">
+                           <div class="col-md-6 mb-20">
+                              <div class="bkd-offer">
+                                 <span class="bkd-offer-icon"><i class="fa-solid fa-gift"></i></span>
+                                 <div>
+                                    <h4>Welcome Cashback Boost</h4>
+                                    <p>Get <b class="main-color">extra rebates</b> for your first months after linking your @b.Name account.</p>
+                                    <a asp-controller="Home" asp-action="Register" class="bkd-offer-link">Claim offer <i class="fa-solid fa-arrow-right-long"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6 mb-20">
+                              <div class="bkd-offer">
+                                 <span class="bkd-offer-icon"><i class="fa-solid fa-user-group"></i></span>
+                                 <div>
+                                    <h4>Refer a Friend</h4>
+                                    <p>Invite a trader friend and earn <b class="main-color">a share of their rebates</b> for a full year.</p>
+                                    <a asp-controller="Home" asp-action="Register" class="bkd-offer-link">Start referring <i class="fa-solid fa-arrow-right-long"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- broker details area end -->
+
+<!-- other brokers start -->
+@if (related.Count > 0)
+{
+   <div class="tp-product-ptb pt-60 pb-90 broker-modern">
+      <div class="container containers">
+         <div class="row">
+            <div class="col-12">
+               <div class="mb-40 d-flex align-items-center justify-content-between flex-wrap">
+                  <h2 class="tp-ff-dm">Other Brokers You May Like</h2>
+                  <a asp-controller="Home" asp-action="Broker" class="broker-btn broker-btn-ghost">All Brokers <i class="fa-solid fa-arrow-right-long"></i></a>
+               </div>
+            </div>
+            @foreach (var rb in related)
+            {
+               <div class="col-xl-3 col-lg-4 col-md-6 mb-30">
+                  <partial name="_BrokerCard" model="rb" />
+               </div>
+            }
+         </div>
+      </div>
+   </div>
+}
+<!-- other brokers end -->
+</div>
+<!-- bkd-page end -->
