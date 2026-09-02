@@ -1,0 +1,273 @@
+@{
+    ViewData["Title"] = "Lot Size Calculator";
+
+    var instruments = new[]
+    {
+        new { Name = "EUR/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "GBP/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "USD/JPY", PipSize = 0.01,   ContractSize = 100000 },
+        new { Name = "USD/CHF", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "AUD/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "USD/CAD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "NZD/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "EUR/GBP", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "EUR/JPY", PipSize = 0.01,   ContractSize = 100000 },
+        new { Name = "GBP/JPY", PipSize = 0.01,   ContractSize = 100000 },
+        new { Name = "XAU/USD", PipSize = 0.01,   ContractSize = 100   },
+        new { Name = "XAG/USD", PipSize = 0.001,  ContractSize = 5000  },
+    };
+
+    var currencies = new[] { "US Dollar", "Euro", "British Pound", "Japanese Yen", "Swiss Franc", "Australian Dollar", "Canadian Dollar", "New Zealand Dollar" };
+}
+
+<!-- hero -->
+<div class="tp-product-hero fx-calc-hero pre-header" data-background="@Url.Content("~/assets/img/update-2/hero/hero-3/hero-thumb-1.png")">
+    <div class="container containers">
+        <div class="row">
+            <div class="col-12">
+                <div class="tp-product-hero-content text-center">
+                    <span class="fx-calc-badge"><i class="fa-solid fa-coins"></i> Lot Size Calculator</span>
+                    <h2 class="mb-15 tp-ff-dm">Lot Size Calculator</h2>
+                    <div class="tp-breadcrumb-list tp-breadcrumb-2-list">
+                        <ul class="justify-content-center">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><span></span></li>
+                            <li>Lot Size Calculator</li>
+                        </ul>
+                    </div>
+                    <p class="fx-calc-intro">
+                        Find the optimal lot size for any trade based on your account balance, risk percentage and stop loss.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- hero end -->
+
+<!-- body -->
+<div class="fx-calc pre-header pt-80 pb-120">
+    <div class="container container-1230">
+        <div class="fx-calc-card">
+            <div class="row g-0">
+
+                <!-- inputs -->
+                <div class="col-lg-6">
+                    <div class="fx-calc-form">
+                        <h3 class="fx-calc-form-title">Your trade details</h3>
+
+                        <div class="fx-calc-field">
+                            <label for="lstInstrument">Instrument</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <select id="lstInstrument">
+                                    @foreach (var ins in instruments)
+                                    {
+                                        <option value="@ins.PipSize.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                                                data-contract="@ins.ContractSize"
+                                                data-name="@ins.Name">
+                                            @ins.Name
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label for="lstDepositCcy">Deposit currency</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-coins"></i>
+                                <select id="lstDepositCcy">
+                                    @foreach (var ccy in currencies)
+                                    {
+                                        <option>@ccy</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label for="lstStopLoss">Stop loss (pips)</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <input type="number" id="lstStopLoss" class="fx-calc-input" value="200" min="1" step="1" />
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label for="lstBalance">Account Balance</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-wallet"></i>
+                                <input type="number" id="lstBalance" class="fx-calc-input" value="100000" min="1" step="100" />
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field" id="lstPipSizeRow">
+                            <label id="lstPipSizeLabel">EUR/USD 1 Pip Size</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-ruler"></i>
+                                <input type="text" id="lstPipSizeDisplay" class="fx-calc-input" readonly />
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label>Risk</label>
+                            <div class="fx-calc-risk-row">
+                                <div class="fx-calc-select" style="flex:1">
+                                    <i class="fa-solid fa-percent"></i>
+                                    <input type="number" id="lstRiskVal" class="fx-calc-input" value="2" min="0.1" step="0.1" />
+                                </div>
+                                <div class="fx-calc-select fx-calc-select--sm">
+                                    <select id="lstRiskType">
+                                        <option value="pct">%</option>
+                                        <option value="usd">USD</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label id="lstContractLabel">Contract size (Units per Lot)</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <input type="text" id="lstContractDisplay" class="fx-calc-input" readonly value="100000" />
+                            </div>
+                        </div>
+
+                        <button type="button" class="fx-calc-btn" id="lstCalcBtn">
+                            <i class="fa-solid fa-calculator"></i> Calculate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- results -->
+                <div class="col-lg-6">
+                    <div class="fx-calc-result">
+                        <span class="fx-calc-result-shape"></span>
+                        <div class="fx-calc-result-top">
+                            <span class="fx-calc-result-label">Recommended lot size</span>
+                            <span class="fx-calc-result-period">standard lots</span>
+                        </div>
+                        <div class="fx-calc-result-hero" id="lstLots">0.00</div>
+
+                        <div class="fx-calc-result-grid">
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Lots (trade size)</span>
+                                <span class="fx-calc-result-v" id="lstLotsVal">0.00</span>
+                            </div>
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Units (trade size)</span>
+                                <span class="fx-calc-result-v" id="lstUnitsVal">0</span>
+                            </div>
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Money at risk</span>
+                                <span class="fx-calc-result-v" id="lstMoneyRisk">$0.00</span>
+                            </div>
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Pip value</span>
+                                <span class="fx-calc-result-v" id="lstPipValue">$0.00</span>
+                            </div>
+                        </div>
+
+                        <a asp-controller="Home" asp-action="Register" class="fx-calc-cta">
+                            Start trading with cashback <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <p class="fx-calc-result-foot">Free to join &middot; paid weekly &middot; no hidden fees</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- info cards -->
+        <div class="row mt-50">
+            <div class="col-md-4 mb-20">
+                <div class="fx-calc-info">
+                    <span class="fx-calc-info-icon"><i class="fa-solid fa-sliders"></i></span>
+                    <h5>1. Set your risk</h5>
+                    <p>Enter your account balance and how much you are willing to risk per trade (% or fixed amount).</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-20">
+                <div class="fx-calc-info">
+                    <span class="fx-calc-info-icon"><i class="fa-solid fa-bolt"></i></span>
+                    <h5>2. Define your stop loss</h5>
+                    <p>Input your stop loss in pips so the calculator can size your position precisely.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-20">
+                <div class="fx-calc-info">
+                    <span class="fx-calc-info-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    <h5>3. Trade with confidence</h5>
+                    <p>Use the recommended lot size to keep every trade within your risk tolerance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- body end -->
+
+@section Scripts {
+<script>
+(function () {
+    var instEl    = document.getElementById('lstInstrument');
+    var slEl      = document.getElementById('lstStopLoss');
+    var balEl     = document.getElementById('lstBalance');
+    var riskValEl = document.getElementById('lstRiskVal');
+    var riskTypeEl= document.getElementById('lstRiskType');
+    var btnEl     = document.getElementById('lstCalcBtn');
+    var pipDisp   = document.getElementById('lstPipSizeDisplay');
+    var pipLbl    = document.getElementById('lstPipSizeLabel');
+    var contractDisp = document.getElementById('lstContractDisplay');
+    if (!instEl) return;
+
+    function getOpt() { return instEl.options[instEl.selectedIndex]; }
+
+    function updateLabels() {
+        var opt = getOpt();
+        var pipSize  = parseFloat(opt.value) || 0.0001;
+        var contract = parseInt(opt.getAttribute('data-contract'), 10) || 100000;
+        var name     = opt.getAttribute('data-name') || '';
+        pipDisp.value = pipSize;
+        pipLbl.textContent = name + ' 1 Pip Size';
+        contractDisp.value = contract.toLocaleString('en-US');
+    }
+
+    function fmt(n) {
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function calc() {
+        var opt      = getOpt();
+        var pipSize  = parseFloat(opt.value) || 0.0001;
+        var contract = parseInt(opt.getAttribute('data-contract'), 10) || 100000;
+        var sl       = parseFloat(slEl.value) || 0;
+        var balance  = parseFloat(balEl.value) || 0;
+        var riskVal  = parseFloat(riskValEl.value) || 0;
+        var riskType = riskTypeEl.value;
+
+        var moneyAtRisk = riskType === 'pct' ? balance * (riskVal / 100) : riskVal;
+
+        // pip value per lot = pipSize * contractSize (for USD quote pairs, approx)
+        var pipValuePerLot = pipSize * contract;
+        var lots = sl > 0 && pipValuePerLot > 0 ? moneyAtRisk / (sl * pipValuePerLot) : 0;
+        var units = lots * contract;
+        var pipValue = pipValuePerLot * lots;
+
+        document.getElementById('lstLots').textContent    = lots.toFixed(2);
+        document.getElementById('lstLotsVal').textContent = lots.toFixed(2);
+        document.getElementById('lstUnitsVal').textContent = Math.round(units).toLocaleString('en-US');
+        document.getElementById('lstMoneyRisk').textContent = fmt(moneyAtRisk);
+        document.getElementById('lstPipValue').textContent  = fmt(pipValue);
+    }
+
+    instEl.addEventListener('change', function () { updateLabels(); calc(); });
+    btnEl.addEventListener('click', calc);
+    [slEl, balEl, riskValEl].forEach(function (el) { el.addEventListener('input', calc); });
+    riskTypeEl.addEventListener('change', calc);
+
+    updateLabels();
+    calc();
+})();
+</script>
+}

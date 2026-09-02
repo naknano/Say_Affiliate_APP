@@ -1,0 +1,535 @@
+@{
+    ViewData["Title"] = "Get Advice";
+}
+
+<style>
+/* ── Get Advice page ─────────────────────────────────────── */
+.adv-hero {
+    background: linear-gradient(135deg, #0f2744 0%, #0a1f3a 60%, #003d6b 100%);
+    padding: 110px 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+.adv-hero::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,154,238,.18) 0%, transparent 70%);
+    top: -120px; right: -80px;
+    pointer-events: none;
+}
+.adv-hero::after {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,154,238,.10) 0%, transparent 70%);
+    bottom: -60px; left: 5%;
+    pointer-events: none;
+}
+.adv-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,154,238,.15);
+    border: 1px solid rgba(0,154,238,.35);
+    color: #5ec8ff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+}
+.adv-hero-title {
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+.adv-hero-title span { color: #009AEE; }
+.adv-hero-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,.7);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+}
+.adv-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.adv-btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #009AEE; color: #fff;
+    padding: 14px 30px; border-radius: 50px;
+    font-weight: 700; font-size: 15px;
+    transition: background .2s, transform .2s;
+    text-decoration: none;
+}
+.adv-btn-primary:hover { background: #0080cc; transform: translateY(-2px); color: #fff; }
+.adv-btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.3); color: #fff;
+    padding: 13px 28px; border-radius: 50px;
+    font-weight: 600; font-size: 15px;
+    transition: border-color .2s, background .2s;
+    text-decoration: none;
+}
+.adv-btn-outline:hover { border-color: #009AEE; background: rgba(0,154,238,.1); color: #fff; }
+
+/* floating stat cards in hero */
+.adv-hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 20px;
+}
+.adv-stat-card {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform .25s, background .25s;
+}
+.adv-stat-card:hover { transform: translateX(-6px); background: rgba(0,154,238,.12); }
+.adv-stat-icon {
+    width: 50px; height: 50px; border-radius: 14px;
+    background: rgba(0,154,238,.2);
+    display: flex; align-items: center; justify-content: center;
+    color: #5ec8ff; font-size: 20px; flex-shrink: 0;
+}
+.adv-stat-val { font-size: 22px; font-weight: 900; color: #fff; line-height: 1; }
+.adv-stat-lbl { font-size: 13px; color: rgba(255,255,255,.6); margin-top: 3px; }
+
+/* ── Topic cards ── */
+.adv-topics { padding: 90px 0 70px; background: #f7fafd; }
+.adv-section-label {
+    font-size: 12px; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; color: #009AEE; margin-bottom: 10px;
+}
+.adv-section-title { font-size: clamp(28px,3.5vw,40px); font-weight: 900; color: #0f2744; margin-bottom: 10px; }
+.adv-section-sub { font-size: 16px; color: #55627a; max-width: 480px; }
+
+.adv-topic-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 1.5px solid #e8f0f8;
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.adv-topic-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #009AEE, #00c6ff);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+    border-radius: 20px 20px 0 0;
+}
+.adv-topic-card:hover { transform: translateY(-6px); border-color: #009AEE33; box-shadow: 0 20px 50px -10px rgba(0,154,238,.15); }
+.adv-topic-card:hover::before { transform: scaleX(1); }
+.adv-topic-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    background: rgba(0,154,238,.1);
+    display: flex; align-items: center; justify-content: center;
+    color: #009AEE; font-size: 22px;
+    margin-bottom: 18px;
+    transition: background .25s, color .25s;
+}
+.adv-topic-card:hover .adv-topic-icon { background: #009AEE; color: #fff; }
+.adv-topic-card h4 { font-size: 18px; font-weight: 800; color: #0f2744; margin-bottom: 10px; }
+.adv-topic-card p { font-size: 14px; color: #55627a; line-height: 1.7; margin-bottom: 20px; }
+.adv-topic-link {
+    font-size: 14px; font-weight: 700; color: #009AEE;
+    display: inline-flex; align-items: center; gap: 6px;
+    text-decoration: none;
+    transition: gap .2s;
+}
+.adv-topic-card:hover .adv-topic-link { gap: 10px; }
+
+/* ── Tips ticker ── */
+.adv-ticker { background: #009AEE; padding: 16px 0; overflow: hidden; }
+.adv-ticker-track {
+    display: flex; gap: 60px;
+    animation: tickerScroll 28s linear infinite;
+    width: max-content;
+}
+.adv-ticker-track:hover { animation-play-state: paused; }
+.adv-ticker-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 700; color: #fff;
+    white-space: nowrap;
+}
+.adv-ticker-item i { font-size: 12px; opacity: .7; }
+@@keyframes tickerScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ── Expert panel ── */
+.adv-experts { padding: 90px 0; background: #fff; }
+.adv-expert-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid #e8f0f8;
+    transition: transform .25s, box-shadow .25s;
+    height: 100%;
+}
+.adv-expert-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px -10px rgba(0,0,0,.1); }
+.adv-expert-top {
+    background: linear-gradient(135deg, #0f2744, #004a8c);
+    padding: 30px;
+    display: flex; align-items: center; gap: 16px;
+}
+.adv-expert-avatar {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: rgba(0,154,238,.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900; color: #fff;
+    flex-shrink: 0;
+    border: 3px solid rgba(0,154,238,.5);
+}
+.adv-expert-name { font-size: 17px; font-weight: 800; color: #fff; }
+.adv-expert-role { font-size: 13px; color: rgba(255,255,255,.6); }
+.adv-expert-body { padding: 24px 28px; }
+.adv-expert-body p { font-size: 14px; color: #55627a; line-height: 1.7; margin-bottom: 16px; }
+.adv-expert-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.adv-expert-tag {
+    font-size: 12px; font-weight: 600;
+    background: rgba(0,154,238,.08);
+    color: #009AEE;
+    padding: 4px 12px; border-radius: 50px;
+}
+
+/* ── CTA strip ── */
+.adv-cta {
+    background: linear-gradient(135deg, #0a1f3a 0%, #003d6b 100%);
+    padding: 80px 0;
+    text-align: center;
+    position: relative; overflow: hidden;
+}
+.adv-cta::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,154,238,.12) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    pointer-events: none;
+}
+.adv-cta h2 { font-size: clamp(28px,4vw,44px); font-weight: 900; color: #fff; margin-bottom: 14px; }
+.adv-cta h2 span { color: #009AEE; }
+.adv-cta p { font-size: 17px; color: rgba(255,255,255,.7); max-width: 500px; margin: 0 auto 34px; }
+
+/* step process */
+.adv-steps { padding: 90px 0; background: #f7fafd; }
+.adv-step {
+    display: flex; gap: 20px; align-items: flex-start;
+    margin-bottom: 36px;
+}
+.adv-step-num {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: #009AEE; color: #fff;
+    font-size: 18px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px -6px rgba(0,154,238,.5);
+}
+.adv-step-body h5 { font-size: 17px; font-weight: 800; color: #0f2744; margin-bottom: 6px; }
+.adv-step-body p { font-size: 14px; color: #55627a; line-height: 1.7; margin: 0; }
+.adv-step-img {
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f2744, #004a8c);
+    min-height: 380px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 20px;
+}
+.adv-step-img-icon { font-size: 80px; color: rgba(0,154,238,.6); }
+.adv-step-img-label { font-size: 20px; font-weight: 800; color: rgba(255,255,255,.7); }
+</style>
+
+<!-- ── HERO ────────────────────────────────────────────── -->
+<div class="adv-hero pre-header">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="adv-hero-badge"><i class="fa-solid fa-comments-dollar"></i> Expert Forex Advice</div>
+                <h1 class="adv-hero-title">Get <span>Smart Advice</span> for Your Forex Journey</h1>
+                <p class="adv-hero-sub">Whether you're a beginner trying to understand pips or an experienced trader looking to maximise cashback — our curated advice hub has you covered.</p>
+                <div class="adv-hero-btns">
+                    <a asp-controller="Home" asp-action="Register" class="adv-btn-primary">Start Earning Cashback <i class="fa-solid fa-arrow-right-long"></i></a>
+                    <a asp-controller="Home" asp-action="ContactUs" class="adv-btn-outline"><i class="fa-solid fa-headset"></i> Talk to an Expert</a>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="adv-hero-stats">
+                    <div class="adv-stat-card">
+                        <div class="adv-stat-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                        <div>
+                            <div class="adv-stat-val">$8.50<span style="font-size:15px;color:rgba(255,255,255,.5)">/lot</span></div>
+                            <div class="adv-stat-lbl">Maximum cashback per standard lot</div>
+                        </div>
+                    </div>
+                    <div class="adv-stat-card">
+                        <div class="adv-stat-icon"><i class="fa-solid fa-building-columns"></i></div>
+                        <div>
+                            <div class="adv-stat-val">9+ <span style="font-size:15px;color:rgba(255,255,255,.5)">brokers</span></div>
+                            <div class="adv-stat-lbl">Top ECN brokers with live rebates</div>
+                        </div>
+                    </div>
+                    <div class="adv-stat-card">
+                        <div class="adv-stat-icon"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <div class="adv-stat-val">Weekly <span style="font-size:15px;color:rgba(255,255,255,.5)">payouts</span></div>
+                            <div class="adv-stat-lbl">Cashback paid automatically every week</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── TIPS TICKER ─────────────────────────────────────── -->
+<div class="adv-ticker">
+    <div class="adv-ticker-track">
+        @{
+            var tips = new[] {
+                "Always define your risk before entering a trade",
+                "Use a stop-loss on every position",
+                "Earn cashback on every lot you trade — free to join",
+                "Risk no more than 1–2% of your account per trade",
+                "Diversify across currency pairs to manage exposure",
+                "Check the economic calendar before major news events",
+                "Compound your cashback to grow your trading capital",
+                "ECN brokers offer tighter spreads — choose wisely",
+                "Always define your risk before entering a trade",
+                "Use a stop-loss on every position",
+                "Earn cashback on every lot you trade — free to join",
+                "Risk no more than 1–2% of your account per trade",
+                "Diversify across currency pairs to manage exposure",
+                "Check the economic calendar before major news events",
+                "Compound your cashback to grow your trading capital",
+                "ECN brokers offer tighter spreads — choose wisely",
+            };
+            foreach (var tip in tips)
+            {
+                <div class="adv-ticker-item"><i class="fa-solid fa-star"></i> @tip</div>
+            }
+        }
+    </div>
+</div>
+
+<!-- ── ADVICE TOPICS ───────────────────────────────────── -->
+<div class="adv-topics">
+    <div class="container">
+        <div class="row mb-55">
+            <div class="col-12 text-center">
+                <div class="adv-section-label">Explore Topics</div>
+                <h2 class="adv-section-title mx-auto">What Would You Like to Learn?</h2>
+                <p class="adv-section-sub mx-auto">Pick a topic and we'll walk you through everything you need to know.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-topic-card">
+                    <div class="adv-topic-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <h4>Forex Cashback Explained</h4>
+                    <p>Learn how cashback rebates work, how much you can earn per lot, and how to get paid every week without changing how you trade.</p>
+                    <a asp-controller="Home" asp-action="ForexCaculator" class="adv-topic-link">Try Cashback Calculator <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-topic-card">
+                    <div class="adv-topic-icon"><i class="fa-solid fa-coins"></i></div>
+                    <h4>Position Sizing & Lot Size</h4>
+                    <p>Never risk too much on a single trade. Use our lot size calculator to find the right position size based on your account balance and stop loss.</p>
+                    <a asp-controller="Home" asp-action="LotSizeCalculator" class="adv-topic-link">Open Lot Size Calculator <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-topic-card">
+                    <div class="adv-topic-icon"><i class="fa-solid fa-percent"></i></div>
+                    <h4>Understanding Pip Values</h4>
+                    <p>Know exactly what a pip move means in dollar terms before you open a position. Works across forex pairs, gold, and silver.</p>
+                    <a asp-controller="Home" asp-action="PipValueCalculator" class="adv-topic-link">Open Pip Calculator <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-topic-card">
+                    <div class="adv-topic-icon"><i class="fa-solid fa-building-columns"></i></div>
+                    <h4>Choosing the Right Broker</h4>
+                    <p>Understand the difference between ECN, STP, and Market Maker brokers. Discover which brokers offer the highest rebates and tightest spreads.</p>
+                    <a asp-controller="Home" asp-action="Broker" class="adv-topic-link">Compare Brokers <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-topic-card">
+                    <div class="adv-topic-icon"><i class="fa-regular fa-calendar-days"></i></div>
+                    <h4>Trading Around News Events</h4>
+                    <p>High-impact economic releases can spike volatility. Learn how to use the economic calendar to avoid or capitalise on major market moves.</p>
+                    <a asp-controller="Home" asp-action="Economic" class="adv-topic-link">View Economic Calendar <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-topic-card">
+                    <div class="adv-topic-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h4>Risk Management Basics</h4>
+                    <p>The foundation of every consistent trader. Learn the 1% rule, risk-reward ratios, drawdown limits, and how to protect your capital long-term.</p>
+                    <a asp-controller="Home" asp-action="FAQs" class="adv-topic-link">Read More in FAQs <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── HOW IT WORKS ────────────────────────────────────── -->
+<div class="adv-steps">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="adv-section-label">Simple Process</div>
+                <h2 class="adv-section-title">Start Earning in 3 Steps</h2>
+                <p class="adv-section-sub mb-40" style="max-width:100%">You don't need to change your broker or strategy. Just register, link your account, and your cashback starts flowing.</p>
+
+                <div class="adv-step">
+                    <div class="adv-step-num">1</div>
+                    <div class="adv-step-body">
+                        <h5>Create Your Free Account</h5>
+                        <p>Sign up in under 2 minutes. No fees, no commitments. Just your email and a broker to link.</p>
+                    </div>
+                </div>
+                <div class="adv-step">
+                    <div class="adv-step-num">2</div>
+                    <div class="adv-step-body">
+                        <h5>Link Your Broker Account</h5>
+                        <p>Choose your broker from our list of top ECN partners. We track every lot you trade automatically.</p>
+                    </div>
+                </div>
+                <div class="adv-step">
+                    <div class="adv-step-num">3</div>
+                    <div class="adv-step-body">
+                        <h5>Get Paid Every Week</h5>
+                        <p>Your cashback accumulates daily and is paid out every week — directly to your account.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="adv-step-img">
+                    <div class="adv-step-img-icon"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="adv-step-img-label">Your cashback, automated.</div>
+                    <div style="display:flex;gap:30px;margin-top:10px;">
+                        <div style="text-align:center;">
+                            <div style="font-size:28px;font-weight:900;color:#fff;">$8.50</div>
+                            <div style="font-size:12px;color:rgba(255,255,255,.5);">per lot max</div>
+                        </div>
+                        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
+                        <div style="text-align:center;">
+                            <div style="font-size:28px;font-weight:900;color:#fff;">Weekly</div>
+                            <div style="font-size:12px;color:rgba(255,255,255,.5);">payouts</div>
+                        </div>
+                        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
+                        <div style="text-align:center;">
+                            <div style="font-size:28px;font-weight:900;color:#fff;">Free</div>
+                            <div style="font-size:12px;color:rgba(255,255,255,.5);">to join</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── EXPERT ADVISORS ─────────────────────────────────── -->
+<div class="adv-experts">
+    <div class="container">
+        <div class="row mb-50">
+            <div class="col-12 text-center">
+                <div class="adv-section-label">Our Team</div>
+                <h2 class="adv-section-title">Talk to a Real Expert</h2>
+                <p class="adv-section-sub mx-auto">Our advisors have years of forex and cashback experience. Reach out anytime.</p>
+            </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-expert-card">
+                    <div class="adv-expert-top">
+                        <div class="adv-expert-avatar">S</div>
+                        <div>
+                            <div class="adv-expert-name">Say Affiliates Team</div>
+                            <div class="adv-expert-role">Cashback & Broker Specialist</div>
+                        </div>
+                    </div>
+                    <div class="adv-expert-body">
+                        <p>Expert guidance on maximising your cashback rebates, choosing the right ECN broker, and setting up your account for weekly payouts.</p>
+                        <div class="adv-expert-tags">
+                            <span class="adv-expert-tag">Cashback Strategy</span>
+                            <span class="adv-expert-tag">Broker Selection</span>
+                            <span class="adv-expert-tag">Rebates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-expert-card">
+                    <div class="adv-expert-top">
+                        <div class="adv-expert-avatar">F</div>
+                        <div>
+                            <div class="adv-expert-name">Forex Risk Advisor</div>
+                            <div class="adv-expert-role">Risk Management Consultant</div>
+                        </div>
+                    </div>
+                    <div class="adv-expert-body">
+                        <p>Specialises in position sizing, drawdown management, and building a trading plan that protects your capital across all market conditions.</p>
+                        <div class="adv-expert-tags">
+                            <span class="adv-expert-tag">Risk Management</span>
+                            <span class="adv-expert-tag">Position Sizing</span>
+                            <span class="adv-expert-tag">Stop Loss</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="adv-expert-card">
+                    <div class="adv-expert-top">
+                        <div class="adv-expert-avatar">T</div>
+                        <div>
+                            <div class="adv-expert-name">Trading Tools Expert</div>
+                            <div class="adv-expert-role">Analytics & Tools Specialist</div>
+                        </div>
+                    </div>
+                    <div class="adv-expert-body">
+                        <p>Helps traders use live market data, economic calendars, heat maps, and pip calculators to make smarter, data-driven trading decisions.</p>
+                        <div class="adv-expert-tags">
+                            <span class="adv-expert-tag">Live Data</span>
+                            <span class="adv-expert-tag">Calculators</span>
+                            <span class="adv-expert-tag">Market Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── CTA ────────────────────────────────────────────── -->
+<div class="adv-cta">
+    <div class="container" style="position:relative;z-index:1;">
+        <h2>Ready to <span>Start Earning?</span></h2>
+        <p>Join thousands of traders who earn cashback on every lot they trade — completely free, no strategy changes needed.</p>
+        <div class="adv-hero-btns justify-content-center">
+            <a asp-controller="Home" asp-action="Register" class="adv-btn-primary">Create Free Account <i class="fa-solid fa-arrow-right-long"></i></a>
+            <a asp-controller="Home" asp-action="ContactUs" class="adv-btn-outline"><i class="fa-solid fa-headset"></i> Contact Support</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,245 @@
+@{
+    ViewData["Title"] = "Pip Value Calculator";
+
+    var instruments = new[]
+    {
+        new { Name = "EUR/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "GBP/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "USD/JPY", PipSize = 0.01,   ContractSize = 100000 },
+        new { Name = "USD/CHF", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "AUD/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "USD/CAD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "NZD/USD", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "EUR/GBP", PipSize = 0.0001, ContractSize = 100000 },
+        new { Name = "EUR/JPY", PipSize = 0.01,   ContractSize = 100000 },
+        new { Name = "GBP/JPY", PipSize = 0.01,   ContractSize = 100000 },
+        new { Name = "XAU/USD", PipSize = 0.01,   ContractSize = 100   },
+        new { Name = "XAG/USD", PipSize = 0.001,  ContractSize = 5000  },
+    };
+
+    var currencies = new[] { "US Dollar", "Euro", "British Pound", "Japanese Yen", "Swiss Franc", "Australian Dollar", "Canadian Dollar", "New Zealand Dollar" };
+}
+
+<!-- pip calc hero -->
+<div class="tp-product-hero fx-calc-hero pre-header" data-background="@Url.Content("~/assets/img/update-2/hero/hero-3/hero-thumb-1.png")">
+    <div class="container containers">
+        <div class="row">
+            <div class="col-12">
+                <div class="tp-product-hero-content text-center">
+                    <span class="fx-calc-badge"><i class="fa-solid fa-percent"></i> Pip Value Calculator</span>
+                    <h2 class="mb-15 tp-ff-dm">Pip Value Calculator</h2>
+                    <div class="tp-breadcrumb-list tp-breadcrumb-2-list">
+                        <ul class="justify-content-center">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><span></span></li>
+                            <li>Pip Value Calculator</li>
+                        </ul>
+                    </div>
+                    <p class="fx-calc-intro">
+                        Know exactly what each pip is worth in your deposit currency before you place a trade.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- pip calc hero end -->
+
+<!-- pip calc body -->
+<div class="fx-calc pre-header pt-80 pb-120">
+    <div class="container container-1230">
+        <div class="fx-calc-card">
+            <div class="row g-0">
+
+                <!-- inputs -->
+                <div class="col-lg-6">
+                    <div class="fx-calc-form">
+                        <h3 class="fx-calc-form-title">Your trade details</h3>
+
+                        <div class="fx-calc-field">
+                            <label for="pipPairs">Instrument</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <select id="pipPairs">
+                                    @foreach (var ins in instruments)
+                                    {
+                                        <option value="@ins.PipSize.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                                                data-contract="@ins.ContractSize"
+                                                data-name="@ins.Name">
+                                            @ins.Name
+                                        </option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label for="pipPips">Pips</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-hashtag"></i>
+                                <input type="number" id="pipPips" class="fx-calc-input" value="1" min="0.1" step="0.1" />
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label for="pipLots">Lots (trade size)</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <input type="number" id="pipLots" class="fx-calc-input" value="1" min="0.01" step="0.01" />
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field">
+                            <label for="pipDepositCcy">Deposit currency</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-coins"></i>
+                                <select id="pipDepositCcy">
+                                    @foreach (var ccy in currencies)
+                                    {
+                                        <option>@ccy</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="fx-calc-field" id="pipSizeRow">
+                            <label id="pipSizeLabel">EUR/USD 1 Pip Size</label>
+                            <div class="fx-calc-select">
+                                <i class="fa-solid fa-ruler"></i>
+                                <input type="text" id="pipSizeDisplay" class="fx-calc-input" readonly />
+                            </div>
+                        </div>
+
+                        <button type="button" class="fx-calc-btn" id="pipCalcBtn">
+                            <i class="fa-solid fa-calculator"></i> Calculate
+                        </button>
+                    </div>
+                </div>
+
+                <!-- result -->
+                <div class="col-lg-6">
+                    <div class="fx-calc-result">
+                        <span class="fx-calc-result-shape"></span>
+                        <div class="fx-calc-result-top">
+                            <span class="fx-calc-result-label">Pip value</span>
+                            <span class="fx-calc-result-period" id="pipCcyLabel">USD</span>
+                        </div>
+                        <div class="fx-calc-result-hero" id="pipResult">$0.00</div>
+
+                        <div class="fx-calc-result-grid">
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Per pip</span>
+                                <span class="fx-calc-result-v" id="pipPerPip">$0.00</span>
+                            </div>
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Total pips value</span>
+                                <span class="fx-calc-result-v" id="pipTotal">$0.00</span>
+                            </div>
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Lot size</span>
+                                <span class="fx-calc-result-v" id="pipLotSize">100,000</span>
+                            </div>
+                            <div class="fx-calc-result-item">
+                                <span class="fx-calc-result-k">Pip size</span>
+                                <span class="fx-calc-result-v" id="pipSizeVal">0.0001</span>
+                            </div>
+                        </div>
+
+                        <a asp-controller="Home" asp-action="Register" class="fx-calc-cta">
+                            Start trading with cashback <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <p class="fx-calc-result-foot">Free to join &middot; paid weekly &middot; no hidden fees</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- info cards -->
+        <div class="row mt-50">
+            <div class="col-md-4 mb-20">
+                <div class="fx-calc-info">
+                    <span class="fx-calc-info-icon"><i class="fa-solid fa-sliders"></i></span>
+                    <h5>1. Select your pair</h5>
+                    <p>Choose the currency pair or instrument you are trading and enter your lot size.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-20">
+                <div class="fx-calc-info">
+                    <span class="fx-calc-info-icon"><i class="fa-solid fa-bolt"></i></span>
+                    <h5>2. Hit Calculate</h5>
+                    <p>See the exact pip value in your deposit currency instantly, no guesswork needed.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-20">
+                <div class="fx-calc-info">
+                    <span class="fx-calc-info-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    <h5>3. Size your risk</h5>
+                    <p>Use the pip value to set your stop-loss and position size with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- pip calc body end -->
+
+@section Scripts {
+<script>
+(function () {
+    var pairsEl   = document.getElementById('pipPairs');
+    var pipsEl    = document.getElementById('pipPips');
+    var lotsEl    = document.getElementById('pipLots');
+    var ccyEl     = document.getElementById('pipDepositCcy');
+    var btnEl     = document.getElementById('pipCalcBtn');
+    var sizeDisp  = document.getElementById('pipSizeDisplay');
+    var sizeLbl   = document.getElementById('pipSizeLabel');
+    if (!pairsEl) return;
+
+    var fmt = function (n) {
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    };
+
+    function updatePipSize() {
+        var opt = pairsEl.options[pairsEl.selectedIndex];
+        var pipSize = parseFloat(opt.value) || 0.0001;
+        var name    = opt.getAttribute('data-name') || '';
+        sizeDisp.value = pipSize;
+        sizeLbl.textContent = name + ' 1 Pip Size';
+        document.getElementById('pipSizeVal').textContent = pipSize;
+        var contract = parseInt(opt.getAttribute('data-contract'), 10) || 100000;
+        document.getElementById('pipLotSize').textContent = contract.toLocaleString('en-US');
+    }
+
+    function calc() {
+        var opt      = pairsEl.options[pairsEl.selectedIndex];
+        var pipSize  = parseFloat(opt.value) || 0.0001;
+        var contract = parseInt(opt.getAttribute('data-contract'), 10) || 100000;
+        var pips     = parseFloat(pipsEl.value) || 0;
+        var lots     = parseFloat(lotsEl.value) || 0;
+
+        var perPip = pipSize * contract * lots;
+        var total  = perPip * pips;
+
+        var ccy = ccyEl.value || 'US Dollar';
+        var symbol = ccy === 'US Dollar' ? '$' : ccy === 'Euro' ? '€' : ccy === 'British Pound' ? '£' : ccy === 'Japanese Yen' ? '¥' : '$';
+        var fmtCcy = function (n) {
+            return symbol + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        };
+
+        document.getElementById('pipPerPip').textContent = fmtCcy(perPip);
+        document.getElementById('pipTotal').textContent  = fmtCcy(total);
+        document.getElementById('pipResult').textContent = fmtCcy(total);
+        document.getElementById('pipCcyLabel').textContent = ccy;
+    }
+
+    pairsEl.addEventListener('change', function () { updatePipSize(); calc(); });
+    btnEl.addEventListener('click', calc);
+    pipsEl.addEventListener('input', calc);
+    lotsEl.addEventListener('input', calc);
+    ccyEl.addEventListener('change', calc);
+
+    updatePipSize();
+    calc();
+})();
+</script>
+}

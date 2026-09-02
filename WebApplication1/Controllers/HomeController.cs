@@ -96,7 +96,22 @@ public class HomeController : Controller
         return View();
     }
     
+    public IActionResult GetAdvice()
+    {
+        return View();
+    }
+
     public IActionResult ComingSoon()
+    {
+        return View();
+    }
+
+    public IActionResult LotSizeCalculator()
+    {
+        return View();
+    }
+
+    public IActionResult PipValueCalculator()
     {
         return View();
     }
