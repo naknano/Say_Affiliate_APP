@@ -15,4 +15,8 @@ public interface IAuthentication
     public Task<ResponseDto<string>> RegisterAsync(UserRegisterRequestDto register);
     
     public Task<ResponseDto<string>> ChangePassword(string userId ,string currentPassword, string newPassword);
+
+    public Task<ResponseDto<string>> ForgotPasswordAsync(string email, string resetBaseUrl);
+
+    public Task<ResponseDto<string>> ResetPasswordAsync(ResetPasswordRequestDto request);
 }

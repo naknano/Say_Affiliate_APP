@@ -1,37 +1,240 @@
-<div class="tp-about-process-area pt-160 pb-100" style="background-color: #fdfdff;">
+<!-- how it works start -->
+<div class="sa-how">
+    <span class="sa-how__glow sa-how__glow--one"></span>
+    <span class="sa-how__glow sa-how__glow--two"></span>
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center gy-5">
             <div class="col-lg-6">
-                <div class="mb-45 tp_fade_anim" data-delay=".4">
-                    <h4 class="tp-section-title fs-30 fs-xl-30 fs-lg-50 fw-700 text-uppercase">How does it work?</h4>
-                    <div class="d-sm-flex align-items-start tp_fade_anim" data-delay=".5">
-                        <p class="tp-ff-heading fs-15 fw-500 tp-text-grey-1 tp-service-para">Our free ecosystem makes you earn more. You can significantly decrease your trading costs by opening an account through us. We guarantee our service is more cost-effective than opening a trading account directly with the brokerage.</p>
-                    </div>
-                    <div class="d-sm-flex align-items-start tp_fade_anim" data-delay=".5">
-                        <a class="al-btn-blue mb-20 mr-10" asp-controller="Home" asp-action="ContactUs">Get Free Analysis</a>
-                        <a class="al-hero-seo-playbtn popup-video mb-20"
-                           href="https://www.youtube.com/watch?v=Y61rpefJO20">
-                                    <span>
-                                      <svg width="11" height="14" viewBox="0 0 11 14" fill="none"
-                                           xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M11 7L0.5 13.0622V0.937822L11 7Z" fill="currentcolor"/>
-                                      </svg>
-                                    </span>
-                            <i>Watch the Video</i>
+                <div class="sa-how__content tp_fade_anim" data-delay=".4">
+                    <span class="sa-how__badge"><i class="fa-solid fa-circle-play"></i> How it works</span>
+                    <h2 class="sa-how__title">Earning cashback is <span class="sa-how__highlight">simple</span></h2>
+                    <p class="sa-how__lead">
+                        Our free ecosystem makes you earn more. Open your account through us and
+                        significantly cut your trading costs &mdash; we guarantee it's more
+                        cost-effective than going directly to the brokerage.
+                    </p>
+                    <ul class="sa-how__steps">
+                        <li>
+                            <span class="sa-how__step-num">1</span>
+                            <div>
+                                <strong>Sign up for free</strong>
+                                <small>Create your account in under two minutes.</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="sa-how__step-num">2</span>
+                            <div>
+                                <strong>Connect a broker</strong>
+                                <small>Open or link an account with a regulated partner.</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="sa-how__step-num">3</span>
+                            <div>
+                                <strong>Trade &amp; earn</strong>
+                                <small>Get cashback on every trade, paid out weekly.</small>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="sa-how__actions">
+                        <a class="sa-how__btn sa-how__btn--primary" asp-controller="Home" asp-action="ContactUs">
+                            Get Free Analysis <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                        <a class="sa-how__btn sa-how__btn--play popup-video" href="https://www.youtube.com/watch?v=Y61rpefJO20">
+                            <span class="sa-how__play-icon">
+                                <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 7L0.5 13.0622V0.937822L11 7Z" fill="currentcolor" />
+                                </svg>
+                            </span>
+                            Watch the video
                         </a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="tp-service-title-wrap mb-45">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Y61rpefJO20?si=jcGOhTHSx1FrUkPP"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                    </iframe>
+                <div class="sa-how__video tp_fade_anim" data-delay=".5" data-fade-from="right">
+                    <div class="sa-how__video-frame">
+                        <iframe src="https://www.youtube.com/embed/Y61rpefJO20?si=jcGOhTHSx1FrUkPP"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="sa-how__video-badge">
+                        <span class="sa-how__video-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                        <div>
+                            <strong>100% Free</strong>
+                            <small>No hidden fees, ever</small>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+<!-- how it works end -->
+
+<style>
+    .sa-how {
+        position: relative;
+        overflow: hidden;
+        padding: 120px 0;
+        background: linear-gradient(180deg, #0a0e22 0%, #05060d 100%);
+        color: #fff;
+    }
+    .sa-how__glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .sa-how__glow--one { width: 420px; height: 420px; top: -120px; right: -100px; background: rgba(108, 92, 231, .35); }
+    .sa-how__glow--two { width: 380px; height: 380px; bottom: -140px; left: -120px; background: rgba(6, 214, 160, .28); }
+    .sa-how .container { position: relative; z-index: 1; }
+
+    .sa-how__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        margin-bottom: 22px;
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: 999px;
+        color: #06d6a0;
+        background: rgba(6, 214, 160, .12);
+        border: 1px solid rgba(6, 214, 160, .3);
+    }
+    .sa-how__title {
+        font-size: 44px;
+        line-height: 1.1;
+        font-weight: 800;
+        margin-bottom: 18px;
+        color:  white;
+    }
+    .sa-how__highlight {
+        background: linear-gradient(90deg, #ffd166, #06d6a0);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .sa-how__lead {
+        font-size: 17px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, .7);
+        margin-bottom: 32px;
+        max-width: 520px;
+    }
+    .sa-how__steps {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 36px;
+        display: grid;
+        gap: 20px;
+    }
+    .sa-how__steps li {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .sa-how__step-num {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        font-weight: 800;
+        font-size: 18px;
+        color: #05060d;
+        background: linear-gradient(135deg, #ffd166, #06d6a0);
+        box-shadow: 0 10px 22px rgba(6, 214, 160, .3);
+    }
+    .sa-how__steps strong { display: block; font-size: 17px; margin-bottom: 3px; }
+    .sa-how__steps small { color: rgba(255, 255, 255, .6); font-size: 14px; }
+
+    .sa-how__actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .sa-how__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 28px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 16px;
+        text-decoration: none;
+        transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .sa-how__btn--primary {
+        color: #05060d;
+        background: linear-gradient(90deg, #ffd166, #06d6a0);
+        box-shadow: 0 12px 30px rgba(6, 214, 160, .35);
+    }
+    .sa-how__btn--primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(6, 214, 160, .5); color: #05060d; }
+    .sa-how__btn--play { color: #fff; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .18); }
+    .sa-how__btn--play:hover { transform: translateY(-3px); background: rgba(255, 255, 255, .12); color: #fff; }
+    .sa-how__play-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: #06d6a0;
+        background: rgba(6, 214, 160, .15);
+    }
+
+    .sa-how__video { position: relative; }
+    .sa-how__video-frame {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        padding-top: 56.25%;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, .5);
+        border: 1px solid rgba(255, 255, 255, .08);
+    }
+    .sa-how__video-frame iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    .sa-how__video-badge {
+        position: absolute;
+        bottom: -24px;
+        left: -20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        background: rgba(255, 255, 255, .96);
+        color: #05060d;
+        border-radius: 16px;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, .3);
+    }
+    .sa-how__video-badge strong { display: block; font-size: 17px; line-height: 1.1; }
+    .sa-how__video-badge small { color: #6b7280; font-size: 12px; }
+    .sa-how__video-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 16px;
+        color: #fff;
+        background: linear-gradient(135deg, #06d6a0, #048c6a);
+    }
+
+    @@media (max-width: 991px) {
+        .sa-how { padding: 90px 0; }
+        .sa-how__title { font-size: 34px; }
+        .sa-how__video { margin-top: 20px; }
+    }
+    @@media (max-width: 575px) {
+        .sa-how__video-badge { left: 0; }
+    }
+</style>

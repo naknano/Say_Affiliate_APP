@@ -10,6 +10,7 @@ using WebApplication1.Repositories.TransactionRepo;
 using WebApplication1.Repositories.UserCryptoRepo;
 using WebApplication1.Services.Authentication;
 using WebApplication1.Services.Broker;
+using WebApplication1.Services.Email;
 using WebApplication1.Services.TransactionService;
 using WebApplication1.Services.UserBankAccPaymentMethod;
 using WebApplication1.Services.UserCryptoService;
@@ -51,6 +52,10 @@ builder.Services.AddDbContext<AppDBContext>(options =>
  builder.Services.AddScoped<IBankUserService, BankUserServiceImp>();
  builder.Services.AddScoped<IWithdrawService, WithdrawServiceImp>();
  builder.Services.AddScoped<ITransactionService, TransactionServiceImp>();
+
+ // Email (SMTP via Brevo) for password-reset messages
+ builder.Services.Configure<EmailSettings>(config.GetSection("SmtpSettings"));
+ builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 
 //Register Identity

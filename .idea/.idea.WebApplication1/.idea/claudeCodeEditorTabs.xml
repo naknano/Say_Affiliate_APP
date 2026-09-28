@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ClaudeCodeEditorTabs">
-    <option name="activeSessionId" value="395e24d1-f229-49f6-87e8-ec1e20e600cf" />
+    <option name="activeSessionId" value="23d1344a-e7bb-45f5-9776-46b0dc84b483" />
     <option name="openSessionIds">
       <list>
         <option value="3a8e551e-d796-4a49-92a9-167063a852e8" />
         <option value="395e24d1-f229-49f6-87e8-ec1e20e600cf" />
+        <option value="23d1344a-e7bb-45f5-9776-46b0dc84b483" />
       </list>
     </option>
     <option name="sessionPaths">
       <map>
+        <entry key="23d1344a-e7bb-45f5-9776-46b0dc84b483" value="/sessions/30e45b73-b3fa-4b5a-89e6-1c06e1f3be0a" />
         <entry key="395e24d1-f229-49f6-87e8-ec1e20e600cf" value="/sessions/ec951ecb-3845-44fd-a33f-792b9126a30f" />
         <entry key="3a8e551e-d796-4a49-92a9-167063a852e8" value="/sessions/c097f71a-ecba-4772-845e-06cb1b654d2a" />
       </map>
     </option>
     <option name="sessionTitles">
       <map>
+        <entry key="23d1344a-e7bb-45f5-9776-46b0dc84b483" value="on this WebApplication1/Views/Home/Login.cshtml fo" />
         <entry key="395e24d1-f229-49f6-87e8-ec1e20e600cf" value="The user selected the lines 50 to 55 from WebAppli" />
         <entry key="3a8e551e-d796-4a49-92a9-167063a852e8" value="The user selected the lines 28 to 57 from WebAppli" />
       </map>

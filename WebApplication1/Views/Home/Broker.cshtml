@@ -14,32 +14,38 @@
       font-size: 14px; font-weight: 700; border-radius: 10px; cursor: pointer;
       text-decoration: none; transition: all .18s ease;
    }
-   .broker-page-btn:hover:not(.disabled) { border-color: #009AEE; color: #009AEE; background: #f0f9ff; }
-   .broker-page-btn.active { background: linear-gradient(120deg,#009AEE,#1ba8f5); border-color: transparent; color: #fff; box-shadow: 0 8px 18px -8px rgba(0,154,238,.8); }
+   .broker-page-btn:hover:not(.disabled) { border-color: #06b88a; color: #06b88a; background: #eefaf5; }
+   .broker-page-btn.active { background: linear-gradient(90deg,#ffd166,#06d6a0); border-color: transparent; color: #05060d; box-shadow: 0 8px 18px -8px rgba(6,214,160,.8); }
    .broker-page-btn.disabled { opacity: .45; pointer-events: none; }
 </style>
 
 <!-- tp-portfolio-area-start -->
-<div class="tp-portfolio-colum-spacing pre-header tp-portfolio-area broker-modern">
+<div class="sa-bkhero">
+   <span class="sa-bkhero__glow sa-bkhero__glow--one"></span>
+   <span class="sa-bkhero__glow sa-bkhero__glow--two"></span>
    <div class="container containers">
-      <div class="row">
+      <div class="row align-items-end">
          <div class="col-lg-7">
-            <div class="tp-service-hero-left p-relative mb-40">
-               <h2 class="fs-70 fs-lg-60 fs-xs-40">Forex Rebate Brokers List</h2>
-               <span class="tp-service-hero-shape tpswing d-none d-sm-inline-block">
-                  <svg width="52" height="94" viewBox="0 0 52 94" fill="none" xmlns="http://www.w3.org/2000/svg">
-                     <path d="M1 16.1098C5.58433 24.0984 22.6118 44.5692 38.3295 38.0785C46.3521 34.5835 58.2264 23.6551 45.206 5.12554C40.2943 -1.86444 30.6673 -0.666183 25.559 14.1127C22.6118 22.6393 15.2441 43.0714 22.612 61.0456C26.5006 70.5321 38.1332 85.2111 49.1356 90.0043M49.1356 90.0043C44.0601 87.3414 32.8285 84.2126 28.5061 93M49.1356 90.0043C45.8611 88.1736 40.0979 80.8174 43.2414 66.0385M10.2322 38.0785C9.38015 41.6962 8.2675 54.4237 15.144 64.4094" stroke="#030303" stroke-width="1.5" />
-                  </svg>
-               </span>
-            </div>
+            <span class="sa-bkhero__badge"><i class="fa-solid fa-handshake-angle"></i> Trusted broker partners</span>
+            <h1 class="sa-bkhero__title">Forex Rebate <span class="sa-bkhero__highlight">Brokers List</span></h1>
          </div>
          <div class="col-lg-5">
-            <div class="tp-service-hero-right mt-130">
-               <p class="fs-30 lh-140-per">Partner with top forex brokers for better trading. Find your ideal broker with our guide on compliance, pricing, and platforms like MT4/MT5. Need a broker? <a class="main-color" asp-controller="Home" asp-action="Register">Let us know </a>&mdash; we're always expanding.</p>
-            </div>
+            <p class="sa-bkhero__lead">
+               Partner with top forex brokers for better trading. Compare compliance, pricing,
+               and platforms like MT4/MT5. Need a broker?
+               <a asp-controller="Home" asp-action="Register">Let us know</a> &mdash; we're always expanding.
+            </p>
          </div>
+      </div>
+      <div class="sa-bkhero__stats">
+         <div class="sa-bkhero__stat"><i class="fa-solid fa-building-columns"></i> <strong>@vm.AllCount</strong> brokers listed</div>
+         <div class="sa-bkhero__stat"><i class="fa-solid fa-shield-halved"></i> Regulated partners</div>
+         <div class="sa-bkhero__stat"><i class="fa-solid fa-sack-dollar"></i> Up to $8.50 / lot</div>
+         <div class="sa-bkhero__stat"><i class="fa-solid fa-calendar-check"></i> Paid weekly</div>
+      </div>
+      <div class="row">
          <div class="col-12">
-            <div class="broker-tab-wrap mt-40">
+            <div class="broker-tab-wrap sa-bkhero__tabs mt-40">
                <nav>
                   <div class="nav broker-tabs" id="nav-tab" role="tablist">
                      <a class="nav-link @(vm.Tab == "all" ? "active" : "")" asp-controller="Home" asp-action="Broker" asp-route-tab="all" asp-route-page="1"><i class="fa-solid fa-list"></i> All Brokers <span class="broker-tab-count">@vm.AllCount</span></a>
@@ -53,9 +59,77 @@
 </div>
 <!-- tp-portfolio-area-end -->
 
+<style>
+   .sa-bkhero {
+      position: relative;
+      overflow: hidden;
+      padding: 160px 0 60px;
+      background: radial-gradient(120% 120% at 80% 0%, #0e1330 0%, #070912 55%, #05060d 100%);
+      color: #fff;
+   }
+   .sa-bkhero__glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+   .sa-bkhero__glow--one { width: 460px; height: 460px; top: -160px; left: -120px; background: rgba(108, 92, 231, .35); }
+   .sa-bkhero__glow--two { width: 460px; height: 460px; bottom: -200px; right: -120px; background: rgba(6, 214, 160, .3); }
+   .sa-bkhero .container { position: relative; z-index: 1; }
+
+   .sa-bkhero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; margin-bottom: 22px;
+      font-size: 14px; font-weight: 600; border-radius: 999px;
+      color: #06d6a0; background: rgba(6, 214, 160, .12); border: 1px solid rgba(6, 214, 160, .3);
+   }
+   .sa-bkhero__title { font-size: 60px; line-height: 1.05; font-weight: 800; margin: 0; color: #fff; }
+   .sa-bkhero__highlight {
+      background: linear-gradient(90deg, #ffd166, #06d6a0);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+   }
+   .sa-bkhero__lead { font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, .7); margin: 0 0 6px; }
+   .sa-bkhero__lead a { color: #06d6a0; font-weight: 600; }
+
+   .sa-bkhero__stats { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
+   .sa-bkhero__stat {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 18px; border-radius: 12px; font-size: 14px; font-weight: 500;
+      color: rgba(255, 255, 255, .85);
+      background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .08);
+   }
+   .sa-bkhero__stat i { color: #ffd166; }
+   .sa-bkhero__stat strong { color: #fff; font-weight: 800; }
+
+   /* tabs restyled for dark hero */
+   .sa-bkhero__tabs .broker-tabs { gap: 12px; border: none; }
+   .sa-bkhero__tabs .nav-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 12px; font-weight: 700; font-size: 15px;
+      color: rgba(255, 255, 255, .75);
+      background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .1) !important;
+      transition: all .22s ease;
+   }
+   .sa-bkhero__tabs .nav-link:hover { color: #fff; border-color: rgba(6, 214, 160, .4) !important; }
+   .sa-bkhero__tabs .nav-link.active {
+      color: #05060d;
+      background: linear-gradient(90deg, #ffd166, #06d6a0);
+      border-color: transparent !important;
+      box-shadow: 0 10px 24px -8px rgba(6, 214, 160, .7);
+   }
+   .sa-bkhero__tabs .broker-tab-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 24px; height: 22px; padding: 0 7px; border-radius: 999px;
+      font-size: 12px; font-weight: 800;
+      background: rgba(0, 0, 0, .18); color: inherit;
+   }
+   .sa-bkhero__tabs .nav-link:not(.active) .broker-tab-count { background: rgba(255, 255, 255, .12); }
+
+   @@media (max-width: 991px) {
+      .sa-bkhero { padding: 130px 0 50px; }
+      .sa-bkhero__title { font-size: 40px; }
+      .sa-bkhero__lead { margin-top: 20px; }
+   }
+</style>
+
 <!-- broker list start -->
 <div class="tp-portfolio-inner-ptb pre-header pb-100 broker-modern">
-   <div class="container container-1800 containers">
+   <div class="container container-1600 containers">
       <div class="tp-portfolio-tab-content-wrap">
          @if (items.Count == 0)
          {

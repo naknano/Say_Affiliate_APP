@@ -306,7 +306,29 @@
         </main>
 
         <!-- tp-text-slider-area-start -->
-        <div class="tp-text-slider-area pt-25 pb-25 main-background-color">
+        <style>
+        .sa-marquee { position:relative; overflow:hidden; padding:26px 0; background:linear-gradient(90deg,#070912 0%,#12193f 50%,#070912 100%); border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); }
+        .sa-marquee::before, .sa-marquee::after { content:''; position:absolute; top:0; bottom:0; width:120px; z-index:2; pointer-events:none; }
+        .sa-marquee::before { left:0; background:linear-gradient(90deg,#070912,transparent); }
+        .sa-marquee::after  { right:0; background:linear-gradient(270deg,#070912,transparent); }
+        .sa-marquee .tp-text-slider-item { display:flex; align-items:center; gap:24px; }
+        .sa-marquee .tp-text-slider-item span.color-white {
+            font-size:24px; font-weight:800; letter-spacing:.01em;
+            background:linear-gradient(90deg,#fff,#c7cdf0);
+            -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+        }
+        .sa-marquee .tp-slider-star {
+            font-size:20px !important;
+            -webkit-text-fill-color:initial !important;
+            background:none !important;
+            color:#ffd166 !important;
+            text-shadow:0 0 14px rgba(255,209,102,.6);
+            animation:saSpin 6s linear infinite;
+        }
+        .sa-marquee .borders { display:inline-block; width:8px; }
+        @@keyframes saSpin { to { transform:rotate(360deg); } }
+        </style>
+        <div class="tp-text-slider-area sa-marquee">
             <div class="swiper-container tp-text-slider-active">
                 <div class="swiper-wrapper slide-transtion">
                     <div class="swiper-slide">
@@ -372,61 +394,66 @@
 
         <!-- Sayaffillates footer part -->
         <style>
-        /* ── Footer – light redesign ──────────────────────────── */
-        .sag-footer { background: #fff; }
+        /* ── Footer – dark redesign (matches home sections) ─────── */
+        .sag-footer { position:relative; overflow:hidden; background:#05060d; color:#fff; }
 
         /* CTA banner */
-        .sag-ft-banner { background: linear-gradient(135deg,#0891b2 0%,#16a34a 50%,#009AEE 100%); padding: 52px 0; position: relative; overflow: hidden; }
-        .sag-ft-banner::before { content:''; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%; background:rgba(255,255,255,.07); pointer-events:none; }
-        .sag-ft-banner::after  { content:''; position:absolute; left:-40px; bottom:-40px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
-        .sag-ft-banner-label   { font-size:11px; font-weight:800; color:rgba(255,255,255,.8); letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px; }
-        .sag-ft-banner-title   { font-size:clamp(22px,3.5vw,34px); font-weight:900; color:#fff; line-height:1.2; margin:0 0 8px; }
-        .sag-ft-banner-sub     { font-size:15px; color:rgba(255,255,255,.75); margin:0; }
-        .sag-ft-banner-btns    { display:flex; gap:12px; flex-wrap:wrap; }
-        .sag-ft-banner-btn-a   { display:inline-flex; align-items:center; gap:8px; background:#fff; color:#0891b2; font-size:14px; font-weight:800; padding:12px 24px; border-radius:10px; text-decoration:none; transition:transform .18s, box-shadow .18s; box-shadow:0 4px 16px rgba(0,0,0,.15); }
-        .sag-ft-banner-btn-a:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.2); color:#0891b2; text-decoration:none; }
-        .sag-ft-banner-btn-b   { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.15); border:1.5px solid rgba(255,255,255,.4); color:#fff; font-size:14px; font-weight:700; padding:12px 24px; border-radius:10px; text-decoration:none; transition:background .18s; }
-        .sag-ft-banner-btn-b:hover { background:rgba(255,255,255,.25); color:#fff; text-decoration:none; }
+        .sag-ft-banner { position:relative; overflow:hidden; padding:64px 0; background:radial-gradient(120% 160% at 50% 0%,#12193f 0%,#0a0e22 60%,#070912 100%); border-bottom:1px solid rgba(255,255,255,.06); }
+        .sag-ft-banner::before { content:''; position:absolute; right:-80px; top:-100px; width:340px; height:340px; border-radius:50%; background:rgba(108,92,231,.35); filter:blur(90px); pointer-events:none; }
+        .sag-ft-banner::after  { content:''; position:absolute; left:-80px; bottom:-120px; width:320px; height:320px; border-radius:50%; background:rgba(6,214,160,.3); filter:blur(90px); pointer-events:none; }
+        .sag-ft-banner .container { position:relative; z-index:1; }
+        .sag-ft-banner-label   { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:#ffe08a; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; padding:7px 16px; border-radius:999px; background:rgba(255,224,138,.12); border:1px solid rgba(255,224,138,.35); }
+        .sag-ft-banner-title   { font-size:clamp(24px,3.5vw,38px); font-weight:800; color:#fff; line-height:1.15; margin:0 0 10px; }
+        .sag-ft-banner-sub     { font-size:16px; color:rgba(255,255,255,.7); margin:0; }
+        .sag-ft-banner-btns    { display:flex; gap:14px; flex-wrap:wrap; }
+        .sag-ft-banner-btn-a   { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg,#ffd166,#06d6a0); color:#05060d; font-size:15px; font-weight:800; padding:14px 28px; border-radius:12px; text-decoration:none; transition:transform .25s, box-shadow .25s; box-shadow:0 12px 30px rgba(6,214,160,.35); }
+        .sag-ft-banner-btn-a:hover { transform:translateY(-3px); box-shadow:0 18px 44px rgba(6,214,160,.5); color:#05060d; text-decoration:none; }
+        .sag-ft-banner-btn-b   { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.2); color:#fff; font-size:15px; font-weight:700; padding:14px 28px; border-radius:12px; text-decoration:none; transition:background .25s,transform .25s; }
+        .sag-ft-banner-btn-b:hover { background:rgba(255,255,255,.14); transform:translateY(-3px); color:#fff; text-decoration:none; }
 
         /* Stats strip */
-        .sag-ft-stats-strip { background: #f8fafc; border-bottom: 1px solid #e8edf4; }
+        .sag-ft-stats-strip { background:rgba(255,255,255,.02); border-bottom:1px solid rgba(255,255,255,.06); }
         .sag-ft-stats-inner { display:flex; flex-wrap:wrap; }
-        .sag-ft-stat-item   { flex:1; min-width:140px; padding:22px 28px; border-right:1px solid #e8edf4; display:flex; align-items:center; gap:14px; }
+        .sag-ft-stat-item   { flex:1; min-width:140px; padding:26px 28px; border-right:1px solid rgba(255,255,255,.06); display:flex; align-items:center; gap:14px; }
         .sag-ft-stat-item:last-child { border-right:none; }
-        .sag-ft-stat-icon   { width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
-        .sag-ft-stat-num    { font-size:20px; font-weight:900; color:#0f1b2d; line-height:1; }
-        .sag-ft-stat-lbl    { font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+        .sag-ft-stat-icon   { width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; color:#fff !important; }
+        .sag-ft-stat-item:nth-child(1) .sag-ft-stat-icon { background:linear-gradient(135deg,#6c5ce7,#4834b4) !important; }
+        .sag-ft-stat-item:nth-child(2) .sag-ft-stat-icon { background:linear-gradient(135deg,#06d6a0,#048c6a) !important; }
+        .sag-ft-stat-item:nth-child(3) .sag-ft-stat-icon { background:linear-gradient(135deg,#00b8d9,#0891b2) !important; }
+        .sag-ft-stat-item:nth-child(4) .sag-ft-stat-icon { background:linear-gradient(135deg,#ffd166,#f0a500) !important; }
+        .sag-ft-stat-num    { font-size:22px; font-weight:800; color:#fff; line-height:1; }
+        .sag-ft-stat-lbl    { font-size:11px; color:rgba(255,255,255,.55); font-weight:600; text-transform:uppercase; letter-spacing:.05em; margin-top:3px; }
 
         /* Main body */
-        .sag-ft-body        { padding:56px 0 48px; border-bottom:1px solid #e8edf4; }
-        .sag-ft-tagline     { font-size:14px; color:#64748b; line-height:1.75; margin:14px 0 20px; max-width:280px; }
-        .sag-ft-reg-btn     { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#009AEE,#0891b2); color:#fff; font-size:13px; font-weight:700; padding:11px 22px; border-radius:9px; text-decoration:none; box-shadow:0 4px 14px rgba(0,154,238,.3); transition:box-shadow .18s,transform .18s; }
-        .sag-ft-reg-btn:hover { box-shadow:0 8px 20px rgba(0,154,238,.4); transform:translateY(-1px); color:#fff; text-decoration:none; }
-        .sag-ft-social      { display:flex; gap:8px; margin-top:20px; }
-        .sag-ft-social-btn  { width:36px; height:36px; border-radius:9px; background:#f1f5f9; border:1px solid #e2e8f0; display:flex; align-items:center; justify-content:center; color:#64748b; transition:background .18s,color .18s,border-color .18s; text-decoration:none; }
-        .sag-ft-social-btn:hover { background:#009AEE; border-color:#009AEE; color:#fff; }
+        .sag-ft-body        { padding:60px 0 50px; border-bottom:1px solid rgba(255,255,255,.06); }
+        .sag-ft-tagline     { font-size:14px; color:rgba(255,255,255,.65); line-height:1.75; margin:16px 0 22px; max-width:300px; }
+        .sag-ft-reg-btn     { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg,#ffd166,#06d6a0); color:#05060d; font-size:14px; font-weight:800; padding:12px 24px; border-radius:10px; text-decoration:none; box-shadow:0 10px 26px rgba(6,214,160,.35); transition:box-shadow .25s,transform .25s; }
+        .sag-ft-reg-btn:hover { box-shadow:0 16px 36px rgba(6,214,160,.5); transform:translateY(-2px); color:#05060d; text-decoration:none; }
+        .sag-ft-social      { display:flex; gap:10px; margin-top:22px; }
+        .sag-ft-social-btn  { width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.75); transition:background .25s,color .25s,border-color .25s,transform .25s; text-decoration:none; }
+        .sag-ft-social-btn:hover { background:linear-gradient(135deg,#06d6a0,#048c6a); border-color:transparent; color:#fff; transform:translateY(-2px); }
 
-        .sag-ft-col-title   { font-size:12px; font-weight:800; color:#0f1b2d; letter-spacing:.09em; text-transform:uppercase; margin:0 0 16px; display:flex; align-items:center; gap:8px; }
-        .sag-ft-col-title::before { content:''; width:3px; height:14px; border-radius:2px; background:linear-gradient(135deg,#009AEE,#16a34a); flex-shrink:0; }
-        .sag-ft-links       { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px; }
-        .sag-ft-links li a  { font-size:13.5px; color:#64748b; text-decoration:none; transition:color .15s,padding-left .15s; display:flex; align-items:center; gap:6px; }
-        .sag-ft-links li a:hover { color:#009AEE; padding-left:4px; }
-        .sag-ft-links li a i{ font-size:9px; color:#cbd5e1; transition:color .15s; }
-        .sag-ft-links li a:hover i { color:#009AEE; }
+        .sag-ft-col-title   { font-size:12px; font-weight:800; color:#fff; letter-spacing:.09em; text-transform:uppercase; margin:0 0 18px; display:flex; align-items:center; gap:8px; }
+        .sag-ft-col-title::before { content:''; width:3px; height:14px; border-radius:2px; background:linear-gradient(135deg,#ffd166,#06d6a0); flex-shrink:0; }
+        .sag-ft-links       { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+        .sag-ft-links li a  { font-size:13.5px; color:rgba(255,255,255,.6); text-decoration:none; transition:color .15s,padding-left .15s; display:flex; align-items:center; gap:6px; }
+        .sag-ft-links li a:hover { color:#06d6a0; padding-left:4px; }
+        .sag-ft-links li a i{ font-size:9px; color:rgba(255,255,255,.3); transition:color .15s; }
+        .sag-ft-links li a:hover i { color:#06d6a0; }
 
-        .sag-ft-contact-card { background:linear-gradient(135deg,#eff6ff,#ecfeff); border:1.5px solid #bae6fd; border-radius:14px; padding:18px; }
-        .sag-ft-contact-title{ font-size:13px; font-weight:800; color:#0f1b2d; margin-bottom:5px; }
-        .sag-ft-contact-sub  { font-size:12px; color:#64748b; margin:0 0 14px; line-height:1.6; }
-        .sag-ft-contact-btn  { display:flex; align-items:center; justify-content:center; gap:6px; background:#009AEE; color:#fff; font-size:12px; font-weight:700; padding:9px 16px; border-radius:8px; text-decoration:none; transition:background .18s; }
-        .sag-ft-contact-btn:hover { background:#007acc; color:#fff; text-decoration:none; }
+        .sag-ft-contact-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:20px; }
+        .sag-ft-contact-title{ font-size:14px; font-weight:800; color:#fff; margin-bottom:6px; }
+        .sag-ft-contact-sub  { font-size:12.5px; color:rgba(255,255,255,.6); margin:0 0 16px; line-height:1.6; }
+        .sag-ft-contact-btn  { display:flex; align-items:center; justify-content:center; gap:6px; background:linear-gradient(90deg,#ffd166,#06d6a0); color:#05060d; font-size:13px; font-weight:800; padding:11px 16px; border-radius:9px; text-decoration:none; transition:box-shadow .25s,transform .25s; }
+        .sag-ft-contact-btn:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(6,214,160,.4); color:#05060d; text-decoration:none; }
 
         /* Bottom bar */
-        .sag-ft-bottom      { background:#f8fafc; padding:18px 0; }
+        .sag-ft-bottom      { background:rgba(255,255,255,.02); padding:20px 0; }
         .sag-ft-bottom-inner{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
-        .sag-ft-copy        { font-size:13px; color:#94a3b8; margin:0; }
-        .sag-ft-legal       { display:flex; gap:18px; flex-wrap:wrap; }
-        .sag-ft-legal a     { font-size:12px; color:#94a3b8; text-decoration:none; transition:color .15s; }
-        .sag-ft-legal a:hover { color:#009AEE; }
+        .sag-ft-copy        { font-size:13px; color:rgba(255,255,255,.5); margin:0; }
+        .sag-ft-legal       { display:flex; gap:20px; flex-wrap:wrap; }
+        .sag-ft-legal a     { font-size:12px; color:rgba(255,255,255,.5); text-decoration:none; transition:color .15s; }
+        .sag-ft-legal a:hover { color:#06d6a0; }
         </style>
 
         <footer class="sag-footer">
@@ -603,6 +630,8 @@
         PATH_LOAD_USER : '@Configuration["PathLoadUser"]',
         PATH_UPDATE_USER: '@Configuration["PathUpdateUser"]',
         PATH_CHANGE_PASSWORD: '@Configuration["PathChangePassword"]',
+        PATH_FORGOT_PASSWORD: '@Configuration["PathForgotPassword"]',
+        PATH_RESET_PASSWORD: '@Configuration["PathResetPassword"]',
     };
     
 </script>

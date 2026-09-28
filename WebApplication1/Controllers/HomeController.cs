@@ -37,7 +37,19 @@ public class HomeController : Controller
         return View();
     }
 
-    
+    public IActionResult ForgotPassword()
+    {
+        return View();
+    }
+
+    public IActionResult ResetPassword(string email, string token)
+    {
+        ViewBag.Email = email;
+        ViewBag.Token = token;
+        return View();
+    }
+
+
     public async Task<IActionResult> Broker(string tab = "all", int page = 1)
     {
         // fetches only the current page (10 rows) straight from the DB — the full list is never loaded
@@ -50,13 +62,17 @@ public class HomeController : Controller
         if (id is null || id == Guid.Empty)
             return RedirectToAction(nameof(Broker));
 
-        var broker = await _brokerRepository.GetBrokerByIdAsync(id.Value);
+        // Fetch the cached card list once and derive both the broker and its
+        // "related" list from it — avoids a second cache lookup + list scan.
+        var cards = await _brokerRepository.GetBrokerCardsAsync();
+
+        var broker = cards.FirstOrDefault(b => b.Id == id.Value);
         if (broker is null)
             return RedirectToAction(nameof(Broker));
 
-        var related = (await _brokerRepository.GetBrokerCardsAsync())
+        // cards are already ordered by rating in the repository, so just filter + take.
+        var related = cards
             .Where(b => b.Id != broker.Id)
-            .OrderByDescending(b => b.Rating)
             .Take(4)
             .ToList();
 

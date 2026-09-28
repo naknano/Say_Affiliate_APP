@@ -1,72 +1,109 @@
 <div class="col-12" data-background="@Url.Content("~/assets/img/update-2/hero/hero-3/hero-thumb-1.png")">
     <!-- tp-portfolio-area-start -->
-    <div class="tp-portfolio-colum-spacing pre-header tp-portfolio-area" xmlns="http://www.w3.org/1999/html">
+    <div class="sa-cthero">
+        <span class="sa-cthero__glow sa-cthero__glow--one"></span>
+        <span class="sa-cthero__glow sa-cthero__glow--two"></span>
         <div class="container containers">
-            <div class="row">
+            <div class="row align-items-end">
                 <div class="col-lg-7">
-                    <div class="tp-service-hero-left p-relative mb-40">
-                        <h2 class="fs-70 fs-lg-60 fs-xs-40">Your <span class="main-color">Success Journey</span> Starts Here</h2>
-                        <span class="tp-service-hero-shape tpswing d-none d-sm-inline-block">
-                    <svg width="52" height="94" viewBox="0 0 52 94" fill="none" xmlns="http://www.w3.org/2000/svg">
-                       <path d="M1 16.1098C5.58433 24.0984 22.6118 44.5692 38.3295 38.0785C46.3521 34.5835 58.2264 23.6551 45.206 5.12554C40.2943 -1.86444 30.6673 -0.666183 25.559 14.1127C22.6118 22.6393 15.2441 43.0714 22.612 61.0456C26.5006 70.5321 38.1332 85.2111 49.1356 90.0043M49.1356 90.0043C44.0601 87.3414 32.8285 84.2126 28.5061 93M49.1356 90.0043C45.8611 88.1736 40.0979 80.8174 43.2414 66.0385M10.2322 38.0785C9.38015 41.6962 8.2675 54.4237 15.144 64.4094" stroke="#030303" stroke-width="1.5" />
-                    </svg>
-                 </span>
-                    </div>
+                    <span class="sa-cthero__badge"><i class="fa-solid fa-headset"></i> We're here to help</span>
+                    <h1 class="sa-cthero__title">Your <span class="sa-cthero__highlight">Success Journey</span> Starts Here</h1>
                 </div>
                 <div class="col-lg-5">
-                    <div class="tp-service-hero-right mt-130">
-                        <p class="fs-20 lh-140-per">
-                            We’re here to <span class="main-color">support</span> you every step of the way. Whether you have questions about your <span class="main-color"> cashback rewards </span>
-                            need assistance with your account, or want to learn more about <span class="main-color"> maximizing your trading savings </span>,
-                            our team is ready to help. Reach out to us anytime, and let us enhance your <span class="main-color">Say Affiliates Forex </span> cashback experience.
-                        </p>
-                    </div>
+                    <p class="sa-cthero__lead">
+                        We're here to support you every step of the way &mdash; questions about your
+                        <b>cashback rewards</b>, account help, or tips on
+                        <b>maximizing your trading savings</b>. Reach out anytime and let us enhance your
+                        <b>Say Affiliates Forex</b> cashback experience.
+                    </p>
                 </div>
+            </div>
+            <div class="sa-cthero__chips">
+                <span class="sa-cthero__chip"><i class="fa-solid fa-bolt"></i> Fast response</span>
+                <span class="sa-cthero__chip"><i class="fa-solid fa-clock"></i> 24/7 support</span>
+                <span class="sa-cthero__chip"><i class="fa-solid fa-comments-dollar"></i> Expert cashback advice</span>
             </div>
         </div>
     </div>
     <!-- tp-portfolio-area-end -->
 
+    <style>
+        .sa-cthero {
+            position: relative;
+            overflow: hidden;
+            padding: 160px 0 70px;
+            background: radial-gradient(120% 120% at 80% 0%, #0e1330 0%, #070912 55%, #05060d 100%);
+            color: #fff;
+        }
+        .sa-cthero__glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+        .sa-cthero__glow--one { width: 460px; height: 460px; top: -160px; left: -120px; background: rgba(108, 92, 231, .35); }
+        .sa-cthero__glow--two { width: 460px; height: 460px; bottom: -200px; right: -120px; background: rgba(6, 214, 160, .3); }
+        .sa-cthero .container { position: relative; z-index: 1; }
+
+        .sa-cthero__badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; margin-bottom: 22px;
+            font-size: 14px; font-weight: 600; border-radius: 999px;
+            color: #06d6a0; background: rgba(6, 214, 160, .12); border: 1px solid rgba(6, 214, 160, .3);
+        }
+        .sa-cthero__title { font-size: 60px; line-height: 1.05; font-weight: 800; margin: 0; color: #fff; }
+        .sa-cthero__highlight {
+            background: linear-gradient(90deg, #ffd166, #06d6a0);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sa-cthero__lead { font-size: 17px; line-height: 1.75; color: rgba(255, 255, 255, .7); margin: 0; }
+        .sa-cthero__lead b { color: #fff; font-weight: 600; }
+
+        .sa-cthero__chips { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px; }
+        .sa-cthero__chip {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; border-radius: 12px; font-size: 14px; font-weight: 500;
+            color: rgba(255, 255, 255, .85);
+            background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .08);
+        }
+        .sa-cthero__chip i { color: #ffd166; }
+
+        @@media (max-width: 991px) {
+            .sa-cthero { padding: 130px 0 55px; }
+            .sa-cthero__title { font-size: 40px; }
+            .sa-cthero__lead { margin-top: 20px; }
+        }
+    </style>
+
 
 
     <!-- tp-contact-area-start -->
-    <div class="tp-contact-area pre-header pb-30">
+    <div class="sa-contact">
         <div class="container containers">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="tp-contact-wrap">
-                        <div class="text-center mb-60">
-                            <h2 class="tp-section-title fs-70 fs-xl-60 fs-lg-50 fs-xs-40 mb-10">Get in <span class="main-color">Touch</span></h2>
-                            <p class="fs-18 lh-150-per">Questions about your cashback, your account, or a broker? Send us a<br> message and our team will get back to you shortly.</p>
-                        </div>
-                        <div class="tp-contact-number mb-70 border-none" style="border: none !important;">
-                            <div class="d-flex align-items-center mb-15 mr-20">
-                                 <span class="tp-contact-icon mr-15" style="background-color: white !important;">
-                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_863_33)">
-                                                <path d="M5.83174 11.7413V14.8333C5.83225 14.9384 5.86581 15.0407 5.92767 15.1256C5.98953 15.2106 6.07655 15.2739 6.1764 15.3066C6.27625 15.3394 6.38388 15.3399 6.48403 15.3081C6.58418 15.2762 6.67177 15.2137 6.73441 15.1293L8.54308 12.668L5.83174 11.7413ZM15.7884 0.0926552C15.7133 0.0391576 15.6248 0.00748045 15.5328 0.001127C15.4408 -0.00522644 15.3488 0.0139914 15.2671 0.0566552L0.267077 7.88999C0.180772 7.9356 0.109661 8.00542 0.0624712 8.09087C0.0152814 8.17633 -0.00593423 8.2737 0.00142817 8.37104C0.00879056 8.46838 0.0444106 8.56145 0.103917 8.63883C0.163423 8.71622 0.244227 8.77454 0.336411 8.80666L4.50641 10.232L13.3871 2.63866L6.51508 10.918L13.5037 13.3067C13.5731 13.33 13.6467 13.3378 13.7194 13.3297C13.7921 13.3216 13.8622 13.2976 13.9246 13.2596C13.9871 13.2216 14.0405 13.1703 14.0812 13.1095C14.1218 13.0486 14.1486 12.9796 14.1597 12.9073L15.9931 0.573989C16.0066 0.482688 15.9947 0.389414 15.9586 0.304471C15.9225 0.219528 15.8636 0.146223 15.7884 0.0926552Z" fill="#030303" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_863_33">
-                                                    <rect width="16" height="16" fill="white" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        </span>
-                                        <a class="tp-contact-email main-color" href="mailto:support@sayaffiliates.com">@@MongsayFX</a>
-                            </div>
-                            <div class="d-flex align-items-center mb-15">
-                               <span class="tp-contact-icon mr-15" style="background-color: white !important;">
-                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                     <path d="M15.5633 11.7424L13.3305 9.50954C12.5331 8.71209 11.1774 9.0311 10.8584 10.0678C10.6192 10.7855 9.82174 11.1842 9.10404 11.0247C7.50915 10.626 5.35604 8.5526 4.95732 6.87797C4.71809 6.16024 5.19656 5.36279 5.91426 5.12359C6.95094 4.80461 7.26991 3.44895 6.47247 2.65151L4.23962 0.418659C3.60166 -0.139553 2.64473 -0.139553 2.08652 0.418659L0.57137 1.93381C-0.943776 3.5287 0.73086 7.75516 4.47885 11.5032C8.22685 15.2511 12.4533 17.0056 14.0482 15.4106L15.5633 13.8955C16.1216 13.2575 16.1216 12.3006 15.5633 11.7424Z" fill="#030303" />
-                                  </svg>
-                               </span>
-                                <a class="tp-contact-email main-color" href="tel:+855000000000">+855 78 927 437</a>
-                            </div>
-                        </div>
-                        <div class="tp-postbox-details-form-wrapper tp-contact-form tp-bg-common-white p-relative z-index-1" style="border-radius: 10px;">
-                            <img class="tp-contact-shape" src="assets/img/contact/shape.png" alt="">
-                            <form id="contact-form" action="assets/mail.php" method="POST">
+            <div class="row g-4 g-xl-5 align-items-stretch">
+                <!-- Left: info panel -->
+                <div class="col-lg-5">
+                    <div class="sa-contact__info">
+                        <span class="sa-contact__badge"><i class="fa-solid fa-paper-plane"></i> Contact us</span>
+                        <h2 class="sa-contact__title">Get in <span class="sa-contact__highlight">Touch</span></h2>
+                        <p class="sa-contact__lead">Questions about your cashback, your account, or a broker? Send us a message and our team will get back to you shortly.</p>
+
+                        <a class="sa-contact__row" href="https://t.me/MongsayFX" target="_blank" rel="noopener">
+                            <span class="sa-contact__row-icon"><i class="fa-brands fa-telegram"></i></span>
+                            <span class="sa-contact__row-text"><small>Telegram</small><strong>@@MongsayFX</strong></span>
+                        </a>
+                        <a class="sa-contact__row" href="mailto:support@@sayaffiliates.com">
+                            <span class="sa-contact__row-icon"><i class="fa-solid fa-envelope"></i></span>
+                            <span class="sa-contact__row-text"><small>Email</small><strong>support@@sayaffiliates.com</strong></span>
+                        </a>
+                        <a class="sa-contact__row" href="tel:+85578927437">
+                            <span class="sa-contact__row-icon"><i class="fa-solid fa-phone"></i></span>
+                            <span class="sa-contact__row-text"><small>Phone</small><strong>+855 78 927 437</strong></span>
+                        </a>
+
+                        <div class="sa-contact__note"><i class="fa-solid fa-clock"></i> We usually reply within 24 hours.</div>
+                    </div>
+                </div>
+
+                <!-- Right: form card -->
+                <div class="col-lg-7">
+                    <div class="sa-contact__formcard">
+                        <form id="contact-form" action="assets/mail.php" method="POST">
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="tp-checkout-input mb-25">
@@ -129,7 +166,6 @@
                                     <p class="ajax-response mt-20"></p>
                                 </div>
                             </form>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -137,60 +173,202 @@
     </div>
     <!-- tp-contact-area-end -->
 
+    <style>
+        .sa-contact {
+            position: relative;
+            padding: 40px 0 90px;
+            background: linear-gradient(180deg, #05060d 0%, #0a0e22 100%);
+            color: #fff;
+        }
+        /* Left info panel */
+        .sa-contact__info {
+            height: 100%;
+            padding: 44px 38px;
+            border-radius: 22px;
+            background: radial-gradient(120% 120% at 0% 0%, #12193f 0%, #0a0e22 70%);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+        .sa-contact__badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; margin-bottom: 22px;
+            font-size: 14px; font-weight: 600; border-radius: 999px;
+            color: #06d6a0; background: rgba(6, 214, 160, .12); border: 1px solid rgba(6, 214, 160, .3);
+        }
+        .sa-contact__title { font-size: 46px; font-weight: 800; line-height: 1.1; margin: 0 0 14px; color: #fff; }
+        .sa-contact__highlight {
+            background: linear-gradient(90deg, #ffd166, #06d6a0);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sa-contact__lead { font-size: 16px; line-height: 1.7; color: rgba(255, 255, 255, .68); margin: 0 0 30px; }
+
+        .sa-contact__row {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px; margin-bottom: 14px; border-radius: 14px;
+            text-decoration: none;
+            background: rgba(255, 255, 255, .04); border: 1px solid rgba(255, 255, 255, .08);
+            transition: transform .25s ease, border-color .25s ease, background .25s ease;
+        }
+        .sa-contact__row:hover { transform: translateX(4px); background: rgba(255, 255, 255, .07); border-color: rgba(6, 214, 160, .4); }
+        .sa-contact__row-icon {
+            flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+            width: 46px; height: 46px; border-radius: 12px; font-size: 18px; color: #05060d;
+            background: linear-gradient(135deg, #ffd166, #06d6a0);
+            box-shadow: 0 10px 22px -8px rgba(6, 214, 160, .7);
+        }
+        .sa-contact__row-text { display: flex; flex-direction: column; }
+        .sa-contact__row-text small { font-size: 12px; color: rgba(255, 255, 255, .5); text-transform: uppercase; letter-spacing: .05em; }
+        .sa-contact__row-text strong { font-size: 15px; font-weight: 700; color: #fff; }
+        .sa-contact__note { margin-top: 24px; font-size: 13.5px; color: rgba(255, 255, 255, .6); }
+        .sa-contact__note i { color: #ffd166; margin-right: 6px; }
+
+        /* Right form card */
+        .sa-contact__formcard {
+            padding: 40px 38px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(6px);
+        }
+        .sa-contact__formcard .tp-checkout-input label {
+            display: block; margin-bottom: 8px;
+            font-size: 14px !important; font-weight: 600; color: rgba(255, 255, 255, .8) !important;
+        }
+        .sa-contact__formcard input[type="text"],
+        .sa-contact__formcard input[type="email"],
+        .sa-contact__formcard select,
+        .sa-contact__formcard textarea {
+            width: 100%;
+            padding: 13px 16px;
+            font-size: 15px;
+            color: #fff !important;
+            background: rgba(255, 255, 255, .05) !important;
+            border: 1px solid rgba(255, 255, 255, .14) !important;
+            border-radius: 12px !important;
+            transition: border-color .22s ease, background .22s ease;
+        }
+        .sa-contact__formcard textarea { min-height: 130px; resize: vertical; }
+        .sa-contact__formcard select option { color: #05060d; }
+        .sa-contact__formcard input::placeholder,
+        .sa-contact__formcard textarea::placeholder { color: rgba(255, 255, 255, .4); }
+        .sa-contact__formcard input:focus,
+        .sa-contact__formcard select:focus,
+        .sa-contact__formcard textarea:focus {
+            outline: none;
+            border-color: rgba(6, 214, 160, .6) !important;
+            background: rgba(255, 255, 255, .08) !important;
+        }
+        .sa-contact__formcard .tp-checkbox + label { color: rgba(255, 255, 255, .65); font-size: 13.5px; font-weight: 500; }
+        .sa-contact__formcard .ajax-response { color: rgba(255, 255, 255, .7); }
+        /* Submit button restyle */
+        .sa-contact__formcard button[type="submit"] {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 32px !important; border: none !important; border-radius: 14px !important;
+            font-weight: 800 !important; font-size: 14px !important; color: #05060d !important;
+            background: linear-gradient(90deg, #ffd166, #06d6a0) !important;
+            box-shadow: 0 12px 30px -8px rgba(6, 214, 160, .6);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .sa-contact__formcard button[type="submit"]:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -8px rgba(6, 214, 160, .8); }
+
+        @@media (max-width: 991px) {
+            .sa-contact__title { font-size: 36px; }
+            .sa-contact__info, .sa-contact__formcard { padding: 32px 24px; }
+        }
+    </style>
 
 
 
 
-    <!-- about area start -->
-    <div class="cn-contactform-support-area mb-140">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
-                    <div class="cn-contactform-support-bg d-flex align-items-center justify-content-center" data-background="assets/img/contact/contact-us-shape.png">
-                        <div class="cn-contactform-support-text text-center">
-                    <span>Prefer another channel? Reach us directly
-                       below &mdash; we aim to respond
-                       within 24 hours.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- about area end -->
 
     <!-- contact channels start -->
-    <div class="tp-contact-us-info-area cu-channels pb-120">
+    <div class="sa-channels">
         <div class="container container-1230">
-            <div class="row">
+            <div class="sa-channels__head text-center">
+                <span class="sa-channels__badge"><i class="fa-solid fa-comments"></i> Other ways to reach us</span>
+                <h2 class="sa-channels__title">Prefer another channel?</h2>
+                <p class="sa-channels__lead">Reach us directly through any of the options below &mdash; we aim to respond within 24 hours.</p>
+            </div>
+            <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="cu-card">
-                        <span class="cu-card-icon"><i class="fa-solid fa-envelope"></i></span>
+                    <div class="sa-ch-card">
+                        <span class="sa-ch-card__icon sa-ch-card__icon--mail"><i class="fa-solid fa-envelope"></i></span>
                         <h4>Email Support</h4>
                         <p>Get help with cashback, payouts or your account.</p>
-                        <a href="mailto:support@sayaffiliates.com">support@sayaffiliates.com</a>
+                        <a href="mailto:support@@sayaffiliates.com">support@@sayaffiliates.com <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="cu-card">
-                        <span class="cu-card-icon cu-icon-tg"><i class="fa-brands fa-telegram"></i></span>
+                    <div class="sa-ch-card">
+                        <span class="sa-ch-card__icon sa-ch-card__icon--tg"><i class="fa-brands fa-telegram"></i></span>
                         <h4>Telegram</h4>
                         <p>Chat with our team for a quick response.</p>
-                        <a href="https://t.me/sayaffiliates" target="_blank" rel="noopener">@("@")sayaffiliates</a>
+                        <a href="https://t.me/sayaffiliates" target="_blank" rel="noopener">@("@")sayaffiliates <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-30">
-                    <div class="cu-card">
-                        <span class="cu-card-icon cu-icon-wa"><i class="fa-brands fa-whatsapp"></i></span>
+                    <div class="sa-ch-card">
+                        <span class="sa-ch-card__icon sa-ch-card__icon--wa"><i class="fa-brands fa-whatsapp"></i></span>
                         <h4>WhatsApp</h4>
                         <p>Message us anytime &mdash; we reply within 24 hours.</p>
-                        <a href="https://wa.me/855000000000" target="_blank" rel="noopener">+855 000 000 000</a>
+                        <a href="https://wa.me/855000000000" target="_blank" rel="noopener">+855 000 000 000 <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- contact channels end -->
+
+    <style>
+        .sa-channels { background: #f6f9fc; padding: 90px 0 100px; }
+        .sa-channels__head { max-width: 620px; margin: 0 auto 50px; }
+        .sa-channels__badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; margin-bottom: 18px;
+            font-size: 14px; font-weight: 600; border-radius: 999px;
+            color: #06b88a; background: rgba(6, 184, 138, .1); border: 1px solid rgba(6, 184, 138, .25);
+        }
+        .sa-channels__title { font-size: 40px; font-weight: 800; color: #0f1b2d; margin: 0 0 12px; letter-spacing: -0.02em; }
+        .sa-channels__lead { font-size: 16px; line-height: 1.7; color: #64748b; margin: 0; }
+
+        .sa-ch-card {
+            height: 100%;
+            padding: 38px 30px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #eef2f7;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px -24px rgba(16, 44, 84, 0.5);
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+        .sa-ch-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(6, 184, 138, .35);
+            box-shadow: 0 26px 46px -22px rgba(6, 184, 138, .45);
+        }
+        .sa-ch-card__icon {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 68px; height: 68px; margin-bottom: 22px;
+            border-radius: 18px; font-size: 26px; color: #fff;
+        }
+        .sa-ch-card__icon--mail { background: linear-gradient(135deg, #06d6a0, #048c6a); box-shadow: 0 14px 28px -12px rgba(6, 214, 160, .8); }
+        .sa-ch-card__icon--tg { background: linear-gradient(135deg, #2aabee, #229ed9); box-shadow: 0 14px 28px -12px rgba(42, 171, 238, .7); }
+        .sa-ch-card__icon--wa { background: linear-gradient(135deg, #25d366, #128c7e); box-shadow: 0 14px 28px -12px rgba(37, 211, 102, .7); }
+        .sa-ch-card h4 { font-size: 20px; font-weight: 800; color: #0f1b2d; margin: 0 0 8px; }
+        .sa-ch-card p { font-size: 14.5px; line-height: 1.6; color: #64748b; margin: 0 0 18px; }
+        .sa-ch-card a {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 15px; font-weight: 700; color: #06b88a; text-decoration: none;
+            transition: gap .22s ease, color .22s ease;
+        }
+        .sa-ch-card a i { font-size: 12px; transition: transform .22s ease; }
+        .sa-ch-card a:hover { color: #048c6a; }
+        .sa-ch-card a:hover i { transform: translateX(4px); }
+
+        @@media (max-width: 767px) {
+            .sa-channels { padding: 60px 0 70px; }
+            .sa-channels__title { font-size: 30px; }
+        }
+    </style>
 
 </div>  
 

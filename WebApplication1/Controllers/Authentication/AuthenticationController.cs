@@ -54,4 +54,19 @@ public class AuthenticationController : Controller
         return await _authenticationService.ChangePassword(userId,changePasswordRequest.CurrentPassword, changePasswordRequest.NewPassword);
     }
 
+    [HttpPost("forgot-password")]
+    public async Task<ResponseDto<string>> ForgotPassword([FromBody] ForgotPasswordRequestDto request)
+    {
+        // Build the reset page URL from the current request host so the emailed link
+        // points back to this site's Home/ResetPassword view.
+        string resetBaseUrl = $"{Request.Scheme}://{Request.Host}/Home/ResetPassword";
+        return await _authenticationService.ForgotPasswordAsync(request.Email, resetBaseUrl);
+    }
+
+    [HttpPost("reset-password")]
+    public async Task<ResponseDto<string>> ResetPassword([FromBody] ResetPasswordRequestDto request)
+    {
+        return await _authenticationService.ResetPasswordAsync(request);
+    }
+
 }

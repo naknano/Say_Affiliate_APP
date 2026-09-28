@@ -1245,7 +1245,7 @@ select {
    Broker list redesign (scoped to .broker-modern)
    ============================================================ */
 .broker-modern {
-    --bk-primary: #009AEE;
+    --bk-primary: #06b88a;
     --bk-ink: #16202e;
     --bk-muted: #7a8699;
     --bk-line: #eef2f7;
@@ -1316,8 +1316,8 @@ select {
 }
 .broker-card:hover {
     transform: translateY(-6px);
-    border-color: transparent;
-    box-shadow: 0 26px 46px -22px rgba(0, 154, 238, 0.5);
+    border-color: rgba(6, 184, 138, 0.35);
+    box-shadow: 0 26px 46px -22px rgba(6, 184, 138, 0.5);
 }
 .broker-card-flag {
     position: absolute;
@@ -1340,18 +1340,22 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 150px;
-    padding: 24px;
-    background: var(--bk-bg);
+    height: 160px;
+    padding: 28px 32px;
+    background:
+        radial-gradient(120% 120% at 50% 0%, #ffffff 0%, #fbfdff 60%, #f4f8fc 100%);
     border-bottom: 1px solid var(--bk-line);
 }
 .broker-card-logo img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    max-width: 190px;
+    max-height: 90px;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    object-position: center;
+    transition: transform 0.35s ease;
 }
-.broker-card:hover .broker-card-logo img { transform: scale(1.06); }
+.broker-card:hover .broker-card-logo img { transform: scale(1.07); }
 
 .broker-card-body {
     flex: 1;
@@ -1366,22 +1370,24 @@ select {
 }
 .broker-card-name {
     margin: 0;
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.25;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 .broker-card-name a { color: var(--bk-ink); transition: color 0.2s ease; }
 .broker-card-name a:hover { color: var(--bk-primary); }
 .broker-card-tag {
     flex-shrink: 0;
-    padding: 5px 11px;
+    padding: 5px 12px;
     border-radius: 30px;
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10.5px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.6px;
     color: var(--bk-primary);
-    background: rgba(0, 154, 238, 0.1);
+    background: rgba(6, 184, 138, 0.12);
+    border: 1px solid rgba(6, 184, 138, 0.2);
 }
 .broker-card-rating {
     display: flex;
@@ -1406,22 +1412,24 @@ select {
     padding: 14px 18px;
     border-radius: 14px;
     margin-bottom: 16px;
-    background: linear-gradient(120deg, rgba(0, 154, 238, 0.08), rgba(27, 168, 245, 0.14));
-    border: 1px dashed rgba(0, 154, 238, 0.35);
+    background: linear-gradient(120deg, rgba(6, 184, 138, 0.08), rgba(255, 209, 102, 0.14));
+    border: 1px dashed rgba(6, 184, 138, 0.4);
 }
 .broker-rebate-label {
     display: block;
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
     color: var(--bk-muted);
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 .broker-rebate-value {
-    font-size: 24px;
+    font-size: 15px;
     font-weight: 800;
     line-height: 1.1;
-    color: var(--bk-primary);
+    letter-spacing: -0.02em;
+    color: #0a8f6a;
 }
 .broker-rebate-value small {
     font-size: 13px;
@@ -1436,9 +1444,9 @@ select {
     height: 44px;
     border-radius: 12px;
     font-size: 18px;
-    color: #fff;
-    background: linear-gradient(120deg, #009AEE, #1ba8f5);
-    box-shadow: 0 10px 18px -10px rgba(0, 154, 238, 0.8);
+    color: #05060d;
+    background: linear-gradient(120deg, #ffd166, #06d6a0);
+    box-shadow: 0 10px 18px -10px rgba(6, 214, 160, 0.8);
 }
 
 /* Meta rows */
@@ -1452,13 +1460,13 @@ select {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 9px 0;
-    font-size: 14px;
+    padding: 10px 0;
+    font-size: 13.5px;
     border-bottom: 1px solid var(--bk-line);
 }
 .broker-card-meta li:last-child { border-bottom: none; }
-.broker-card-meta li span { color: var(--bk-muted); }
-.broker-card-meta li b { color: var(--bk-ink); font-weight: 600; text-align: right; }
+.broker-card-meta li span { color: var(--bk-muted); font-weight: 500; }
+.broker-card-meta li b { color: var(--bk-ink); font-weight: 700; text-align: right; }
 
 /* Actions */
 .broker-card-actions {
@@ -1491,15 +1499,15 @@ select {
     border-color: var(--bk-primary);
 }
 .broker-btn-solid {
-    color: #fff;
+    color: #05060d;
     border: none;
-    background: linear-gradient(120deg, #009AEE, #1ba8f5);
-    box-shadow: 0 12px 22px -12px rgba(0, 154, 238, 0.8);
+    background: linear-gradient(90deg, #ffd166, #06d6a0);
+    box-shadow: 0 12px 22px -12px rgba(6, 214, 160, 0.85);
 }
 .broker-btn-solid:hover {
-    color: #fff;
+    color: #05060d;
     transform: translateY(-2px);
-    box-shadow: 0 16px 26px -12px rgba(0, 154, 238, 0.9);
+    box-shadow: 0 16px 28px -12px rgba(6, 214, 160, 1);
 }
 
 @media (max-width: 575px) {
@@ -1916,11 +1924,12 @@ select {
    Header menu (scoped to .hdr-modern)
    ============================================================ */
 .hdr-modern {
-    --hdr-primary: #009AEE;
+    --hdr-primary: #06b88a;
+    --hdr-primary-2: #ffd166;
     --hdr-ink: #16202e;
     --hdr-muted: #7a8699;
     --hdr-line: #eef2f7;
-    --hdr-bg: #f6f9fc;
+    --hdr-bg: #eefaf5;
 }
 
 /* ---- "Soon" chip on nav items ---- */
@@ -1935,8 +1944,8 @@ select {
     line-height: 1.4;
     text-transform: uppercase;
     letter-spacing: 0.4px;
-    color: #fff;
-    background: linear-gradient(120deg, #009AEE, #1ba8f5);
+    color: #05060d;
+    background: linear-gradient(120deg, #ffd166, #06d6a0);
     vertical-align: middle;
 }
 
@@ -1956,7 +1965,7 @@ select {
 .hdr-modern .hdr-mega-item:hover {
     background: var(--hdr-bg);
     transform: translateX(4px);
-    box-shadow: -3px 0 0 0 #009AEE;
+    box-shadow: -3px 0 0 0 var(--hdr-primary);
 }
 .hdr-mega-icon {
     flex-shrink: 0;
@@ -1968,12 +1977,12 @@ select {
     border-radius: 12px;
     font-size: 16px !important;
     color: var(--hdr-primary);
-    background: rgba(0, 154, 238, 0.1);
+    background: rgba(6, 184, 138, 0.1);
     transition: color 0.22s ease, background 0.22s ease, transform 0.22s ease;
 }
 .hdr-modern .hdr-mega-item:hover .hdr-mega-icon {
     color: #fff;
-    background: #009AEE;
+    background: linear-gradient(135deg, #06d6a0, #048c6a);
     transform: rotate(-8deg) scale(1.08);
 }
 .hdr-mega-text {
@@ -2010,18 +2019,20 @@ select {
     gap: 8px;
     padding: 26px 24px;
     border-radius: 18px;
-    background: linear-gradient(140deg, #009AEE 0%, #1ba8f5 60%, #33c0ff 100%);
-    box-shadow: 0 18px 36px -20px rgba(0, 154, 238, 0.7);
+    background: radial-gradient(120% 140% at 20% 0%, #12193f 0%, #0a0e22 60%, #070912 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 36px -20px rgba(0, 0, 0, 0.7);
 }
 .hdr-mega-promo::after {
     content: "";
     position: absolute;
-    top: -50px;
-    right: -40px;
-    width: 160px;
-    height: 160px;
+    top: -60px;
+    right: -50px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(6,214,160,0.4) 0%, rgba(6,214,160,0) 70%);
+    filter: blur(10px);
 }
 .hdr-mega-promo-badge {
     display: inline-flex;
@@ -2031,10 +2042,12 @@ select {
     border-radius: 30px;
     font-size: 12px;
     font-weight: 700;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.2);
+    color: #06d6a0;
+    background: rgba(6, 214, 160, 0.14);
+    border: 1px solid rgba(6, 214, 160, 0.35);
     backdrop-filter: blur(4px);
 }
+.hdr-mega-promo-badge span { background: #06d6a0 !important; box-shadow: 0 0 8px #06d6a0; }
 .hdr-mega-promo h5 {
     font-size: 19px;
     font-weight: 700;
@@ -2054,19 +2067,19 @@ select {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
+    padding: 11px 22px;
     border-radius: 30px;
     font-size: 13px;
-    font-weight: 700;
-    color: var(--hdr-primary);
-    background: #fff;
-    box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.35);
+    font-weight: 800;
+    color: #05060d;
+    background: linear-gradient(90deg, #ffd166, #06d6a0);
+    box-shadow: 0 10px 24px -8px rgba(6, 214, 160, 0.7);
     transition: all 0.22s ease;
 }
 .hdr-mega-promo-btn:hover {
-    color: var(--hdr-primary);
+    color: #05060d;
     transform: translateY(-2px);
-    box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 16px 30px -8px rgba(6, 214, 160, 0.85);
 }
 
 /* ---- Support submenu icons ---- */
@@ -2100,18 +2113,18 @@ select {
 .hdr-btn-ghost:hover {
     color: var(--hdr-primary);
     border-color: var(--hdr-primary);
-    background: rgba(0, 154, 238, 0.06);
+    background: rgba(6, 184, 138, 0.08);
 }
 .hdr-btn-solid {
-    color: #fff;
+    color: #05060d;
     border: none;
-    background: linear-gradient(120deg, #009AEE, #1ba8f5);
-    box-shadow: 0 10px 20px -10px rgba(0, 154, 238, 0.8);
+    background: linear-gradient(90deg, #ffd166, #06d6a0);
+    box-shadow: 0 10px 22px -10px rgba(6, 214, 160, 0.9);
 }
 .hdr-btn-solid:hover {
-    color: #fff;
+    color: #05060d;
     transform: translateY(-2px);
-    box-shadow: 0 14px 24px -10px rgba(0, 154, 238, 0.9);
+    box-shadow: 0 16px 28px -10px rgba(6, 214, 160, 1);
 }
 .hdr-btn-solid i { font-size: 12px; transition: transform 0.22s ease; }
 .hdr-btn-solid:hover i { transform: translateX(3px); }
@@ -2124,7 +2137,7 @@ select {
     margin-left: -6px;
     border-radius: 50%;
     font-size: 11px;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 /* ============================================================
@@ -2830,10 +2843,10 @@ html { scroll-behavior: smooth; }
     color: #55627a;
 }
 
-.fx-calc { background: linear-gradient(180deg, #f6f9fc 0%, #eaf6fe 100%); }
+.fx-calc { background: linear-gradient(180deg, #f6f9fc 0%, #ecfbf5 100%); }
 .fx-calc-card {
     background: #fff;
-    border: 1px solid #e7f1f9;
+    border: 1px solid #e7f1ee;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 30px 60px -38px rgba(16, 44, 84, 0.55);
@@ -2861,8 +2874,8 @@ html { scroll-behavior: smooth; }
     border-radius: 20px;
     font-size: 13px;
     font-weight: 700;
-    color: #009AEE;
-    background: rgba(0, 154, 238, 0.1);
+    color: #06b88a;
+    background: rgba(6, 184, 138, 0.1);
 }
 
 /* select with leading icon */
@@ -2873,7 +2886,7 @@ html { scroll-behavior: smooth; }
     top: 50%;
     transform: translateY(-50%);
     font-size: 14px;
-    color: #009AEE;
+    color: #06b88a;
     pointer-events: none;
 }
 .fx-calc-select::after {
@@ -2906,9 +2919,9 @@ html { scroll-behavior: smooth; }
 }
 .fx-calc-select select:focus {
     outline: none;
-    border-color: #009AEE;
+    border-color: #06b88a;
     background: #fff;
-    box-shadow: 0 0 0 4px rgba(0, 154, 238, 0.12);
+    box-shadow: 0 0 0 4px rgba(6, 184, 138, 0.14);
 }
 
 /* account toggle */
@@ -2933,9 +2946,9 @@ html { scroll-behavior: smooth; }
     transition: all 0.2s ease;
 }
 .fx-calc-toggle button.is-active {
-    color: #fff;
-    background: linear-gradient(120deg, #009AEE, #1ba8f5);
-    box-shadow: 0 8px 16px -8px rgba(0, 154, 238, 0.8);
+    color: #05060d;
+    background: linear-gradient(90deg, #ffd166, #06d6a0);
+    box-shadow: 0 8px 16px -8px rgba(6, 214, 160, 0.8);
 }
 
 /* range slider */
@@ -2955,8 +2968,8 @@ html { scroll-behavior: smooth; }
     height: 24px;
     border-radius: 50%;
     background: #fff;
-    border: 5px solid #009AEE;
-    box-shadow: 0 6px 14px -4px rgba(0, 154, 238, 0.8);
+    border: 5px solid #06b88a;
+    box-shadow: 0 6px 14px -4px rgba(6, 184, 138, 0.8);
     cursor: pointer;
     transition: transform 0.15s ease;
 }
@@ -2966,8 +2979,8 @@ html { scroll-behavior: smooth; }
     height: 22px;
     border-radius: 50%;
     background: #fff;
-    border: 5px solid #009AEE;
-    box-shadow: 0 6px 14px -4px rgba(0, 154, 238, 0.8);
+    border: 5px solid #06b88a;
+    box-shadow: 0 6px 14px -4px rgba(6, 184, 138, 0.8);
     cursor: pointer;
 }
 .fx-calc-range-scale {
@@ -2986,10 +2999,10 @@ html { scroll-behavior: smooth; }
     font-size: 13px;
     line-height: 1.55;
     color: #55627a;
-    background: rgba(0, 154, 238, 0.06);
-    border: 1px dashed rgba(0, 154, 238, 0.3);
+    background: rgba(6, 184, 138, 0.06);
+    border: 1px dashed rgba(6, 184, 138, 0.3);
 }
-.fx-calc-note i { color: #009AEE; margin-top: 2px; }
+.fx-calc-note i { color: #06b88a; margin-top: 2px; }
 
 /* ---- Result side ---- */
 .fx-calc-result {
@@ -2998,16 +3011,17 @@ html { scroll-behavior: smooth; }
     height: 100%;
     padding: 40px;
     color: #fff;
-    background: linear-gradient(150deg, #0090e0 0%, #009AEE 45%, #33c0ff 100%);
+    background: radial-gradient(130% 130% at 100% 0%, #12193f 0%, #0a0e22 55%, #05060d 100%);
 }
 .fx-calc-result-shape {
     position: absolute;
     top: -70px;
     right: -50px;
-    width: 240px;
-    height: 240px;
+    width: 260px;
+    height: 260px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 70%);
+    background: radial-gradient(circle, rgba(6,214,160,0.4) 0%, rgba(6,214,160,0) 70%);
+    filter: blur(10px);
 }
 .fx-calc-result-top {
     position: relative;
@@ -3038,6 +3052,11 @@ html { scroll-behavior: smooth; }
     line-height: 1.1;
     margin-bottom: 28px;
     letter-spacing: -1px;
+    background: linear-gradient(90deg, #ffd166, #06d6a0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: max-content;
 }
 .fx-calc-result-grid {
     position: relative;
@@ -3075,16 +3094,16 @@ html { scroll-behavior: smooth; }
     height: 54px;
     border-radius: 12px;
     font-size: 15px;
-    font-weight: 700;
-    color: #0784c9;
-    background: #fff;
-    box-shadow: 0 14px 26px -12px rgba(0, 0, 0, 0.4);
+    font-weight: 800;
+    color: #05060d;
+    background: linear-gradient(90deg, #ffd166, #06d6a0);
+    box-shadow: 0 14px 30px -10px rgba(6, 214, 160, 0.7);
     transition: all 0.22s ease;
 }
 .fx-calc-cta:hover {
-    color: #0784c9;
+    color: #05060d;
     transform: translateY(-2px);
-    box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 40px -10px rgba(6, 214, 160, 0.9);
 }
 .fx-calc-cta i { transition: transform 0.22s ease; }
 .fx-calc-cta:hover i { transform: translateX(3px); }
@@ -3109,7 +3128,8 @@ html { scroll-behavior: smooth; }
 }
 .fx-calc-info:hover {
     transform: translateY(-5px);
-    box-shadow: 0 26px 44px -26px rgba(0, 154, 238, 0.4);
+    box-shadow: 0 26px 44px -26px rgba(6, 184, 138, 0.4);
+    border-color: rgba(6, 184, 138, 0.35);
 }
 .fx-calc-info-icon {
     display: inline-flex;
@@ -3120,9 +3140,9 @@ html { scroll-behavior: smooth; }
     margin-bottom: 16px;
     border-radius: 15px;
     font-size: 20px;
-    color: #fff;
-    background: linear-gradient(140deg, #009AEE, #33c0ff);
-    box-shadow: 0 12px 22px -10px rgba(0, 154, 238, 0.8);
+    color: #05060d;
+    background: linear-gradient(135deg, #ffd166, #06d6a0);
+    box-shadow: 0 12px 22px -10px rgba(6, 214, 160, 0.8);
 }
 .fx-calc-info h5 { font-size: 17px; font-weight: 700; color: #16202e; margin-bottom: 8px; }
 .fx-calc-info p { font-size: 14px; line-height: 1.6; color: #55627a; margin: 0; }
@@ -3146,9 +3166,9 @@ html { scroll-behavior: smooth; }
 }
 .fx-calc-select input.fx-calc-input:focus {
     outline: none;
-    border-color: #009AEE;
+    border-color: #06b88a;
     background: #fff;
-    box-shadow: 0 0 0 3px rgba(0,154,238,.1);
+    box-shadow: 0 0 0 3px rgba(6,184,138,.12);
 }
 .fx-calc-risk-row { display: flex; gap: 10px; align-items: stretch; }
 .fx-calc-select--sm { flex: 0 0 90px; }
@@ -3162,18 +3182,19 @@ html { scroll-behavior: smooth; }
     margin-top: 8px;
     padding: 0 32px;
     height: 52px;
-    background: #009AEE;
-    color: #fff;
+    background: linear-gradient(90deg, #ffd166, #06d6a0);
+    color: #05060d;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 800;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
+    box-shadow: 0 12px 26px -10px rgba(6, 214, 160, 0.6);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
     width: 100%;
     justify-content: center;
 }
-.fx-calc-btn:hover { background: #007bbf; transform: translateY(-1px); }
+.fx-calc-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 36px -10px rgba(6, 214, 160, 0.8); }
 
 /* ============================================================
    Profile → Broker tables (scoped to .pb-txn / .pb-accounts)

@@ -27,30 +27,65 @@
 }
 
 <!-- calculator hero start -->
-<div class="tp-product-hero fx-calc-hero pre-header" data-background="@Url.Content("~/assets/img/update-2/hero/hero-3/hero-thumb-1.png")">
+<div class="sa-calchero">
+   <span class="sa-calchero__glow sa-calchero__glow--one"></span>
+   <span class="sa-calchero__glow sa-calchero__glow--two"></span>
    <div class="container containers">
-      <div class="row">
-         <div class="col-12">
-            <div class="tp-product-hero-content text-center">
-               <span class="fx-calc-badge"><i class="fa-solid fa-calculator"></i> Cashback Calculator</span>
-               <h2 class="mb-15 tp-ff-dm">Forex Cashback Calculator</h2>
-               <div class="tp-breadcrumb-list tp-breadcrumb-2-list">
-                  <ul class="justify-content-center">
-                     <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                     <li><span></span></li>
-                     <li>Cashback Calculator</li>
-                  </ul>
-               </div>
-               <p class="fx-calc-intro">
-                  Estimate how much you can earn back on every trade. Pick your broker, choose what you trade,
-                  and drag the slider to see your rebates add up &mdash; instantly.
-               </p>
+      <div class="row justify-content-center">
+         <div class="col-lg-9 text-center">
+            <span class="sa-calchero__badge"><i class="fa-solid fa-calculator"></i> Cashback Calculator</span>
+            <h1 class="sa-calchero__title">Forex <span class="sa-calchero__highlight">Cashback</span> Calculator</h1>
+            <div class="sa-calchero__crumb">
+               <a asp-controller="Home" asp-action="Index">Home</a>
+               <i class="fa-solid fa-angle-right"></i>
+               <span>Cashback Calculator</span>
             </div>
+            <p class="sa-calchero__intro">
+               Estimate how much you can earn back on every trade. Pick your broker, choose what you trade,
+               and drag the slider to see your rebates add up &mdash; instantly.
+            </p>
          </div>
       </div>
    </div>
 </div>
 <!-- calculator hero end -->
+
+<style>
+   .sa-calchero {
+      position: relative;
+      overflow: hidden;
+      padding: 160px 0 80px;
+      background: radial-gradient(120% 120% at 80% 0%, #0e1330 0%, #070912 55%, #05060d 100%);
+      color: #fff;
+   }
+   .sa-calchero__glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+   .sa-calchero__glow--one { width: 460px; height: 460px; top: -160px; left: -120px; background: rgba(108, 92, 231, .35); }
+   .sa-calchero__glow--two { width: 460px; height: 460px; bottom: -200px; right: -120px; background: rgba(6, 214, 160, .3); }
+   .sa-calchero .container { position: relative; z-index: 1; }
+
+   .sa-calchero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; margin-bottom: 22px;
+      font-size: 14px; font-weight: 600; border-radius: 999px;
+      color: #06d6a0; background: rgba(6, 214, 160, .12); border: 1px solid rgba(6, 214, 160, .3);
+   }
+   .sa-calchero__title { font-size: 56px; line-height: 1.08; font-weight: 800; margin: 0 0 16px; color: #fff; }
+   .sa-calchero__highlight {
+      background: linear-gradient(90deg, #ffd166, #06d6a0);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+   }
+   .sa-calchero__crumb { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; margin-bottom: 20px; }
+   .sa-calchero__crumb a { color: rgba(255, 255, 255, .7); text-decoration: none; transition: color .2s ease; }
+   .sa-calchero__crumb a:hover { color: #06d6a0; }
+   .sa-calchero__crumb i { font-size: 11px; color: rgba(255, 255, 255, .4); }
+   .sa-calchero__crumb span { color: #ffd166; font-weight: 600; }
+   .sa-calchero__intro { font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, .7); margin: 0 auto; max-width: 640px; }
+
+   @@media (max-width: 991px) {
+      .sa-calchero { padding: 130px 0 60px; }
+      .sa-calchero__title { font-size: 38px; }
+   }
+</style>
 
 <!-- calculator body start -->
 <div class="fx-calc pre-header pt-80 pb-120">
