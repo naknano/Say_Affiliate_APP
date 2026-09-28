@@ -7334,25 +7334,23 @@ html { scroll-behavior: smooth; }
     background: linear-gradient(to bottom, rgba(6,12,26,.45) 0%, rgba(6,12,26,.12) 60%, rgba(6,12,26,0) 100%);
 }
 
-/* ---- Scrolled state: solid frosted white, slides down ---- */
+/* ---- Scrolled state: dark fintech glass bar, slides down ---- */
 .hdr-modern.hdr-sticky-wrap.header-sticky {
     position: fixed;
-    background: rgba(255,255,255,.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 6px 26px rgba(15,27,45,.10);
-    border-bottom: 1px solid rgba(15,27,45,.06);
+    background: rgba(8, 12, 22, .82);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: 0 10px 34px rgba(0, 0, 0, .45);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
     animation: .6s ease 0s normal forwards 1 running headerSlideDown;
 }
-.hdr-modern.hdr-sticky-wrap.header-sticky::before { opacity: 0; }
-
-/* ---- Logo: white at rest, full colour when solid ---- */
-.hdr-modern.hdr-sticky-wrap .tp-header-logo img {
-    filter: brightness(0) invert(1);
-    transition: filter .35s ease;
-}
-.hdr-modern.hdr-sticky-wrap.header-sticky .tp-header-logo img {
-    filter: none;
+/* thin accent line glowing along the bottom edge for a trading-terminal feel */
+.hdr-modern.hdr-sticky-wrap.header-sticky::before {
+    opacity: 1;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #009AEE 30%, #06d6a0 70%, transparent);
+    z-index: 1;
 }
 
 /* ---- Nav links ---- */
@@ -7375,15 +7373,15 @@ html { scroll-behavior: smooth; }
 .hdr-modern.hdr-sticky-wrap .tp-main-menu nav > ul > li > a:hover,
 .hdr-modern.hdr-sticky-wrap .tp-main-menu nav > ul > li:hover > a { color: #8fd6ff; }
 .hdr-modern.hdr-sticky-wrap .tp-main-menu nav > ul > li:hover > a > span { color: #8fd6ff; }
-/* scrolled — dark text, smaller padding */
+/* scrolled — light text on dark glass, smaller padding */
 .hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li > a {
-    color: #16202e;
+    color: rgba(255, 255, 255, .82);
     padding: 22px 0;
 }
-.hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li > a > span { color: #9ca3af; }
+.hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li > a > span { color: rgba(255, 255, 255, .5); }
 .hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li > a:hover,
-.hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li:hover > a { color: #009AEE; }
-.hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li:hover > a > span { color: #009AEE; }
+.hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li:hover > a { color: #4ec3ff; }
+.hdr-modern.hdr-sticky-wrap.header-sticky .tp-main-menu nav > ul > li:hover > a > span { color: #4ec3ff; }
 
 /* ---- Buttons: white/ghost at rest, coloured when solid ---- */
 .hdr-modern.hdr-sticky-wrap .hdr-btn-ghost {
@@ -7405,25 +7403,25 @@ html { scroll-behavior: smooth; }
     color: #0b2b45;
     background: #eaf6ff;
 }
-/* scrolled — revert to brand colours */
+/* scrolled — ghost stays light on dark glass, solid keeps the neon gradient */
 .hdr-modern.hdr-sticky-wrap.header-sticky .hdr-btn-ghost {
-    color: #16202e;
-    border-color: rgba(22,32,46,.18);
-    background: transparent;
+    color: rgba(255, 255, 255, .9);
+    border-color: rgba(255, 255, 255, .22);
+    background: rgba(255, 255, 255, .04);
 }
 .hdr-modern.hdr-sticky-wrap.header-sticky .hdr-btn-ghost:hover {
-    color: #009AEE;
-    border-color: #009AEE;
-    background: rgba(0,154,238,.06);
+    color: #fff;
+    border-color: #4ec3ff;
+    background: rgba(78, 195, 255, .12);
 }
 .hdr-modern.hdr-sticky-wrap.header-sticky .hdr-btn-solid {
-    color: #fff;
-    background: linear-gradient(120deg, #009AEE, #1ba8f5);
-    box-shadow: 0 10px 20px -10px rgba(0,154,238,.8);
+    color: #05121f;
+    background: linear-gradient(120deg, #06d6a0, #1ba8f5);
+    box-shadow: 0 10px 24px -8px rgba(6, 214, 160, .6);
 }
 .hdr-modern.hdr-sticky-wrap.header-sticky .hdr-btn-solid:hover {
-    color: #fff;
-    background: linear-gradient(120deg, #0090e0, #17a2ef);
+    color: #05121f;
+    background: linear-gradient(120deg, #05c495, #17a2ef);
 }
 
 /* ---- Hero top padding so content clears the overlay header ---- */
@@ -7439,10 +7437,10 @@ html { scroll-behavior: smooth; }
 }
 .hdr-modern.hdr-sticky-wrap .tp-header-2-menu-btn span { background: #fff; }
 .hdr-modern.hdr-sticky-wrap.header-sticky .tp-header-2-menu-btn {
-    background: rgba(0,154,238,.08);
-    border-color: rgba(0,154,238,.2);
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .18);
 }
-.hdr-modern.hdr-sticky-wrap.header-sticky .tp-header-2-menu-btn span { background: #009AEE; }
+.hdr-modern.hdr-sticky-wrap.header-sticky .tp-header-2-menu-btn span { background: #fff; }
 
 /* Mega menu column label */
 .hdr-mega-col-label {

@@ -6,6 +6,30 @@
 <div class="sa-hero" data-background="@Url.Content("assets/img/update-2/hero/hero-3/hero-thumb-1.png")">
     <span class="sa-hero__glow sa-hero__glow--one"></span>
     <span class="sa-hero__glow sa-hero__glow--two"></span>
+
+    <!-- live market ticker tape -->
+    <div class="sa-ticker" aria-hidden="true">
+        <div class="sa-ticker__track">
+            <span class="sa-ticker__item">EUR/USD <b>1.0842</b> <em class="up">▲ 0.18%</em></span>
+            <span class="sa-ticker__item">GBP/USD <b>1.2716</b> <em class="down">▼ 0.09%</em></span>
+            <span class="sa-ticker__item">XAU/USD <b>2,341.5</b> <em class="up">▲ 0.63%</em></span>
+            <span class="sa-ticker__item">BTC/USD <b>63,120</b> <em class="up">▲ 1.24%</em></span>
+            <span class="sa-ticker__item">USD/JPY <b>151.88</b> <em class="down">▼ 0.21%</em></span>
+            <span class="sa-ticker__item">US30 <b>39,412</b> <em class="up">▲ 0.34%</em></span>
+            <span class="sa-ticker__item">NAS100 <b>18,204</b> <em class="down">▼ 0.12%</em></span>
+            <span class="sa-ticker__item">USOIL <b>82.44</b> <em class="up">▲ 0.51%</em></span>
+            <!-- duplicated for a seamless loop -->
+            <span class="sa-ticker__item">EUR/USD <b>1.0842</b> <em class="up">▲ 0.18%</em></span>
+            <span class="sa-ticker__item">GBP/USD <b>1.2716</b> <em class="down">▼ 0.09%</em></span>
+            <span class="sa-ticker__item">XAU/USD <b>2,341.5</b> <em class="up">▲ 0.63%</em></span>
+            <span class="sa-ticker__item">BTC/USD <b>63,120</b> <em class="up">▲ 1.24%</em></span>
+            <span class="sa-ticker__item">USD/JPY <b>151.88</b> <em class="down">▼ 0.21%</em></span>
+            <span class="sa-ticker__item">US30 <b>39,412</b> <em class="up">▲ 0.34%</em></span>
+            <span class="sa-ticker__item">NAS100 <b>18,204</b> <em class="down">▼ 0.12%</em></span>
+            <span class="sa-ticker__item">USOIL <b>82.44</b> <em class="up">▲ 0.51%</em></span>
+        </div>
+    </div>
+
     <div class="container container-1350">
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -13,17 +37,17 @@
                     <span class="sa-hero__badge tp_fade_anim" data-delay=".3">
                         <i class="fa-solid fa-bolt"></i> Cashback even on losing trades
                     </span>
-                    <h1 class="sa-hero__title tp_fade_anim" data-delay=".4">
+                    <h1 class="sa-hero__title tp_fade_anim" data-delay=".4" style="color: rgb(22, 32, 46);">
                         Get up to <span class="sa-hero__highlight">50% Cashback</span> on every trade you make
                     </h1>
                     <p class="sa-hero__lead tp_fade_anim" data-delay=".5">
                         Turn your everyday trading into extra income. Sign up, trade with top-tier
                         regulated brokers, and watch your rebates grow &mdash; paid out weekly.
                     </p>
-                    <ul class="sa-hero__features tp_fade_anim" data-delay=".6">
-                        <li><i class="fa-solid fa-circle-check"></i> <b>Simple &amp; transparent</b> &mdash; sign up, trade, earn</li>
-                        <li><i class="fa-solid fa-circle-check"></i> <b>Top-tier brokers</b> &mdash; fully regulated partners</li>
-                        <li><i class="fa-solid fa-circle-check"></i> <b>Earn on every trade</b> &mdash; win or lose</li>
+                    <ul class="sa-hero__features tp_fade_anim" data-delay=".6" >
+                        <li style="color: rgb(22, 32, 46); "><i class="fa-solid fa-circle-check"></i> <b>Simple &amp; transparent</b> &mdash; sign up, trade, earn</li>
+                        <li style="color: rgb(22, 32, 46); "><i class="fa-solid fa-circle-check"></i> <b>Top-tier brokers</b> &mdash; fully regulated partners</li>
+                        <li style="color: rgb(22, 32, 46); "><i class="fa-solid fa-circle-check"></i> <b>Earn on every trade</b> &mdash; win or lose</li>
                     </ul>
                     <div class="sa-hero__actions tp_fade_anim" data-delay=".7">
                         <a class="sa-hero__btn sa-hero__btn--primary" asp-controller="Home" asp-action="Register">
@@ -47,6 +71,19 @@
             <div class="col-lg-6">
                 <div class="sa-hero__visual tp_fade_anim" data-delay=".5" data-fade-from="right">
                     <img src="~/assets/img/banner/Artboard.png" alt="Say Affiliates cashback dashboard" class="sa-hero__visual-img" />
+                    <!-- animated candlestick strip overlay -->
+                    <div class="sa-candles" aria-hidden="true">
+                        <span class="sa-candle up"></span>
+                        <span class="sa-candle down"></span>
+                        <span class="sa-candle up"></span>
+                        <span class="sa-candle up"></span>
+                        <span class="sa-candle down"></span>
+                        <span class="sa-candle up"></span>
+                        <span class="sa-candle up"></span>
+                        <span class="sa-candle down"></span>
+                        <span class="sa-candle up"></span>
+                        <span class="sa-candle up"></span>
+                    </div>
                     <div class="sa-hero__card sa-hero__card--top">
                         <span class="sa-hero__card-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
                         <div>
@@ -73,9 +110,26 @@
         position: relative;
         overflow: hidden;
         padding: 180px 0 120px;
-        background: radial-gradient(120% 120% at 80% 0%, #0e1330 0%, #070912 55%, #05060d 100%);
+        background-color: #04060d;
+        background-image: radial-gradient(120% 120% at 80% 0%, #0a1024 0%, #060812 55%, #03040a 100%);
         color: #fff;
     }
+    /* dark veil that sits over the data-background image so the fintech-dark canvas always wins */
+    .sa-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(180deg, rgba(4, 6, 13, .88) 0%, rgba(4, 6, 13, .93) 100%),
+            radial-gradient(90% 70% at 82% 6%, rgba(18, 44, 86, .55), transparent 60%);
+    }
+    /* keep hero text light on the darker canvas (overrides inline color tweaks) */
+    .sa-hero__title { color: #f3f6fb !important; }
+    .sa-hero__features li { color: rgba(255, 255, 255, .86) !important; }
+    /* lift the accent glows above the veil so the dark canvas keeps its neon pop */
+    .sa-hero__glow { z-index: 1; opacity: .42; }
     .sa-hero__glow {
         position: absolute;
         border-radius: 50%;
@@ -228,6 +282,256 @@
     @@media (max-width: 575px) {
         .sa-hero__title { font-size: 34px; }
         .sa-hero__card { display: none; }
+    }
+
+    /* ===== Hero enhancements ===== */
+    /* animated grid mesh + soft top light over the dark backdrop */
+    .sa-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+        background-size: 46px 46px;
+        -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 75%);
+        mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 75%);
+        animation: saGridDrift 22s linear infinite;
+    }
+    @@keyframes saGridDrift {
+        from { background-position: 0 0, 0 0; }
+        to { background-position: 46px 46px, 46px 46px; }
+    }
+    /* glows now breathe */
+    .sa-hero__glow { animation: saGlowPulse 8s ease-in-out infinite; }
+    .sa-hero__glow--two { animation-delay: 2.5s; }
+    @@keyframes saGlowPulse {
+        0%, 100% { transform: scale(1); opacity: .5; }
+        50% { transform: scale(1.18); opacity: .72; }
+    }
+
+    /* live pulsing dot before the badge text */
+    .sa-hero__badge::before {
+        content: "";
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #ffe08a;
+        box-shadow: 0 0 0 0 rgba(255, 224, 138, .7);
+        animation: saDot 2s ease-out infinite;
+    }
+    @@keyframes saDot {
+        0% { box-shadow: 0 0 0 0 rgba(255, 224, 138, .7); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 224, 138, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 224, 138, 0); }
+    }
+
+    /* flowing gradient on the highlighted words */
+    .sa-hero__highlight {
+        background: linear-gradient(90deg, #ffd166, #06d6a0, #6c5ce7, #ffd166);
+        background-size: 300% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: saTextFlow 6s ease infinite;
+    }
+    @@keyframes saTextFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* feature rows become subtle glass chips */
+    .sa-hero__features li {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .04);
+        border: 1px solid rgba(255, 255, 255, .08);
+        transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    }
+    .sa-hero__features li:hover {
+        transform: translateX(6px);
+        background: rgba(6, 214, 160, .08);
+        border-color: rgba(6, 214, 160, .3);
+    }
+
+    /* shiny sweep across the primary CTA */
+    .sa-hero__btn--primary {
+        position: relative;
+        overflow: hidden;
+        animation: saCtaGlow 3.5s ease-in-out infinite;
+    }
+    .sa-hero__btn--primary::after {
+        content: "";
+        position: absolute;
+        top: 0; left: -120%;
+        width: 60%; height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .55), transparent);
+        transform: skewX(-20deg);
+        animation: saSheen 3.2s ease-in-out infinite;
+    }
+    @@keyframes saSheen {
+        0% { left: -120%; }
+        55%, 100% { left: 140%; }
+    }
+    @@keyframes saCtaGlow {
+        0%, 100% { box-shadow: 0 12px 30px rgba(6, 214, 160, .35); }
+        50% { box-shadow: 0 16px 42px rgba(6, 214, 160, .6); }
+    }
+
+    /* trust items as pill chips */
+    .sa-hero__trust span {
+        padding: 7px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .05);
+        border: 1px solid rgba(255, 255, 255, .1);
+        transition: border-color .25s ease, color .25s ease;
+    }
+    .sa-hero__trust span:hover { border-color: rgba(255, 209, 102, .4); color: rgba(255, 255, 255, .9); }
+
+    /* rotating glow ring behind the dashboard image + gentle float & tilt */
+    .sa-hero__visual::before {
+        content: "";
+        position: absolute;
+        inset: -12% -8%;
+        z-index: 0;
+        border-radius: 30px;
+        background: conic-gradient(from 0deg, rgba(6, 214, 160, .35), rgba(108, 92, 231, .35), rgba(255, 209, 102, .35), rgba(6, 214, 160, .35));
+        filter: blur(46px);
+        opacity: .55;
+        animation: saSpin 14s linear infinite;
+    }
+    @@keyframes saSpin { to { transform: rotate(360deg); } }
+    .sa-hero__visual-img {
+        position: relative;
+        z-index: 1;
+        border: 1px solid rgba(255, 255, 255, .12);
+        animation: saFloat 6.5s ease-in-out infinite;
+        transition: transform .4s ease;
+    }
+    .sa-hero__visual-img:hover { transform: translateY(-6px) scale(1.01); }
+    .sa-hero__card { z-index: 2; }
+
+    /* ===== Fintech / trading layer ===== */
+    /* monospaced, tabular figures on all the numbers for a trading-terminal feel */
+    .sa-hero__card strong,
+    .sa-ticker__item b,
+    .sa-ticker__item em {
+        font-family: "SFMono-Regular", "JetBrains Mono", "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: -.02em;
+    }
+
+    /* scrolling market ticker tape */
+    .sa-ticker {
+        position: relative;
+        z-index: 1;
+        max-width: 1350px;
+        margin: 0 auto 46px;
+        padding: 12px 0;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, .08);
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+        background: linear-gradient(90deg, rgba(6, 214, 160, .05), rgba(108, 92, 231, .05));
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .sa-ticker__track {
+        display: inline-flex;
+        gap: 42px;
+        white-space: nowrap;
+        will-change: transform;
+        animation: saTicker 38s linear infinite;
+    }
+    .sa-ticker:hover .sa-ticker__track { animation-play-state: paused; }
+    .sa-ticker__item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, .55);
+    }
+    .sa-ticker__item b { color: #fff; font-weight: 700; }
+    .sa-ticker__item em { font-style: normal; font-size: 12.5px; }
+    .sa-ticker__item .up { color: #06d6a0; }
+    .sa-ticker__item .down { color: #ff5c7c; }
+    @@keyframes saTicker {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+
+    /* animated candlestick strip on the visual */
+    .sa-candles {
+        position: absolute;
+        z-index: 2;
+        left: 18px;
+        bottom: 18px;
+        display: flex;
+        align-items: flex-end;
+        gap: 7px;
+        height: 74px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(6, 8, 18, .55);
+        border: 1px solid rgba(255, 255, 255, .1);
+        backdrop-filter: blur(8px);
+    }
+    .sa-candle {
+        position: relative;
+        width: 7px;
+        border-radius: 2px;
+        transform-origin: bottom;
+        animation: saCandle 2.8s ease-in-out infinite;
+    }
+    /* the wick */
+    .sa-candle::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -6px;
+        bottom: -6px;
+        width: 1px;
+        transform: translateX(-50%);
+        background: inherit;
+        opacity: .6;
+    }
+    .sa-candle.up { background: #06d6a0; height: 60%; }
+    .sa-candle.down { background: #ff5c7c; height: 40%; }
+    .sa-candle:nth-child(1) { animation-delay: 0s; }
+    .sa-candle:nth-child(2) { animation-delay: .18s; }
+    .sa-candle:nth-child(3) { animation-delay: .36s; }
+    .sa-candle:nth-child(4) { animation-delay: .54s; }
+    .sa-candle:nth-child(5) { animation-delay: .72s; }
+    .sa-candle:nth-child(6) { animation-delay: .9s; }
+    .sa-candle:nth-child(7) { animation-delay: 1.08s; }
+    .sa-candle:nth-child(8) { animation-delay: 1.26s; }
+    .sa-candle:nth-child(9) { animation-delay: 1.44s; }
+    .sa-candle:nth-child(10) { animation-delay: 1.62s; }
+    @@keyframes saCandle {
+        0%, 100% { transform: scaleY(.55); }
+        50% { transform: scaleY(1.15); }
+    }
+
+    @@media (max-width: 991px) {
+        .sa-candles { display: none; }
+    }
+
+    @@media (prefers-reduced-motion: reduce) {
+        .sa-hero::before,
+        .sa-hero__glow,
+        .sa-hero__badge::before,
+        .sa-hero__highlight,
+        .sa-hero__btn--primary,
+        .sa-hero__btn--primary::after,
+        .sa-hero__visual::before,
+        .sa-hero__visual-img,
+        .sa-hero__card,
+        .sa-ticker__track,
+        .sa-candle { animation: none; }
     }
 
     .sa-stats {
