@@ -26,6 +26,20 @@ var config = builder.Configuration;
 builder.Services.AddControllers();
 builder.Services.AddAuthentication().AddCookie();
 
+// Compress text responses (HTML/CSS/JS) — large payloads shrink ~70-80%, a big win on mobile.
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProvider>();
+    options.Providers.Add<Microsoft.AspNetCore.ResponseCompression.GzipCompressionProvider>();
+    options.MimeTypes = Microsoft.AspNetCore.ResponseCompression.ResponseCompressionDefaults.MimeTypes.Concat(
+        new[] { "application/javascript", "text/javascript", "image/svg+xml", "application/json" });
+});
+builder.Services.Configure<Microsoft.AspNetCore.ResponseCompression.BrotliCompressionProviderOptions>(o =>
+    o.Level = System.IO.Compression.CompressionLevel.Fastest);
+builder.Services.Configure<Microsoft.AspNetCore.ResponseCompression.GzipCompressionProviderOptions>(o =>
+    o.Level = System.IO.Compression.CompressionLevel.Fastest);
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // In-memory cache (used for shared reference data such as the broker list)
@@ -92,6 +106,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseResponseCompression();
+
 // Disable caching during development so views and static assets (CSS/JS) always reload fresh
 if (app.Environment.IsDevelopment())
 {
@@ -108,7 +124,23 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseStaticFiles();
+// Serve static assets (css/js/img) with long-lived browser caching in production so
+// repeat visits — especially on mobile — don't re-download them every time.
+if (app.Environment.IsDevelopment())
+{
+    app.UseStaticFiles();
+}
+else
+{
+    app.UseStaticFiles(new StaticFileOptions
+    {
+        OnPrepareResponse = ctx =>
+        {
+            // 30 days, immutable; safe as long as changed assets get a new name/query.
+            ctx.Context.Response.Headers["Cache-Control"] = "public,max-age=2592000,immutable";
+        }
+    });
+}
 app.UseRouting();
 
 app.UseAuthorization();

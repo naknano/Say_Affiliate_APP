@@ -68,29 +68,42 @@ public class ProfileController : Controller
         var credits = txns.Where(t => !IsWithdrawal(t.TransactionType)).ToList();
         var debits  = txns.Where(t =>  IsWithdrawal(t.TransactionType)).ToList();
 
-        var totalEarned     = credits.Where(t => IsSettled(t.Status)).Sum(t => t.Amount);
-        var totalWithdrawn  = debits.Where(t => IsSettled(t.Status)).Sum(t => t.Amount);
+        // Materialize the settled subsets once — they are reused by the totals,
+        // the monthly series and the year-over-year calc below.
+        var settledCredits = credits.Where(t => IsSettled(t.Status)).ToList();
+        var settledDebits  = debits.Where(t => IsSettled(t.Status)).ToList();
+
+        var totalEarned      = settledCredits.Sum(t => t.Amount);
+        var totalWithdrawn   = settledDebits.Sum(t => t.Amount);
         var pendingWithdrawn = debits.Where(t => IsPending(t.Status)).Sum(t => t.Amount);
-        var balance = totalEarned - totalWithdrawn - pendingWithdrawn;
-        if (balance < 0) balance = 0;
+        var balance = Math.Max(0, totalEarned - totalWithdrawn - pendingWithdrawn);
 
         // ---- monthly series (last 8 months) ----
         var now = DateTime.UtcNow;
-        var months = new List<string>();
-        var earnedSeries = new List<decimal>();
-        var withdrawnSeries = new List<decimal>();
-        for (var i = 7; i >= 0; i--)
+        var firstMonth = new DateTime(now.Year, now.Month, 1, 0, 0, 0, DateTimeKind.Utc).AddMonths(-7);
+
+        var months = new List<string>(8);
+        var earnedSeries = new decimal[8];
+        var withdrawnSeries = new decimal[8];
+        for (var i = 0; i < 8; i++)
+            months.Add(firstMonth.AddMonths(i).ToString("MMM"));
+
+        // Bucket each settled transaction into its month slot in a single pass.
+        int MonthSlot(DateTime at) => (at.Year - firstMonth.Year) * 12 + at.Month - firstMonth.Month;
+        foreach (var t in settledCredits)
         {
-            var start = new DateTime(now.Year, now.Month, 1, 0, 0, 0, DateTimeKind.Utc).AddMonths(-i);
-            var end = start.AddMonths(1);
-            months.Add(start.ToString("MMM"));
-            earnedSeries.Add(credits.Where(t => IsSettled(t.Status) && t.CreatedAt >= start && t.CreatedAt < end).Sum(t => t.Amount));
-            withdrawnSeries.Add(debits.Where(t => IsSettled(t.Status) && t.CreatedAt >= start && t.CreatedAt < end).Sum(t => t.Amount));
+            var slot = MonthSlot(t.CreatedAt);
+            if (slot >= 0 && slot < 8) earnedSeries[slot] += t.Amount;
+        }
+        foreach (var t in settledDebits)
+        {
+            var slot = MonthSlot(t.CreatedAt);
+            if (slot >= 0 && slot < 8) withdrawnSeries[slot] += t.Amount;
         }
 
         // ---- year-over-year on earnings ----
-        var thisYear = credits.Where(t => IsSettled(t.Status) && t.CreatedAt.Year == now.Year).Sum(t => t.Amount);
-        var lastYear = credits.Where(t => IsSettled(t.Status) && t.CreatedAt.Year == now.Year - 1).Sum(t => t.Amount);
+        var thisYear = settledCredits.Where(t => t.CreatedAt.Year == now.Year).Sum(t => t.Amount);
+        var lastYear = settledCredits.Where(t => t.CreatedAt.Year == now.Year - 1).Sum(t => t.Amount);
         var yoy = lastYear > 0 ? (double)((thisYear - lastYear) / lastYear) * 100.0 : (thisYear > 0 ? 100.0 : 0.0);
 
         // ---- recent activity ----
@@ -131,8 +144,8 @@ public class ProfileController : Controller
             YoyPercent = Math.Round(yoy, 0),
             WalletTail = uid == Guid.Empty ? "0000" : uid.ToString("N")[^4..].ToUpperInvariant(),
             ChartMonths = months,
-            ChartEarned = earnedSeries,
-            ChartWithdrawn = withdrawnSeries,
+            ChartEarned = earnedSeries.ToList(),
+            ChartWithdrawn = withdrawnSeries.ToList(),
             RecentActivity = recent
         };
 
@@ -231,13 +244,6 @@ public class ProfileController : Controller
     {
         return await _userCryptoService.GetCryptoUser(CurrentUserGuid());
     }
-    
-    
-    
-    
-    
-    
-    
 
     private string CurrentUserId() =>
         User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? User.FindFirst("sub")?.Value ?? string.Empty;

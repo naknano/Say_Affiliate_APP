@@ -22,18 +22,35 @@
                   Address: $('.address').val(),
                   Phone: $('.phone').val(),
                   Telegram: $('.telegram').val(),
-                  Whatapp: $('.whatapp').val()
+                  Whatapp: $('.whatapp').val(),
+                  Gender: $('.gender').val(),
+                  FirstName: $('.first-name').val(),
+                  LastName: $('.last-name').val(),
+                  CountryCode: $('#country').val(),
+                  DateOfBirth: $('.date-of-birth').val(),
+                  City: $('.city').val(),
+                  ZipCode: $('.zip-code').val()
                }),
                success: function (res) {
                   if (res.responseCode === 200 && res.data) {
                      Swal.fire({ title: 'Success!', text: 'Profile updated successfully!', icon: 'success', confirmButtonText: 'Close' });
                      $('.full-name').val(res.data.fullName);
                      $('.address').val(res.data.address);
-                     $('.gender').val(res.data.gender).trigger('change');
+                     window.setGenderValue(res.data.gender);
                      $('.email').val(res.data.email);
                      $('.phone').val(res.data.phone);
                      $('.telegram').val(res.data.telegram);
                      $('.whatapp').val(res.data.whatapp);
+                     $('.first-name').val(res.data.firstName);
+                     $('.last-name').val(res.data.lastName);
+                     window.setCountryValue(res.data.countryCode);
+                     $('.date-of-birth').val(res.data.dateOfBirth);
+                     $('.city').val(res.data.city);
+                     $('.zip-code').val(res.data.zipCode);
+                     if (res.data.firstName && res.data.lastName && res.data.countryCode
+                         && res.data.dateOfBirth && res.data.city && res.data.zipCode) {
+                        window.lockKyc();
+                     }
                      if (res.data.fullName) { $('#pm-name').text(res.data.fullName); }
                      if (res.data.email) { $('#pm-email').text(res.data.email); }
                   } else {

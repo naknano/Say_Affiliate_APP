@@ -1,5 +1,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    // Profile/dashboard pages don't use the 3D/slider effects — skip those heavy libs.
+    ViewData["LiteLayout"] = true;
 }
 
 <!-- profile dashboard area start -->
@@ -54,6 +56,55 @@
 
 @section Scripts {
    <script>
+      // Robustly select the gender option whether the API returns a code ("2"/2),
+      // a label ("Male"), or null, then resync the nice-select visual wrapper.
+      window.setGenderValue = function (g) {
+         var $sel = $('.gender');
+         if (!$sel.length) { return; }
+         var matched = '1';
+         if (g !== null && typeof g !== 'undefined' && g !== '') {
+            var wanted = String(g).trim().toLowerCase();
+            $sel.find('option').each(function () {
+               var optVal = String($(this).val()).trim().toLowerCase();
+               var optTxt = $(this).text().trim().toLowerCase();
+               if (optVal === wanted || optTxt === wanted) { matched = $(this).val(); return false; }
+            });
+         }
+         $sel.val(matched).trigger('change');
+         if ($.fn.niceSelect) { $sel.niceSelect('update'); }
+      };
+
+      // Select the country option by code (e.g. "KH") and resync nice-select.
+      window.setCountryValue = function (code) {
+         var $sel = $('#country');
+         if (!$sel.length) { return; }
+         var matched = '';
+         if (code !== null && typeof code !== 'undefined' && code !== '') {
+            var wanted = String(code).trim().toLowerCase();
+            $sel.find('option').each(function () {
+               var optVal = String($(this).val()).trim().toLowerCase();
+               var optTxt = $(this).text().trim().toLowerCase();
+               if (optVal === wanted || optTxt === wanted) { matched = $(this).val(); return false; }
+            });
+         }
+         $sel.val(matched).trigger('change');
+         if ($.fn.niceSelect) { $sel.niceSelect('update'); }
+      };
+
+      // Lock the KYC tab once it has already been submitted — inputs become
+      // read-only and the submit button is removed. Scoped to #nav-user-kyc so
+      // the personal-data Save button (same class) stays usable.
+      window.lockKyc = function () {
+         var $panel = $('#nav-user-kyc');
+         if (!$panel.length) { return; }
+         $panel.find('input, select').attr('disabled', 'disabled');
+         if ($.fn.niceSelect) { $panel.find('.tp-select').niceSelect('update'); }
+         $panel.find('.btn-update-profile').attr('disabled', 'disabled').hide();
+         $panel.find('.pm-kyc-notice')
+            .addClass('pm-kyc-locked')
+            .html('<i class="fa-solid fa-lock"></i> Your KYC details have been submitted and can no longer be edited.');
+      };
+
       $(document).ready(function () {
          // ---- Load the signed-in user into the sidebar + any form fields on the page ----
          (function loadDataUser() {
@@ -66,11 +117,25 @@
                   if (res.responseCode === 200 && res.data) {
                      $('.full-name').val(res.data.fullName);
                      $('.address').val(res.data.address);
-                     $('.gender').val(res.data.gender).trigger('change');
+                     window.setGenderValue(res.data.gender);
                      $('.email').val(res.data.email);
                      $('.phone').val(res.data.phone);
                      $('.telegram').val(res.data.telegram);
                      $('.whatapp').val(res.data.whatapp);
+
+                     // KYC tab fields (existing columns only)
+                     $('.first-name').val(res.data.firstName);
+                     $('.last-name').val(res.data.lastName);
+                     window.setCountryValue(res.data.countryCode);
+                     $('.date-of-birth').val(res.data.dateOfBirth);
+                     $('.city').val(res.data.city);
+                     $('.zip-code').val(res.data.zipCode);
+
+                     // Only lock once EVERY KYC field has been filled in.
+                     if (res.data.firstName && res.data.lastName && res.data.countryCode
+                         && res.data.dateOfBirth && res.data.city && res.data.zipCode) {
+                        window.lockKyc();
+                     }
 
                      if (res.data.fullName) { $('#pm-name').text(res.data.fullName); }
                      if (res.data.email) { $('#pm-email').text(res.data.email); }

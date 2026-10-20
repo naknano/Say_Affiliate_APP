@@ -27,29 +27,44 @@
 </div>
 
 @* Navigation (page links) *@
-<div class="profile__tab mr-40 radius-style-2" style="border-radius: 5px;">
+<div class="profile__tab mr-40 radius-style-2 pm-nav">
    <nav>
+      <span class="pm-nav-label">Main Menu</span>
       <div class="nav nav-tabs tp-tab-menu flex-column" style="border: none;">
          <a class="nav-link @Active("Dashboard")" asp-controller="Profile" asp-action="Dashboard">
-            <span><i class="fa-solid fa-gauge-high"></i></span>Dashboard
+            <span><i class="fa-solid fa-gauge-high"></i></span>
+            <span class="pm-nav-txt">Dashboard<small>Overview &amp; stats</small></span>
          </a>
          <a class="nav-link @Active("Details")" asp-controller="Profile" asp-action="Details">
-            <span><i class="fa-solid fa-user"></i></span>Profile
+            <span><i class="fa-solid fa-user"></i></span>
+            <span class="pm-nav-txt">Profile<small>Your personal info</small></span>
          </a>
          <a class="nav-link @Active("Brokers")" asp-controller="Profile" asp-action="Brokers">
-            <span><i class="fa-solid fa-building-columns"></i></span>Broker
+            <span><i class="fa-solid fa-building-columns"></i></span>
+            <span class="pm-nav-txt">Broker<small>Linked accounts</small></span>
          </a>
          <a class="nav-link @Active("Rebates")" asp-controller="Profile" asp-action="Rebates">
-            <span><i class="fa-solid fa-hand-holding-dollar"></i></span>Rebates
+            <span><i class="fa-solid fa-hand-holding-dollar"></i></span>
+            <span class="pm-nav-txt">Rebates<small>Cashback history</small></span>
          </a>
+      </div>
+
+      <span class="pm-nav-label">Wallet</span>
+      <div class="nav nav-tabs tp-tab-menu flex-column" style="border: none;">
          <a class="nav-link @Active("Withdraw")" asp-controller="Profile" asp-action="Withdraw">
-            <span><i class="fa-solid fa-wallet"></i></span>Withdraw
+            <span><i class="fa-solid fa-wallet"></i></span>
+            <span class="pm-nav-txt">Withdraw<small>Cash out funds</small></span>
          </a>
          <a class="nav-link @Active("PaymentMethods")" asp-controller="Profile" asp-action="PaymentMethods">
-            <span><i class="fa-solid fa-credit-card"></i></span>Payment Methods
+            <span><i class="fa-solid fa-credit-card"></i></span>
+            <span class="pm-nav-txt">Payment Methods<small>Manage payouts</small></span>
          </a>
+      </div>
+
+      <div class="nav nav-tabs tp-tab-menu flex-column" style="border: none;">
          <button type="button" class="nav-link btn-logout pm-nav-logout">
-            <span><i class="fa-solid fa-right-from-bracket"></i></span>Logout
+            <span><i class="fa-solid fa-right-from-bracket"></i></span>
+            <span class="pm-nav-txt">Logout<small>End your session</small></span>
          </button>
       </div>
    </nav>

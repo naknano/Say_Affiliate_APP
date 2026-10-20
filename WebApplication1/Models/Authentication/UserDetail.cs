@@ -100,4 +100,16 @@ public class UserDetail
     [Column("gender")]
     public string? Gender { get; set; }
 
+    [JsonProperty("date_of_birth")]
+    [Column("date_of_birth")]
+    public DateOnly? DateOfBirth { get; set; }
+
+    [JsonProperty("city")]
+    [Column("city")]
+    public string? City { get; set; }
+
+    [JsonProperty("zip_code")]
+    [Column("zip_code")]
+    public string? ZipCode { get; set; }
+
 }

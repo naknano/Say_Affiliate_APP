@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="~/css/spacing.css" />
     <link rel="stylesheet" href="~/css/main.css" />
     <link rel="stylesheet" href="~/css/customize.css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
  
 
 
@@ -592,16 +591,27 @@
 
 
 
+@{
+    // "Lite" pages (e.g. the logged-in profile/dashboard area) don't use the
+    // marketing-site 3D/slider effects, so they skip those heavy libs.
+    // three.js + hover-effect are only referenced by each other; Swiper is only
+    // used by slider-init — none are touched by main.js, so dropping them here
+    // is safe. Everything main.js calls (split-type, magnific, isotope) stays.
+    var liteLayout = ViewData["LiteLayout"] as bool? ?? false;
+}
 <!-- JS here -->
 <script src="~/js/vendor/jquery.js"></script>
 <script src="~/js/bootstrap-bundle.js"></script>
 <script src="~/js/plugin.js"></script>
-<script src="~/js/three.js"></script>
-<script src="~/js/hover-effect.umd.js"></script>
+@if (!liteLayout)
+{
+    <script src="~/js/three.js"></script>
+    <script src="~/js/hover-effect.umd.js"></script>
+    <script src="~/js/swiper-bundle.js"></script>
+    <script src="~/js/swiper-gl.js"></script>
+    <script src="~/js/effect-slicer.js"></script>
+}
 <script src="~/js/split-type.js"></script>
-<script src="~/js/swiper-bundle.js"></script>
-<script src="~/js/swiper-gl.js"></script>
-<script src="~/js/effect-slicer.js"></script>
 <script src="~/js/magnific-popup.js"></script>
 <script src="~/js/nice-select.js"></script>
 <script src="~/js/purecounter.js"></script>
@@ -613,7 +623,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Customize  -->
-<script src="~/js/slider-init.js"></script>
+@if (!liteLayout)
+{
+    <script src="~/js/slider-init.js"></script>
+}
 <script src="~/js/main.js"></script>
 <script src="~/js/tp-cursor.js"></script>
 

@@ -113,6 +113,13 @@ public class UserDetailServiceImp : IUserDetailService
             user.Phone = useUpdate.Phone;
             user.Telegram = useUpdate.Telegram;
             user.Whatapp = useUpdate.Whatapp;
+            user.Gender = useUpdate.Gender;
+            user.FirstName = useUpdate.FirstName;
+            user.LastName = useUpdate.LastName;
+            user.CountryCode = useUpdate.CountryCode;
+            user.DateOfBirth = DateOnly.TryParse(useUpdate.DateOfBirth, out var dob) ? dob : null;
+            user.City = useUpdate.City;
+            user.ZipCode = useUpdate.ZipCode;
             user.UpdatedAt = DateTime.UtcNow;
             user.UpdatedBy = userId;
 

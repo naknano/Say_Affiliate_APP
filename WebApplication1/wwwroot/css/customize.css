@@ -927,29 +927,47 @@ select {
     transition: all 0.22s ease;
 }
 .profile-modern .profile__tab .nav-link:hover {
-    background: #edf5ff;
-    color: #0d47a1;
-    box-shadow: inset 4px 0 0 #1565c0, inset 10px 0 12px rgba(21, 101, 192, 0.08);
+    background: #f1f6ff;
+    color: #1a78e8;
+    box-shadow: none;
 }
 .profile-modern .profile__tab .nav-link:hover span {
     background: #dbeafe;
     color: #1565c0;
 }
-/* Higher specificity (0-5-1) beats main.css .profile__tab nav .nav-tabs .nav-link.active (0-4-1)
-   which was forcing blue text on the blue gradient background */
+/* Higher specificity (0-5-1) beats main.css .profile__tab nav .nav-tabs .nav-link.active (0-4-1).
+   Friendly soft-pill active state: light tinted background + colored text + accent bar */
 .profile-modern .profile__tab nav .nav-tabs .nav-link.active,
 .profile-modern .profile__tab .nav-link.active {
-    background: linear-gradient(135deg, #0f5ec9 0%, #1a78e8 100%) !important;
-    color: #ffffff !important;
+    background: linear-gradient(135deg, #eaf3ff 0%, #f5f9ff 100%) !important;
+    color: #0f5ec9 !important;
     font-weight: 700;
-    box-shadow: inset 4px 0 0 #fff, inset 12px 0 18px rgba(255, 255, 255, 0.18), 0 8px 24px -10px rgba(15, 94, 201, 0.55);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 20px -14px rgba(26, 120, 232, 0.55);
+    text-shadow: none;
 }
-.profile-modern .profile__tab nav .nav-tabs .nav-link.active span,
-.profile-modern .profile__tab .nav-link.active span {
-    background: rgba(255, 255, 255, 0.22) !important;
+/* rounded accent bar on the left (replaces the old inset strip) */
+.profile-modern .profile__tab .nav-link.active::before {
+    display: block !important;
+    content: "" !important;
+    position: absolute;
+    left: 5px; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 26px;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #1a78e8, #33c0ff);
+}
+.profile-modern .profile__tab nav .nav-tabs .nav-link.active span:first-child,
+.profile-modern .profile__tab .nav-link.active span:first-child {
+    background: linear-gradient(135deg, #0f5ec9, #1a78e8) !important;
     color: #ffffff !important;
+    box-shadow: 0 7px 15px -5px rgba(26, 120, 232, 0.7);
 }
+/* chevron indicator on the right (base rule hides ::after, so force it back) */
+.profile-modern .profile__tab .nav-link.active::after {
+    display: inline-flex !important;
+    color: #1a78e8;
+}
+.profile-modern .profile__tab .nav-link.active .pm-nav-txt small { color: #6b9bd6; }
 
 /* ---- Content card ---- */
 .profile-modern .profile__tab-content {
@@ -1046,6 +1064,62 @@ select {
     justify-content: center;
 }
 .profile-modern .profile__input select { padding-left: 46px; padding-right: 32px; }
+
+/* nice-select (gender / country) — match the styled text inputs so the
+   leading icon has room and the box looks consistent */
+.profile-modern .profile__input .nice-select {
+    width: 100%;
+    height: 54px;
+    line-height: 52px;
+    border: 1px solid var(--pm-line);
+    border-radius: 12px;
+    background: var(--pm-bg);
+    padding-left: 46px;
+    padding-right: 38px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.22s ease;
+}
+.profile-modern .profile__input .nice-select .current {
+    color: var(--pm-ink);
+    font-size: 15px;
+    line-height: 1.2;
+}
+.profile-modern .profile__input .nice-select::after {
+    right: 18px;
+    width: 8px;
+    height: 8px;
+    border-color: var(--pm-muted);
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
+}
+.profile-modern .profile__input .nice-select:hover { border-color: #cfd8e3; }
+.profile-modern .profile__input .nice-select.open,
+.profile-modern .profile__input .nice-select:focus {
+    border-color: var(--pm-primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(0, 154, 238, 0.12);
+}
+/* keep the leading icon above the nice-select, aligned with the inputs */
+.profile-modern .profile__input > span { z-index: 3; }
+.profile-modern .profile__input .nice-select .list {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--pm-line);
+    box-shadow: 0 16px 40px -18px rgba(16, 44, 84, 0.35);
+    margin-top: 6px;
+    padding: 6px;
+}
+.profile-modern .profile__input .nice-select .option {
+    border-radius: 8px;
+    line-height: 38px;
+    min-height: 38px;
+    font-size: 14.5px;
+}
+.profile-modern .profile__input .nice-select .option.selected { font-weight: 700; color: var(--pm-primary); }
+.profile-modern .profile__input .nice-select .option:hover,
+.profile-modern .profile__input .nice-select .option.focus { background: #f1f6ff; }
 .profile-modern .tp-profile-input-title label,
 .profile-modern .tp-contact-input-title label {
     font-weight: 600;
@@ -1076,6 +1150,14 @@ select {
     margin-bottom: 4px;
 }
 .profile-modern .pm-kyc-notice i { margin-top: 2px; color: #3b82f6; flex-shrink: 0; }
+/* locked state (KYC already submitted) */
+.profile-modern .pm-kyc-notice.pm-kyc-locked {
+    background: #fff7ed;
+    border-color: #fed7aa;
+    color: #9a3412;
+    font-weight: 600;
+}
+.profile-modern .pm-kyc-notice.pm-kyc-locked i { color: #ea580c; }
 /* KYC upload placeholder */
 .profile-modern .pm-kyc-upload-section {
     padding: 20px 22px;
@@ -7679,3 +7761,380 @@ html { scroll-behavior: smooth; }
     0%, 100% { opacity: 0.55; transform: scale(1); }
     50%       { opacity: 1;   transform: scale(1.3); }
 }
+
+/* ============================================================
+   Responsive safety net — prevent sideways scroll on mobile
+   (decorative blurred circles use negative offsets that can
+   otherwise push the page wider than the viewport)
+   ============================================================ */
+html, body { overflow-x: hidden; max-width: 100%; }
+img, video, canvas { max-width: 100%; }
+
+/* ============================================================
+   Dashboard v2 — attractiveness pass (scoped to .dash2)
+   Layered on top of the base styles above; purely visual.
+   ============================================================ */
+
+/* ---- entrance animations (staggered rise+fade) ---- */
+@keyframes dash2-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.dash2 .dash-welcome,
+.dash2 .dash2-stats > [class*="col-"],
+.dash2 .row > [class*="col-"] > .dash-panel,
+.dash2 .row > [class*="col-"] > .dash2-side {
+    animation: dash2-rise 0.6s cubic-bezier(.22,.61,.36,1) both;
+}
+.dash2 .dash2-stats > [class*="col-"]:nth-child(1) { animation-delay: .05s; }
+.dash2 .dash2-stats > [class*="col-"]:nth-child(2) { animation-delay: .12s; }
+.dash2 .dash2-stats > [class*="col-"]:nth-child(3) { animation-delay: .19s; }
+.dash2 .dash2-stats > [class*="col-"]:nth-child(4) { animation-delay: .26s; }
+@media (prefers-reduced-motion: reduce) {
+    .dash2 .dash-welcome,
+    .dash2 .dash2-stats > [class*="col-"],
+    .dash2 .row > [class*="col-"] > .dash-panel,
+    .dash2 .row > [class*="col-"] > .dash2-side { animation: none; }
+}
+
+/* ---- richer hero with animated aurora sweep ---- */
+.dash2 .dash-welcome {
+    background: linear-gradient(120deg, #0a84d8 0%, #009AEE 45%, #22b5ff 80%, #38d0ff 100%);
+    box-shadow: 0 26px 55px -24px rgba(0, 154, 238, 0.75);
+}
+.dash2 .dash-welcome::before {
+    background: radial-gradient(circle, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 70%);
+    animation: dash2-pulse 9s ease-in-out infinite;
+}
+@keyframes dash2-pulse {
+    0%, 100% { transform: scale(1);   opacity: .9; }
+    50%      { transform: scale(1.25); opacity: .5; }
+}
+.dash2 .dash-welcome .profile__main-thumb img {
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.18), 0 10px 24px -6px rgba(0,0,0,0.4);
+    transition: transform .3s ease;
+}
+.dash2 .dash-welcome .profile__main-thumb:hover img { transform: scale(1.05) rotate(-2deg); }
+.dash2 .dash-welcome .dash-logout-btn:hover {
+    background: #eaf7ff;
+}
+
+/* ---- stat cards: gradient edge, shine sweep, animated ring ---- */
+.dash2-card {
+    position: relative;
+    overflow: hidden;
+    border-color: transparent;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(135deg, color-mix(in srgb, var(--c) 35%, transparent), transparent 60%) border-box;
+    border: 1px solid transparent;
+}
+.dash2-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: skewX(-18deg);
+    transition: left .7s ease;
+    pointer-events: none;
+}
+.dash2-card:hover::before { left: 130%; }
+.dash2-card::after {
+    content: "";
+    position: absolute;
+    right: -30px; bottom: -30px;
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--c) 14%, transparent), transparent 70%);
+    pointer-events: none;
+}
+.dash2-ring { transition: transform .4s ease, box-shadow .4s ease; }
+.dash2-card:hover .dash2-ring {
+    transform: scale(1.06) rotate(6deg);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 12%, transparent);
+}
+.dash2-card:hover .dash2-card-value { color: var(--c); transition: color .3s ease; }
+
+/* ---- panels: subtle gradient title + lift on hover ---- */
+.dash2 .dash-panel {
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.dash2 .dash-panel:hover {
+    box-shadow: 0 26px 50px -30px rgba(16, 44, 84, 0.45);
+}
+.dash2 .dash-panel-title i {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 9px;
+    background: linear-gradient(135deg, rgba(0,154,238,0.16), rgba(0,154,238,0.04));
+}
+.dash2-gross {
+    background: linear-gradient(90deg, #0a84d8, #22b5ff);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ---- chart glow ---- */
+.dash2-svg path[stroke="#4b57e6"] { filter: drop-shadow(0 6px 10px rgba(75,87,230,0.28)); }
+.dash2-svg path[stroke="#12b886"] { filter: drop-shadow(0 6px 10px rgba(18,184,134,0.25)); }
+
+/* ---- wallet: holographic sheen + hover tilt ---- */
+.dash2-wallet {
+    background: linear-gradient(135deg, #4b57e6 0%, #6a55e0 42%, #2fa8c9 90%, #12b886 140%);
+    transition: transform .4s ease, box-shadow .4s ease;
+}
+.dash2-wallet::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.22) 48%, transparent 66%);
+    background-size: 250% 250%;
+    animation: dash2-holo 6s linear infinite;
+    pointer-events: none;
+}
+@keyframes dash2-holo {
+    0%   { background-position: 180% 0; }
+    100% { background-position: -80% 0; }
+}
+.dash2-wallet:hover {
+    transform: translateY(-4px) rotate(-.6deg);
+    box-shadow: 0 30px 55px -22px rgba(75, 87, 230, 0.8);
+}
+.dash2-wallet-chip {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.45)),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 6px);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4);
+}
+@media (prefers-reduced-motion: reduce) {
+    .dash2-wallet::after,
+    .dash2 .dash-welcome::before { animation: none; }
+}
+
+/* ---- mini stats: accent tint + hover ---- */
+.dash2-mini-item { transition: transform .25s ease, box-shadow .25s ease, background .25s ease; }
+.dash2-mini-item:hover {
+    transform: translateY(-3px);
+    background: #fff;
+    box-shadow: 0 14px 26px -18px rgba(16,44,84,0.4);
+}
+.dash2-mini-icon { box-shadow: 0 8px 16px -8px var(--c, #4b57e6); }
+
+/* ---- quick actions: gradient wash + sliding arrow ---- */
+.dash2 .dash-action { position: relative; overflow: hidden; }
+.dash2 .dash-action::after {
+    content: "\f061"; /* fa arrow-right */
+    font-family: "Font Awesome 6 Free"; font-weight: 900;
+    position: absolute; right: 16px;
+    color: var(--a, #009AEE);
+    opacity: 0; transform: translateX(-6px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+.dash2 .dash-action:hover {
+    border-color: transparent;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--a) 10%, #fff), #fff);
+    box-shadow: 0 18px 34px -18px color-mix(in srgb, var(--a) 55%, transparent);
+}
+.dash2 .dash-action:hover::after { opacity: 1; transform: translateX(0); }
+.dash2 .dash-action:hover .dash-action-icon { transform: scale(1.08) rotate(-4deg); }
+.dash2 .dash-action-icon { transition: transform .25s ease; }
+
+/* ---- activity rows: hover highlight + pending pill ---- */
+.dash2 .dash-activity li {
+    border-radius: 12px;
+    padding: 13px 10px;
+    margin: 0 -10px;
+    transition: background .2s ease;
+}
+.dash2 .dash-activity li:hover { background: #f6f9fc; }
+.dash2 .dash-activity-amt.pm-muted {
+    padding: 3px 11px;
+    border-radius: 30px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #8a93a6;
+    background: #eef2f7;
+}
+
+/* ============================================================
+   Profile sidebar — attractiveness pass (scoped to .profile-modern)
+   Purely visual; markup untouched.
+   ============================================================ */
+
+/* ---- entrance ---- */
+@keyframes pm-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.profile-modern .pm-user-card,
+.profile-modern .profile__tab {
+    animation: pm-rise .55s cubic-bezier(.22,.61,.36,1) both;
+}
+.profile-modern .profile__tab { animation-delay: .08s; }
+@media (prefers-reduced-motion: reduce) {
+    .profile-modern .pm-user-card,
+    .profile-modern .profile__tab { animation: none; }
+}
+
+/* ---- user card: animated cover + glowing avatar ring ---- */
+.pm-user-card {
+    border-color: transparent;
+    background:
+        linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(160deg, rgba(0,154,238,0.35), transparent 55%) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 22px 46px -30px rgba(16, 44, 84, 0.55);
+}
+.pm-user-cover {
+    position: relative;
+    height: 96px;
+    background: linear-gradient(120deg, #0a84d8 0%, #009AEE 50%, #33c0ff 100%);
+    overflow: hidden;
+}
+.pm-user-cover::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25), transparent 45%),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.18), transparent 40%);
+    animation: pm-cover-pan 10s ease-in-out infinite alternate;
+}
+@keyframes pm-cover-pan {
+    from { transform: translateX(-8px) scale(1.05); }
+    to   { transform: translateX(8px) scale(1.12); }
+}
+.pm-user-avatar { margin-top: -50px; }
+.pm-user-avatar::after {
+    content: "";
+    position: absolute; inset: -5px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #009AEE, #33c0ff, #1a9e5c, #009AEE);
+    z-index: -1;
+    animation: pm-spin 6s linear infinite;
+    filter: blur(1px);
+}
+@keyframes pm-spin { to { transform: rotate(360deg); } }
+.pm-user-avatar img { transition: transform .3s ease; }
+.pm-user-card:hover .pm-user-avatar img { transform: scale(1.05); }
+.pm-user-status {
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.5);
+    animation: pm-pulse 2.2s ease-out infinite;
+}
+@keyframes pm-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(46, 204, 113, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+.pm-user-mini > div { transition: transform .25s ease, box-shadow .25s ease, background .25s ease; }
+.pm-user-mini > div:hover {
+    transform: translateY(-3px);
+    background: #fff;
+    box-shadow: 0 14px 26px -18px rgba(16,44,84,0.4);
+}
+@media (prefers-reduced-motion: reduce) {
+    .pm-user-cover::before,
+    .pm-user-avatar::after,
+    .pm-user-status { animation: none; }
+}
+
+/* ---- nav items: sliding accent, icon pop, smoother active ---- */
+.profile-modern .profile__tab .nav-link {
+    overflow: hidden;
+    font-weight: 600;
+}
+.profile-modern .profile__tab .nav-link:hover {
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #1565c0;
+}
+.profile-modern .profile__tab .nav-link:hover span:first-child { transform: scale(1.08) rotate(-4deg); }
+.profile-modern .profile__tab .nav-link.active {
+    transform: none;
+}
+.profile-modern .profile__tab .nav-link.active::after {
+    content: "\f054"; /* chevron-right */
+    font-family: "Font Awesome 6 Free"; font-weight: 900;
+    margin-left: auto;
+    font-size: 12px;
+    opacity: .85;
+}
+.profile-modern .profile__tab .nav-link.active span:first-child {
+    animation: pm-chip-pop .4s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes pm-chip-pop {
+    from { transform: scale(.6); }
+    to   { transform: scale(1); }
+}
+
+/* ---- logout: subtle red wash on hover ---- */
+.profile-modern .profile__tab .pm-nav-logout { margin-top: 10px !important; padding-top: 16px !important; }
+.profile-modern .profile__tab .pm-nav-logout:hover {
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #e05252 !important;
+}
+.profile-modern .profile__tab .pm-nav-logout:hover span:first-child { transform: scale(1.08) rotate(-4deg); }
+
+/* ---- grouped nav: section labels + two-line items ---- */
+.profile-modern .profile__tab .pm-nav-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 2px 14px 9px;
+    margin-top: 14px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #1a78e8, #33c0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* little gradient dot before the label */
+.profile-modern .profile__tab .pm-nav-label::before {
+    content: "";
+    flex-shrink: 0;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a78e8, #33c0ff);
+    box-shadow: 0 0 0 3px rgba(26, 120, 232, 0.14);
+}
+/* soft divider line trailing after the label text */
+.profile-modern .profile__tab .pm-nav-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(26, 120, 232, 0.22), transparent);
+}
+.profile-modern .profile__tab nav > .nav:first-of-type { margin-top: 0; }
+.profile-modern .profile__tab .pm-nav-label:first-child { margin-top: 2px; }
+.profile-modern .profile__tab .pm-nav-txt {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: center;
+    line-height: 1.25;
+    min-width: 0;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    font-size: 15px;
+    font-weight: 600;
+    flex: 1;
+}
+.profile-modern .profile__tab .pm-nav-txt small {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #9aa6b8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.profile-modern .profile__tab .nav-link:hover .pm-nav-txt small { color: #6b86b8; }
+.profile-modern .profile__tab .nav-link.active .pm-nav-txt small {
+    color: #6b9bd6;
+}
+.profile-modern .profile__tab .pm-nav-logout:hover .pm-nav-txt small { color: #e07a7a; }
+/* chevron should hug the right edge, vertically centered with the two-line text */
+.profile-modern .profile__tab .nav-link.active::after { align-self: center; }
