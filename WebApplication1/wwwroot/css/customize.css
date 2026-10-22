@@ -3526,6 +3526,74 @@ html { scroll-behavior: smooth; }
 }
 .pmpay-threshold-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 28px -12px rgba(58, 77, 224, 0.9); }
 
+/* ---- Payout threshold modal ---- */
+.pmpay-th-modal .modal-title i { color: #3a4de0; }
+.pmpay-th-hint {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    margin: 0 0 20px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #eef4ff;
+    border: 1px solid #dbe6ff;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #3f4b78;
+}
+.pmpay-th-hint i { margin-top: 2px; color: #3a4de0; flex-shrink: 0; }
+.pmpay-th-amount {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    border-radius: 16px;
+    border: 1px solid #e3ecf4;
+    background: linear-gradient(135deg, #eef4ff 0%, #f6f9fc 100%);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.pmpay-th-amount:focus-within {
+    border-color: #3a4de0;
+    box-shadow: 0 0 0 4px rgba(58, 77, 224, 0.12);
+}
+.pmpay-th-cur { font-size: 32px; font-weight: 800; color: #3a4de0; line-height: 1; }
+.pmpay-th-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    font-size: 38px;
+    font-weight: 800;
+    color: #16202e;
+    letter-spacing: -0.5px;
+    -moz-appearance: textfield;
+}
+.pmpay-th-input:focus { outline: none; }
+.pmpay-th-input::-webkit-outer-spin-button,
+.pmpay-th-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.pmpay-th-presets { display: flex; flex-wrap: wrap; gap: 9px; }
+.pmpay-th-chip {
+    flex: 1 1 auto;
+    min-width: 62px;
+    padding: 9px 12px;
+    border-radius: 30px;
+    border: 1px solid #e3ecf4;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    color: #55627a;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+.pmpay-th-chip:hover { border-color: #b9c9f6; color: #3a4de0; transform: translateY(-1px); }
+.pmpay-th-chip.is-active {
+    border-color: transparent;
+    color: #fff;
+    background: linear-gradient(135deg, #3a4de0, #5a6cff);
+    box-shadow: 0 8px 18px -8px rgba(58, 77, 224, 0.7);
+}
+
 /* method card */
 .pmpay-card {
     height: 100%;
